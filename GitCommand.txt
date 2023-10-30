@@ -1,0 +1,44 @@
+GitHub常用命令
+
+1.远端仓库部署到本地(当前路径下新建一个子路径作为仓库)
+git clone $(ssh)
+
+2.查看分支
+git branch
+
+3.本地新建分支
+git branch $(branch name)
+
+4.本地切换分支
+git checkout $(branch name)
+
+*5.本地删除分支
+git branch -d $(branch name)
+
+*6.本地合并分支到主分支(合并后记得删除分支)(出现问题时可能出现冲突)
+git merge
+
+7.添加文件到缓冲区(指定文件或者所有文件)
+git add $(filename) 
+git add .
+
+*8.查看文件的不同
+git status 
+git diff
+
+9.提交缓冲区到本地仓库 
+git commit -m "message"
+
+*10.回退版本
+git reset
+
+11.提交本地分支仓库到远端分支仓库
+git push <远程主机名> <本地分支名>:<远程分支名>
+git push <远程主机名> <本地分支名>(如果本地分支与远程分支同名)
+
+12.拉取远端分支仓库到本地分支仓库
+git pull <远程主机名> <远程分支名>:<本地分支名>
+(如果远程分支是与当前分支合并，则冒号后面的部分可以省略。)
+
+****(在远程已经新建了仓库以及各个分支。建议使用git clone后git branch 一个跟远程分支同名的本地分支,在该本地分支下修改后用git push origin <name>简单些)****
+****(在push之后记得在github发起pull request。如果你需要在别的分支上工作请创建新本地分支，pull，修改之后再push到该分支。禁止任何人直接push到main分支！！)****
