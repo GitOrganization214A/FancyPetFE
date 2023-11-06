@@ -12,12 +12,10 @@
         <text>省份： {{province}}</text>
 
     </block>
-    <block wx:elif="{{!hasUserInfo}}">
+    <block wx:else>
       <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 授权登录 </button>
       <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> error </button>
       <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <button class="box" bindtap="getUserAvatar" open-type="chooseAvatar"> 获取头像昵称 </button>
       <image class="test-img" src="avatarUrl"/>

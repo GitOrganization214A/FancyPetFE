@@ -13,7 +13,7 @@ Page({
         city : "haikou",
         country : "China"
     },
-    hasUserInfo: true,
+    hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
