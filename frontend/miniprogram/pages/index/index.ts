@@ -6,10 +6,17 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
+    nickName : "",
+    avatarUrl : "",
+    gender : "",
+    province : "",
+    city : "",
+    country : "",
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: false, // 如需尝试获取用户信息可改为false
+    
   },
   // 事件处理函数
   bindViewTap() {
@@ -20,9 +27,23 @@ Page({
   onLoad() {
     // @ts-ignore
     if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
+        var userInfo = wx.getStorageSync('userInfo');
+        if(userInfo.gender ==0){
+          userInfo.gender = '未定义'
+        }else if(userInfo.gender ==1){
+          userInfo.gender = '男'
+        }else {
+          userInfo.gender = '女'
+        }
+        this.setData({
+            canIUseGetUserProfile: true,
+            nickName : userInfo.nickName,
+            avatarUrl:userInfo.avatarUrl,
+            gender: userInfo.gender,
+            province: userInfo.province,
+            city: userInfo.city,
+            country: userInfo.country
+        })
     }
   },
   getUserProfile() {
@@ -35,7 +56,12 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        wx.setStorage({
+            data: res.userInfo,
+            key: 'userInfo',
+        })
       }
+
     })
   },
   getUserInfo(e: any) {
