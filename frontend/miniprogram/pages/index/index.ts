@@ -5,13 +5,14 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
-    nickName : "",
-    avatarUrl : "",
-    gender : "",
-    province : "",
-    city : "",
-    country : "",
+    userInfo: {
+        nickName : "cuber",
+        avatarUrl : "",
+        gender : "0",
+        province : "hainan",
+        city : "haikou",
+        country : "China"
+    },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
@@ -28,21 +29,25 @@ Page({
     // @ts-ignore
     if (wx.getUserProfile) {
         var userInfo = wx.getStorageSync('userInfo');
+        var that = this;
         if(userInfo.gender ==0){
-          userInfo.gender = '未定义'
+        userInfo.gender = '未定义'
         }else if(userInfo.gender ==1){
-          userInfo.gender = '男'
+        userInfo.gender = '男'
         }else {
-          userInfo.gender = '女'
+        userInfo.gender = '女'
         }
-        this.setData({
-            canIUseGetUserProfile: true,
-            nickName : userInfo.nickName,
+    
+        //给data中数据赋值
+    
+        that.setData({   
+            nickName : "cuber",
             avatarUrl:userInfo.avatarUrl,
-            gender: userInfo.gender,
-            province: userInfo.province,
-            city: userInfo.city,
-            country: userInfo.country
+            gender: "0",
+            province: "hainan",
+            city: "haikou",
+            country: "China",
+            canIUseGetUserProfile: true,
         })
     }
   },
@@ -53,8 +58,14 @@ Page({
       success: (res) => {
         console.log(res)
         this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+            nickName : res.userInfo.nickName,
+            avatarUrl:res.userInfo.avatarUrl,
+            gender: res.userInfo.gender,
+            province: res.userInfo.province,
+            city: res.userInfo.city,
+            country: res.userInfo.country,
+            hasUserInfo: true,
+            canIUseOpenData: true
         })
         wx.setStorage({
             data: res.userInfo,

@@ -2,10 +2,15 @@
 <view class="container">
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
+        <view >
+            <image class="avatar-img" src="{{avatarUrl}}" height="200" width="200"/>
+
+        </view>
+        <text>昵称： {{nickName}}</text>
+        <text>性别： {{gender}}</text>
+        <text>国家： {{country}}</text>
+        <text>省份： {{province}}</text>
+
     </block>
     <block wx:elif="{{!hasUserInfo}}">
       <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
@@ -17,7 +22,5 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  
 </view>
