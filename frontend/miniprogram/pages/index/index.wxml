@@ -3,7 +3,7 @@
   <view class="userinfo">
     <block wx:if="{{canIUseOpenData}}">
         <view >
-            <image class="avatar-img" src="{{avatarUrl}}" height="200" width="200"/>
+            <image class="avatar-img" src="avatarUrl"/>
 
         </view>
         <text>昵称： {{nickName}}</text>
@@ -13,12 +13,14 @@
 
     </block>
     <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 授权登录 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> error </button>
       <view wx:else> 请使用1.4.4及以上版本基础库 </view>
     </block>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <button class="box" bindtap="getUserAvatar" open-type="chooseAvatar"> 获取头像昵称 </button>
+      <image class="test-img" src="avatarUrl"/>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
