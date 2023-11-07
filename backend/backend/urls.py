@@ -20,5 +20,6 @@ from FancyPet import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('login/', views.login, name='login'),
+    path('api/v1/login/', views.login, name='login'),
+    path('api/v1/changeInfo/', views.changeInfo, name='changeInfo'),
 ]
