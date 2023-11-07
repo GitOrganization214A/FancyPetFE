@@ -7,7 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {
         nickName : null,
-        avatarUrl : "./test.jpg",
+        avatarUrl : null,
         follow : null,
         fans : null,
         atcnum : null,
@@ -31,14 +31,15 @@ Page({
   onLoad() {
     // @ts-ignore
     this.setData({
-        ['userInfo.avatarUrl']:"./test.jpg",
-        ['userInfo.follow']:"0",
-        ['userInfo.fans']:"0",
-        ['userInfo.atcnum']:"0"
+        ['avatarUrl']:"./test.jpg",
+        ['follow']:"0",
+        ['fans']:"0",
+        ['atcnum']:"0"
     })
 
   },
   getUserProfile() {
+    
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getSetting({
         success: (res) => {
@@ -75,6 +76,7 @@ Page({
   },
   login() {
     // 获取微信登录的code
+    var that = this;
     let usercode = null;
     wx.login({
       success (e) {
@@ -85,6 +87,7 @@ Page({
                 duration: 2000
               })
             usercode=e.code;
+          
             wx.request({
                 url: 'http://127.0.0.1:8000/api/v1/login',
                 data:{
