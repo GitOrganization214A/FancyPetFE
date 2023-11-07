@@ -81,6 +81,8 @@ Page({
                 duration: 2000
               })
             usercode=e.code;
+            console.log("codetest")
+            console.log(usercode)
           // 请求后端写的登录逻辑接口
           // ......  
         } else {
@@ -93,13 +95,14 @@ Page({
         }
       }
     })
+ 
     this.setData({
         userCode:usercode
     })
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
         data:{
-            code:this.data.userInfo.userCode,
+            code:usercode,
             nickname:this.data.userInfo.nickName,
             avatar:this.data.userInfo.avatarUrl,
         },
@@ -128,6 +131,7 @@ Page({
         haveAvatar:true,
         avatarUrl:UseravatarUrl
     })
+
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
         data:{
