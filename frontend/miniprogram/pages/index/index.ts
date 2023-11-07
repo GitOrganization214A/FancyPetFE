@@ -8,10 +8,9 @@ Page({
     userInfo: {
         nickName : null,
         avatarUrl : "./test.jpg",
-        gender : "未填写",
-        province : "未填写",
-        city : "未填写",
-        country : "未填写",
+        follow : null,
+        fans : null,
+        atcnum : null,
         userCode : null ,
     },
     hasUserInfo: false,
@@ -20,6 +19,8 @@ Page({
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
     haveAvatar: false,
     haveNickname: false,
+    LogoUrl:"../../resource/logo.png",
+    bgUrl:"../../resource/background.jpg"
   },
   // 事件处理函数
   bindViewTap() {
@@ -30,7 +31,10 @@ Page({
   onLoad() {
     // @ts-ignore
     this.setData({
-        avatarUrl:"./test.jpg"
+        ['userInfo.avatarUrl']:"./test.jpg",
+        ['userInfo.follow']:"0",
+        ['userInfo.fans']:"0",
+        ['userInfo.atcnum']:"0"
     })
 
   },
@@ -66,7 +70,7 @@ Page({
         }
       })
     this.setData({
-        canIUseOpenData: true, 
+        ['canIUseOpenData']: true, 
     })
   },
   login() {
@@ -81,8 +85,21 @@ Page({
                 duration: 2000
               })
             usercode=e.code;
-            console.log("codetest")
-            console.log(usercode)
+<<<<<<< HEAD
+=======
+            wx.request({
+                url: 'http://127.0.0.1:8000/api/v1/login',
+                data:{
+                    code:usercode
+                },
+                method:"GET",
+                header: {'content-type': 'application/json' //
+                },
+                success(res) {
+                    console.log(res.data)
+                }
+            })
+>>>>>>> 75a1eeed5e2b20585ea8eb9cb5cc123920fe06dd
           // 请求后端写的登录逻辑接口
           // ......  
         } else {
@@ -97,45 +114,32 @@ Page({
     })
  
     this.setData({
-        userCode:usercode
-    })
-    wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/login',
-        data:{
-            code:usercode,
-            nickname:this.data.userInfo.nickName,
-            avatar:this.data.userInfo.avatarUrl,
-        },
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        success(res) {
-            console.log(res.data)
-        }
+<<<<<<< HEAD
+=======
+        ['userInfo.usercode']:usercode
+>>>>>>> 75a1eeed5e2b20585ea8eb9cb5cc123920fe06dd
     })
     
+    
   },
-  getUserInfo(e: any) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
+
   getUserAvatar(e:any) {
     console.log("start")
     console.log(e.detail.avatarUrl)
     const UseravatarUrl = e.detail.avatarUrl
     this.setData({
-        haveAvatar:true,
-        avatarUrl:UseravatarUrl
+        ['haveAvatar']:true,
+        ['avatarUrl']:UseravatarUrl
     })
 
+<<<<<<< HEAD
+=======
+    console.log("!!testavatar!!")
+>>>>>>> 75a1eeed5e2b20585ea8eb9cb5cc123920fe06dd
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
         data:{
-            code:this.data.userInfo.userCode,
+            code:['userInfo.userCode'],
             nickname:this.data.userInfo.nickName,
             avatar:this.data.userInfo.avatarUrl,
         },
@@ -151,8 +155,8 @@ Page({
   getUserNickname(e:any){
     console.log(e.detail.value)
     this.setData({
-        haveNickname:true,
-        nickName:e.detail.value
+        ['haveNickname']:true,
+        ['userInfo.nickName']:e.detail.value
     })
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
