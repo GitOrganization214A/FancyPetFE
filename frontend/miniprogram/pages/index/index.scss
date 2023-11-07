@@ -1,11 +1,18 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-  
-}
+
+.userinfo{
+    display: flex;//弹性盒模型
+  }
+.avatarimg{
+    height: 50px;
+    width: 50px;
+ }
+.avatartext{
+    padding: 10rpx 30rpx;
+    display: flex;//弹性盒模型
+    flex-direction: column;//垂直显示
+    justify-content: space-between;//两边显示
+ }
 
 
 .userinfo-avatar {

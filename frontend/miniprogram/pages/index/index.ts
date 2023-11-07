@@ -6,18 +6,20 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {
-        nickName : "cuber",
-        avatarUrl : "/test.jpg",
-        gender : "0",
-        province : "hainan",
-        city : "haikou",
-        country : "China"
+        nickName : null,
+        avatarUrl : "./test.jpg",
+        gender : "未填写",
+        province : "未填写",
+        city : "未填写",
+        country : "未填写",
+        userCode : null ,
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
+    canIUseGetUserProfile: true,
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
-    
+    haveAvatar: false,
+    haveNickname: false,
   },
   // 事件处理函数
   bindViewTap() {
@@ -27,30 +29,10 @@ Page({
   },
   onLoad() {
     // @ts-ignore
-    if (wx.getUserProfile) {
-        var userInfo = wx.getStorageSync('userInfo');
-        var that = this;
-        if(userInfo.gender ==0){
-        userInfo.gender = '未定义'
-        }else if(userInfo.gender ==1){
-        userInfo.gender = '男'
-        }else {
-        userInfo.gender = '女'
-        }
-    
-        //给data中数据赋值
-    
-        that.setData({   
-            nickName : "cuber",
-            // avatarUrl:userInfo.avatarUrl,
-            avatarUrl:"/test.jpg",
-            gender: "0",
-            province: "hainan",
-            city: "haikou",
-            country: "China",
-            canIUseGetUserProfile: true,
-        })
-    }
+    this.setData({
+        avatarUrl:"./test.jpg"
+    })
+
   },
   getUserProfile() {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
@@ -83,12 +65,13 @@ Page({
           console.log(err)
         }
       })
+    this.setData({
+        canIUseOpenData: true, 
+    })
   },
   login() {
- 
-    let _this = this;
- 
     // 获取微信登录的code
+    let usercode = null;
     wx.login({
       success (e) {
         if (e.code) {
@@ -97,22 +80,9 @@ Page({
                 icon: 'none',
                 duration: 2000
               })
+            usercode=e.code;
           // 请求后端写的登录逻辑接口
-          // ......
-            wx.request({
-                url:'/login',
-                data:{
-                    code:e.code
-                },
-                method:"POST",
-                header: {'content-type': 'application/json' //
-                },
-                success(res) {
-                    console.log(res.data)
-                    
-                }
-            })
- 
+          // ......  
         } else {
           wx.showToast({
             title: '登录失败！' + e.errMsg,
@@ -122,6 +92,23 @@ Page({
           console.log('登录失败！' + e.errMsg)
         }
       }
+    })
+    this.setData({
+        userCode:usercode
+    })
+    wx.request({
+        url: 'http://127.0.0.1:8000/api/v1/login',
+        data:{
+            code:this.data.userInfo.userCode,
+            nickname:this.data.userInfo.nickName,
+            avatar:this.data.userInfo.avatarUrl,
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success(res) {
+            console.log(res.data)
+        }
     })
     
   },
@@ -134,12 +121,48 @@ Page({
     })
   },
   getUserAvatar(e:any) {
-    console.log(e)
+    console.log("start")
+    console.log(e.detail.avatarUrl)
+    const UseravatarUrl = e.detail.avatarUrl
     this.setData({
-        canIUseOpenData:true,
-        
+        haveAvatar:true,
+        avatarUrl:UseravatarUrl
+    })
+    wx.request({
+        url: 'http://127.0.0.1:8000/api/v1/login',
+        data:{
+            code:this.data.userInfo.userCode,
+            nickname:this.data.userInfo.nickName,
+            avatar:this.data.userInfo.avatarUrl,
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success(res) {
+            console.log(res.data)
+        }
     })
     // 把获取到的微信头像的图像文件上传到后端
-
+  },
+  getUserNickname(e:any){
+    console.log(e.detail.value)
+    this.setData({
+        haveNickname:true,
+        nickName:e.detail.value
+    })
+    wx.request({
+        url: 'http://127.0.0.1:8000/api/v1/login',
+        data:{
+            code:this.data.userInfo.userCode,
+            nickname:this.data.userInfo.nickName,
+            avatar:this.data.userInfo.avatarUrl,
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success(res) {
+            console.log(res.data)
+        }
+    })
   }
 })

@@ -1,26 +1,25 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-        <view >
-            <image class="avatar-img" src="avatarUrl"/>
-
+  <view wx:if="{{canIUseOpenData}}" class="userinfo" >
+    <view class="avatarimg">
+        <view>
+            <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" style="width: 200rpx; height: 200rpx; display: inline-block; box-sizing: border-box; position: relative; left: 0rpx; top: -141rpx"></image>
+        </view>       
+    </view>
+    <view class="avatartext">
+        <view class="infotext" style="position: relative; left: 85rpx; top: -141rpx">
+            <input wx:if="{{!haveNickname}}" type="nickname" placeholder="请输入昵称" name="nickname" bindchange="getUserNickname"/>
+            <text>
+                 {{nickName}}
+            </text>
         </view>
-        <text>昵称： {{nickName}}</text>
-        <text>性别： {{gender}}</text>
-        <text>国家： {{country}}</text>
-        <text>省份： {{province}}</text>
-
-    </block>
-    <block wx:else>
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 授权登录 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> error </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <button class="box" bindtap="getUserAvatar" open-type="chooseAvatar"> 获取头像昵称 </button>
-      <image class="test-img" src="avatarUrl"/>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+        <view  class="infobtn">
+            <button bindchooseavatar="getUserAvatar" open-type="chooseAvatar" style="position: relative; left: -68rpx; top: 0rpx; width: 371rpx; height: 85rpx; display: block; box-sizing: border-box"> 设置头像 </button>
+        </view>
+    </view>
   </view>
+  <block wx:else>
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 授权登录 </button>
+  </block>
   
 </view>
