@@ -11,7 +11,7 @@ Page({
         follow : null,
         fans : null,
         atcnum : null,
-        userCode : null ,
+        openID : "" ,
     },
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -31,7 +31,6 @@ Page({
   onLoad() {
     // @ts-ignore
     this.setData({
-        ['avatarUrl']:"./test.jpg",
         ['follow']:"0",
         ['fans']:"0",
         ['atcnum']:"0"
@@ -87,7 +86,7 @@ Page({
                 duration: 2000
               })
             usercode=e.code;
-          
+            let response ;
             wx.request({
                 url: 'http://127.0.0.1:8000/api/v1/login',
                 data:{
@@ -96,10 +95,16 @@ Page({
                 method:"GET",
                 header: {'content-type': 'application/json' //
                 },
-                success(res) {
+                success:function(res) {
+
+                    
+                    response = res.data.toString
                     console.log(res.data)
+                    console.log(response)
+                    
                 }
             })
+
           // 请求后端写的登录逻辑接口
           // ......  
         } else {
@@ -112,8 +117,10 @@ Page({
         }
       }
     })
+ 
     this.setData({
         ['userInfo.usercode']:usercode
+
     })
     
     
@@ -127,12 +134,15 @@ Page({
         ['haveAvatar']:true,
         ['avatarUrl']:UseravatarUrl
     })
-
+    this.data.userInfo.avatarUrl = UseravatarUrl
+    console.log(this.data.userInfo.avatarUrl)
+    console.log(this.data.userInfo.nickName)
     console.log("!!testavatar!!")
+
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
         data:{
-            code:['userInfo.userCode'],
+            openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
             avatar:this.data.userInfo.avatarUrl,
         },
@@ -151,10 +161,13 @@ Page({
         ['haveNickname']:true,
         ['userInfo.nickName']:e.detail.value
     })
+    console.log("testnickname")
+    console.log(this.data.userInfo.avatarUrl)
+    console.log(this.data.userInfo.nickName)
     wx.request({
         url: 'http://127.0.0.1:8000/api/v1/login',
         data:{
-            code:this.data.userInfo.userCode,
+            openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
             avatar:this.data.userInfo.avatarUrl,
         },
