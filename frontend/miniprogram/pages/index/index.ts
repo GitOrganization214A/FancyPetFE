@@ -6,11 +6,11 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {
-        nickName : null,
-        avatarUrl : null,
-        follow : null,
-        fans : null,
-        atcnum : null,
+        nickName : "",
+        avatarUrl : "",
+        follow : "",
+        fans : "",
+        atcnum : "",
         openID : "" ,
     },
     hasUserInfo: false,
@@ -99,9 +99,21 @@ Page({
 
                     
                     that.setData({
+                        ['nickName'] : res.data.nickname,
+                        ['avatarUrl'] :  res.data.avatar,
+                        ['follow'] :  res.data.follow,
+                        ['fans'] :  res.data.fans,
+                        ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
                     })
+                    that.data.userInfo.nickName=res.data.nickname
+                    that.data.userInfo.avatarUrl=res.data.avatar
+                    that.data.userInfo.follow=res.data.follow
+                    that.data.userInfo.fans=res.data.fans
+                    that.data.userInfo.atcnum=res.data.atcnum
                     that.data.userInfo.openID=res.data.openid
+
+
                     console.log(that.data.userInfo.openID)
                     console.log(response)
                     
@@ -120,13 +132,6 @@ Page({
         }
       }
     })
- 
-    this.setData({
-        ['userInfo.usercode']:usercode
-
-    })
-    
-    
   },
 
   getUserAvatar(e:any) {
@@ -180,6 +185,17 @@ Page({
         success(res) {
             console.log(res.data)
         }
+    })
+  },
+  quitUser(){
+      this.setData({
+        ['nickName'] : null,
+        ['avatarUrl'] : null,
+        ['follow'] : null,
+        ['fans'] : null,
+        ['atcnum'] : null,
+        ['openID'] : "" ,
+        canIUseOpenData:false,
     })
   }
 })

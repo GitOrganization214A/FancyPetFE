@@ -11,12 +11,15 @@
             <input type="nickname" placeholder="请输入昵称" name="nickname" bindchange="getUserNickname"/>
         </view>
         <view>
-            <text decode style="color: black; font-weight: 1000; position: relative; left: 100rpx; top: -80rpx; font-size: 14px;">
+            <text decode style="color: black; font-weight: 1000; position: relative; left: 120rpx; top: -80rpx; font-size: 14px;">
                 关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
             </text>   
         </view>
         <view  class="infobtn">
             <button bindchooseavatar="getUserAvatar" open-type="chooseAvatar" style="position: relative; left: -280rpx; top: -140rpx; width: 200rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 8px;"> 设置头像 </button>
+        </view>
+        <view  class="infobtn">
+            <button bindtap="quitUser" style="position: relative; left: -20rpx; top: 450rpx; width: 360rpx; height: 80rpx; display: block; box-sizing: border-box;font-size: 18px;"> 退出登录 </button>
         </view>
         <view>
             
