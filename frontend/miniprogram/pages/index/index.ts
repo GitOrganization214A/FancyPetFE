@@ -98,8 +98,11 @@ Page({
                 success:function(res) {
 
                     
-                    response = res.data.toString
-                    console.log(res.data)
+                    that.setData({
+                        ['openID']:res.data.openid,
+                    })
+                    that.data.userInfo.openID=res.data.openid
+                    console.log(that.data.userInfo.openID)
                     console.log(response)
                     
                 }
@@ -140,7 +143,7 @@ Page({
     console.log("!!testavatar!!")
 
     wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/login',
+        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
         data:{
             openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
@@ -165,7 +168,7 @@ Page({
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)
     wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/login',
+        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
         data:{
             openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
