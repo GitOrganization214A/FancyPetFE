@@ -13,9 +13,6 @@ Page({
         atcnum : "",
         openID : "" ,
     },
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: true,
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
     haveAvatar: false,
     haveNickname: false,
@@ -140,8 +137,9 @@ Page({
     const UseravatarUrl = e.detail.avatarUrl
     this.setData({
         ['haveAvatar']:true,
-        ['avatarUrl']:UseravatarUrl
+        ['avatarUrl']:UseravatarUrl,
     })
+    
     this.data.userInfo.avatarUrl = UseravatarUrl
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)

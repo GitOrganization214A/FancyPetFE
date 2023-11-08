@@ -8,7 +8,7 @@
     </view>
     <view class="avatartext">
         <view class="infotext" style="position: relative; left: 100rpx; top: -120rpx; font-size: 20px;">
-            <input type="nickname" placeholder="请输入昵称" name="nickname" bindchange="getUserNickname"/>
+            <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname"/>
         </view>
         <view>
             <text decode style="color: black; font-weight: 1000; position: relative; left: 120rpx; top: -80rpx; font-size: 14px;">
@@ -37,7 +37,7 @@
                 奇宠
             </text>
       </view>
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile" style="position: relative; left: 2rpx; top: -1491rpx; width: 300rpx; height: 94rpx; display: block; box-sizing: border-box" type="default"> 微信登录 </button>
+      <button  bindtap="getUserProfile" style="position: relative; left: 2rpx; top: -1491rpx; width: 300rpx; height: 94rpx; display: block; box-sizing: border-box" type="default"> 微信登录 </button>
   </block>
   
 </view>
