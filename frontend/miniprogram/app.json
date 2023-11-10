@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/forum/forum",
     "pages/logs/logs"
   ],
   "window": {
@@ -10,18 +11,27 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "selectedColor":"#33a3dc", 
     "list": [
-        {
-            "pagePath": "pages/index/index",
-            "text": "个人主页"
-        }, 
-        {
-            "pagePath": "pages/logs/logs",
-            "text": "日志"
-        }
-        
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "社区",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "日志",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "个人主页",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

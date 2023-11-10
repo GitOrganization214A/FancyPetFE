@@ -1,11 +1,17 @@
 // index.ts
 // 获取应用实例
 const app = getApp<IAppOption>()
+let SCREEN_WIDTH = 750
+let RATE = wx.getSystemInfoSync().screenHeight /wx.getSystemInfoSync().screenWidth
+let SCREEN_HEIGHT = SCREEN_WIDTH * RATE
 
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {
+        SW : SCREEN_WIDTH,
+        SH : SCREEN_HEIGHT,
+        avatarwidth: 0.1*SCREEN_WIDTH,
         nickName : "",
         avatarUrl : "",
         follow : "",
@@ -13,10 +19,11 @@ Page({
         atcnum : "",
         openID : "" ,
     },
+    beip:"192.168.187.1",
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
     haveAvatar: false,
     haveNickname: false,
-    LogoUrl:"../../resource/logo.png",
+    LogoUrl:"../../resource/logoall.png",
     bgUrl:"../../resource/background.jpg"
   },
   // 事件处理函数
@@ -145,20 +152,36 @@ Page({
     console.log(this.data.userInfo.nickName)
     console.log("!!testavatar!!")
 
-    wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
-        data:{
-            openid:this.data.userInfo.openID,
-            nickname:this.data.userInfo.nickName,
-            avatar:this.data.userInfo.avatarUrl,
-        },
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        success(res) {
-            console.log(res.data)
-        }
+    const tempFilePaths = e.tempFilePaths
+    wx.uploadFile({
+      url: 'http://127.0.0.1:8000/api/v1/changeInfo', 
+      filePath: tempFilePaths[0],
+      name: 'avatar',
+      formData: {
+        openid:this.data.userInfo.openID
+      },
+      success (res){
+        console.log(res.data)
+        //do something
+      }
     })
+
+
+
+    // wx.request({
+    //     url: 'http://127.0.0.1:8000/api/v1/changeInfo',
+    //     data:{
+    //         openid:this.data.userInfo.openID,
+    //         nickname:this.data.userInfo.nickName,
+    //         avatar:this.data.userInfo.avatarUrl,
+    //     },
+    //     method:"GET",
+    //     header: {'content-type': 'application/json' //
+    //     },
+    //     success(res) {
+    //         console.log(res.data)
+    //     }
+    // })
     // 把获取到的微信头像的图像文件上传到后端
   },
   getUserNickname(e:any){
@@ -171,11 +194,10 @@ Page({
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)
     wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
+        url: 'http://192.168.187.1/api/v1/changeInfo',
         data:{
             openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
-            avatar:this.data.userInfo.avatarUrl,
         },
         method:"GET",
         header: {'content-type': 'application/json' //

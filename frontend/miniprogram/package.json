@@ -1,0 +1,15 @@
+{
+  "name": "lin_ui",
+  "version": "1.0.0",
+  "description": "UI directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.11.1",
+    "lin-ui": "^0.9.13"
+  }
+}

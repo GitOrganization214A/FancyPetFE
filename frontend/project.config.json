@@ -18,13 +18,22 @@
       "outputPath": ""
     },
     "urlCheck": true,
-    "packNpmRelationList": []
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./miniprogram/"
+      }
+    ],
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "packNpmManually": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {},
   "srcMiniprogramRoot": "miniprogram/",
-  "appid": "wx92a77b2285b30f05",
+  "appid": "wx17396561c08eee6a",
   "libVersion": "3.1.4",
   "editorSetting": {
     "tabIndent": "insertSpaces",
