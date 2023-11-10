@@ -1,43 +1,22 @@
 <!--index.wxml-->
-<view class="container">
-  <view wx:if="{{canIUseOpenData}}" class="userinfo" >
-    <view class="avatarimg">
-        <view>
-            <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" style="width: 200rpx; height: 200rpx; display: inline-block; box-sizing: border-box; position: relative; left: 20rpx; top: -200rpx"></image>
-        </view>       
-    </view>
-    <view class="avatartext">
-        <view class="infotext" style="position: relative; left: 100rpx; top: -120rpx; font-size: 20px;">
-            <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname"/>
-        </view>
-        <view>
-            <text decode style="color: black; font-weight: 1000; position: relative; left: 120rpx; top: -80rpx; font-size: 14px;">
+<view class="container" style="width:100%;">
+  <view wx:if="{{canIUseOpenData}}" style="width:100%;" class="userinfo" >
+    <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: fixed; height:220rpx; width:220rpx; left:45rpx; top:37.5rpx"></image>   
+    <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="display: inline-block; box-sizing: border-box; position: fixed; width:600rpx; height:100rpx; line-height:100rpx; left:290rpx; top:100rpx; font-size:50rpx"/>
+    <text decode style="color: black; font-weight: 1000; position: fixed; height:60rpx; left: 290rpx; top: 240rpx; font-size: 30rpx;">
                 关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
-            </text>   
-        </view>
-        <view  class="infobtn">
-            <button bindchooseavatar="getUserAvatar" open-type="chooseAvatar" style="position: relative; left: -280rpx; top: -140rpx; width: 200rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 8px;"> 设置头像 </button>
-        </view>
-        <view  class="infobtn">
-            <button bindtap="quitUser" style="position: relative; left: -20rpx; top: 450rpx; width: 360rpx; height: 80rpx; display: block; box-sizing: border-box;font-size: 18px;"> 退出登录 </button>
-        </view>
-        <view>
-            
-        </view>
-    </view>
+    </text>   
+    <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" style="position: fixed; left: 45rpx; top: 270rpx; width: 220rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置头像 </button>
+    <button bindtap="quitUser" style="position: fixed; left: 200rpx; top: 1300rpx; width: 350rpx; height: 80rpx; line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx;"> 退出登录 </button>
+
   </view>
   <block wx:else>
-      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 748rpx; height: 1177rpx; display: block; box-sizing: border-box; position: relative; left: -5rpx; top: -200rpx"></image>
-      <image wx:if="{{LogoUrl.length>0}}" src="{{LogoUrl}}" style="width: 153rpx; height: 153rpx; display: block; box-sizing: border-box; position: relative; left: -165rpx; top: -1268rpx; border: 6rpx solid black"></image>
+      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 0rpx;"></image>
+      <image wx:if="{{LogoUrl.length>0}}" src="{{LogoUrl}}" style="width: 600rpx;  height:135rpx; display: block; box-sizing: border-box; position: fixed; left: 75rpx; top: 100rpx; border: 6rpx solid black"></image>
       <view>
-            <text style="color: black; font-weight: 1000; position: relative; left: 132rpx; top: -1366rpx; font-size: 15px; font-family: Arial, Helvetica, sans-serif">
-                —— FancyPet ——
-            </text>
-            <text style="color: black; font-weight: 1000; position: relative; left: 207rpx; top: -1623rpx; font-size: 40px; font-family: 楷体">
-                奇宠
-            </text>
+
       </view>
-      <button  bindtap="getUserProfile" style="position: relative; left: 2rpx; top: -1491rpx; width: 300rpx; height: 94rpx; display: block; box-sizing: border-box" type="default"> 微信登录 </button>
+      <button  bindtap="getUserProfile" style="position: fixed; left: 225rpx; top: 400rpx; width: 300rpx; height: 94rpx; display: block; box-sizing: border-box" type="default"> 微信登录 </button>
   </block>
   
 </view>

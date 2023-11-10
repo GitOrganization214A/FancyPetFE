@@ -1,14 +1,39 @@
 {
   "pages": [
-    "pages/forum/forum",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/petspace/petspace",
+    "pages/forum/forum",
+    "pages/logs/logs",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "FancyPet",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor":"#33a3dc", 
+    "list": [
+      {
+        "pagePath": "pages/forum/forum",
+        "text": "社区",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/petspace/petspace",
+        "text": "宠物空间",
+        "iconPath": "",
+        "selectedIconPath": ""
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "个人主页",
+        "iconPath": "",
+        "selectedIconPath": ""
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,16 +1,6 @@
 // petinfo.ts
 
 Page({
-  showdetails:function(){
-    wx.navigateTo({
-      url:'/pages/petspace/petspace'
-    })
-  },
-  attentionlist:function(){
-    wx.navigateTo({
-      url:'/pages/list/list'
-    })
-  },
   data: {
     currentTab: 'following', // 默认显示关注
     color1: 'red',
