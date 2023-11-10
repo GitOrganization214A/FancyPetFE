@@ -18,20 +18,20 @@
       {
         "pagePath": "pages/forum/forum",
         "text": "社区",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "resource/forumiconus.png",
+        "selectedIconPath": "resource/forumicons.png"
       },
       {
         "pagePath": "pages/petspace/petspace",
         "text": "宠物空间",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "resource/petspaceiconus.png",
+        "selectedIconPath": "resource/petspaceicons.png"
       },
       {
         "pagePath": "pages/index/index",
         "text": "个人主页",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "iconPath": "resource/indexiconus.png",
+        "selectedIconPath": "resource/indexicons.png"
       }
     ]
   },

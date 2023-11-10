@@ -24,7 +24,8 @@ Page({
     haveAvatar: false,
     haveNickname: false,
     LogoUrl:"../../resource/logoall.png",
-    bgUrl:"../../resource/background.jpg"
+    bgUrl:"../../resource/background.png",
+    loginbuttonUrl:"../../resource/loginbutton.png"
   },
   // 事件处理函数
   bindViewTap() {
@@ -34,6 +35,14 @@ Page({
   },
   onLoad() {
     // @ts-ignore
+    if(!this.data.canIUseOpenData)
+        wx.hideTabBar({
+            success:()=>{
+                console.log("hidetabbar")
+            }
+        })
+
+
     this.setData({
         ['follow']:"0",
         ['fans']:"0",
@@ -92,7 +101,7 @@ Page({
             usercode=e.code;
             let response ;
             wx.request({
-                url: 'http://127.0.0.1:8000/api/v1/login',
+                url: 'http://43.143.139.4:8000/api/v1/login/',
                 data:{
                     code:usercode
                 },
@@ -100,8 +109,11 @@ Page({
                 header: {'content-type': 'application/json' //
                 },
                 success:function(res) {
-
-                    
+                    wx.showTabBar({
+                        success:()=>{
+                            console.log("showtabbar")
+                        }
+                    })
                     that.setData({
                         ['nickName'] : res.data.nickname,
                         ['avatarUrl'] :  res.data.avatar,
@@ -110,6 +122,7 @@ Page({
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
                     })
+                    console.log(res.data.avatar)
                     that.data.userInfo.nickName=res.data.nickname
                     that.data.userInfo.avatarUrl=res.data.avatar
                     that.data.userInfo.follow=res.data.follow
@@ -121,6 +134,9 @@ Page({
                     console.log(that.data.userInfo.openID)
                     console.log(response)
                     
+                },
+                fail:function(res){
+                    console.log("failed")
                 }
             })
 
@@ -155,14 +171,15 @@ Page({
     const tempFilePaths = e.detail.avatarUrl
     console.log(tempFilePaths)
     wx.uploadFile({
-      url: 'http://127.0.0.1:8000/api/v1/changeAvatar', 
+      url: 'http://43.143.139.4:8000/api/v1/changeAvatar/', 
       filePath: tempFilePaths,
       name: 'avatar',
       formData: {
         openid:this.data.userInfo.openID
       },
       success (res){
-        console.log("sent")
+        console.log(res.data)
+
         //do something
       }
     })
@@ -195,7 +212,7 @@ Page({
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)
     wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
+        url: 'http://43.143.139.4:8000/api/v1/changeInfo/',
         data:{
             openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
@@ -210,11 +227,11 @@ Page({
   },
   quitUser(){
       this.setData({
-        ['nickName'] : null,
-        ['avatarUrl'] : null,
-        ['follow'] : null,
-        ['fans'] : null,
-        ['atcnum'] : null,
+        ['nickName'] : "",
+        ['avatarUrl'] : "",
+        ['follow'] : "",
+        ['fans'] : "",
+        ['atcnum'] : "",
         ['openID'] : "" ,
         canIUseOpenData:false,
     })

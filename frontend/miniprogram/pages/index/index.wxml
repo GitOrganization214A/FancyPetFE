@@ -7,7 +7,7 @@
                 关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
     </text>   
     <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" style="position: fixed; left: 45rpx; top: 270rpx; width: 220rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置头像 </button>
-    <button bindtap="quitUser" style="position: fixed; left: 200rpx; top: 1300rpx; width: 350rpx; height: 80rpx; line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx;"> 退出登录 </button>
+    <button bindtap="quitUser" style="position: fixed; left: 200rpx; top: 1100rpx; width: 350rpx; height: 80rpx; line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx;"> 退出登录 </button>
 
   </view>
   <block wx:else>
@@ -16,7 +16,7 @@
       <view>
 
       </view>
-      <button  bindtap="getUserProfile" style="position: fixed; left: 225rpx; top: 400rpx; width: 300rpx; height: 94rpx; display: block; box-sizing: border-box" type="default"> 微信登录 </button>
+      <button  bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; top: 1200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; top: 1200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
   </block>
   
 </view>
