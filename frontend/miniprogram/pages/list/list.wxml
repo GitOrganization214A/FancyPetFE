@@ -1,0 +1,5 @@
+<!--list.wxml-->
+  <view class = "showList">
+    <l-list title="Fancy" image="/resource/test.png" l-class-icon="iconfont" />
+    <l-list title="Cuber" image="/resource/logo.png" l-class-icon="iconfont" />
+</view>

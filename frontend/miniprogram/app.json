@@ -1,8 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/petspace/petspace",
     "pages/forum/forum",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,8 +22,8 @@
         "selectedIconPath": ""
       },
       {
-        "pagePath": "pages/logs/logs",
-        "text": "日志",
+        "pagePath": "pages/petspace/petspace",
+        "text": "宠物空间",
         "iconPath": "",
         "selectedIconPath": ""
       },
