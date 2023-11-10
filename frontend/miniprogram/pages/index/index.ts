@@ -152,16 +152,17 @@ Page({
     console.log(this.data.userInfo.nickName)
     console.log("!!testavatar!!")
 
-    const tempFilePaths = e.tempFilePaths
+    const tempFilePaths = e.detail.avatarUrl
+    console.log(tempFilePaths)
     wx.uploadFile({
-      url: 'http://127.0.0.1:8000/api/v1/changeInfo', 
-      filePath: tempFilePaths[0],
+      url: 'http://127.0.0.1:8000/api/v1/changeAvatar', 
+      filePath: tempFilePaths,
       name: 'avatar',
       formData: {
         openid:this.data.userInfo.openID
       },
       success (res){
-        console.log(res.data)
+        console.log("sent")
         //do something
       }
     })
@@ -194,7 +195,7 @@ Page({
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)
     wx.request({
-        url: 'http://192.168.187.1/api/v1/changeInfo',
+        url: 'http://127.0.0.1:8000/api/v1/changeInfo',
         data:{
             openid:this.data.userInfo.openID,
             nickname:this.data.userInfo.nickName,
