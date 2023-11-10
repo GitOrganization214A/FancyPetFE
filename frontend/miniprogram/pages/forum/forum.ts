@@ -20,7 +20,7 @@ Page({
     if(tab == "hot") {
       var that = this
       wx.request({
-        url: 'http://127.0.0.1:8000/api/v1/HotArticles',
+        url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
         method:"GET",
         header: {'content-type': 'application/json' //
         },

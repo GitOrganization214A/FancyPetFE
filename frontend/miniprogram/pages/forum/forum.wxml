@@ -25,13 +25,34 @@
   <view wx:if="{{currentTab === 'hot'}}">
     <!-- 显示热门内容 -->
     <block wx:for="{{hotPosts}}" wx:key="*this">
-      <view>
-        <image src="{{item.image}}" />
-        <text>{{item.title}}</text>
-        <text>{{item.content}}</text>
-        <text>点赞数: {{item.like}}</text>
-        <text>debug</text>
+      <view class="line"></view>
+      <view class ="post">
+        <view class ="userinfo">
+          <l-avatar class="avatar" text="{{item.nickname}}" size='80' shape="square" src ='{{item.avatar}}'></l-avatar>
+        </view>
+        <view class = "title">
+          <text>{{item.title}}</text>
+        </view>
+        <view class = "content">
+          <text class="content_text">{{item.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
+        </view>
+        
+        <!-- 图片列表 -->
+        <view class="album">
+          <l-album urls='{{item.images}}' multiple-size="200" ></l-album>
+        </view>
+
+        <!-- 点赞、评论、转发 -->
+        <view class="actions">
+          <l-icon name="like" type="like" size="28" color="#515151"></l-icon>
+          <text class="actions_text">{{item.like}}</text>
+          <l-icon name="comment" type="comment" size="28" color="#515151"></l-icon>
+          <text class="actions_text">{{item.comment}}</text>
+          <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+          <text class="actions_text">{{item.share}}</text>
+        </view>
       </view>
+      <view class="line"></view>
     </block>
   </view>
   <view wx:if="{{currentTab === 'classification'}}">
