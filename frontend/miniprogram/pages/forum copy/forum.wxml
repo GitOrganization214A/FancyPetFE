@@ -1,0 +1,34 @@
+<!--forum.wxml-->
+  <view class = "addPet">
+    <l-grid>
+      <l-grid-item key="one" slot="one">
+       <l-button special="{{true}}">
+        <view class="container">
+         <l-icon size="40" name="add" color="#3683d6" />
+         <text class="describe">添加我的宠物</text>
+        </view>
+       </l-button>
+      </l-grid-item>
+      <l-grid-item key="two" slot="two">
+        <l-button special="{{true}}" bind:lintap="attentionlist">
+          <view class="container">
+           <l-icon size="40" name="order" color="#3683d6" />
+           <text class="describe">关注列表</text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+     </l-grid>  
+  </view>
+  <view>
+    <l-card type="avatar" l-class="card" image="/resource/test.png" title="溪小明儿" describe="英吉利斗牛犬">
+        <!-- 此处为content -->
+        <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+        <l-button special="{{true}}" bind:lintap="showdetails">
+         <l-icon size="40" name="right" color="#3683d6" />
+        </l-button>
+      </l-tag>
+  </l-card>
+</view>

@@ -1,8 +1,10 @@
 {
   "pages": [
+    "pages/forum copy/forum",
     "pages/forum/forum",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/list/forum"
   ],
   "window": {
     "backgroundTextStyle": "light",

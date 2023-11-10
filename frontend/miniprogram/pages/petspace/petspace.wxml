@@ -1,9 +1,0 @@
-<!--index.wxml-->
-<view class="container">
-  <view>
-    <block class="addMyPet">
-    </block>
-  </view>
-  <scroll-view>
-  </scroll-view>
-</view>
