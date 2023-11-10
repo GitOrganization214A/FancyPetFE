@@ -24,12 +24,13 @@
   </view>
   <view wx:if="{{currentTab === 'hot'}}">
     <!-- 显示热门内容 -->
-    <block wx:for="{{hotPosts}}" wx:key="id">
+    <block wx:for="{{hotPosts}}" wx:key="*this">
       <view>
-        <image src="{{item.avatar}}"></image>
-        <text>{{item.name}}</text>
+        <image src="{{item.image}}" />
+        <text>{{item.title}}</text>
         <text>{{item.content}}</text>
-        <image src="{{item.image}}"></image>
+        <text>点赞数: {{item.like}}</text>
+        <text>debug</text>
       </view>
     </block>
   </view>
