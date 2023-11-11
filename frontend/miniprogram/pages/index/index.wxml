@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container" style="width:100%;">
   <view wx:if="{{canIUseOpenData}}" style="width:100%;" class="userinfo" >
-    <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx; z-index: ;"></image>   
+    <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
     <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: fixed; height:220rpx; width:220rpx; left:45rpx; top:237.5rpx"></image>   
     <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="display: inline-block; box-sizing: border-box; position: fixed; width:600rpx; height:100rpx; line-height:100rpx; left:290rpx; top:300rpx; font-size:50rpx"/>
     <text decode style="color: black; font-weight: 1000; position: fixed; height:60rpx; left: 290rpx; top: 440rpx; font-size: 30rpx;">
