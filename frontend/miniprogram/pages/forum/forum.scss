@@ -7,3 +7,56 @@
 .following {
   display: flex;
 }
+
+.post {
+  display: flex;
+  flex-direction:column;
+  margin-left: 50rpx;
+  margin-right: 50rpx
+}
+.content_text {
+  display:-webkit-box;
+  /* 表示几行后超出隐藏 */
+  -webkit-line-clamp:5;
+  /* 超出隐藏 */
+  overflow:hidden;
+  /*超出显示为省略号*/
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
+  /*强制英文单词自动换行*/
+  word-break:break-all;
+}
+.title {
+  font-size: large;
+  font-weight: 900;
+  margin-top: 4rpx;
+  margin-bottom: 10rpx;
+}
+
+.content {
+  margin-bottom: 10rpx;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.actions_text {
+  font-size:28;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #515151;
+}
+
+.line {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 30rpx;
+  margin-top: 20rpx;
+}
