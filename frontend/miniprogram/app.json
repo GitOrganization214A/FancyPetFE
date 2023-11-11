@@ -8,9 +8,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "FancyPet",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#fff"
   },
   "tabBar": {
     "selectedColor":"#33a3dc", 

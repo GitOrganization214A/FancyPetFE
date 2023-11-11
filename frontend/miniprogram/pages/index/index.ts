@@ -25,7 +25,8 @@ Page({
     haveNickname: false,
     LogoUrl:"../../resource/logoall.png",
     bgUrl:"../../resource/background.png",
-    loginbuttonUrl:"../../resource/loginbutton.png"
+    loginbuttonUrl:"../../resource/loginbutton.png",
+    navigationUrl:"../../resource/navigationbar.png"
   },
   // 事件处理函数
   bindViewTap() {
@@ -234,6 +235,12 @@ Page({
         ['atcnum'] : "",
         ['openID'] : "" ,
         canIUseOpenData:false,
+    })
+    this.data.canIUseOpenData=false
+    wx.hideTabBar({
+        success:()=>{
+            console.log("hidetabbar")
+        }
     })
   }
 })
