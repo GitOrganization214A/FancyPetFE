@@ -19,8 +19,8 @@
        </l-grid-item>
      </l-grid>  
   </view>
-  <view>
-    <l-card type="avatar" l-class="card" image="/resource/test.png" title="溪小明儿" describe="英吉利斗牛犬">
+<view wx:for="{{responseData}}" wx:key="*this">
+  <l-card type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.name}}"describe="{{item.breed}}">
         <!-- 此处为content -->
         <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
