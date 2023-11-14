@@ -72,7 +72,7 @@ Page({
         });
       }
        
->>>>>>> f135d43651f0679d3b196591c0e5919de794f695
+
   },
   switchTab: function (event) {
     const tab = event.currentTarget.dataset.tab;

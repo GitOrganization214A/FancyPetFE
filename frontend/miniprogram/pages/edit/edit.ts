@@ -1,7 +1,7 @@
 // edit.ts
 // 获取应用实例
 const Multipart = require('../../utils/Multipart.min.js') 
-
+const app = getApp<IAppOption>()
 
 
 
@@ -56,8 +56,8 @@ Page({
             images: that.data.images.concat(res.tempFilePaths),
  
           })
-          console.log(res.tempFilePaths)
-          that.data.images=that.data.images.concat(res.tempFilePaths)
+          console.log(that.data.images)
+          
         }
       })
     } 
@@ -69,16 +69,17 @@ Page({
           })
     }
   },
-  giveupedit: function() {
+  guEdit: function(e) {
+      console.log("gu")
       wx.switchTab({
-          url:"pages/forum/forum"
+          url:"/pages/forum/forum"
       })
   },
   sendAtc: function(e) {
     let m=new Multipart({files:[], fields:[]})
     m.field({
         name:'openid',
-        value:"1234567",
+        value:app.globalData.openid,
     })
     m.field({
         name:'title',
@@ -89,7 +90,7 @@ Page({
         value:this.data.atccontent,
     })
     m.files = this.data.images
-    console.log(m.files)
+
     
     m.submit('http://43.143.139.4:8000/api/v1/postArticle/', {
         header: {
