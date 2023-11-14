@@ -1,0 +1,40 @@
+<!--detail.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#515151"
+  title="详情" title-color="#ffac63" 
+  home-page='/pages/navigator/index/index'>
+
+    <!-- 以下部分放置页面内容 -->
+    <view class ="post">
+      <view class ="userinfo">
+        <l-avatar class="avatar" size='80' shape="square" src ='{{hotPost.avatar}}'></l-avatar>
+        <view class ="userinfotext">
+          <view><text class="nickname">{{hotPost.nickname}}</text></view>
+          <view><text class="posttime">{{hotPost.time}}</text></view>
+        </view>
+      </view>
+      <view class = "title">
+        <text>{{hotPost.title}}</text>
+      </view>
+      <view class = "content">
+        <text class="content_text">{{hotPost.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
+      </view>
+      
+      <!-- 图片列表 -->
+      <view class="album">
+        <l-album urls='{{hotPost.images}}' multiple-size="200" ></l-album>
+      </view>
+
+      <!-- 点赞、评论、转发 -->
+      <view class="actions">
+        <l-icon name="like" type="like" size="28" color="{{hotPost.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{hotPost.liked}}" data-like="{{hotPost.like}}" data-articleid="{{hotPost.ArticleID}}"></l-icon>
+        <text class="actions_text" style="color: {{hotPost.liked ? '#ffac63' : '#515151'}}">{{hotPost.like}}</text>
+        <l-icon name="comment" type="comment" size="28" color="#515151"></l-icon>
+        <text class="actions_text">{{hotPost.comment}}</text>
+        <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+        <text class="actions_text">{{hotPost.share}}</text>
+      </view>
+    </view>
+    <view class="line"></view>
+</l-capsule-bar>
+  

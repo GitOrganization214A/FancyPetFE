@@ -4,6 +4,7 @@
     "pages/petspace/petspace",
     "pages/forum/forum",
     "pages/logs/logs",
+    "pages/detail/detail",
     "pages/list/list"
   ],
   "window": {

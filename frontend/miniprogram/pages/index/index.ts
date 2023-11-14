@@ -24,7 +24,7 @@ Page({
     haveAvatar: false,
     haveNickname: false,
     LogoUrl:"../../resource/logoall.png",
-    bgUrl:"../../resource/background.png",
+    bgUrl:"../../resource/background.jpg",
     loginbuttonUrl:"../../resource/loginbutton.png",
     navigationUrl:"../../resource/navigationbar.png"
   },
@@ -123,6 +123,7 @@ Page({
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
                     })
+                    app.globalData.openid=res.data.openid
                     console.log(res.data.avatar)
                     that.data.userInfo.nickName=res.data.nickname
                     that.data.userInfo.avatarUrl=res.data.avatar

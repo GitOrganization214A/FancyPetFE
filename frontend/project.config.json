@@ -27,7 +27,8 @@
     "es6": true,
     "enhance": true,
     "postcss": true,
-    "packNpmManually": true
+    "packNpmManually": true,
+    "minified": true
   },
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

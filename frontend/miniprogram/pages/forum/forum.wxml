@@ -1,61 +1,69 @@
 <!--forum.wxml-->
-  <view class = "search">
-    <l-search-bar placeholder="搜索"
-                bg-color="#f6f6f6"
-                shape="circle"
-                front-text="北京">
-    </l-search-bar>
-  </view>
-  <view>
-    <l-grid row-num="3">
-      <l-grid-item key="one" slot="one">
-        <view class="tab" data-id="1" data-tab="following" bindtap="switchTab" style="color: {{color1}}">关注</view>
-      </l-grid-item>
-      <l-grid-item key="two" slot="two">
-        <view class="tab" data-id="2" data-tab="hot" bindtap="switchTab" style="color: {{color2}}">热门</view>
-      </l-grid-item>
-      <l-grid-item key="three" slot="three">
-        <view class="tab" data-id="3" data-tab="classification" bindtap="switchTab" style="color: {{color3}}">分类</view>
-      </l-grid-item>      
-    </l-grid>
-  </view>
-  <view class = "following" wx:if="{{currentTab === 'following'}}">
-    <!-- 显示关注内容 -->
-  </view>
-  <view wx:if="{{currentTab === 'hot'}}">
-    <!-- 显示热门内容 -->
-    <block wx:for="{{hotPosts}}" wx:key="*this">
-      <view class="line"></view>
-      <view class ="post">
-        <view class ="userinfo">
-          <l-avatar class="avatar" text="{{item.nickname}}" size='80' shape="square" src ='{{item.avatar}}'></l-avatar>
-        </view>
-        <view class = "title">
-          <text>{{item.title}}</text>
-        </view>
-        <view class = "content">
-          <text class="content_text">{{item.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
-        </view>
-        
-        <!-- 图片列表 -->
-        <view class="album">
-          <l-album urls='{{item.images}}' multiple-size="200" ></l-album>
-        </view>
+<l-capsule-bar
+  capsule-color="white" bg-color="#515151"
+  title="宠物社区" title-color="#ffac63" 
+  home-page='/pages/navigator/index/index'>
 
-        <!-- 点赞、评论、转发 -->
-        <view class="actions">
-          <l-icon name="like" type="like" size="28" color="#515151"></l-icon>
-          <text class="actions_text">{{item.like}}</text>
-          <l-icon name="comment" type="comment" size="28" color="#515151"></l-icon>
-          <text class="actions_text">{{item.comment}}</text>
-          <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
-          <text class="actions_text">{{item.share}}</text>
+    <!-- 以下部分放置页面内容 -->
+    <view class = "search">
+      <l-search-bar placeholder="搜索"
+                  bg-color="#f6f6f6"
+                  shape="circle"
+                  front-text="北京">
+      </l-search-bar>
+    </view>
+    <view>
+      <l-grid row-num="3">
+        <l-grid-item key="one" slot="one">
+          <view class="tab" data-id="1" data-tab="following" bindtap="switchTab" style="color: {{color1}}">关注</view>
+        </l-grid-item>
+        <l-grid-item key="two" slot="two">
+          <view class="tab" data-id="2" data-tab="hot" bindtap="switchTab" style="color: {{color2}}">热门</view>
+        </l-grid-item>
+        <l-grid-item key="three" slot="three">
+          <view class="tab" data-id="3" data-tab="classification" bindtap="switchTab" style="color: {{color3}}">分类</view>
+        </l-grid-item>      
+      </l-grid>
+    </view>
+    <view class = "following" wx:if="{{currentTab === 'following'}}">
+      <!-- 显示关注内容 -->
+    </view>
+    <view wx:if="{{currentTab === 'hot'}}">
+      <!-- 显示热门内容 -->
+      <block wx:for="{{hotPosts}}" wx:key="*this" wx:for-index="postindex">
+        <view class="line"></view>
+        <view class ="post">
+          <view class ="userinfo">
+            <l-avatar class="avatar" text="{{item.nickname}}" size='80' shape="square" src ='{{item.avatar}}'></l-avatar>
+          </view>
+          <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}">
+            <text>{{item.title}}</text>
+          </view>
+          <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}">
+            <text class="content_text">{{item.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
+          </view>
+          
+          <!-- 图片列表 -->
+          <view class="album">
+            <l-album urls='{{item.images}}' multiple-size="200" ></l-album>
+          </view>
+
+          <!-- 点赞、评论、转发 -->
+          <view class="actions">
+            <l-icon name="like" type="like" size="28" color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{item.liked}}" data-like="{{item.like}}" data-articleid="{{item.ArticleID}}"></l-icon>
+            <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
+            <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}"></l-icon>
+            <text class="actions_text">{{item.comment}}</text>
+            <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+            <text class="actions_text">{{item.share}}</text>
+          </view>
         </view>
-      </view>
-      <view class="line"></view>
-    </block>
-  </view>
-  <view wx:if="{{currentTab === 'classification'}}">
-    <!-- 显示分类内容 -->
-    <text>333</text>
-  </view>
+        <view class="line"></view>
+      </block>
+    </view>
+    <view wx:if="{{currentTab === 'classification'}}">
+      <!-- 显示分类内容 -->
+      <text>333</text>
+    </view>
+</l-capsule-bar>
+  
