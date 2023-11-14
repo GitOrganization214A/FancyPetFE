@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container" style="width:100%;">
+  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
+  <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
+        <view class='by'>
+            <image style="top:300rpx;position: fixed;left:30rpx;width:50rpx;height:50rpx" bind:tap="giveupedit" src="{{giveupUrl}}" ></image>
+            <view style="top:300rpx;text-align: center;position: fixed;width: 750rpx;font-size: larger;">发布帖子</view>       
+            <button style="top:300rpx;position: fixed;left:600rpx;width:140rpx;height:80rpx;text-align: center;" bindtap="sendAtc">发布</button>
+            <view class='inputTitle' >
+                <textarea style="top:400rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                <text class='ctn' style="top:450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+            </view>
+            <view class='inputText'>
+                <textarea  style="top:500rpx;position: fixed;left:0rpx;width: 750rpx;height:300rpx;border: 3rpx solid grey;"   
+                placeholder='请输入帖子内容' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
+                <text style="top:750rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+            </view>
+            <view style="top:800rpx;position: fixed;left:0rpx;width: 750rpx;height:00rpx;border: 3rpx solid grey;" class='inputImage' >
+                    <block wx:for="{{images}}">
+                    <image style="height:187.5rpx;width:187.5rpx;" src='{{item}}' data-in='{{[index]}}' class='cimage'  bindlongtap='dimage'></image>
+                    </block>
+            </view>
+            <view style="top:1450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
+                    <image style="top:1480rpx;width:50rpx;height:50rpx;left:50rpx;position:fixed;" src='{{chooseImageUrl}}' bindtap='choseImage'></image>
+            </view>
+
+
+        </view>
+  </view>
+</view>
