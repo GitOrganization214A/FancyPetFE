@@ -77,18 +77,26 @@ Page({
   sendAtc: function(e) {
     let m=new Multipart({files:[], fields:[]})
     m.field({
-        openid:"1234567",
-        title:this.data.titlecontent,
-        content:this.data.atccontent
+        name:'openid',
+        value:"1234567",
     })
-    for (let path of this.data.images)
-    {
-        m.file({
-            filePath:path
-        })
-    }
+    m.field({
+        name:'title',
+        value:this.data.titlecontent,
+    })
+    m.field({
+        name:'content',
+        value:this.data.atccontent,
+    })
+    m.files = this.data.images
+    console.log(m.files)
     
-    m.submit('http://43.143.139.4:8000/api/v1/postArticle/')
+    m.submit('http://43.143.139.4:8000/api/v1/postArticle/', {
+        header: {
+            'Content-Type': 'multipart/form-data'
+            // 添加其他需要的头部信息
+        }
+    });
 
     
   },
