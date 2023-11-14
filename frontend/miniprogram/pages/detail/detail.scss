@@ -1,0 +1,68 @@
+/* pages/detail/detail.wxss */
+
+.userinfotext {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.nickname {
+  font-size:large;
+}
+
+.posttime {
+  font-weight: lighter;
+  font-size: smaller;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.post {
+  display: flex;
+  flex-direction:column;
+  margin-top: 50rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx
+}
+.content_text {
+  /*强制英文单词自动换行*/
+  word-break:break-all;
+}
+.title {
+  font-size: larger;
+  font-weight: 900;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.content {
+  margin-bottom: 20rpx;
+  line-height: 45rpx;
+}
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.actions_text {
+  font-size:28;
+  vertical-align: middle;
+  margin-right: 10px;
+  color: #515151;
+}
+
+.line {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 30rpx;
+  margin-top: 20rpx;
+}

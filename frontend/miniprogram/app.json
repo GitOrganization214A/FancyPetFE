@@ -4,8 +4,9 @@
     "pages/petspace/petspace",
     "pages/forum/forum",
     "pages/logs/logs",
-    "pages/list/list",
-    "pages/edit/edit"
+    "pages/edit/edit",
+    "pages/detail/detail",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,6 +1,25 @@
 // petinfo.ts
 
 Page({
+  onLoad() {
+    var that=this
+    let usercode="ob66w67W7KbxFUShl2c3Q-Z4Pi5Y"
+    wx.request({
+    url: 'http://43.143.139.4:8000/api/v1/PetSpaces/',
+    data:{
+      openid:usercode
+    },
+    method: 'GET',
+    header: {'content-type': 'application/json' //
+    },
+    success: function(res) {
+      that.setData({
+        responseData: res.data
+      })
+      console.log(res.data)
+    },
+  })
+  },
   showdetails:function(){
     wx.navigateTo({
       url:'/pages/petspace/petspace'

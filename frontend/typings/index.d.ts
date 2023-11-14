@@ -2,6 +2,7 @@
 
 interface IAppOption {
   globalData: {
+    openid?:"",
     userInfo?: WechatMiniprogram.UserInfo,
   }
   userInfoReadyCallback?: WechatMiniprogram.GetUserInfoSuccessCallback,
