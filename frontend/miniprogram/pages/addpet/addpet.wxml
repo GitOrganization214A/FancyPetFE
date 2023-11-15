@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="container" style="width:100%;">
+  <view style="top:500rpx;position:fixed;left:0rpx;width: 750rpx;height:650rpx;" class='inputImage' >
+                    <block wx:for="{{images}}">
+                    <image style="height:187.5rpx;width:187.5rpx;" src='{{item}}' data-in='{{[index]}}' class='cimage'  bindlongtap='dimage'></image>
+                    </block>
+  </view>
+  <button bindtap='chosePetImage' mode="widthFix" style="position: fixed; left: 45rpx; top: 700rpx; width: 320rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置宠物头像 </button>
+  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
+  <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
+        <view class='by'>
+            <view style="top:400rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">添加宠物</view>       
+            <image style="top:400rpx;position: fixed;left:30rpx;width:50rpx;height:50rpx" src="{{giveupUrl}}" bindtap="guEdit"></image>
+            <button style="top:400rpx;position: fixed;left:600rpx;width:140rpx;height:80rpx;text-align: center;" bindtap="sendAtc">添加</button>
+            <view class='inputName' >
+                <textarea style="top:800rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                <text class='ctn' style="top:850rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+            </view>
+            <view>
+                <view class='inputAge' style="top:900rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
+                <text>请输入宠物年龄：</text>
+                <l-counter  count="1" min="1" max="100" step="1" bind:lintap="inputYear"></l-counter>
+                <text>年</text>
+                <l-counter  count="1" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
+                <text>月</text>
+                </view>
+            </view>
+            <view class="page-section-title" style="top:1050rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">请选择宠物性别：
+              <radio-group name="radio" bindchange="getGender">
+                 <label><radio value="雌"/>雌</label>
+                 <label><radio value="雄"/>雄</label>
+              </radio-group>
+            </view>
+            <view class="section" style="top:1250rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;">
+            <view class="section__title">时间选择器</view>
+                <picker mode="time" value="{{time}}" start="09:01" end="21:01" bindchange="bindTimeChange">
+                <view class="picker">
+                   当前选择: {{time}}
+                </view>
+                </picker>
+            </view>
+        </view>
+  </view>
+</view>

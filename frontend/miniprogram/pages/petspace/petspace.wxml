@@ -1,16 +1,17 @@
 <!--petspace.wxml-->
+<view class="petspace">
   <view class = "addPet">
-    <l-grid>
+    <l-grid row-num="2">
       <l-grid-item key="one" slot="one">
-       <l-button special="{{true}}">
-        <view class="container">
+       <l-button width="40" height="20" special="{{true}}" bind:lintap="addpet">
+        <view class="container" >
          <l-icon size="40" name="add" color="#3683d6" />
          <text class="describe">添加我的宠物</text>
         </view>
        </l-button>
       </l-grid-item>
       <l-grid-item key="two" slot="two">
-        <l-button special="{{true}}" bind:lintap="attentionlist">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="attentionlist">
           <view class="container">
            <l-icon size="40" name="order" color="#3683d6" />
            <text class="describe">关注列表</text>
@@ -19,16 +20,17 @@
        </l-grid-item>
      </l-grid>  
   </view>
-<view wx:for="{{responseData}}" wx:key="*this">
+<view class="petlist" wx:for="{{responseData}}" wx:key="*this">
   <l-card type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.name}}"describe="{{item.breed}}">
         <!-- 此处为content -->
         <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
                 size="large">
-        <l-button special="{{true}}" bind:lintap="showdetails">
+        <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{item.PetSpaceID}}">
          <l-icon size="40" name="right" color="#3683d6" />
         </l-button>
       </l-tag>
   </l-card>
+</view>
 </view>

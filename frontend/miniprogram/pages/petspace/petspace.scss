@@ -3,9 +3,20 @@
 .search {
   flex-direction: column;
 }
-
-.following {
+.petspace{
   display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.addPet {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+}
+.petlist {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
 }
 .describe {
   color: #3683d6;

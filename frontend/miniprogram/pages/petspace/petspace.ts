@@ -1,13 +1,12 @@
 // petinfo.ts
-
+const app = getApp<IAppOption>()
 Page({
-  onLoad() {
+  onShow() {
     var that=this
-    let usercode="ob66w67W7KbxFUShl2c3Q-Z4Pi5Y"
     wx.request({
     url: 'http://43.143.139.4:8000/api/v1/PetSpaces/',
     data:{
-      openid:usercode
+      openid:app.globalData.openid
     },
     method: 'GET',
     header: {'content-type': 'application/json' //
@@ -20,14 +19,20 @@ Page({
     },
   })
   },
-  showdetails:function(){
+  showdetails:function(event){
+    const petspaceid = event.currentTarget.dataset.petspaceid
     wx.navigateTo({
-      url:'/pages/petspace/petspace'
+      url:'/pages/detail/detail?articleid='+petspaceid,
     })
   },
   attentionlist:function(){
     wx.navigateTo({
       url:'/pages/list/list'
+    })
+  },
+  addpet:function(){
+    wx.navigateTo({
+      url:'/pages/addpet/addpet'
     })
   },
   data: {
