@@ -8,6 +8,7 @@ Page({
     color2: 'black',
     color3: 'black',
     hotPosts: [],
+    EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -71,6 +72,7 @@ Page({
         });
       }
        
+
   },
   switchTab: function (event) {
     const tab = event.currentTarget.dataset.tab;
@@ -98,5 +100,10 @@ Page({
         }
       })
     }
+  },
+  EditAtc:function(e){
+        wx.navigateTo({
+            url:"../edit/edit"
+        })
   },
 });

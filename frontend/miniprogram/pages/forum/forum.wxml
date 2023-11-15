@@ -1,3 +1,4 @@
+
 <!--forum.wxml-->
 <l-capsule-bar
   capsule-color="white" bg-color="#ecf4eb"
@@ -95,4 +96,6 @@
       </view>
       
 </l-capsule-bar>
-  
+  <view>
+    <button  bindtap="EditAtc" style="position: fixed; left: 337.5rpx; top: 1150rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; top: 1150rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+  </view>
