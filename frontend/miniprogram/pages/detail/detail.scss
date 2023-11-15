@@ -5,21 +5,29 @@
   flex-direction: column;
   margin-left: 30rpx;
 }
-
 .nickname {
-  font-size:large;
+  margin-top: -5rpx;
+  margin-bottom: -5rpx;
+}
+.nicknametext {
+  font-size:26rpx;
 }
 
 .posttime {
   font-weight: lighter;
-  font-size: smaller;
+  font-size: 20rpx;
 }
 
 .userinfo {
   display: flex;
   flex-direction: row;
 }
-
+.commentcontent {
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  margin-bottom: 5rpx;
+  margin-right: 20rpx;
+}
 .post {
   display: flex;
   flex-direction:column;
@@ -27,6 +35,44 @@
   margin-left: 50rpx;
   margin-right: 50rpx
 }
+.commentinfo {
+  margin-bottom: 10rpx;
+  display: flex; 
+  justify-content: space-between;
+}
+.goodjob {
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  display: flex;
+  flex-direction:row;
+}
+.commentlike {
+  margin-left: 15rpx;
+}
+.userinfoandlike {
+  display: flex; 
+  justify-content: space-between;
+}
+
+.commentinfotext {
+  font-size: large;
+  color: #FF8C00;
+}
+.commentsort {
+  margin-top: 5rpx;
+}
+.commentsorttext {
+  font-size: smaller;
+  color: #FF8C00;
+}
+.comments {
+  display: flex;
+  flex-direction:column;
+  margin-top: 50rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx
+}
+
 .content_text {
   /*强制英文单词自动换行*/
   word-break:break-all;
@@ -46,15 +92,13 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  margin-right: 10px;
   margin-left: 20px;
-  margin-right: 20px;
-  display: flex;
+  margin-right: 30px;
   align-items: center;
 }
 
 .actions_text {
-  font-size:28;
+  font-size:smaller;
   vertical-align: middle;
   margin-right: 10px;
   color: #515151;

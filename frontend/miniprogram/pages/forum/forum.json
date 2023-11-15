@@ -7,6 +7,10 @@
     "l-album": "/miniprogram_npm/lin-ui/album/index",
     "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
-    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "l-segment": "/miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
+    "l-index-anchor": "/miniprogram_npm/lin-ui/index-anchor/index",
+    "l-index-list": "/miniprogram_npm/lin-ui/index-list/index"
   }
 }
