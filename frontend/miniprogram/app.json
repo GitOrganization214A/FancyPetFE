@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/edit/edit",
     "pages/detail/detail",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/addpet/addpet"
   ],
   "window": {
     "backgroundTextStyle": "light",
