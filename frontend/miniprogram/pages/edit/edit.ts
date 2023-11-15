@@ -21,7 +21,8 @@ Page({
     currentTitleNumber: 0,
     currentTextNumber:0,
     maxTitleLen: 30,
-    maxTextLen: 1024
+    maxTextLen: 1024,
+    atcid:"0"
   },
   // 事件处理函数
   inputTitle:function(e){
@@ -76,28 +77,48 @@ Page({
       })
   },
   sendAtc: function(e) {
-    let m=new Multipart({files:[], fields:[]})
-    m.field({
-        name:'openid',
-        value:app.globalData.openid,
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/postArticle/',
+        data:{
+            openid:app.globalData.openid,
+            ArticleID:'0',
+            title:that.data.titlecontent,
+            content:that.data.atccontent
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success:function(res) {
+            console.log(res.data)
+            var atcid = res.data.ArticleID
+            for (let path of that.data.images)
+            {
+                console.log(atcid)  
+                wx.uploadFile({
+                    url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
+                    filePath: path,
+                    name: 'image',
+                    formData: {
+                    ArticleID:atcid,
+                    },
+                    success (res){
+                        wx.switchTab({
+                            url:"/pages/forum/forum"
+                        })
+                    }
+                })
+            }
+        },
+        fail:function(res){
+            console.log("failed")
+        }
     })
-    m.field({
-        name:'title',
-        value:this.data.titlecontent,
-    })
-    m.field({
-        name:'content',
-        value:this.data.atccontent,
-    })
-    m.files = this.data.images
+
+
 
     
-    m.submit('http://43.143.139.4:8000/api/v1/postArticle/', {
-        header: {
-            'Content-Type': 'multipart/form-data'
-            // 添加其他需要的头部信息
-        }
-    });
+    
 
     
   },
