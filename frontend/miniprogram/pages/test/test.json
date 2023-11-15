@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "l-index-list": "/miniprogram_npm/lin-ui/index-list/index",
+    "l-index-anchor": "/miniprogram_npm/lin-ui/index-anchor/index",
+    "l-segment": "/miniprogram_npm/lin-ui/segment/index",
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index"
+  }
+}

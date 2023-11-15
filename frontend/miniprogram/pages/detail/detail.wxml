@@ -22,7 +22,7 @@
       
       <!-- 图片列表 -->
       <view class="album">
-        <l-album urls='{{Post.images}}' multiple-size="200" ></l-album>
+        <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album>
       </view>
 
       <!-- 点赞、评论、转发 -->
@@ -45,7 +45,7 @@
           <text class ="commentsorttext"> 按时间排序</text>
         </view>
       </view>
-      <block wx:for="{{Post.comments}}" wx:key="*this" wx:for-index="postindex">
+      <block wx:for="{{Post.comments}}" wx:key="comments" wx:for-index="postindex">
         <view class="line"></view>
         <view class="userinfoandlike">
           <view class ="userinfo">

@@ -38,7 +38,14 @@
   margin-top: 4rpx;
   margin-bottom: 10rpx;
 }
+.sidebar {
+  margin-top:200rpx;
+}
 
+.classification {
+  display: flex;
+  flex-direction: row;
+}
 .content {
   margin-bottom: 10rpx;
 }
@@ -63,4 +70,43 @@
   border-top: solid Silver 1px;
   margin-bottom: 30rpx;
   margin-top: 20rpx;
+}
+.line2 {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 30rpx;
+}
+// 索引
+
+.l-selected-class{
+  background-color: #ffac63 !important;
+}
+
+.l-tip-text-class{
+  color: #fff !important;
+  font-size: 40rpx !important;
+}
+
+.l-tip-class{
+  background-color: #cccccc !important;
+}
+
+.index-item{
+  display: flex;
+  align-items: center;
+  color: #1a1a1a;
+  background-color: #fff;
+  height: 60rpx;
+  box-sizing: border-box;
+  padding-left: 80rpx;
+}
+
+.index-name{
+  margin-left: 20rpx;
+}
+
+.sidebar-class{
+  right: 0 !important;
+  padding-left: 10rpx !important;
+  padding-right: 20rpx !important;
 }

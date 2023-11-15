@@ -29,9 +29,9 @@
     <view class = "following" wx:if="{{currentTab === 'following'}}">
       <!-- 显示关注内容 -->
     </view>
-    <view wx:if="{{currentTab === 'hot'}}">
+    <view wx:if="{{currentTab !== 'classification'}}">
       <!-- 显示热门内容 -->
-      <block wx:for="{{hotPosts}}" wx:key="*this" wx:for-index="postindex">
+      <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
         <view class="line"></view>
         <view class ="post">
           <view class ="userinfo">
@@ -41,12 +41,12 @@
             <text>{{item.title}}</text>
           </view>
           <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}">
-            <text class="content_text">{{item.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
+            <text class="content_text">{{item.content}}</text>
           </view>
           
           <!-- 图片列表 -->
           <view class="album">
-            <l-album urls='{{item.images}}' multiple-size="200" ></l-album>
+            <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album>
           </view>
 
           <!-- 点赞、评论、转发 -->
@@ -64,8 +64,10 @@
     </view>
     <view wx:if="{{currentTab === 'classification'}}">
       <!-- 显示分类内容 -->
-      <view>
-        <l-segment item-height="110" placement="left" bind:linchange="changeTabs">
+      <view class="line2"></view>
+      <view class="classification">
+        
+        <l-segment class="general" item-height="110" placement="left" bind:linchange="changeTabs">
           <l-segment-item tab="狗狗" key="one" />
           <l-segment-item tab="猫猫" key="two" />
           <l-segment-item tab="兔兔" key="three" />
@@ -76,26 +78,29 @@
           <l-segment-item tab="昆虫" key="eight" />
           <l-segment-item tab="其他" key="nine" />
         </l-segment>   
+        <view class="subdivision">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarData}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataDog[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item">
+                  <view class="index-name">{{nameDataDog[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+
+        </view>
       </view>
-      <view>
-        <l-index-list scroll-top="{{scrollTop}}">
-          <view>
-              <l-index-anchor>A</l-index-anchor>
-              <view>鞍山</view>
-              <view>安庆</view>
-              <view>安阳</view>
-          </view>
-          <view>
-              <l-index-anchor>B</l-index-anchor>
-              <view>鞍山</view>
-              <view>安庆</view>
-              <view>安阳</view>
-          </view>
-      </l-index-list>
     </view>
-      </view>
-      
+  
 </l-capsule-bar>
   <view>
-    <button  bindtap="EditAtc" style="position: fixed; left: 337.5rpx; top: 1150rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; top: 1150rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+    <button  bindtap="EditAtc" style="position: fixed; left: 337.5rpx; bottom:25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
   </view>

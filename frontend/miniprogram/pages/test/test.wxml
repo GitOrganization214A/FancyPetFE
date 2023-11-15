@@ -1,0 +1,21 @@
+<view class='container'>
+  <view>
+    <l-index-list
+      scroll-top="{{scrollTop}}"
+      l-selected-class="l-selected-class"
+      l-tip-class="l-tip-class"
+      style="width:100%"
+      sidebar-data="{{sideBarData}}"
+      l-sidebar-class="sidebar-class"
+      l-tip-text-class="l-tip-text-class">
+      <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+        <l-index-anchor/>
+        <block wx:for="{{2}}" wx:key="index" wx:for-index="itemIndex">
+          <view class="person-item">
+            <view class="person-name">{{nameData[anchorIndex][itemIndex]}}</view>
+          </view>
+        </block>
+      </block>
+    </l-index-list>
+  </view>
+</view>

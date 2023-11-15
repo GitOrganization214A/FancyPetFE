@@ -11,6 +11,8 @@
     "l-segment": "/miniprogram_npm/lin-ui/segment/index",
     "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
     "l-index-anchor": "/miniprogram_npm/lin-ui/index-anchor/index",
-    "l-index-list": "/miniprogram_npm/lin-ui/index-list/index"
+    "l-index-list": "/miniprogram_npm/lin-ui/index-list/index",
+    "van-index-bar": "/miniprogram_npm/@vant/weapp/index-bar/index",
+    "van-index-anchor": "/miniprogram_npm/@vant/weapp/index-anchor/index"
   }
 }
