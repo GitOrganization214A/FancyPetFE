@@ -17,7 +17,7 @@
         <text>{{Post.title}}</text>
       </view>
       <view class = "content">
-        <text class="content_text">{{Post.content}}sajdkhjkadshfajshdfjkasdhf kasdjkfhgadsjkhfsadjklhfasdljkfaljkshasdfdsafsadfasdddddddddddddddddddddddddddddddddaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</text>
+        <text class="content_text">{{Post.content}}</text>
       </view>
       
       <!-- 图片列表 -->

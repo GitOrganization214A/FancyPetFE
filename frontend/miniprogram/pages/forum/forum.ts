@@ -42,10 +42,10 @@ Page({
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
-  // // 页面监听函数
-  // onPageScroll(res) {
-  //   wx.lin.setScrollTop(res.scrollTop)
-  // },
+  // 页面监听函数
+  onPageScroll(res) {
+    wx.lin.setScrollTop(res.scrollTop)
+  },
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
     wx.navigateTo({
