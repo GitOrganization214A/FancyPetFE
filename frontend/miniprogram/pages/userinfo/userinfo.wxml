@@ -1,0 +1,20 @@
+<!--detail.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#ecf4eb"
+  home-page='/pages/navigator/index/index'>
+
+    <!-- 以下部分放置页面内容 -->
+      <view class ="info">
+        <l-avatar class="avatar" size='100' shape="square" src ="../../resource/indexicon.png"></l-avatar>
+        <view class ="userinfotext">
+          <view><text class="nickname">用户名</text></view>
+          <view class = "nums">
+            <view class="num"><text class="numtext">关注：</text></view>
+            <view class="num"><text class="numtext">粉丝：</text></view>
+            <view class="num"><text class="numtext">获赞：</text></view>
+          </view>
+        </view>
+      </view>
+    
+</l-capsule-bar>
+  

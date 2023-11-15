@@ -1,8 +1,8 @@
 <!--forum.wxml-->
 <l-capsule-bar
-  capsule-color="white" bg-color="#515151"
+  capsule-color="white" bg-color="#ecf4eb"
   title="宠物社区" title-color="#ffac63" 
-  home-page='/pages/navigator/index/index'>
+  home-page='/pages/forum/forum'>
 
     <!-- 以下部分放置页面内容 -->
     <view class = "search">
@@ -63,7 +63,36 @@
     </view>
     <view wx:if="{{currentTab === 'classification'}}">
       <!-- 显示分类内容 -->
-      <text>333</text>
+      <view>
+        <l-segment item-height="110" placement="left" bind:linchange="changeTabs">
+          <l-segment-item tab="狗狗" key="one" />
+          <l-segment-item tab="猫猫" key="two" />
+          <l-segment-item tab="兔兔" key="three" />
+          <l-segment-item tab="鼠鼠" key="four" />
+          <l-segment-item tab="鸟儿" key="five" />
+          <l-segment-item tab="鱼儿" key="six" />
+          <l-segment-item tab="龟" key="seven" />
+          <l-segment-item tab="昆虫" key="eight" />
+          <l-segment-item tab="其他" key="nine" />
+        </l-segment>   
+      </view>
+      <view>
+        <l-index-list scroll-top="{{scrollTop}}">
+          <view>
+              <l-index-anchor>A</l-index-anchor>
+              <view>鞍山</view>
+              <view>安庆</view>
+              <view>安阳</view>
+          </view>
+          <view>
+              <l-index-anchor>B</l-index-anchor>
+              <view>鞍山</view>
+              <view>安庆</view>
+              <view>安阳</view>
+          </view>
+      </l-index-list>
     </view>
+      </view>
+      
 </l-capsule-bar>
   

@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/userinfo/userinfo",
     "pages/petspace/petspace",
     "pages/forum/forum",
     "pages/logs/logs",

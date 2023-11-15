@@ -4,7 +4,7 @@ const app = getApp<IAppOption>()
 Page({
   data: {
     articleid:'',
-    hotPost: {},
+    Post: {},
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -13,6 +13,8 @@ Page({
       withShareTicket:true,
       menu:['shareAppMessage','shareTimeline']
     })
+  },
+  onShareTimeline(){
   },
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
@@ -35,10 +37,10 @@ Page({
           },
           success: (res) => {
           // 更新点赞数、按钮颜色和状态
-            const currentItem = that.data.hotPost;
+            const currentItem = that.data.Post;
             const updatedItem = { ...currentItem, liked: true, like: like + 1 };
             that.setData({
-              ['hotPost']: updatedItem
+              ['Post']: updatedItem
             });
           }
         });
@@ -54,11 +56,11 @@ Page({
           },
           success: (res) => {
               // 更新点赞数、按钮颜色和状态
-                const currentItem = that.data.hotPost;
+                const currentItem = that.data.Post;
                 const updatedItem = { ...currentItem, liked: 
                   false, like: like - 1 };
                 that.setData({
-                  ['hotPost']: updatedItem
+                  ['Post']: updatedItem
                 });
               }
         });
@@ -80,7 +82,7 @@ Page({
         },
         success:function(res) {
             that.setData({
-              hotPost: res.data
+              Post: res.data
             })
         }
       })
