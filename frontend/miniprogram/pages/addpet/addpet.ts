@@ -14,6 +14,7 @@ Page({
     year:[],
     month:[],
     gender:[],
+    breed:[],
     titlecontent:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
@@ -23,7 +24,62 @@ Page({
     currentTitleNumber: 0,
     currentTextNumber:0,
     maxTitleLen: 30,
-    maxTextLen: 1024
+    maxTextLen: 1024,
+    multiArray: [['狗狗', '猫猫', '兔兔', '鼠鼠', '鸟儿', '鱼儿', '龟'], ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬']],
+    objectMultiArray: [
+      [
+        {
+          id: 0,
+          name: '狗狗'
+        },
+        {
+          id: 1,
+          name: '猫猫'
+        },
+        {
+          id: 2,
+          name: '兔兔'
+        },
+        {
+          id: 3,
+          name: '鼠鼠'
+        },
+        {
+          id: 4,
+          name: '鸟儿'
+        },
+        {
+          id: 5,
+          name: '鱼儿'
+        },
+        {
+          id: 6,
+          name: '龟'
+        }
+      ], [
+        {
+          id: 0,
+          name: '边境牧羊犬'
+        },
+        {
+          id: 1,
+          name: '博美犬'
+        },
+        {
+          id: 2,
+          name: '哈士奇'
+        },
+        {
+          id: 3,
+          name: '瑞典柯基犬'
+        },
+        {
+          id: 4,
+          name: '金毛寻回犬'
+        }
+      ]
+    ],
+    multiIndex: [0, 0]
   },
   // 事件处理函数
   inputTitle:function(e){
@@ -58,11 +114,59 @@ Page({
     })
     this.data.gender=Gender
   },
-  bindTimeChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  bindMultiPickerChange: function (e) {
+    var Breed=this.data.multiArray[1][e.detail.value[1]];
+    console.log('picker发送选择改变，携带值为', this.data.multiArray[1][e.detail.value[1]])
     this.setData({
-      time: e.detail.value
+      breed: Breed
     })
+    this.data.breed=Bender
+  },
+  bindMultiPickerColumnChange: function (e) {
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      multiArray: this.data.multiArray,
+      multiIndex: this.data.multiIndex
+    };
+    data.multiIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        switch (data.multiIndex[0]) {
+          case 0:
+            data.multiArray[1] = ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 1:
+            data.multiArray[1] = ['美国短毛猫', '加菲猫', '英国短毛猫', '波斯猫', '苏格兰折耳猫'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 2:
+            data.multiArray[1] = ['垂耳兔', '猫猫兔', '侏儒兔'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 3:
+            data.multiArray[1] = ['三线仓鼠', '天竺鼠', '豚鼠', '龙猫'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 4:
+            data.multiArray[1] = ['金丝雀', '鹦鹉', '百灵鸟'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 5:
+            data.multiArray[1] = ['孔雀鱼', '草金鱼', '中国斗鱼'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+          case 6:
+            data.multiArray[1] = ['巴西龟', '火焰龟'];
+            this.data.multiArray[1]=data.multiArray[1];
+            break;
+        }
+        data.multiIndex[1] = 0;
+        break;
+    }
+    console.log(this.data.multiArray[1])
+    console.log(data.multiIndex);
+    this.setData(data);
   },
   chosePetImage: function(e) {
     var that = this;
@@ -106,7 +210,7 @@ Page({
         year:this.data.year,
         month:this.data.month,
         gender:this.data.gender,
-        breed:"111222"
+        breed:this.data.breed
       },
       success (res){
         console.log(res.data)
