@@ -42,7 +42,7 @@ Page({
                 console.log("hidetabbar")
             }
         })
-
+    
 
     this.setData({
         ['follow']:"0",
@@ -117,24 +117,24 @@ Page({
                     })
                     that.setData({
                         ['nickName'] : res.data.nickname,
-                        ['avatarUrl'] :  res.data.avatar,
+                        ['avatarUrl'] :  res.data.avatar+"?v="+new Date().getTime(),
                         ['follow'] :  res.data.follow,
                         ['fans'] :  res.data.fans,
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
                     })
                     app.globalData.openid=res.data.openid
-                    console.log(res.data.avatar)
+                    
                     that.data.userInfo.nickName=res.data.nickname
-                    that.data.userInfo.avatarUrl=res.data.avatar
+                    that.data.userInfo.avatarUrl=res.data.avatar+"?v="+new Date().getTime()
                     that.data.userInfo.follow=res.data.follow
                     that.data.userInfo.fans=res.data.fans
                     that.data.userInfo.atcnum=res.data.atcnum
                     that.data.userInfo.openID=res.data.openid
-
+                    console.log(that.data.userInfo.avatarUrl)
 
                     console.log(that.data.userInfo.openID)
-                    console.log(response)
+                    console.log(res)
                     
                 },
                 fail:function(res){
@@ -162,10 +162,10 @@ Page({
     const UseravatarUrl = e.detail.avatarUrl
     this.setData({
         ['haveAvatar']:true,
-        ['avatarUrl']:UseravatarUrl,
+        ['avatarUrl']:UseravatarUrl+"?v="+new Date().getTime(),
     })
     
-    this.data.userInfo.avatarUrl = UseravatarUrl
+    this.data.userInfo.avatarUrl = UseravatarUrl+"?v="+new Date().getTime()
     console.log(this.data.userInfo.avatarUrl)
     console.log(this.data.userInfo.nickName)
     console.log("!!testavatar!!")

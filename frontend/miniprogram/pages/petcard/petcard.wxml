@@ -1,0 +1,8 @@
+<!--petcard.wxml-->
+<view class="container" style="width:100%;">
+  <view wstyle="width:100%;" class="userinfo" >
+   
+    
+
+  </view>
+</view>
