@@ -3,26 +3,25 @@
   <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
   <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
         <view class='by'>
-            <view style="top:300rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">发布帖子</view>       
-            <image style="top:300rpx;position: fixed;left:30rpx;width:50rpx;height:50rpx" src="{{giveupUrl}}" bindtap="guEdit"></image>
-            <button style="top:300rpx;position: fixed;left:600rpx;width:140rpx;height:80rpx;text-align: center;" bindtap="sendAtc">发布</button>
+            <view style="top:320rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">发布帖子</view>       
+            <image style="top:320rpx;position: fixed;left:30rpx;width:40rpx;height:40rpx;top:320rpx" src="{{giveupUrl}}" bindtap="guEdit"></image>
+            <button style="top:320rpx;position: fixed;left:600rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;" bindtap="sendAtc">发布</button>
             <view class='inputTitle' >
-                <textarea style="top:400rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                <text class='ctn' style="top:450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+                <textarea style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                <text class='ctn' style="top:450rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
             </view>
             <view class='inputText'>
-                <textarea  style="top:500rpx;position: fixed;left:0rpx;width: 750rpx;height:300rpx;border: 3rpx solid grey;"   
+                <textarea  style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
                 placeholder='请输入帖子内容' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
-                <text style="top:750rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+                <text style="top:750rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
             </view>
-            <view style="top:800rpx;position:fixed;left:0rpx;width: 750rpx;height:650rpx;border: 3rpx solid grey;" class='inputImage' >
-                    <block wx:for="{{images}}">
-                    <image style="height:187.5rpx;width:187.5rpx;" src='{{item}}' data-in='{{[index]}}' class='cimage'  bindlongtap='dimage'></image>
-                    </block>
+            <view style="top:820rpx;position:fixed;left:20rpx;width: 750rpx;height:650rpx;" class='inputImage' >
+                <!-- <l-album urls='{{images}}' multiple-size="230" lazy-load="true"></l-album> -->
+                <van-uploader file-list="{{ images }}" max-count="9" bind:after-read="chooseImage" accept="media"  multiple="true"   preview-size="230rpx" bind:delete="delimage"/>
             </view>
-            <view style="top:1450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
+            <!-- <view style="top:1450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
                     <image style="top:1480rpx;width:50rpx;height:50rpx;left:50rpx;position:fixed;" src='{{chooseImageUrl}}' bindtap='choseImage'></image>
-            </view>
+            </view> -->
 
 
         </view>

@@ -21,7 +21,8 @@ Page({
     currentTitleNumber: 0,
     currentTextNumber:0,
     maxTitleLen: 30,
-    maxTextLen: 1024
+    maxTextLen: 1024,
+    atcid:"0"
   },
   // 事件处理函数
   inputTitle:function(e){
@@ -45,29 +46,46 @@ Page({
         this.data.currentTextNumber=len
         this.data.atccontent=value
   },
-  choseImage: function() {
-    var that = this;
-    if (this.data.images.length  < 9) {
-      wx.chooseImage({//选择图片
-        count:1,//一张图片
-        sizeType: ['original', 'compressed'],
-        success: function (res) {
-          that.setData({
-            images: that.data.images.concat(res.tempFilePaths),
+//   choseImage: function() {
+//     var that = this;
+//     if (this.data.images.length  < 9) {
+//       wx.chooseImage({//选择图片
+//         count:1,//一张图片
+//         sizeType: ['original', 'compressed'],
+//         success: function (res) {
+//           that.setData({
+//             images: that.data.images.concat(res.tempFilePaths),
  
-          })
-          console.log(that.data.images)
+//           })
+//           console.log(that.data.images)
           
-        }
+//         }
+//       })
+//     } 
+//     else{
+//         wx.showToast({
+//             title: '最多选择九张图片！',
+//             icon: 'none',
+//             duration: 3000
+//           })
+//     }
+//   },
+  chooseImage(e){
+      var filelist = e.detail.file
+      var originfilelist = this.data.images
+      var newfilelist=[...originfilelist,...filelist]
+      this.setData({
+          images:newfilelist
       })
-    } 
-    else{
-        wx.showToast({
-            title: '最多选择九张图片！',
-            icon: 'none',
-            duration: 3000
-          })
-    }
+      console.log(newfilelist)
+  },
+  delimage(e){
+    var id = e.detail.index   //能获取到对应的下标
+    var delfileList = this.data.images  //这里是前端页面展示的数组
+    delfileList.splice(id,1)
+    this.setData({
+      images:delfileList,  //在这里进行重新赋值  删除后 图片剩几张就相当于给后台传几张
+    })
   },
   guEdit: function(e) {
       console.log("gu")
@@ -75,29 +93,60 @@ Page({
           url:"/pages/forum/forum"
       })
   },
+  handleclicksc(e) {
+    this.showvideoplay = true;
+  },
   sendAtc: function(e) {
-    let m=new Multipart({files:[], fields:[]})
-    m.field({
-        name:'openid',
-        value:app.globalData.openid,
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/postArticle/',
+        data:{
+            openid:app.globalData.openid,
+            ArticleID:'0',
+            title:that.data.titlecontent,
+            content:that.data.atccontent
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success:function(res) {
+            if(that.data.images.length<1)
+            {
+                    wx.switchTab({
+                    url:"/pages/forum/forum"
+               })
+               
+            }
+
+            console.log(res.data)
+            var atcid = res.data.ArticleID
+            for (let path of that.data.images)
+            {
+                console.log(path.url)  
+                wx.uploadFile({
+                    url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
+                    filePath: path.url,
+                    name: 'image',
+                    formData: {
+                    ArticleID:atcid,
+                    },
+                    success (res){
+                        wx.switchTab({
+                            url:"/pages/forum/forum"
+                        })
+                    }
+                })
+            }
+        },
+        fail:function(res){
+            console.log("failed")
+        }
     })
-    m.field({
-        name:'title',
-        value:this.data.titlecontent,
-    })
-    m.field({
-        name:'content',
-        value:this.data.atccontent,
-    })
-    m.files = this.data.images
+
+
 
     
-    m.submit('http://43.143.139.4:8000/api/v1/postArticle/', {
-        header: {
-            'Content-Type': 'multipart/form-data'
-            // 添加其他需要的头部信息
-        }
-    });
+    
 
     
   },

@@ -1,5 +1,7 @@
 {
-  "usingComponents": {
-  },
-  "navigationStyle":"custom"
+    "navigationStyle":"custom",
+    "usingComponents": {
+      "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index",
+      "l-album": "/miniprogram_npm/lin-ui/album/index"
+    }
 }

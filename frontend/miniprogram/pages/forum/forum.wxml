@@ -26,9 +26,6 @@
         </l-grid-item>      
       </l-grid>
     </view>
-    <view class = "following" wx:if="{{currentTab === 'following'}}">
-      <!-- 显示关注内容 -->
-    </view>
     <view wx:if="{{currentTab !== 'classification'}}">
       <!-- 显示热门内容 -->
       <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
