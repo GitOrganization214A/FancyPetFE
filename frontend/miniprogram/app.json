@@ -8,14 +8,15 @@
     "pages/edit/edit",
     "pages/detail/detail",
     "pages/list/list",
-    "pages/addpet/addpet"
+    "pages/addpet/addpet",
+    "pages/petdetail/petdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff"
   },
   "tabBar": {
-    "selectedColor":"#33a3dc", 
+    "selectedColor": "#33a3dc",
     "list": [
       {
         "pagePath": "pages/forum/forum",

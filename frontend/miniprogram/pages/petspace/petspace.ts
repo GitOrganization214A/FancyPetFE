@@ -21,8 +21,9 @@ Page({
   },
   showdetails:function(event){
     const petspaceid = event.currentTarget.dataset.petspaceid
+    console.log(petspaceid)
     wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+petspaceid,
+      url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
     })
   },
   attentionlist:function(){
