@@ -5,6 +5,8 @@ Page({
   data: {
     articleid:'',
     Post: {},
+    keyboardHeight:'',
+    popupshow: false,
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -15,6 +17,12 @@ Page({
     })
   },
   onShareTimeline(){
+  },
+  onShowPopupTap(e){
+    this.setData({
+      popupshow:true,
+      keyboardHeight:e.detail.height
+    })
   },
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数

@@ -8,6 +8,10 @@
     "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
-    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index"
+    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
+    "l-textarea": "/miniprogram_npm/lin-ui/textarea/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "l-input": "/miniprogram_npm/lin-ui/input/index"
   }
 }

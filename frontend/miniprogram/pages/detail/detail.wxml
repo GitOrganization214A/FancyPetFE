@@ -45,6 +45,17 @@
           <text class ="commentsorttext"> 按时间排序</text>
         </view>
       </view>
+      <l-button style="margin-top:20rpx; margin-bottom:20rpx;" size="long" shape="circle" height="80" bg-color="aliceblue" bind:lintap="onShowPopupTap">
+        <text style="color:black">发一条评论吧</text>
+      </l-button>
+      <l-popup show="{{popupshow}}" content-align="bottom" > 
+        <view class="textarea">
+          <l-textarea style="bottom:{{keyboardHeight}}px" auto-height="{{true}}" maxlength="140" clear="{{true}}" focus="{{true}}" label-layout="left" placeholder="发一条评论吧">
+            <l-button slot="right" size="mini">发送</l-button>
+          </l-textarea>
+        </view>
+      </l-popup>
+      
       <block wx:for="{{Post.comments}}" wx:key="comments" wx:for-index="postindex">
         <view class="line"></view>
         <view class="userinfoandlike">

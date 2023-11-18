@@ -59,7 +59,7 @@
             <text class="actions_text">{{item.share}}</text>
           </view>
         </view>
-        <view class="line"></view>
+        
       </block>
     </view>
     <view wx:if="{{currentTab === 'classification'}}">

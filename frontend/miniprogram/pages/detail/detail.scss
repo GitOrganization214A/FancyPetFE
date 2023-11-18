@@ -88,6 +88,15 @@
   margin-bottom: 20rpx;
   line-height: 45rpx;
 }
+.textarea {
+  width: 100%;
+  background: #fff;
+  height: 300rpx;
+  font-size: 28rpx;
+  color: #555;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
 .actions {
   display: flex;
   justify-content: space-between;
