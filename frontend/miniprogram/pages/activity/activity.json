@@ -1,0 +1,8 @@
+{
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "van-card": "/miniprogram_npm/@vant/weapp/card/index",
+    "van-button": "/miniprogram_npm/@vant/weapp/button/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+  }
+}
