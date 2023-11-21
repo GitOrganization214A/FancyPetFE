@@ -1,9 +1,10 @@
 {
   "pages": [
-
+    "pages/activity/activity",
     "pages/index/index",
     "pages/userinfo/userinfo",
     "pages/petspace/petspace",
+    "pages/editAdopt/editAdopt",
     "pages/forum/forum",
     "pages/logs/logs",
     "pages/edit/edit",
@@ -26,6 +27,12 @@
         "selectedIconPath": "resource/forumicons.png"
       },
       {
+        "pagePath": "pages/activity/activity",
+        "text": "活动",
+        "iconPath": "resource/activityicon.png",
+        "selectedIconPath": "resource/activityicons.png"
+      },
+      {
         "pagePath": "pages/petspace/petspace",
         "text": "宠物空间",
         "iconPath": "resource/petspaceiconus.png",
@@ -36,7 +43,7 @@
         "text": "个人主页",
         "iconPath": "resource/indexiconus.png",
         "selectedIconPath": "resource/indexicons.png"
-      }
+      }      
     ]
   },
   "sitemapLocation": "sitemap.json"

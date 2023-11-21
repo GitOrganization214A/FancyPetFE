@@ -1,0 +1,48 @@
+<!--petcard.wxml-->
+
+<l-capsule-bar navigation-bar-color="transparent"
+  bg-color="transparent"
+  capsule-button-color="white"
+  title-color="white"
+  home-page='/pages/index/index'
+  bind:linlefttap="switchpage">
+	<view>
+        <image src="{{navigationurl}}" mode="widthFix"  style="position:fixed;width:750rpx; left:0rpx; top:0rpx;" ></image>  
+        <view wx:if="{{actmain}}">
+            
+
+            <button bind:tap="actadopt"> 
+                <image src="{{adopturl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:150rpx; top:400rpx; ">
+                </image>
+            </button>
+            <text style="font-size: larger;color: chocolate;left:160rpx;top:560rpx;position:fixed">宠物领养</text>
+            <image src="{{medicurl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:450rpx; top:400rpx; "></image>
+            <text style="font-size: larger;color: chocolate;left:460rpx;top:560rpx;position:fixed">宠物医疗</text>
+            <image src="{{loveurl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:150rpx; top:700rpx; "></image>
+            <text style="font-size: larger;color: chocolate;left:160rpx;top:860rpx;position:fixed">宠物配种</text>
+            <image src="{{cloudpeturl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:450rpx; top:700rpx; "></image>
+            <text style="font-size: larger;color: chocolate;left:460rpx;top:860rpx;position:fixed">云养宠</text>
+        </view>
+
+        <view wx:if="{{actadopt}}">
+            <view style="position: relative;top: 30rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">领养宠物</view>
+                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
+                    <van-card tag="{{item.pet.breed}}" price="10.00" desc="描述信息" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
+                        <view slot="footer">
+                            <van-button id="{{item.PetSpaceID}}" size="large" bind:tap="surf">查看宠物空间</van-button>
+                            <van-button id="{{item.PetSpaceID}}" size="large" bind:tap="adopt">申请领养</van-button>
+                        </view>
+                    </van-card>       
+                </view>
+
+            <button  bindtap="editAdopt" style="position: fixed; left: 337.5rpx; bottom:25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box" type="default">
+                <image src="{{editadoptUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box">
+                </image>
+            </button>
+        </view>
+
+    </view>
+</l-capsule-bar>
+
+
+    
