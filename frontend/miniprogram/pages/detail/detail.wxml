@@ -22,7 +22,8 @@
       
       <!-- 图片列表 -->
       <view class="album">
-        <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album>
+        <!-- <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album> -->
+        <van-uploader file-list="{{Post.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
       </view>
 
       <!-- 点赞、评论、转发 -->
@@ -56,7 +57,7 @@
         </view>
       </l-popup>
       
-      <block wx:for="{{Post.comments}}" wx:key="comments" wx:for-index="postindex">
+      <block wx:for="{{Post.comments}}" wx:key="comments" wx:for-index="commentindex">
         <view class="line"></view>
         <view class="userinfoandlike">
           <view class ="userinfo">
@@ -67,7 +68,7 @@
               </view>
           </view>
           <view class="goodjob">
-            <view><van-icon size="18" name="good-job-o"></van-icon></view>
+            <view><van-icon style="color: {{item.liked ? '#ffac63' : '#515151'}}" bind-tap="likeComment" size="18" name="good-job-o" data-liked="{{item.liked}}" data-like="{{item.like}}" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}"></van-icon></view>
             <view class="commentlike"><text>{{item.like}}</text></view>
           </view>
         </view>
