@@ -32,6 +32,7 @@ const nameDataDog = [
 Page({
   data: {
     // 页面垂直滑动的距离
+    currentClassTab: "狗狗", //当前大分类
     scrollTop: undefined,
     nameDataDog,
     sideBarData,
@@ -77,8 +78,9 @@ Page({
   },
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
+    const index = event.currentTarget.dataset.index
     wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+articleid,
+      url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
     })
   },
   likePost(event) {
