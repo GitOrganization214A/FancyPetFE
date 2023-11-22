@@ -1,5 +1,7 @@
 {
+  "navigationStyle":"custom",
   "usingComponents": {
+    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
     "l-card": "/miniprogram_npm/lin-ui/card/index"
   }

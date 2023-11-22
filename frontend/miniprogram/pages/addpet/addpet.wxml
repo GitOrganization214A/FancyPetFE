@@ -19,7 +19,7 @@
             <view>
                 <view class='inputAge' style="top:900rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
                 <text>请输入宠物年龄：</text>
-                <l-counter  count="1" min="1" max="100" step="1" bind:lintap="inputYear"></l-counter>
+                <l-counter  count="0" min="0" max="100" step="1" bind:lintap="inputYear"></l-counter>
                 <text>年</text>
                 <l-counter  count="1" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
                 <text>月</text>
