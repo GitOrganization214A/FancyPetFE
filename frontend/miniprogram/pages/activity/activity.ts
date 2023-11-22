@@ -14,6 +14,7 @@ Page({
     pageindex:0,
     show: false,
     showadopt: false,
+    showlove: false,
     fieldValue: '',
     cascaderValue: '',
     options:[],
@@ -59,6 +60,7 @@ Page({
           that.setData({
             activitylist: res.data
           })
+          that.data.activitylist = res.data
           console.log(res.data)
           console.log(that.data.actadopt)
         },
@@ -130,6 +132,7 @@ Page({
          that.setData({
            activitylist: res.data
          })
+         that.data.activitylist = res.data
          console.log(res.data)
          console.log(that.data.activitylist)
       },
@@ -194,10 +197,12 @@ Page({
                 aindex ++
                 if(activ.ActivityID==aid)
                 {
-                    templist.splice(aindex)
+                    templist.splice(aindex,1)
                     that.setData({
                         activitylist:templist
                     })
+                    that.data.activitylist=templist
+                    console.log(that.data.activitylist)
                     break
                 }
             }
@@ -258,38 +263,43 @@ Page({
     })
   },
   love(e){
+    wx.navigateTo({
+        url:"../editsendLove/editsendLove?activityid="+e.currentTarget.dataset.index
+    })
+  },
+  deletelove(e){
     var that = this
-    this.setData({
-      show: true,
-    });
     wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/PetSpaces/',
+        url: 'http://43.143.139.4:8000/api/v1/deleteActivity/',//todo
         data:{
-          openid:app.globalData.openid
+          openid:app.globalData.openid,  
+          ActivityID:e.currentTarget.dataset.index
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-          var op = []
-          for (let pet of res.data)
-          {
-              op.push({
-                  text:pet.name,
-                  value:pet.PetSpaceID
-              })
-          }
-          that.setData({
-              options:op,
-          })
-          
-          console.log(res.data)
+            var aid = e.currentTarget.dataset.index
+            var aindex = -1
+            var templist = that.data.activitylist
+            for (var activ of templist)
+            {
+                aindex ++
+                if(activ.ActivityID==aid)
+                {
+                    templist.splice(aindex,1)
+                    that.setData({
+                        activitylist:templist
+                    })
+                    that.data.activitylist = templist
+                    break
+                }
+            }
         },
+        fail:function(res){
+            console.log(res.errMsg)
+        }
       })
-
-    console.log(e)
-
-    
   },
   onClose() {
     this.setData({

@@ -85,8 +85,9 @@
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" price="10.00" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
                         <view slot="footer">
-                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="surf">查看宠物空间</van-button>
-                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="love">申请配种</van-button>
+                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
+                            <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="love">申请配种</van-button>
+                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deletelove">删除</van-button>
                         </view>
                     </van-card>       
                 </view>
@@ -95,18 +96,7 @@
                 <image src="{{editadoptUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box">
                 </image>
             </button>
-            <view style="position: fixed;top: 600rpx;">
-                <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
-                <van-cascader
-                    wx:if="{{ show }}"
-                    value="{{ cascaderValue }}"
-                    title="请选择宠物空间"
-                    options="{{ options }}"
-                    bind:close="onClose"
-                    bind:finish="onFinish"
-                />
-                </van-popup>
-            </view>
+
         </view>
 
     </view>
