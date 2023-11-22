@@ -1,0 +1,38 @@
+<!--index.wxml-->
+<view class="container" style="width:100%;">
+  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
+  <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
+        <view class='by'>
+            <view style="top:220rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">发布配种信息</view>    
+            <view style="position: fixed;top: 300rpx;width:750rpx;">
+                <van-field 
+                value="{{ fieldValue }}"
+                is-link
+                readonly
+                label="宠物空间"
+                placeholder="请选择宠物空间"
+                bind:tap="onClick"
+                />
+            </view>
+            <image style="top:220rpx;position: fixed;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guEdit"></image>
+            <text style="top:220rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="sendlove">发布</text>
+            <view class='inputText'>
+                <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+                placeholder='请输入配种宠物的情况介绍' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
+                <text style="top:650rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+            </view>
+            <view style="position: fixed;top: 600rpx;">
+                <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
+                <van-cascader
+                    wx:if="{{ show }}"
+                    value="{{ cascaderValue }}"
+                    title="请选择宠物空间"
+                    options="{{ options }}"
+                    bind:close="onClose"
+                    bind:finish="onFinish"
+                />
+                </van-popup>
+            </view>
+        </view>
+  </view>
+</view>

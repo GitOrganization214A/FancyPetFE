@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@vant/weapp": "^1.11.1",
-    "area-data": "^5.0.6",
+    "area-data": "^3.1.2",
     "lin-ui": "^0.9.13"
   },
   "devDependencies": {
