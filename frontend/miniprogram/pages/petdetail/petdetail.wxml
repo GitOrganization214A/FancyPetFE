@@ -1,12 +1,7 @@
-<!--pages/petdetail/petdetail.wxml-->
-<l-capsule-bar
-  capsule-color="white" bg-color="#ecf4eb"
-  title="宠物详情" title-color="#ffac63" 
-  home-page='/pages/petspace/petspace'>
+<l-capsule-bar home-page="/pages/navigator/index/index" title="宠物详情">
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{PetSpaceDetail.avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
   <!-- 此处为content -->
   </l-card>
 </view>
-
 </l-capsule-bar>
