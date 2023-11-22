@@ -34,12 +34,13 @@
 
         <view wx:if="{{actadopt}}">
             <view style="position: relative;top: 30rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">领养宠物</view>
-                <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" title="选择城市" style="top: 70rpx;position: relative;"/>
+                <!-- <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" title="选择城市" style="top: 70rpx;position: relative;"/> -->
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
                         <view slot="footer">
-                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="surf">查看宠物空间</van-button>
-                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
+                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
+                            <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
+                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteadopt">删除</van-button>
                         </view>
                     </van-card>       
                 </view>
@@ -48,6 +49,18 @@
                 <image src="{{editadoptUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box">
                 </image>
             </button>
+
+            <view style="position: fixed;top: 600rpx;">
+                <van-popup show="{{ showadopt }}" round position="bottom" custom-style="height: 40%;">
+                    <image style="top: 40rpx;position: relative;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guadopt"></image>
+                    <text style="top: 40rpx;position: relative;text-align: center;left: 100rpx;height: 30rpx;line-height: 30rpx;color: chocolate;font-size: larger;">请输入发送给宠物主人的信息</text>
+                    <textarea style="top:100rpx;position: relative;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请留下你想发送给宠物主人的话，如养宠经历以及想问的问题等' minlength="1" maxlength="200"  bindinput='inputadopt' value="{{adoptcontent}}" maxlength="{{maxadoptLen}}"></textarea>
+                    <text class='ctn' style="top:250rpx;position: relative;left:630rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentadoptNumber}}/{{maxadoptLen}}</text>
+                    <button style="top: 280rpx;position: relative;width: 200rpx;" bind:tap="sendadopt">发送</button>
+                </van-popup>
+            </view>
+
+
         </view>
 
         <view wx:if="{{actmedic}}">

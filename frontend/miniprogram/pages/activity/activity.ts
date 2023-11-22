@@ -13,17 +13,23 @@ Page({
     activitylist:[],
     pageindex:0,
     show: false,
+    showadopt: false,
     fieldValue: '',
     cascaderValue: '',
     options:[],
     areaList,
+    currentadoptNumber: 0,
+    maxadoptLen: 200,
+    adoptcontent: '',
+    adoptTarget: '',
     navigationurl:"../../resource/navigationbar.png",
     adopturl:"../../resource/adopt.png",
     medicurl:"../../resource/medic.png",
     loveurl:"../../resource/love.png",
     cloudpeturl:"../../resource/cloudpet.png",
     backurl:"../../resource/back.png",
-    editadoptUrl:"../../resource/EditButton.jpg"
+    editadoptUrl:"../../resource/EditButton.jpg",
+    giveupUrl:"../../resource/giveup.png"
   },
   onLoad(){
     this.setData({
@@ -44,7 +50,7 @@ Page({
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/adoptPet/',
         data:{
-          openid:app.globalData.openid
+          openid:app.globalData.openid,
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
@@ -144,8 +150,8 @@ Page({
     })
   },
   surf(e){
-    console.log(e.currentTarget.id)
-    var aid = e.currentTarget.id
+    console.log(e)
+    var aid = e.currentTarget.dataset.index
     var pid = -1
     for (var activ of this.data.activitylist)
     {
@@ -155,29 +161,101 @@ Page({
             break
         }
     }
+    console.log(aid)
+    console.log(pid)
     wx.navigateTo({
         url:"../petdetail/petdetail?petspaceid="+pid
     })
   },
   adopt(e){
     console.log(e)
-
+    this.setData({
+        showadopt:true,
+        adoptTarget:e.currentTarget.id
+    })
+  },
+  deleteadopt(e){
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/deleteActivity/',//todo
+        data:{
+          openid:app.globalData.openid,  
+          ActivityID:e.currentTarget.dataset.index
+        },
+        method: 'GET',
+        header: {'content-type': 'application/json' //
+        },
+        success: function(res) {
+            var aid = e.currentTarget.dataset.index
+            var aindex = -1
+            var templist = that.data.activitylist
+            for (var activ of templist)
+            {
+                aindex ++
+                if(activ.ActivityID==aid)
+                {
+                    templist.splice(aindex)
+                    that.setData({
+                        activitylist:templist
+                    })
+                    break
+                }
+            }
+        },
+        fail:function(res){
+            console.log(res.errMsg)
+        }
+      })
+  },
+  inputadopt:function(e){
+    var value = e.detail.value;
+    var len = parseInt(value.length)
+    this.setData({
+        currentadoptNumber: len,
+        adoptcontent: value
+    })
+    this.data.currentadoptNumber=len
+    this.data.adoptcontent=value    
+    console.log(this.data.adoptcontent)
+  },
+  guadopt(e){
+    this.setData({
+        showadopt:false,
+        currentadoptNumber: 0,
+        adoptcontent: ''
+    })
+  },
+  sendadopt(e){
+    var that = this 
     wx.request({
         url: 'http://43.143.139.4:8000/api/v1/applyAdopt/',
         data:{
           openid:app.globalData.openid,
-          ActivityID:e.currentTarget.id
+          ActivityID:that.data.adoptTarget,
+          content:that.data.adoptcontent
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
             console.log(res.data.openid)
+            wx.showToast({
+                title: '发送成功！',
+                icon: 'none',
+                duration: 2000
+            })
+            that.setData({
+                showadopt:false,
+                currentadoptNumber: 0,
+                adoptcontent: ''
+            })
+            that.data.currentadoptNumber=0
+            that.data.adoptcontent='' 
         },
         fail:function(res){
             console.log(res.errMsg)
         }
-      })
+    })
   },
   love(e){
     var that = this
@@ -185,7 +263,7 @@ Page({
       show: true,
     });
     wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/applyLove/',
+        url: 'http://43.143.139.4:8000/api/v1/PetSpaces/',
         data:{
           openid:app.globalData.openid
         },
@@ -220,6 +298,7 @@ Page({
   },
   onFinish(e) {
     var that = this
+    console.log(e)
     const { selectedOptions, value } = e.detail;
     const fieldValue = selectedOptions
         .map((option) => option.text || option.name)
@@ -240,6 +319,8 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
+            console.log(e.currentTarget.id)
+            console.log(that.data.fieldValue)
             console.log(res.data.openid)
         },
         fail:function(res){

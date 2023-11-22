@@ -108,8 +108,14 @@ Page({
 
             console.log(res.data)
             wx.switchTab({
-                url:"../activity/activity"
+                url:"../activity/activity",
+                success(e){
+                    var page = getCurrentPages().pop();
+                    if (page == undefined || page == null) return;
+                    page.actadopt();
+                }
             })
+            
         },
         fail:function(res){
             console.log("failed")

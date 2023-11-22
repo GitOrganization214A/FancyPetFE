@@ -1,9 +1,9 @@
 {
   "pages": [    
-      "pages/activity/activity",
+ 
     "pages/index/index",
     "pages/userinfo/userinfo",
-    
+    "pages/activity/activity",
     "pages/petspace/petspace",
     "pages/editAdopt/editAdopt",
     "pages/editLove/editLove",
