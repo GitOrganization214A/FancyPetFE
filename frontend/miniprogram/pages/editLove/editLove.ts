@@ -92,31 +92,29 @@ Page({
       cascaderValue: value,
     })
   },
-  sendadopt: function(e) {
+  sendlove: function(e) {
     var that = this
     wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/postAdopt/',
+        url: 'http://43.143.139.4:8000/api/v1/postLove/',//todo
         data:{
             openid:app.globalData.openid,
             content:that.data.atccontent,
-            PetSpaceID:that.data.cascaderValue
+            PetSpaceID:that.data.cascaderValue,
         },
         method:"GET",
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-
             console.log(res.data)
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
-                    page.actadopt();
+                    page.actlove();
                     console.log(page)
                 }
             })
-            
         },
         fail:function(res){
             console.log("failed")

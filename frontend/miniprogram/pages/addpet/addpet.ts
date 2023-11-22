@@ -14,7 +14,7 @@ Page({
     year:[],
     month:[],
     gender:[],
-    breed:[],
+    breed:"边境牧羊犬",
     titlecontent:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
@@ -120,7 +120,7 @@ Page({
     this.setData({
       breed: Breed
     })
-    this.data.breed=Bender
+    this.data.breed=Breed
   },
   bindMultiPickerColumnChange: function (e) {
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
@@ -197,6 +197,12 @@ Page({
       wx.switchTab({
           url:"/pages/forum/forum"
       })
+  },
+  onLoad(e){
+    this.setData({
+      breed: "边境牧羊犬"
+    })
+    this.data.breed="边境牧羊犬"
   },
   sendAtc: function(e) {
     const tempFilePaths=this.data.images[0]

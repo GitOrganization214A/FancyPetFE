@@ -1,6 +1,6 @@
 {
   "name": "area-data",
-  "version": "5.0.6",
+  "version": "3.1.2",
   "author": "pomysky@gmail.com",
   "description": "中国省、市、区数据(含港澳台)",
   "license": "MIT",
@@ -16,8 +16,6 @@
   "files": [
     "data.js",
     "package.json",
-    "pca.js",
-    "pcaa.js",
     "README.md"
   ],
   "keywords": [
@@ -30,7 +28,8 @@
     "中国省份"
   ],
   "devDependencies": {
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "china-area-data": "^4.0.0"
   },
   "dependencies": {}
 }

@@ -1,10 +1,13 @@
 {
-  "pages": [
-    "pages/activity/activity",
+  "pages": [    
+ 
     "pages/index/index",
     "pages/userinfo/userinfo",
+    "pages/activity/activity",
     "pages/petspace/petspace",
     "pages/editAdopt/editAdopt",
+    "pages/editLove/editLove",
+    "pages/editsendLove/editsendLove",
     "pages/forum/forum",
     "pages/logs/logs",
     "pages/edit/edit",
