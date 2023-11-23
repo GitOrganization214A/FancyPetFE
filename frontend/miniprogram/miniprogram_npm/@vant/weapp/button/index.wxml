@@ -28,6 +28,7 @@
   bindlaunchapp="onLaunchApp"
   bindopensetting="onOpenSetting"
   bindchooseavatar="onChooseAvatar"
+  style="color:{{textcolor}}"
 >
   <block wx:if="{{ loading }}">
     <van-loading
