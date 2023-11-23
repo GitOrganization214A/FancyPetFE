@@ -32,7 +32,7 @@
         <view class="line"></view>
         <view class ="post">
           <view class ="userinfo">
-            <l-avatar class="avatar" text="{{item.nickname}}" size='80' shape="square" src ='{{item.avatar}}'></l-avatar>
+            <l-avatar class="avatar" text="{{item.nickname}}" size='70' shape="square" src ='{{item.avatar}}' data-openid="{{item.openid}}" bindtap="viewUserInfo"></l-avatar>
           </view>
           <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
             <text>{{item.title}}</text>
@@ -66,7 +66,7 @@
       <view class="line2"></view>
       <view class="classification">
         
-        <l-segment class="general" item-height="110" placement="left" bind:linchange="changeTabs">
+        <l-segment active-key="one" class="general" item-height="110" placement="left" bind:linchange="changeTabs">
           <l-segment-item tab="狗狗" key="one" />
           <l-segment-item tab="猫猫" key="two" />
           <l-segment-item tab="兔兔" key="three" />

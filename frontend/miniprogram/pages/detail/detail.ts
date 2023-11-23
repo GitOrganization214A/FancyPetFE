@@ -25,11 +25,20 @@ Page({
   },
   onShareTimeline(){
   },
-  likePost(event) {
+
+  //进入用户主页
+  viewUserInfo: function(event) {
+    const tempopenid = event.currentTarget.dataset.openid
+    wx.navigateTo({
+      url:'/pages/userinfo/userinfo?openid='+tempopenid,
+    })
+  },
+
+  //点赞帖子
+  likePost: function(event) {
     // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
     // 使用微信小程序的wx.request发送HTTP请求
     const articleid = event.currentTarget.dataset.articleid
-    const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     var that = this
     if (!event.currentTarget.dataset.liked) {
@@ -107,16 +116,19 @@ Page({
         wx.showToast({
           title: '删帖成功',
           icon: 'none',
+          duration: 1000, 
         });
-        // 跳转回上一个页面
-        wx.navigateBack({
-          delta: 1  // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
-        });
+        
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1 // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
+          });
+        }, 1000);
       }
     });
   },
 
-  //删除帖子
+  //删除评论
   deleteComment: function(event) {
     var that = this
     const commentid = event.currentTarget.dataset.commentid
@@ -132,6 +144,16 @@ Page({
         that.data.Post.comment -= 1;
         that.setData({
           Post: that.data.Post
+        });
+        var tempcomment = that.data.Post.comment
+        const currentItem = that.data.Post;
+        const updatedItem = { ...currentItem, comment: tempcomment};
+        var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
+    　　var prevPage = pages[pages.length - 2]    //获取上一个页面
+    　　// 设置上一个页面的数据
+        prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
+        prevPage.setData({
+          ['hotPosts']: prevPage.data.hotPosts
         });
         wx.showToast({
           title: '删除评论成功',
@@ -326,6 +348,16 @@ Page({
           'commentsContent': '', // 清空评论输入框内容
           'showPlaceholder': true, // 显示placeholder
         })
+        var tempcomment = that.data.Post.comment
+        const currentItem = that.data.Post;
+        const updatedItem = { ...currentItem, comment: tempcomment};
+        var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
+    　　var prevPage = pages[pages.length - 2]    //获取上一个页面
+    　　// 设置上一个页面的数据
+        prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
+        prevPage.setData({
+          ['hotPosts']: prevPage.data.hotPosts
+        });
         wx.showToast({
           title: '发送成功',
           icon: 'none',

@@ -83,6 +83,13 @@ Page({
       url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
     })
   },
+  //进入用户主页
+  viewUserInfo: function(event) {
+    const tempopenid = event.currentTarget.dataset.openid
+    wx.navigateTo({
+      url:'/pages/userinfo/userinfo?openid='+tempopenid,
+    })
+  },
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
       // 使用微信小程序的wx.request发送HTTP请求
@@ -137,6 +144,13 @@ Page({
         });
       }
   },
+  // changeTabs: function (event) {
+  //   const tab = event.currentTarget.dataset.tab;
+  //   this.setData({
+  //     currentClassTab: tab,
+  //   })
+  // },
+  //切换关注、热门、分类
   switchTab: function (event) {
     const tab = event.currentTarget.dataset.tab;
     const id = event.currentTarget.dataset.id;

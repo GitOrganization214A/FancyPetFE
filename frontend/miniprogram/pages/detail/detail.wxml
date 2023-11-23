@@ -12,10 +12,10 @@
       <view class ="userinfo">
         <view class ="userinfo">
           <view>
-            <l-avatar class="avatar" size='80' shape="square" src ='{{Post.avatar}}'></l-avatar>
+            <l-avatar class="avatar" size='80' shape="square" src ='{{Post.avatar}}' data-openid="{{Post.openid}}" bindtap="viewUserInfo"></l-avatar>
           </view>
           <view class ="userinfotext">
-            <view><text class="nickname">{{Post.nickname}}</text></view>
+            <view><text class="nickname" data-openid="{{Post.openid}}" bindtap="viewUserInfo">{{Post.nickname}}</text></view>
             <view><text class="posttime">{{Post.time}}</text></view>
           </view>
         </view>
@@ -56,30 +56,20 @@
           <text class ="commentsorttext"> 按时间排序</text>
         </view>
       </view>
-      <!-- <l-button style="margin-top:20rpx; margin-bottom:20rpx;" size="long" shape="circle" height="80" bg-color="aliceblue" bind:lintap="onShowPopupTap">
-        <text style="color:black">发一条评论吧</text>
-      </l-button> -->
-      <!-- <l-popup show="{{popupshow}}" content-align="bottom" > 
-        <view class="textarea">
-          <l-textarea style="bottom:{{keyboardHeight}}px" auto-height="{{true}}" maxlength="140" clear="{{true}}" focus="{{true}}" label-layout="left" placeholder="发一条评论吧">
-            <l-button slot="right" size="mini">发送</l-button>
-          </l-textarea>
-        </view>
-      </l-popup> -->
       
       <block wx:for="{{Post.comments}}" wx:key="commentskey" wx:for-index="commentindex">
         <view class="line"></view>
         <view class="userinfoandlike">
           <view class ="userinfo">
             <view>
-              <l-avatar class="avatar" size='60' shape="square" src ='{{item.avatar}}'></l-avatar>
+              <l-avatar class="avatar" size='60' shape="square" src ='{{item.avatar}}' data-openid="{{item.openid}}" bindtap="viewUserInfo"></l-avatar>
             </view>
             <view class ="userinfotext">
-              <view class="nickname"><text class="nicknametext">{{item.nickname}}</text></view>
+              <view class="nickname" data-openid="{{item.openid}}" bindtap="viewUserInfo"><text class="nicknametext">{{item.nickname}}</text></view>
               <view><text class="posttime">{{item.time}}</text></view>
             </view>
           </view>
-          <view style="display: flex; flex-direction: row;">
+          <view style="display: flex; flex-direction: row; align-items: center;">
             <view wx:if="{{item.self}}" style="margin-right: 30rpx;">
               <l-icon name="delete" type="delete" size="30" color="red" bindtap="deleteComment" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}"></l-icon>
             </view>
