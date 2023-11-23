@@ -16,6 +16,7 @@ Page({
     options:[],
     fieldValue: '',
     cascaderValue: '',
+    activityid:'',
     images:[],
     titlecontent:[],
     atccontent:[],
@@ -29,6 +30,11 @@ Page({
 
     maxTextLen: 1024,
 
+  },
+  onLoad(e){
+      this.setData({
+            activityid:e.activityid
+      })
   },
   // 事件处理函数
   inputText:function(e){
@@ -92,31 +98,35 @@ Page({
       cascaderValue: value,
     })
   },
-  sendadopt: function(e) {
+  sendlove: function(e) {
     var that = this
     wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/postAdopt/',
+        url: 'http://43.143.139.4:8000/api/v1/applyLove/',//todo
         data:{
             openid:app.globalData.openid,
             content:that.data.atccontent,
-            PetSpaceID:that.data.cascaderValue
+            PetSpaceID:that.data.cascaderValue,
+            ActivityID:that.data.activityid,
         },
         method:"GET",
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-
             console.log(res.data)
             wx.switchTab({
                 url:"../activity/activity",
-                success(e){
+                success(){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
-                    page.actadopt();
+                    page.actlove();
                     console.log(page)
                 }
             })
-            
+            wx.showToast({
+                title: '发送成功！',
+                icon: 'none',
+                duration: 2000
+            })
         },
         fail:function(res){
             console.log("failed")

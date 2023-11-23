@@ -13,9 +13,11 @@
       <slot wx:else name="thumb" />
       <van-tag
         wx:if="{{ tag }}"
-        mark
-        type="danger"
+        size = "medium"
+        plain
+        type="primary"
         custom-class="van-card__tag"
+        style="position:absolute;left:500rpx;top: 50rpx;width: 200rpx;font-size: 40rpx;"
       >
         {{ tag }}
       </van-tag>
@@ -24,10 +26,10 @@
 
     <view class="van-card__content {{ utils.bem('card__content', { center: centered }) }}">
       <view>
-        <view wx:if="{{ title }}" class="van-card__title title-class">{{ title }}</view>
+        <view wx:if="{{ title }}" class="van-card__title title-class" style="font-size: 40rpx;top:20rpx;position: absolute;">{{ title }}</view>
         <slot wx:else name="title" />
 
-        <view wx:if="{{ desc }}" class="van-card__desc desc-class">{{ desc }}</view>
+        <view wx:if="{{ desc }}" class="van-card__desc desc-class" style="font-size: 30rpx;">{{ desc }}</view>
         <slot wx:else name="desc" />
 
         <slot name="tags" />

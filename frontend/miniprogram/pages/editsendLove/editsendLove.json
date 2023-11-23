@@ -1,0 +1,10 @@
+{
+    "navigationStyle":"custom",
+    "usingComponents": {
+      "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index",
+      "van-cascader": "/miniprogram_npm/@vant/weapp/cascader/index",
+      "van-field": "/miniprogram_npm/@vant/weapp/field/index",
+      "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
+      "l-album": "/miniprogram_npm/lin-ui/album/index"
+    }
+}
