@@ -170,27 +170,18 @@ Page({
   },
   chosePetImage: function(e) {
     var that = this;
-    if (this.data.images.length  < 1) {
-      wx.chooseImage({//选择图片.
+    wx.chooseImage({//选择图片.
         count:1,//一张图片
         sizeType: ['original', 'compressed'],
         success: function (res) {
           that.setData({
-            images: that.data.images.concat(res.tempFilePaths),
+            images: res.tempFilePaths,
  
           })
           console.log(that.data.images)
           
         }
-      })
-    } 
-    else{
-        wx.showToast({
-            title: '最多选择九张图片！',
-            icon: 'none',
-            duration: 3000
-          })
-    }
+    })
   },
   guEdit: function(e) {
       console.log("gu")

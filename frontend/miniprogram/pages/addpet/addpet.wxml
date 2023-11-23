@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container" style="width:100%;">
-  <view style="top:500rpx;position:fixed;left:0rpx;width: 750rpx;height:650rpx;" class='inputImage' >
+  <view style="top:500rpx;position:fixed;left:50rpx;width: 750rpx;height:650rpx;" class='inputImage' >
                     <block wx:for="{{images}}">
                     <image style="height:187.5rpx;width:187.5rpx;" src='{{item}}' data-in='{{[index]}}' class='cimage'  bindlongtap='dimage'></image>
                     </block>
