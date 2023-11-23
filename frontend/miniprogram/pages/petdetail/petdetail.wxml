@@ -4,4 +4,32 @@
   <!-- 此处为content -->
   </l-card>
 </view>
+<view style="top:200rpx;position:fixed;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
+    <l-grid row-num="3">
+      <l-grid-item key="one" slot="one">
+       <l-button width="40" height="20" special="{{true}}" bind:lintap="addremind">
+        <view class="container" >
+         <l-icon size="40" name="time" color="#3683d6" />
+         <text class="describe">提醒</text>
+        </view>
+       </l-button>
+      </l-grid-item>
+      <l-grid-item key="two" slot="two">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="addrecord">
+          <view class="container">
+           <l-icon size="40" name="history" color="#3683d6" />
+           <text class="describe">健康记录</text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+       <l-grid-item key="three" slot="three">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="takephoto">
+          <view class="container">
+           <l-icon size="40" name="phone" color="#3683d6" />
+           <text class="describe">萌宠相机</text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+     </l-grid>  
+  </view>
 </l-capsule-bar>

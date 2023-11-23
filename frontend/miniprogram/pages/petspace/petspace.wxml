@@ -3,7 +3,7 @@
   capsule-color="white" bg-color="#ecf4eb"
   title="宠物空间" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
-  <view class = "addPet">
+  <view style="top:0rpx;position:fixed;left:0rpx;width: 750rpx;height:650rpx;" class = "addPet">
     <l-grid row-num="2">
       <l-grid-item key="one" slot="one">
        <l-button width="40" height="20" special="{{true}}" bind:lintap="addpet">
@@ -23,7 +23,7 @@
        </l-grid-item>
      </l-grid>  
   </view>
-  <view class="petlist" wx:for="{{responseData}}" wx:key="*this">
+  <view style="top:400rpx;position:fixed;left:0rpx;width: 750rpx;height:650rpx;" class="petlist" wx:for="{{responseData}}" wx:key="*this">
   <l-card type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.name}}"describe="{{item.breed}}">
         <!-- 此处为content -->
         <l-tag bg-color="#f3f3f3" 

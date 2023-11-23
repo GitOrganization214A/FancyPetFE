@@ -38,7 +38,7 @@
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
                         <view slot="footer">
-                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
+                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
                             <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteadopt">删除</van-button>
                         </view>
@@ -66,9 +66,9 @@
         <view wx:if="{{actmedic}}">
             <view style="position: relative;top: 30rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">宠物医疗</view>
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
-                    <van-card tag="{{item.pet.breed}}" price="10.00" desc="描述信息" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
+                    <van-card tag="{{item.pet.breed}}" desc="描述信息" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
                         <view slot="footer">
-                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="surf">查看宠物空间</van-button>
+                            <van-button id="{{item.ActivityID}}" size="large" bind:tap="surf" >查看宠物空间</van-button>
                             <van-button id="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
                         </view>
                     </van-card>       
@@ -83,7 +83,7 @@
         <view wx:if="{{actlove}}">
             <view style="position: relative;top: 30rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">宠物配种</view>
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 150rpx;position: relative;">
-                    <van-card tag="{{item.pet.breed}}" price="10.00" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
+                    <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" thumb-mode="widthFix" centered="false" >
                         <view slot="footer">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="love">申请配种</van-button>
