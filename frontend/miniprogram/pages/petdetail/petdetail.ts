@@ -1,4 +1,5 @@
 // pages/petdetail/petdetail.ts
+const app = getApp<IAppOption>()
 Page({
 
   /**
@@ -6,6 +7,10 @@ Page({
    */
   data: {
     petspaceid:'',
+    number:0,
+    list:[
+      
+    ]
   },
 
   /**
@@ -27,6 +32,35 @@ Page({
           that.setData({
             PetSpaceDetail: res.data
           })
+          console.log(res.data.images)
+          for (let image of res.data.images)
+            {
+              that.data.number=that.data.number+1
+              var numstring=that.data.number.toString()
+              var numberlist=[{
+                newUrl:image,
+                key:numstring
+              }]
+              that.data.list=[...that.data.list,...numberlist]
+            }
+            console.log(that.data.list)
+      }
+    })
+  },
+  deletePetSpace:function(event){
+    console.log(event.petspaceid)
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/deletePetSpace/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:this.data.petspaceid
+      },
+      success:function(res) {
+        wx.switchTab({
+          url:'/pages/petspace/petspace'
+        })
       }
     })
   },
@@ -37,7 +71,48 @@ Page({
 
   },
   takephoto:function(e){
-
+    wx.navigateTo({
+      url:'/pages/photo/photo'
+    })
+  },
+  deletePhoto:function(e){
+    var index = this.data.number;
+    console.log(e)
+    var petspaceid=this.data.petspaceid
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此图片吗？',
+      success: function (res) {
+       if (res.confirm) {
+        console.log('点击确定了');
+        wx.request({
+          url: 'http://43.143.139.4:8000/api/v1/deletePhoto/',
+          method:"GET",
+          header: {'content-type': 'application/json' //
+          },
+          data:{
+            PetSpaceID:petspaceid,
+            index:index
+          },
+          success:function(res) {
+            wx.navigateTo({
+              url:'/pages/petdetail/petdetail?petspaceid='+app.globalData.petspaceid,
+            })
+          }
+        })
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
+      }
+   
+     })
+  },
+  getimageID:function(e){
+    console.log(e)
+    this.setData({
+      number:e.detail.index
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

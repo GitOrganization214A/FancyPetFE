@@ -1,6 +1,5 @@
 {
-  "pages": [    
- 
+  "pages": [
     "pages/index/index",
     "pages/userinfo/userinfo",
     "pages/activity/activity",
@@ -14,7 +13,8 @@
     "pages/detail/detail",
     "pages/list/list",
     "pages/addpet/addpet",
-    "pages/petdetail/petdetail"
+    "pages/petdetail/petdetail",
+    "pages/photo/photo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,9 +46,8 @@
         "text": "个人主页",
         "iconPath": "resource/indexiconus.png",
         "selectedIconPath": "resource/indexicons.png"
-      }      
+      }
     ]
   },
   "sitemapLocation": "sitemap.json"
-
 }

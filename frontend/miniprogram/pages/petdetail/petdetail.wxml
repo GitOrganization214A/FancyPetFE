@@ -1,4 +1,4 @@
-<l-capsule-bar home-page="/pages/navigator/index/index" title="宠物详情">
+<l-capsule-bar home-page="/pages/petspace/petspace" title="宠物详情">
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{PetSpaceDetail.avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
   <!-- 此处为content -->
@@ -31,5 +31,9 @@
          </l-button>  
        </l-grid-item>
      </l-grid>  
+  </view>
+  <button bindtap='deletePetSpace' mode="widthFix" style="position: fixed; left: 50rpx; top: 1500rpx; width: 650rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center;"type="warn"> 删除宠物空间 </button>
+  <view class="album" mode="widthFix" style="position: fixed; left: 50rpx; top: 800rpx; width: 650rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center;">
+    <l-album bind:longpress="deletePhoto"  bind:lintap="getimageID" urls='{{PetSpaceDetail.images}}' multiple-size="200" lazy-load="true"></l-album>
   </view>
 </l-capsule-bar>

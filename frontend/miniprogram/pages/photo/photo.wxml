@@ -1,0 +1,17 @@
+<!--pages/photo/photo.wxml-->
+<view wx:if="{{src === ''}}">
+<camera style="width:100%; height: {{wh}}px;" device-position='{{pos}}'>  
+<cover-view class='btns-box'>    
+<cover-image src='/resource/album1.png' bindtap="choosePhoto"></cover-image>    
+<cover-image src='/resource/take1.png' bindtap="takePhoto"></cover-image>   
+<cover-image src='/resource/change1.png' bindtap="changePos"></cover-image>    
+</cover-view>
+</camera>
+​</view>
+<!-- 加载拍照的图片 -->
+<view wx:else>  
+<button type='primary' bindtap='addtoAlbum'>添加</button>
+<image src='{{src}}' style='height: {{wh}}px; width: 100%; display: block;' mode='aspectFit'></image>  
+<button type='warn' bindtap='reChoose'>重拍</button>
+</view>
+​
