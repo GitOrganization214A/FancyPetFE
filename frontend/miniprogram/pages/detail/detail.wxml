@@ -4,13 +4,23 @@
   title="详情" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
 
-    <!-- 以下部分放置页面内容 -->
+  <view class='container'>
+    <scroll-view scroll-y="{{true}}">
+      <!-- 以下部分放置页面内容 -->
+    
     <view class ="post">
       <view class ="userinfo">
-        <l-avatar class="avatar" size='80' shape="square" src ='{{Post.avatar}}'></l-avatar>
-        <view class ="userinfotext">
-          <view><text class="nickname">{{Post.nickname}}</text></view>
-          <view><text class="posttime">{{Post.time}}</text></view>
+        <view class ="userinfo">
+          <view>
+            <l-avatar class="avatar" size='80' shape="square" src ='{{Post.avatar}}' data-openid="{{Post.openid}}" bindtap="viewUserInfo"></l-avatar>
+          </view>
+          <view class ="userinfotext">
+            <view><text class="nickname" data-openid="{{Post.openid}}" bindtap="viewUserInfo">{{Post.nickname}}</text></view>
+            <view><text class="posttime">{{Post.time}}</text></view>
+          </view>
+        </view>
+        <view wx:if="{{Post.self}}" style="margin-right: 30rpx;">
+          <l-icon name="delete" type="delete" size="36" color="red" bindtap="deletePost"></l-icon>
         </view>
       </view>
       <view class = "title">
@@ -22,12 +32,13 @@
       
       <!-- 图片列表 -->
       <view class="album">
-        <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album>
+        <!-- <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album> -->
+        <van-uploader file-list="{{Post.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
       </view>
 
       <!-- 点赞、评论、转发 -->
       <view class="actions">
-        <l-icon name="like" type="like" size="28" color="{{Post.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{Post.liked}}" data-like="{{Post.like}}" data-articleid="{{Post.ArticleID}}"></l-icon>
+        <l-icon name="like" type="like" size="28" color="{{Post.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-liked="{{Post.liked}}" data-like="{{Post.like}}" data-articleid="{{Post.ArticleID}}"></l-icon>
         <text class="actions_text" style="color: {{Post.liked ? '#ffac63' : '#515151'}}">{{Post.like}}</text>
         <l-icon name="comment" type="comment" size="28" color="#515151"></l-icon>
         <text class="actions_text">{{Post.comment}}</text>
@@ -45,19 +56,27 @@
           <text class ="commentsorttext"> 按时间排序</text>
         </view>
       </view>
-      <block wx:for="{{Post.comments}}" wx:key="comments" wx:for-index="postindex">
+      
+      <block wx:for="{{Post.comments}}" wx:key="commentskey" wx:for-index="commentindex">
         <view class="line"></view>
         <view class="userinfoandlike">
           <view class ="userinfo">
-            <l-avatar class="avatar" size='60' shape="square" src ='{{item.avatar}}'></l-avatar>
-              <view class ="userinfotext">
-                <view class="nickname"><text class="nicknametext">{{item.nickname}}</text></view>
-                <view><text class="posttime">{{item.time}}</text></view>
-              </view>
+            <view>
+              <l-avatar class="avatar" size='60' shape="square" src ='{{item.avatar}}' data-openid="{{item.openid}}" bindtap="viewUserInfo"></l-avatar>
+            </view>
+            <view class ="userinfotext">
+              <view class="nickname" data-openid="{{item.openid}}" bindtap="viewUserInfo"><text class="nicknametext">{{item.nickname}}</text></view>
+              <view><text class="posttime">{{item.time}}</text></view>
+            </view>
           </view>
-          <view class="goodjob">
-            <view><van-icon size="18" name="good-job-o"></van-icon></view>
-            <view class="commentlike"><text>{{item.like}}</text></view>
+          <view style="display: flex; flex-direction: row; align-items: center;">
+            <view wx:if="{{item.self}}" style="margin-right: 30rpx;">
+              <l-icon name="delete" type="delete" size="30" color="red" bindtap="deleteComment" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}"></l-icon>
+            </view>
+            <view class="goodjob">
+              <view><van-icon color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likeComment" size="18" name="good-job-o" data-liked="{{item.liked}}" data-like="{{item.like}}" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}"></van-icon></view>
+              <view class="commentlike"><text style="color:{{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text></view>
+            </view>
           </view>
         </view>
         <view class="commentcontent">
@@ -65,6 +84,15 @@
         </view>
       </block>
       <view class="line"></view>
+      <view class="bottomblock2"></view>
     </view>
+    </scroll-view>
+  </view>
+
+  <view class='commentsInputLayout' style="bottom:{{keyboardHeight > 0 ? keyboardHeight : 20}}px">
+    <input value='{{commentsContent}}' type='text' maxlength='100' class='commentsInput' placeholder='请输入评论内容（100字以内）' placeholder-class='phcolor' bindinput='inputCommentsContentListening' bindfocus="inputCommentsFocus" bindblur="inputCommentsBlur"></input>
+    <text class='commentsBtn' bindtap='clickComments'>评论</text>
+  </view>
+  <view wx:if="{{keyboardHeight == 0}}" class="bottomblock1"></view>
 </l-capsule-bar>
   

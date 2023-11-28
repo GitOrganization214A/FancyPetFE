@@ -31,9 +31,13 @@ const nameDataDog = [
 ];
 Page({
   data: {
+    // 页面垂直滑动的距离
+    currentClassTab: "狗狗", //当前大分类
+    scrollTop: undefined,
     nameDataDog,
     sideBarData,
     currentTab: 'following', // 默认显示关注
+    hotFirst: false, //第一次点击热门
     color1: 'red',
     color2: 'black',
     color3: 'black',
@@ -44,12 +48,46 @@ Page({
   },
   // 页面监听函数
   onPageScroll(res) {
-    wx.lin.setScrollTop(res.scrollTop)
+    this.setData({
+      scrollTop: res.scrollTop,
+    })
+  },
+  onPullDownRefresh: function () {
+    // 显示顶部刷新图标  
+    wx.showNavigationBarLoading();
+    var that = this;
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+        },
+        success:function(res) {
+            that.setData({
+              hotPosts: res.data
+            })
+        wx.hideLoading();
+        // 隐藏导航栏加载框  
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作  
+        wx.stopPullDownRefresh();
+      }
+    })
   },
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
+    const index = event.currentTarget.dataset.index
     wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+articleid,
+      url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
+    })
+  },
+  //进入用户主页
+  viewUserInfo: function(event) {
+    const tempopenid = event.currentTarget.dataset.openid
+    wx.navigateTo({
+      url:'/pages/userinfo/userinfo?openid='+tempopenid,
     })
   },
   likePost(event) {
@@ -64,7 +102,7 @@ Page({
       var that = this
       if (!event.currentTarget.dataset.liked) {
         wx.request({
-          url: 'http://43.143.139.4:8000/api/v1/like/',
+          url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
           method: 'GET',
           data: {
             openid: app.globalData.openid, // 传递需要点赞的帖子openid
@@ -85,7 +123,7 @@ Page({
       }
       else {
         wx.request({
-          url: 'http://43.143.139.4:8000/api/v1/like/',
+          url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
           method: 'GET',
           data: {
             openid: app.globalData.openid, // 传递需要点赞的帖子openid
@@ -106,6 +144,13 @@ Page({
         });
       }
   },
+  // changeTabs: function (event) {
+  //   const tab = event.currentTarget.dataset.tab;
+  //   this.setData({
+  //     currentClassTab: tab,
+  //   })
+  // },
+  //切换关注、热门、分类
   switchTab: function (event) {
     const tab = event.currentTarget.dataset.tab;
     const id = event.currentTarget.dataset.id;
@@ -115,7 +160,7 @@ Page({
         color2: id === '2' ? 'red' : 'black',
         color3: id === '3' ? 'red' : 'black'
     });
-    if(tab == "hot") {
+    if(tab == "hot" && this.data.hotFirst == false) {
       var that = this
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
@@ -127,7 +172,8 @@ Page({
         },
         success:function(res) {
             that.setData({
-              hotPosts: res.data
+              hotPosts: res.data,
+              hotFirst: true
             })
         }
       })

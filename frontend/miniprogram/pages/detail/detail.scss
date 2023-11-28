@@ -1,13 +1,11 @@
 /* pages/detail/detail.wxss */
-
+.container {
+  padding: 0rpx;
+}
 .userinfotext {
   display: flex;
   flex-direction: column;
   margin-left: 30rpx;
-}
-.nickname {
-  margin-top: -5rpx;
-  margin-bottom: -5rpx;
 }
 .nicknametext {
   font-size:26rpx;
@@ -21,6 +19,8 @@
 .userinfo {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 .commentcontent {
   margin-left: 20rpx;
@@ -41,7 +41,6 @@
   justify-content: space-between;
 }
 .goodjob {
-  margin-top: 10rpx;
   margin-right: 20rpx;
   display: flex;
   flex-direction:row;
@@ -52,6 +51,7 @@
 .userinfoandlike {
   display: flex; 
   justify-content: space-between;
+  align-items: center;
 }
 
 .commentinfotext {
@@ -88,6 +88,15 @@
   margin-bottom: 20rpx;
   line-height: 45rpx;
 }
+.textarea {
+  width: 100%;
+  background: #fff;
+  height: 300rpx;
+  font-size: 28rpx;
+  color: #555;
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
 .actions {
   display: flex;
   justify-content: space-between;
@@ -109,4 +118,67 @@
   border-top: solid Silver 1px;
   margin-bottom: 30rpx;
   margin-top: 20rpx;
+}
+
+.commentsInputLayout {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  z-index: 20;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  /* 使之可以滚动 *//* overflow-y: scroll; *//* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+  -webkit-overflow-scrolling: touch;
+}
+  
+  /** border-top必须设置，如不设置在部分机型上会出现定位不准问题*/
+.commentsInput {
+  width: auto;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+  flex: 1;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-size: 32rpx;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #333;
+  border-top: solid #f4f4f4 0.01rpx;
+  background-color: #f4f4f4;
+  z-index: 21;
+}
+  
+  /** border-top必须设置，如不设置在部分机型上会出现定位不准问题*/
+.commentsBtn {
+  height: 100rpx;
+  line-height: 100rpx;
+  position: relative;
+  font-size: 32rpx;
+  font-weight:600;
+  color: #FF8C00;
+  border-top: solid #b9e2b2 0.01rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  background-color: #b9e2b2;
+  z-index: 21;
+}
+
+.bottomblock1 {
+  position: fixed;
+  width:100%;
+  border-top:20px white solid;
+  bottom:0px;
+}
+
+.bottomblock2 {
+  width:100%;
+  border-top:160rpx white solid;
 }
