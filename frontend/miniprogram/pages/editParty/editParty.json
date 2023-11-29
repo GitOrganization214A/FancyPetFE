@@ -1,0 +1,8 @@
+{
+    "navigationStyle":"custom",
+    "usingComponents": {
+      "van-cell": "/miniprogram_npm/@vant/weapp/cell/index",
+      "van-calendar": "/miniprogram_npm/@vant/weapp/calendar/index",
+      "l-album": "/miniprogram_npm/lin-ui/album/index"
+    }
+}

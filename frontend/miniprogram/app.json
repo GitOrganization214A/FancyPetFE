@@ -5,6 +5,7 @@
     "pages/activity/activity",
     "pages/petspace/petspace",
     "pages/editAdopt/editAdopt",
+    "pages/editParty/editParty",
     "pages/editLove/editLove",
     "pages/editsendLove/editsendLove",
     "pages/forum/forum",

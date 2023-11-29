@@ -17,7 +17,7 @@
         plain
         type="primary"
         custom-class="van-card__tag"
-        style="position:absolute;left:500rpx;top: 50rpx;width: 200rpx;font-size: 40rpx;"
+        style="position:absolute;left:500rpx;top: 50rpx;width: 200rpx;"
       >
         {{ tag }}
       </van-tag>
