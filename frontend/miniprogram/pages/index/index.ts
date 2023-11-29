@@ -7,7 +7,6 @@ let SCREEN_HEIGHT = SCREEN_WIDTH * RATE
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {
         SW : SCREEN_WIDTH,
         SH : SCREEN_HEIGHT,
@@ -34,7 +33,7 @@ Page({
       url: '../logs/logs',
     })
   },
-  onLoad() {
+  onLoad(event) {
     // @ts-ignore
     if(!this.data.canIUseOpenData)
         wx.hideTabBar({
@@ -185,24 +184,6 @@ Page({
         //do something
       }
     })
-
-
-
-    // wx.request({
-    //     url: 'http://127.0.0.1:8000/api/v1/changeInfo',
-    //     data:{
-    //         openid:this.data.userInfo.openID,
-    //         nickname:this.data.userInfo.nickName,
-    //         avatar:this.data.userInfo.avatarUrl,
-    //     },
-    //     method:"GET",
-    //     header: {'content-type': 'application/json' //
-    //     },
-    //     success(res) {
-    //         console.log(res.data)
-    //     }
-    // })
-    // 把获取到的微信头像的图像文件上传到后端
   },
   getUserNickname(e:any){
     console.log(e.detail.value)

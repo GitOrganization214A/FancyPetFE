@@ -7,7 +7,7 @@ Page({
   data: {
     actmain:true,
     actadopt:false,
-    actmedic:false,
+    actparty:false,
     actlove:false,
     actcloud:false,
     activitylist:[],
@@ -15,6 +15,7 @@ Page({
     show: false,
     showadopt: false,
     showlove: false,
+    showparty:false,
     fieldValue: '',
     cascaderValue: '',
     options:[],
@@ -25,18 +26,24 @@ Page({
     adoptTarget: '',
     navigationurl:"../../resource/navigationbar.png",
     adopturl:"../../resource/adopt.png",
-    medicurl:"../../resource/medic.png",
+    partyurl:"../../resource/party.png",
     loveurl:"../../resource/love.png",
     cloudpeturl:"../../resource/cloudpet.png",
     backurl:"../../resource/back.png",
     editadoptUrl:"../../resource/EditButton.jpg",
-    giveupUrl:"../../resource/giveup.png"
+    giveupUrl:"../../resource/giveup.png",
+    partyUrl:'',
+    partytitle:'',
+    partyaddress:'',
+    partydate:'',
+    partycontent:''
   },
   onLoad(){
     this.setData({
         actmain:true,
         actadopt:false,
         actlove:false,
+        actparty:false,
         actcloud:false,
         pageindex:0
     })
@@ -77,40 +84,44 @@ Page({
             actmain:true,
             actadopt:false,
             actlove:false,
+            actparty:false,
             actcloud:false,
             pageindex:0
           })
           
       }
+      console.log(this.data)
 
   },
 
-  actmedic(){
+  actparty(){
     this.setData({
         actmain:false,
-        actmedic:true,
+        actparty:true,
         pageindex:2
     })
-    // var that = this
-    // wx.request({
-    //   url: 'http://43.143.139.4:8000/api/v1//',
-    //   data:{
-    //     openid:app.globalData.openid,        
-    //   },
-    //   method: 'GET',
-    //   header: {'content-type': 'application/json' //
-    //   },
-    //   success: function(res) {
-    //     that.setData({
-    //       activitylist: res.data
-    //     })
-    //     console.log(res.data)
-    //     console.log(that.data.actadopt)
-    //   },
-    //   fail:function(res){
-    //       console.log(res.errMsg)
-    //   }
-    // })
+    var that = this
+    
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/partyPet/',
+        data:{
+          openid:app.globalData.openid,
+        },
+        method: 'GET',
+        header: {'content-type': 'application/json' //
+        },
+        success: function(res) {
+          that.setData({
+            activitylist: res.data
+          })
+          that.data.activitylist = res.data
+          console.log(res.data)
+          console.log(that.data.actadopt)
+        },
+        fail:function(res){
+            console.log(res.errMsg)
+        }
+      })
   },
 
   actlove(){
@@ -152,6 +163,11 @@ Page({
         url:"../editLove/editLove"
     })
   },
+  editParty(){
+    wx.navigateTo({
+        url:"../editParty/editParty"
+    })
+  },
   surf(e){
     console.log(e)
     var aid = e.currentTarget.dataset.index
@@ -170,6 +186,23 @@ Page({
         url:"../petdetail/petdetail?petspaceid="+pid
     })
   },
+  surfParty(e){
+    var aid = e.currentTarget.dataset.index
+    for(let party of this.data.activitylist)
+    {
+        if(party.ActivityID==aid)
+        {
+            this.setData({
+                showparty:true,
+                partyUrl:party.img,
+                partytitle:party.title,
+                partydate:party.time,
+                partyaddress:party.address,
+                partycontent:party.content
+            })
+        }
+    }
+  },
   adopt(e){
     console.log(e)
     this.setData({
@@ -177,7 +210,7 @@ Page({
         adoptTarget:e.currentTarget.id
     })
   },
-  deleteadopt(e){
+  deleteactivity(e){
     var that = this
     wx.request({
         url: 'http://43.143.139.4:8000/api/v1/deleteActivity/',//todo
@@ -230,6 +263,11 @@ Page({
         adoptcontent: ''
     })
   },
+  guparty(e){
+    this.setData({
+        showparty:false,
+    })
+  },
   sendadopt(e){
     var that = this 
     wx.request({
@@ -266,40 +304,6 @@ Page({
     wx.navigateTo({
         url:"../editsendLove/editsendLove?activityid="+e.currentTarget.dataset.index
     })
-  },
-  deletelove(e){
-    var that = this
-    wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/deleteActivity/',//todo
-        data:{
-          openid:app.globalData.openid,  
-          ActivityID:e.currentTarget.dataset.index
-        },
-        method: 'GET',
-        header: {'content-type': 'application/json' //
-        },
-        success: function(res) {
-            var aid = e.currentTarget.dataset.index
-            var aindex = -1
-            var templist = that.data.activitylist
-            for (var activ of templist)
-            {
-                aindex ++
-                if(activ.ActivityID==aid)
-                {
-                    templist.splice(aindex,1)
-                    that.setData({
-                        activitylist:templist
-                    })
-                    that.data.activitylist = templist
-                    break
-                }
-            }
-        },
-        fail:function(res){
-            console.log(res.errMsg)
-        }
-      })
   },
   onClose() {
     this.setData({
@@ -338,5 +342,28 @@ Page({
         }
       })
   },
-
+  participate(e){
+    var that = this 
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/applyParty/',
+        data:{
+          openid:app.globalData.openid,
+          ActivityID:e.currentTarget.dataset.index
+        },
+        method: 'GET',
+        header: {'content-type': 'application/json' //
+        },
+        success: function(res) {
+            console.log(res.data.openid)
+            wx.showToast({
+                title: '发送成功！',
+                icon: 'none',
+                duration: 2000
+            })
+        },
+        fail:function(res){
+            console.log(res.errMsg)
+        }
+    })
+  }
 });
