@@ -1,0 +1,16 @@
+/* pages/photo/photo.wxss */
+.btns-box
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 50rpx;
+  width: 100%;
+  z-index: 100;
+}
+.btns-box cover-image
+{
+  widows: 150rpx;
+  height:150rpx;
+}
