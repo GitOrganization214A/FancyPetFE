@@ -16,7 +16,9 @@
     "pages/addpet/addpet",
     "pages/petdetail/petdetail",
     "pages/photo/photo",
-    "pages/message/message"
+    "pages/message/message",
+    "pages/petdetailshow/petdetailshow"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
