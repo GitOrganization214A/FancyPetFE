@@ -1,64 +1,17 @@
 // activity.ts
-import { areaList } from '../../miniprogram_npm/@vant/area-data/data';
+
 const app = getApp<IAppOption>()
 
 
 Page({
   data: {
-    actmain:true,
-    actadopt:false,
-    actparty:false,
-    actlove:false,
-    actcloud:false,
-    activitylist:[],
-    pageindex:0,
-    show: false,
-    showadopt: false,
-    showlove: false,
-    showparty:false,
-    fieldValue: '',
-    cascaderValue: '',
-    options:[],
-    areaList,
-    currentadoptNumber: 0,
-    currentwxNumber: 0,
-    maxadoptLen: 200,
-    wxcontent: '',
-    adoptcontent: '',
-    adoptTarget: '',
-    navigationurl:"../../resource/navigationbar.png",
-    adopturl:"../../resource/adopt.png",
-    partyurl:"../../resource/party.png",
-    loveurl:"../../resource/love.png",
-    cloudpeturl:"../../resource/cloudpet.png",
-    backurl:"../../resource/back.png",
-    editadoptUrl:"../../resource/EditButton.jpg",
-    giveupUrl:"../../resource/giveup.png",
-    partyUrl:'',
-    partytitle:'',
-    partyaddress:'',
-    partydate:'',
-    partycontent:''
+    messageList:[],
+    navigationurl:"../../resource/navigationbar.png"
   },
-  onLoad(){
-    this.setData({
-        actmain:true,
-        actadopt:false,
-        actlove:false,
-        actparty:false,
-        actcloud:false,
-        pageindex:0
-    })
-  },
-  actadopt(){
-      this.setData({
-          actmain:false,
-          actadopt:true,
-          pageindex:1
-      })
-      var that = this
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/adoptPet/',
+  onShow(){
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/showMessages/',
         data:{
           openid:app.globalData.openid,
         },
@@ -67,35 +20,17 @@ Page({
         },
         success: function(res) {
           that.setData({
-            activitylist: res.data
+            messageList: res.data
           })
-          that.data.activitylist = res.data
+          that.data.messageList = res.data
           console.log(res.data)
-          console.log(that.data.actadopt)
         },
         fail:function(res){
             console.log(res.errMsg)
         }
       })
   },
-  switchpage(){
-      var curindex = this.data.pageindex
-      if(curindex < 5)
-      {
-          this.setData({
-            actmain:true,
-            actadopt:false,
-            actlove:false,
-            actparty:false,
-            actcloud:false,
-            pageindex:0
-          })
-          
-      }
-      console.log(this.data)
-
-  },
-
+  
   actparty(){
     this.setData({
         actmain:false,
@@ -104,26 +39,7 @@ Page({
     })
     var that = this
     
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/partyPet/',
-        data:{
-          openid:app.globalData.openid,
-        },
-        method: 'GET',
-        header: {'content-type': 'application/json' //
-        },
-        success: function(res) {
-          that.setData({
-            activitylist: res.data
-          })
-          that.data.activitylist = res.data
-          console.log(res.data)
-          console.log(that.data.actadopt)
-        },
-        fail:function(res){
-            console.log(res.errMsg)
-        }
-      })
+      
   },
 
   actlove(){
@@ -247,17 +163,6 @@ Page({
         }
       })
   },
-  inputwx:function(e){
-    var value = e.detail.value;
-    var len = parseInt(value.length)
-    this.setData({
-        currentwxNumber: len,
-        wxcontent: value
-    })
-    this.data.currentwxNumber=len
-    this.data.wxcontent=value    
-    console.log(this.data.adoptcontent)
-  },
   inputadopt:function(e){
     var value = e.detail.value;
     var len = parseInt(value.length)
@@ -288,8 +193,7 @@ Page({
         data:{
           openid:app.globalData.openid,
           ActivityID:that.data.adoptTarget,
-          content:that.data.adoptcontent,
-          wxid:that.data.wxcontent
+          content:that.data.adoptcontent
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
@@ -304,12 +208,10 @@ Page({
             that.setData({
                 showadopt:false,
                 currentadoptNumber: 0,
-                adoptcontent: '',
-                wxcontent:''
+                adoptcontent: ''
             })
             that.data.currentadoptNumber=0
             that.data.adoptcontent='' 
-            that.data.wxcontent='' 
         },
         fail:function(res){
             console.log(res.errMsg)
