@@ -9,7 +9,7 @@
 	<view>
         <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>  
             <view style="position: relative;top: -140rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">消息</view>
-                <view wx:for="{{messagelist}}" wx:key="*this" style="top: -80rpx;position: relative;">
+                <view wx:for="{{messageList}}" wx:key="*this" style="top: -80rpx;position: relative;">
                     <van-card desc="{{item.content+item.time}}" title="{{item.title}}" centered="false" >
                     </van-card>       
                 </view>

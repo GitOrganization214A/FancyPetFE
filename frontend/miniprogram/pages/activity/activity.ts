@@ -209,7 +209,7 @@ Page({
     console.log(e)
     this.setData({
         showadopt:true,
-        adoptTarget:e.currentTarget.id
+        adoptTarget:e.target.dataset.index
     })
   },
   deleteactivity(e){
