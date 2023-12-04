@@ -5,9 +5,19 @@
 
     <!-- 以下部分放置页面内容 -->
       <view class ="info">
-        <l-avatar class="avatar" size='100' shape="square" src ="{{userInfo.avatar}}"></l-avatar>
+        <l-avatar class="avatar" size='110' shape="square" src ="{{userInfo.avatar}}"></l-avatar>
         <view class ="userinfotext">
-          <view><text class="nickname">{{userInfo.nickname}}</text></view>
+          <view style="display: flex;flex-direction: row; align-items: center; justify-content: space-between;">
+            <view>            
+              <text class="nickname">{{userInfo.nickname}}</text>
+            </view>
+            <view wx:if="{{!userInfo.self}}" style="margin-right: -20rpx;">
+              <l-button bg-color="#f2f0fe" height="55" width="120" shape="semicircle" bindtap="followUser">
+                <text wx:if="{{!userInfo.followed}}" style="color:#7968bd">+关注</text>
+                <text wx:if="{{userInfo.followed}}" style="color:#7968bd">已关注</text>
+              </l-button>
+            </view>
+          </view>
           <view class = "nums">
             <view class="num"><text class="numtext">关注：{{userInfo.follow}}</text></view>
             <view class="num"><text class="numtext">粉丝：{{userInfo.fans}}</text></view>
@@ -15,6 +25,41 @@
           </view>
         </view>
       </view>
-    
+      <!-- 发帖记录 -->
+      <view class="posts">
+        <text>发帖记录</text>
+          <block wx:for="{{userInfo.articles}}" wx:key="articles" wx:for-index="postindex">
+          <view class="line"></view>
+          <view class ="post">
+            <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+              <text>{{item.title}}</text>
+            </view>
+            <view class="time_read">
+              <view><text class="time_read_text">{{item.time}}</text></view>
+              <view><text class="time_read_text">阅读量：{{item.read}}</text></view>
+            </view>
+            <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+              <text class="content_text">{{item.content}}</text>
+            </view>
+            
+            <!-- 图片列表 -->
+            <view class="album">
+              <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
+              <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
+            </view>
+
+            <!-- 点赞、评论、转发 -->
+            <view class="actions">
+              <l-icon name="like" type="like" size="28" color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{item.liked}}" data-like="{{item.like}}" data-articleid="{{item.ArticleID}}"></l-icon>
+              <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
+              <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
+              <text class="actions_text">{{item.comment}}</text>
+              <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+              <text class="actions_text">{{item.share}}</text>
+            </view>
+          </view>
+        </block>
+        <view class="line2"></view>
+      </view>
 </l-capsule-bar>
   

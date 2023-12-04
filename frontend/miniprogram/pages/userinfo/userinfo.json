@@ -7,6 +7,8 @@
     "l-album": "/miniprogram_npm/lin-ui/album/index",
     "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
-    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index"
   }
 }

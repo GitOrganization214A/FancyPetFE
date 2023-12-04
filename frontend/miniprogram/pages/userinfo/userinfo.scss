@@ -12,7 +12,7 @@
 }
 
 .numtext {
-  font-weight: lighter;
+  font-weight: 300;
   font-size: smaller;
 }
 
@@ -29,6 +29,13 @@
 .info {
   display: flex;
   flex-direction: row;
+  margin-left: 60rpx;
+  margin-top:60rpx;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
   margin-left: 60rpx;
   margin-top:60rpx;
 }
@@ -73,9 +80,30 @@
   color: #515151;
 }
 
+.time_read {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left:10rpx;
+  margin-right:160rpx;
+  margin-bottom:20rpx;
+}
+
+.time_read_text {
+  font-size: smaller;
+  font-weight: 300;
+}
+
 .line {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 30rpx;
-  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  margin-top: 30rpx;
+}
+
+.line2 {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 50rpx;
+  margin-top: 40rpx;
 }
