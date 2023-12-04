@@ -11,6 +11,7 @@
 
 
             <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:100rpx; width:100rpx; left:45rpx; top:340rpx" >
+                <text wx:if="{{avatarUrl.length==0}}" style="font-size: small;">选择封面图片</text>
                 <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}"  style="display: inline-block; box-sizing: border-box; position: fixed; height:100rpx; width:100rpx; left:45rpx; top:340rpx"></image> 
             </button>
 

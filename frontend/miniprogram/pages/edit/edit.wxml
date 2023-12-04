@@ -3,20 +3,30 @@
   <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
   <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
         <view class='by'>
-            <view style="top:210rpx;text-align: center;position: fixed;width: 350rpx;font-size: 25px;left:200rpx">发布帖子</view>       
-            <image style="top:220rpx;position: fixed;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guEdit"></image>
-            <view style="top:220rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
+            <view style="top:260rpx;text-align: center;position: fixed;width: 350rpx;font-size: 25px;left:200rpx">发布帖子</view>       
+            <image style="top:270rpx;position: fixed;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guEdit"></image>
+            <view style="top:270rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
             bindtap="sendAtc">发布</view>
             <view class='inputTitle' >
-                <textarea style="top:300rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                <text class='ctn' style="top:350rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+                <textarea style="top:350rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                <text class='ctn' style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+            </view>
+            <view style="position: fixed;top: 350rpx;width:750rpx;">
+                <van-field 
+                value="{{ fieldValue }}"
+                is-link
+                readonly
+                label="宠物空间"
+                placeholder="请选择宠物空间"
+                bind:tap="onClick"
+                />
             </view>
             <view class='inputText'>
-                <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+                <textarea  style="top:450rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
                 placeholder='请输入帖子内容' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
-                <text style="top:650rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+                <text style="top:700rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
             </view>
-            <view style="top:720rpx;position:fixed;left:20rpx;width: 750rpx;height:650rpx;" class='inputImage' >
+            <view style="top:770rpx;position:fixed;left:20rpx;width: 750rpx;height:650rpx;" class='inputImage' >
                 <!-- <l-album urls='{{images}}' multiple-size="230" lazy-load="true"></l-album> -->
                 <van-uploader file-list="{{ images }}" max-count="9" bind:after-read="chooseImage" accept="media"  multiple="{{true}}" image-fit="aspectFill" preview-size="230rpx" bind:delete="delimage"/>
             </view>
@@ -25,6 +35,19 @@
             </view> -->
 
 
+        </view>
+
+        <view style="position: fixed;top: 600rpx;">
+                <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
+                <van-cascader
+                    wx:if="{{ show }}"
+                    value="{{ cascaderValue }}"
+                    title="请选择宠物空间"
+                    options="{{ options }}"
+                    bind:close="onClose"
+                    bind:finish="onFinish"
+                />
+                </van-popup>
         </view>
   </view>
 </view>

@@ -9,9 +9,48 @@
 	<view>
         <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>  
             <view style="position: relative;top: -140rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">消息</view>
-                <view wx:for="{{messageList}}" wx:key="*this" style="top: -80rpx;position: relative;">
-                    <van-card desc="{{item.content+item.time}}" title="{{item.title}}" centered="false" >
-                    </van-card>       
+                <view wx:for="{{messageList}}" wx:key="*this" style="top: -100rpx;position: relative;left:20rpx;width:710rpx;border:grey solid 2rpx">
+                    <view wx:if="{{item.type=='party'}}" >
+                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;">
+                            {{item.time}}
+                            <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 400rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
+                        </view>
+                        <view style="display: flex;flex-wrap: wrap;">
+                            <view>{{'用户'}}</view>
+                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view>{{'申请参加你的聚会'}}</view>
+                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.ActivityName}}</view>
+                            <view>{{'。'}}</view>
+                        </view>                      
+                    </view>
+                    <view wx:elif="{{item.type=='adopt'}}">
+                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;">
+                            {{item.time}}
+                            <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 400rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
+                        </view>
+                        <view style="display: flex;flex-wrap: wrap;">
+                            <view>{{'用户'}}</view>
+                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view>{{'申请领养你的宠物'}}</view>
+                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName}}</view>
+                            <view>{{'。'}}</view>
+                        </view>       
+                    </view>
+                    <view wx:elif="{{item.type=='love'}}">
+                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;">
+                            {{item.time}}
+                            <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 400rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
+                        </view>
+                        <view style="display: flex;flex-wrap: wrap;">
+                            <view>{{'用户'}}</view>
+                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view>{{'申请让其宠物'}}</view>
+                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName1}}</view>
+                            <view>{{'与你的宠物'}}</view>
+                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName2}}</view>
+                            <view>{{'配种。'}}</view>
+                        </view>       
+                    </view>
                 </view>
     </view>
 </l-capsule-bar>
