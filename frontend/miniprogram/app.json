@@ -16,7 +16,9 @@
     "pages/addpet/addpet",
     "pages/petdetail/petdetail",
     "pages/photo/photo",
-    "pages/petdetailshow/petdetailshow"
+    "pages/petdetailshow/petdetailshow",
+    "pages/record/record",
+    "pages/addrecord/addrecord"
   ],
   "window": {
     "backgroundTextStyle": "light",

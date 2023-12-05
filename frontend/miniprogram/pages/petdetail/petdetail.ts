@@ -17,35 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(event) {
-    console.log(event.petspaceid)
-    var that = this
-    this.data.petspaceid = event.petspaceid
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
-      method:"GET",
-      header: {'content-type': 'application/json' //
-      },
-      data:{
-        PetSpaceID:this.data.petspaceid
-      },
-      success:function(res) {
-          that.setData({
-            PetSpaceDetail: res.data
-          })
-          console.log(res.data.images)
-          for (let image of res.data.images)
-            {
-              that.data.number=that.data.number+1
-              var numstring=that.data.number.toString()
-              var numberlist=[{
-                newUrl:image,
-                key:numstring
-              }]
-              that.data.list=[...that.data.list,...numberlist]
-            }
-            console.log(that.data.list)
-      }
-    })
   },
   deletePetSpace:function(event){
     console.log(event.petspaceid)
@@ -67,8 +38,10 @@ Page({
   addremind:function(e){
 
   },
-  addrecord:function(e){
-
+  gotorecord:function(e){
+    wx.navigateTo({
+      url:'/pages/record/record'
+    })
   },
   takephoto:function(e){
     wx.navigateTo({
@@ -76,6 +49,7 @@ Page({
     })
   },
   deletePhoto:function(e){
+    var that=this
     var index = this.data.number;
     console.log(e)
     var petspaceid=this.data.petspaceid
@@ -95,9 +69,7 @@ Page({
             index:index
           },
           success:function(res) {
-            wx.navigateTo({
-              url:'/pages/petdetail/petdetail?petspaceid='+app.globalData.petspaceid,
-            })
+            that.onShow()
           }
         })
        } else if (res.cancel) {
@@ -125,7 +97,34 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    var that = this
+    this.data.petspaceid = app.globalData.petspaceid
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:this.data.petspaceid
+      },
+      success:function(res) {
+          that.setData({
+            PetSpaceDetail: res.data
+          })
+          console.log(res.data.images)
+          for (let image of res.data.images)
+            {
+              that.data.number=that.data.number+1
+              var numstring=that.data.number.toString()
+              var numberlist=[{
+                newUrl:image,
+                key:numstring
+              }]
+              that.data.list=[...that.data.list,...numberlist]
+            }
+            console.log(that.data.list)
+      }
+    })
   },
 
   /**

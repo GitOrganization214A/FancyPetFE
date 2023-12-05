@@ -8,7 +8,8 @@ Page({
   data: {
     wh:0,
     src:'',
-    pos:'back'
+    pos:'back',
+    istake:0
   },
   takePhoto() {
     const ctx = wx.createCameraContext();
@@ -64,8 +65,8 @@ Page({
       PetSpaceID:app.globalData.petspaceid
     },
     success (res){
-      wx.navigateTo({
-        url:'/pages/petdetail/petdetail?petspaceid='+app.globalData.petspaceid,
+      wx.navigateBack({
+        delta: 1
       })
     }
   })

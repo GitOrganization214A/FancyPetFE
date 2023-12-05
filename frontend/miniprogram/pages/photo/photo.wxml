@@ -1,4 +1,5 @@
 <!--pages/photo/photo.wxml-->
+<l-capsule-bar home-page="/pages/petspace/petspace" title="萌宠相机">
 <view wx:if="{{src === ''}}">
 <camera style="width:100%; height: {{wh}}px;" device-position='{{pos}}'>  
 <cover-view class='btns-box'>    
@@ -14,4 +15,5 @@
 <image src='{{src}}' style='height: {{wh}}px; width: 100%; display: block;' mode='aspectFit'></image>  
 <button type='warn' bindtap='reChoose'>重拍</button>
 </view>
+</l-capsule-bar>
 ​
