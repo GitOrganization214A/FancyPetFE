@@ -20,12 +20,13 @@ Page({
     images:[],
     titlecontent:[],
     atccontent:[],
+    wxidcontent: [],
     responseData:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
     navigationUrl:"../../resource/navigationbar.png",
     giveupUrl:"../../resource/giveup.png",
-
+    currentWxidNumber:0,
     currentTextNumber:0,
 
     maxTextLen: 1024,
@@ -37,6 +38,16 @@ Page({
       })
   },
   // 事件处理函数
+  inputWxid:function(e){
+    var value = e.detail.value;
+    var len = parseInt(value.length)
+    this.setData({
+        currentWxidNumber: len,
+        wxidcontent: value 
+    })
+    this.data.currentWxidNumber=len
+    this.data.wxidcontent=value
+},
   inputText:function(e){
         var value = e.detail.value;
         var len = parseInt(value.length)
@@ -107,6 +118,7 @@ Page({
             content:that.data.atccontent,
             PetSpaceID:that.data.cascaderValue,
             ActivityID:that.data.activityid,
+            wxid:that.data.wxidcontent,
         },
         method:"GET",
         header: {'content-type': 'application/json' //

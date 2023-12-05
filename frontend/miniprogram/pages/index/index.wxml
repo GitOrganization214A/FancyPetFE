@@ -2,12 +2,13 @@
 <view class="container" style="width:100%;">
   <view wx:if="{{canIUseOpenData}}" style="width:100%;" class="userinfo" >
     <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
-    <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}"  style="display: inline-block; box-sizing: border-box; position: fixed; height:220rpx; width:220rpx; left:45rpx; top:237.5rpx"></image> 
-    <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="display: inline-block; box-sizing: border-box; position: fixed; width:600rpx; height:100rpx; line-height:100rpx; left:290rpx; top:300rpx; font-size:50rpx"/>
-    <text decode style="color: black; font-weight: 1000; position: fixed; height:60rpx; left: 290rpx; top: 440rpx; font-size: 30rpx;">
+    <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}"  style="display: inline-block; box-sizing: border-box; position: fixed; height:220rpx; width:220rpx; left:45rpx; top:337.5rpx"></image> 
+    <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="display: inline-block; box-sizing: border-box; position: absolute;  width:50rpx; left:600rpx; top:350rpx;"></image>   
+    <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="display: inline-block; box-sizing: border-box; position: fixed; width:300rpx; height:100rpx; line-height:100rpx; left:290rpx; top:400rpx; font-size:50rpx"/>
+    <text decode style="color: black; font-weight: 1000; position: fixed; height:60rpx; left: 290rpx; top: 540rpx; font-size: 30rpx;">
                 关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
     </text>   
-    <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" style="position: fixed; left: 45rpx; top: 470rpx; width: 220rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置头像 </button>
+    <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" style="position: fixed; left: 45rpx; top: 570rpx; width: 220rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置头像 </button>
     <button bindtap="quitUser" style="position: fixed; left: 200rpx; top: 1300rpx; width: 350rpx; height: 80rpx; line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx;"> 退出登录 </button>
 
   </view>

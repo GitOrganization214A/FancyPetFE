@@ -21,7 +21,9 @@ Page({
     options:[],
     areaList,
     currentadoptNumber: 0,
+    currentwxNumber: 0,
     maxadoptLen: 200,
+    wxcontent: '',
     adoptcontent: '',
     adoptTarget: '',
     navigationurl:"../../resource/navigationbar.png",
@@ -183,7 +185,7 @@ Page({
     console.log(aid)
     console.log(pid)
     wx.navigateTo({
-        url:"../petdetail/petdetail?petspaceid="+pid
+        url:"../petdetailshow/petdetailshow?petspaceid="+pid
     })
   },
   surfParty(e){
@@ -207,7 +209,7 @@ Page({
     console.log(e)
     this.setData({
         showadopt:true,
-        adoptTarget:e.currentTarget.id
+        adoptTarget:e.target.dataset.index
     })
   },
   deleteactivity(e){
@@ -245,6 +247,17 @@ Page({
         }
       })
   },
+  inputwx:function(e){
+    var value = e.detail.value;
+    var len = parseInt(value.length)
+    this.setData({
+        currentwxNumber: len,
+        wxcontent: value
+    })
+    this.data.currentwxNumber=len
+    this.data.wxcontent=value    
+    console.log(this.data.adoptcontent)
+  },
   inputadopt:function(e){
     var value = e.detail.value;
     var len = parseInt(value.length)
@@ -275,7 +288,8 @@ Page({
         data:{
           openid:app.globalData.openid,
           ActivityID:that.data.adoptTarget,
-          content:that.data.adoptcontent
+          content:that.data.adoptcontent,
+          wxid:that.data.wxcontent
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
@@ -290,10 +304,12 @@ Page({
             that.setData({
                 showadopt:false,
                 currentadoptNumber: 0,
-                adoptcontent: ''
+                adoptcontent: '',
+                wxcontent:''
             })
             that.data.currentadoptNumber=0
             that.data.adoptcontent='' 
+            that.data.wxcontent='' 
         },
         fail:function(res){
             console.log(res.errMsg)

@@ -22,10 +22,12 @@ Page({
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
     haveAvatar: false,
     haveNickname: false,
+    haveNewMessage:false,
     LogoUrl:"../../resource/logoall.png",
     bgUrl:"../../resource/background.jpg",
     loginbuttonUrl:"../../resource/loginbutton.png",
-    navigationUrl:"../../resource/navigationbar.png"
+    navigationUrl:"../../resource/navigationbar.png",
+    messageUrl:"../../resource/nomessage.png"
   },
   // 事件处理函数
   bindViewTap() {
@@ -42,6 +44,20 @@ Page({
             }
         })
     
+    if(this.data.haveNewMessage)
+    {
+        this.setData({
+            messageUrl:"../../resource/havemessage.png"
+        })
+        this.data.messageUrl="../../resource/havemessage.png"
+    }
+    else
+    {
+        this.setData({
+            messageUrl:"../../resource/nomessage.png"
+        })
+        this.data.messageUrl="../../resource/nomessage.png"
+    }
 
     this.setData({
         ['follow']:"0",
@@ -49,6 +65,12 @@ Page({
         ['atcnum']:"0"
     })
 
+  },
+  onShow(){
+    if(this.data.canIUseOpenData)
+    {
+        this.getUserProfile()
+    }
   },
   getUserProfile() {
     
@@ -93,11 +115,6 @@ Page({
     wx.login({
       success (e) {
         if (e.code) {
-            wx.showToast({
-                title: '登录成功！' + e.errMsg,
-                icon: 'none',
-                duration: 2000
-              })
             usercode=e.code;
             let response ;
             wx.request({
@@ -207,6 +224,11 @@ Page({
             console.log(res.data)
         }
     })
+  },
+  showMessage(){
+      wx.navigateTo({
+          url:"../message/message"
+      })
   },
   quitUser(){
       this.setData({

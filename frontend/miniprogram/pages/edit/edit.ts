@@ -22,7 +22,11 @@ Page({
     currentTextNumber:0,
     maxTitleLen: 30,
     maxTextLen: 1024,
-    atcid:"0"
+    atcid:"0",
+    show: false,
+    options:[],
+    fieldValue: '',
+    cascaderValue: '',
   },
   // 事件处理函数
   inputTitle:function(e){
@@ -149,6 +153,51 @@ Page({
     
 
     
+  },
+  onClick() {
+    var that = this
+    this.setData({
+      show: true,
+    });
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/PetSpaces/',
+        data:{
+          openid:app.globalData.openid
+        },
+        method: 'GET',
+        header: {'content-type': 'application/json' //
+        },
+        success: function(res) {
+          var op = []
+          for (let pet of res.data)
+          {
+              op.push({
+                  text:pet.name,
+                  value:pet.PetSpaceID
+              })
+          }
+          that.setData({
+              options:op,
+          })
+          
+          console.log(res.data)
+        },
+      })
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  onFinish(e) {
+    const { selectedOptions, value } = e.detail;
+    const fieldValue = selectedOptions
+        .map((option) => option.text || option.name)
+        .join('/');
+    this.setData({
+      fieldValue,
+      cascaderValue: value,
+    })
   },
   
 })

@@ -38,10 +38,12 @@ Page({
     sideBarData,
     currentTab: 'following', // 默认显示关注
     hotFirst: false, //第一次点击热门
+    followFirst: false, //第一次点击关注
     color1: 'red',
     color2: 'black',
     color3: 'black',
     hotPosts: [],
+    followPosts: [], //关注的帖子
     EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
@@ -56,7 +58,9 @@ Page({
     // 显示顶部刷新图标  
     wx.showNavigationBarLoading();
     var that = this;
-    wx.request({
+    if(that.data.currentTab==="hot")
+    {
+      wx.request({
         url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
         method:"GET",
         header: {'content-type': 'application/json' //
@@ -73,8 +77,31 @@ Page({
         wx.hideNavigationBarLoading();
         // 停止下拉动作  
         wx.stopPullDownRefresh();
-      }
-    })
+        }
+      })
+    }
+    if(that.data.currentTab==="following")
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+        },
+        success:function(res) {
+          that.setData({
+            followPosts: res.data
+          })
+        wx.hideLoading();
+        // 隐藏导航栏加载框  
+        wx.hideNavigationBarLoading();
+        // 停止下拉动作  
+        wx.stopPullDownRefresh();
+        }
+      })
+    }
   },
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
@@ -85,9 +112,9 @@ Page({
   },
   //进入用户主页
   viewUserInfo: function(event) {
-    const tempopenid = event.currentTarget.dataset.openid
+    const tempuserid = event.currentTarget.dataset.userid
     wx.navigateTo({
-      url:'/pages/userinfo/userinfo?openid='+tempopenid,
+      url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
   },
   likePost(event) {
@@ -144,6 +171,24 @@ Page({
         });
       }
   },
+  onLoad: function (event) {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+      },
+      success:function(res) {
+          that.setData({
+            followPosts: res.data,
+            followFirst: true
+          })
+      }
+    })
+  },
   // changeTabs: function (event) {
   //   const tab = event.currentTarget.dataset.tab;
   //   this.setData({
@@ -178,6 +223,24 @@ Page({
         }
       })
     }
+    // if(tab == "following" && this.data.followFirst == false) {
+    //   var that = this
+    //   wx.request({
+    //     url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+    //     method:"GET",
+    //     header: {'content-type': 'application/json' //
+    //     },
+    //     data:{
+    //       openid:app.globalData.openid,
+    //     },
+    //     success:function(res) {
+    //         that.setData({
+    //           followPosts: res.data,
+    //           followFirst: true
+    //         })
+    //     }
+    //   })
+    // }
   },
   EditAtc:function(e){
         wx.navigateTo({

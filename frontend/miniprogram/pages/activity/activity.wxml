@@ -51,12 +51,13 @@
             </button>
 
             <view style="position: fixed;top: 600rpx;">
-                <van-popup show="{{ showadopt }}" round position="bottom" custom-style="height: 40%;">
+                <van-popup show="{{ showadopt }}" round position="bottom" custom-style="height: 50%;">
                     <image style="top: 40rpx;position: relative;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guadopt"></image>
                     <text style="top: 40rpx;position: relative;text-align: center;left: 100rpx;height: 30rpx;line-height: 30rpx;color: chocolate;font-size: larger;">请输入发送给宠物主人的信息</text>
-                    <textarea style="top:100rpx;position: relative;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请留下你想发送给宠物主人的话，如养宠经历以及想问的问题等' minlength="1" maxlength="200"  bindinput='inputadopt' value="{{adoptcontent}}" maxlength="{{maxadoptLen}}"></textarea>
-                    <text class='ctn' style="top:250rpx;position: relative;left:630rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentadoptNumber}}/{{maxadoptLen}}</text>
-                    <button style="top: 280rpx;position: relative;width: 200rpx;" bind:tap="sendadopt">发送</button>
+                    <textarea style="top:120rpx;position: relative;left:20rpx;width: 710rpx;height:40rpx;" placeholder='请留下你的微信号' minlength="1" maxlength="50"  bindinput='inputwx' value="{{wxcontent}}" ></textarea>
+                    <textarea style="top:190rpx;position: relative;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请留下你想发送给宠物主人的话，如养宠经历以及想问的问题等' minlength="1" maxlength="200"  bindinput='inputadopt' value="{{adoptcontent}}" ></textarea>
+                    <text class='ctn' style="top:290rpx;position: relative;left:630rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentadoptNumber}}/{{maxadoptLen}}</text>
+                    <button style="top: 340rpx;position: relative;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="sendadopt">发送</button>
                 </van-popup>
             </view>
 

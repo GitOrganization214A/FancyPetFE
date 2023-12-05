@@ -28,9 +28,10 @@ Page({
 
   //进入用户主页
   viewUserInfo: function(event) {
-    const tempopenid = event.currentTarget.dataset.openid
+    const tempuserid = event.currentTarget.dataset.userid
+    console.log("tempuserid",tempuserid) 
     wx.navigateTo({
-      url:'/pages/userinfo/userinfo?openid='+tempopenid,
+      url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
   },
 
@@ -99,33 +100,43 @@ Page({
   //删除帖子
   deletePost: function(event) {
     var that = this
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/deleteArticle/',
-      method: 'GET',
-      data: {
-        ArticleID: that.data.Post.ArticleID, 
-      },
-      success: (res) => {
-        var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
-    　　var prevPage = pages[pages.length - 2]    //获取上一个页面
-    　　// 设置上一个页面的数据
-        prevPage.data.hotPosts.splice(that.data.index, 1);
-        prevPage.setData({
-          ['hotPosts']: prevPage.data.hotPosts
-        });
-        wx.showToast({
-          title: '删帖成功',
-          icon: 'none',
-          duration: 1000, 
-        });
-        
-        setTimeout(function () {
-          wx.navigateBack({
-            delta: 1 // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
+    wx.showModal({
+      title: '提示',
+      content: '确认删除帖子？',
+      success (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/deleteArticle/',
+            method: 'GET',
+            data: {
+              ArticleID: that.data.Post.ArticleID, 
+            },
+            success: (res) => {
+              var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
+          　　var prevPage = pages[pages.length - 2]    //获取上一个页面
+          　　// 设置上一个页面的数据
+              prevPage.data.hotPosts.splice(that.data.index, 1);
+              prevPage.setData({
+                ['hotPosts']: prevPage.data.hotPosts
+              });
+              wx.showToast({
+                title: '删帖成功',
+                icon: 'none',
+                duration: 1000, 
+              });
+              
+              setTimeout(function () {
+                wx.navigateBack({
+                  delta: 1 // 返回的页面数，如果 delta 大于现有页面数，则返回到首页
+                });
+              }, 1000);
+            }
           });
-        }, 1000);
+        } 
+        else if (res.cancel) {
+        }
       }
-    });
+    })
   },
 
   //删除评论
@@ -133,34 +144,44 @@ Page({
     var that = this
     const commentid = event.currentTarget.dataset.commentid
     const index = event.currentTarget.dataset.index
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/deleteComment/',
-      method: 'GET',
-      data: {
-        CommentID: commentid, 
-      },
-      success: (res) => {
-        that.data.Post.comments.splice(index, 1);
-        that.data.Post.comment -= 1;
-        that.setData({
-          Post: that.data.Post
-        });
-        var tempcomment = that.data.Post.comment
-        const currentItem = that.data.Post;
-        const updatedItem = { ...currentItem, comment: tempcomment};
-        var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
-    　　var prevPage = pages[pages.length - 2]    //获取上一个页面
-    　　// 设置上一个页面的数据
-        prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
-        prevPage.setData({
-          ['hotPosts']: prevPage.data.hotPosts
-        });
-        wx.showToast({
-          title: '删除评论成功',
-          icon: 'none',
-        });
+    wx.showModal({
+      title: '提示',
+      content: '确认删除评论？',
+      success (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/deleteComment/',
+            method: 'GET',
+            data: {
+              CommentID: commentid, 
+            },
+            success: (res) => {
+              that.data.Post.comments.splice(index, 1);
+              that.data.Post.comment -= 1;
+              that.setData({
+                Post: that.data.Post
+              });
+              var tempcomment = that.data.Post.comment
+              const currentItem = that.data.Post;
+              const updatedItem = { ...currentItem, comment: tempcomment};
+              var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
+          　　var prevPage = pages[pages.length - 2]    //获取上一个页面
+          　　// 设置上一个页面的数据
+              prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
+              prevPage.setData({
+                ['hotPosts']: prevPage.data.hotPosts
+              });
+              wx.showToast({
+                title: '删除评论成功',
+                icon: 'none',
+              });
+            }
+          });
+        } 
+        else if (res.cancel) {
+        }
       }
-    });
+    })
   },
 
   //点赞评论
