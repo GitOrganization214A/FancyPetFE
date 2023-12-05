@@ -17,7 +17,7 @@
                         </view>
                         <view style="display: flex;flex-wrap: wrap;">
                             <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
                             <view>{{'申请参加你的聚会'}}</view>
                             <view data-index="{{item.MessageID}}" style="color: coral;">{{item.ActivityName}}</view>
                             <view>{{'。'}}</view>
@@ -30,9 +30,9 @@
                         </view>
                         <view style="display: flex;flex-wrap: wrap;">
                             <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
                             <view>{{'申请领养你的宠物'}}</view>
-                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName}}</view>
+                            <view bindtap="surfpet" data-index="{{item.PetSpaceID}}" style="color: coral;">{{item.PetName}}</view>
                             <view>{{'。'}}</view>
                         </view>       
                     </view>
@@ -43,11 +43,11 @@
                         </view>
                         <view style="display: flex;flex-wrap: wrap;">
                             <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.MessageID}}" style="color: coral;">{{item.nickname}}</view>
+                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
                             <view>{{'申请让其宠物'}}</view>
-                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName1}}</view>
+                            <view bindtap="surfpet" data-index="{{item.PetSpaceID1}}" style="color: coral;">{{item.PetName1}}</view>
                             <view>{{'与你的宠物'}}</view>
-                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.PetName2}}</view>
+                            <view bindtap="surfpet" data-index="{{item.PetSpaceID2}}" style="color: coral;">{{item.PetName2}}</view>
                             <view>{{'配种。'}}</view>
                         </view>       
                     </view>

@@ -185,7 +185,7 @@ Page({
     console.log(aid)
     console.log(pid)
     wx.navigateTo({
-        url:"../petdetail/petdetail?petspaceid="+pid
+        url:"../petdetailshow/petdetailshow?petspaceid="+pid
     })
   },
   surfParty(e){
