@@ -100,10 +100,31 @@
       <!-- 显示分类内容 -->
       <view class="line2"></view>
       <view class="classification">
-        
         <l-segment active-key="one" class="general" item-height="110" placement="left" bind:linchange="changeTabs">
-          <l-segment-item tab="狗狗" key="one" />
-          <l-segment-item tab="猫猫" key="two" />
+          <l-segment-item tab="狗狗" key="one">
+          </l-segment-item>
+          <l-segment-item tab="猫猫" key="two">
+            <view class="subdivision">
+              <l-index-list
+                scroll-top="{{scrollTop}}"
+                l-selected-class="l-selected-class"
+                l-tip-class="l-tip-class"
+                sidebar-data="{{sideBarData}}"
+                l-sidebar-class="sidebar-class"
+                l-tip-text-class="l-tip-text-class">
+                <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+                  <l-index-anchor/>
+                  <block wx:for="{{nameDataCat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                    <view class="index-item">
+                      <view class="index-name">{{nameDataCat[anchorIndex][itemIndex]}}</view>
+                    </view>
+                  </block>
+                </block>
+              <view class="bottomblock"></view>
+            
+              </l-index-list>
+            </view>
+          </l-segment-item>
           <l-segment-item tab="兔兔" key="three" />
           <l-segment-item tab="鼠鼠" key="four" />
           <l-segment-item tab="鸟儿" key="five" />
@@ -112,7 +133,7 @@
           <l-segment-item tab="昆虫" key="eight" />
           <l-segment-item tab="其他" key="nine" />
         </l-segment>   
-        <view class="subdivision">
+        <view class="subdivision" wx:if="{{currentClassKey==='one'}}">
           <l-index-list
             scroll-top="{{scrollTop}}"
             l-selected-class="l-selected-class"
@@ -128,8 +149,27 @@
                 </view>
               </block>
             </block>
+          <view class="bottomblock"></view>
           </l-index-list>
-
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='two'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarData}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataCat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item">
+                  <view class="index-name">{{nameDataCat[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          <view class="bottomblock"></view>
+          </l-index-list>
         </view>
       </view>
     </view>

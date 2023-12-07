@@ -17,6 +17,7 @@
     "pages/petdetail/petdetail",
     "pages/photo/photo",
     "pages/message/message",
+    "pages/account/account",
     "pages/petdetailshow/petdetailshow"
 
   ],
