@@ -40,7 +40,7 @@
                         <view slot="footer">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
-                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteacitivity">删除</van-button>
+                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
                         </view>
                     </van-card>       
                 </view>
