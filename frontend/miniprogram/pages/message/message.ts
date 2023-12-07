@@ -32,9 +32,17 @@ Page({
       })
   },
   surfindex(e){
-    const tempopenid = e.target.dataset.index
+    const tempuid = e.target.dataset.index
+    console.log(tempuid)
     wx.navigateTo({
-      url:'/pages/userinfo/userinfo?openid='+tempopenid,
+      url:'/pages/userinfo/userinfo?userid='+tempuid,
+    })
+  },
+  surfpet(e){
+    const temppid = e.target.dataset.index
+    console.log(temppid)
+    wx.navigateTo({
+      url:'/pages/petdetailshow/petdetailshow?petspaceid='+temppid,
     })
   },
   deletemessage(e){
