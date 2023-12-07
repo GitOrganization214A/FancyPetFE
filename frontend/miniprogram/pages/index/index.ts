@@ -17,6 +17,7 @@ Page({
         fans : "",
         atcnum : "",
         openID : "" ,
+        newMessage : "0",
     },
     beip:"192.168.187.1",
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
@@ -44,7 +45,7 @@ Page({
             }
         })
     
-    if(this.data.haveNewMessage)
+    if(this.data.userInfo.newMessage!="0")
     {
         this.setData({
             messageUrl:"../../resource/havemessage.png"
@@ -123,7 +124,7 @@ Page({
                     code:usercode
                 },
                 method:"GET",
-                header: {'content-type': 'application/json' //
+                header: {'content-type': 'application/json' 
                 },
                 success:function(res) {
                     wx.showTabBar({
@@ -138,6 +139,7 @@ Page({
                         ['fans'] :  res.data.fans,
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
+                        ['newMessage']:res.data.newMessage
                     })
                     app.globalData.openid=res.data.openid
                     
@@ -147,8 +149,22 @@ Page({
                     that.data.userInfo.fans=res.data.fans
                     that.data.userInfo.atcnum=res.data.atcnum
                     that.data.userInfo.openID=res.data.openid
-                    console.log(that.data.userInfo.avatarUrl)
-
+                    that.data.userInfo.newMessage=res.data.newMessage
+                    console.log(that.data.userInfo.newMessage)
+                    if(that.data.userInfo.newMessage!="0")
+                    {
+                        that.setData({
+                            messageUrl:"../../resource/havemessage.png"
+                        })
+                        that.data.messageUrl="../../resource/havemessage.png"
+                    }
+                    else
+                    {
+                        that.setData({
+                            messageUrl:"../../resource/nomessage.png"
+                        })
+                        that.data.messageUrl="../../resource/nomessage.png"
+                    }
                     console.log(that.data.userInfo.openID)
                     console.log(res)
                     
