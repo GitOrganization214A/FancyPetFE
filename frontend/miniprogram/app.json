@@ -16,7 +16,6 @@
     "pages/addpet/addpet",
     "pages/petdetail/petdetail",
     "pages/photo/photo",
-    "pages/petdetailshow/petdetailshow",
     "pages/record/record",
     "pages/addrecord/addrecord",
     "pages/message/message",

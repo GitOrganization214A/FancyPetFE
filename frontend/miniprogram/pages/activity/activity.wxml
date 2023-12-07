@@ -1,13 +1,18 @@
 <!--petcard.wxml-->
 
-<l-capsule-bar navigation-bar-color="transparent"
+<!-- <l-capsule-bar navigation-bar-color="transparent"
   bg-color="transparent"
   capsule-button-color="white"
   title-color="white"
   home-page='/pages/index/index'
+  bind:linlefttap="switchpage"> -->
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="活动" title-color="#ffac63"
+  home-page='/pages/forum/forum'
   bind:linlefttap="switchpage">
 	<view>
-        <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>  
+        <!-- <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>   -->
         <view wx:if="{{actmain}}">
             
 

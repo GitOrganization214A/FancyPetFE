@@ -1,7 +1,7 @@
 
 <!--forum.wxml-->
 <l-capsule-bar
-  capsule-color="white" bg-color="#ecf4eb"
+  capsule-color="white" bg-color="#60656C"
   title="宠物社区" title-color="#ffac63"
   home-page='/pages/forum/forum'>
 
