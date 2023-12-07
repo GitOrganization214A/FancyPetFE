@@ -1,4 +1,6 @@
-<l-capsule-bar home-page="/pages/petspace/petspace" title="宠物详情">
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"title-color="#ffac63" title="宠物详情"
+  home-page='/pages/navigator/index/index'>
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{PetSpaceDetail.avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
   <!-- 此处为content -->

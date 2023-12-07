@@ -1,4 +1,8 @@
 <!--index.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="添加宠物" title-color="#ffac63"
+  home-page='/pages/forum/forum'>
 <view class="container" style="width:100%;">
   <view style="top:500rpx;position:fixed;left:50rpx;width: 750rpx;height:650rpx;" class='inputImage' >
                     <block wx:for="{{images}}">
@@ -6,7 +10,7 @@
                     </block>
   </view>
   <button bindtap='chosePetImage' mode="widthFix" style="position: fixed; left: 45rpx; top: 700rpx; width: 320rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置宠物头像 </button>
-  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
+  <!-- <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>    -->
   <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
         <view class='by'>
             <view style="top:400rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">添加宠物</view>       
@@ -42,3 +46,4 @@
         </view>
   </view>
 </view>
+</l-capsule-bar>

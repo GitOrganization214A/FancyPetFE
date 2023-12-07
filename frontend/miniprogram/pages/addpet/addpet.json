@@ -1,6 +1,7 @@
 {
   "navigationStyle":"custom",
   "usingComponents": {
-    "l-counter": "/miniprogram_npm/lin-ui/counter/index"
+    "l-counter": "/miniprogram_npm/lin-ui/counter/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
   }
 }
