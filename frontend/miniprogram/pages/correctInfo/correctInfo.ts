@@ -1,5 +1,4 @@
-// edit.ts
-// 获取应用实例
+// pages/correctInfo/correctInfo.ts
 const Multipart = require('../../utils/Multipart.min.js') 
 const app = getApp<IAppOption>()
 
@@ -10,7 +9,7 @@ Page({
     userInfo: {
 
     },
-    images:[],
+    images:'',
     year:0,
     month:1,
     gender:[],
@@ -190,32 +189,52 @@ Page({
       })
   },
   onLoad(e){
-    this.setData({
-      breed: "边境牧羊犬"
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:app.globalData.petspaceid
+      },
+      success:function(res) {
+          that.setData({
+            PetSpaceDetail: res.data
+          })
+          console.log(res.data.avatar)
+          that.setData({
+            images: res.data.avatar,
+            titlecontent:res.data.name,
+            currentTitleNumber:res.data.name.length,
+            year:res.data.year,
+            month:res.data.month,
+            gender:res.data.gender,
+            breed:res.data.breed
+          })
+      }
     })
-    this.data.breed="边境牧羊犬"
   },
   sendAtc: function(e) {
-    const tempFilePaths=this.data.images[0]
-    wx.uploadFile({
-      url: 'http://43.143.139.4:8000/api/v1/newPetSpace/', 
-      filePath: tempFilePaths,
-      name: 'avatar',
-      formData: {
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/changePetInfo/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:app.globalData.petspaceid,
         openid:app.globalData.openid,
+        avatar:this.data.images,
         name:this.data.titlecontent,
         year:this.data.year,
         month:this.data.month,
         gender:this.data.gender,
         breed:this.data.breed
       },
-      success (res){
-        console.log(res.data)
+      success:function(res) {
         wx.navigateBack({
           delta: 1
         })
-
-        //do something
       }
     })
 

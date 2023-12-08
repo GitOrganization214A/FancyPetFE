@@ -1,0 +1,37 @@
+/* pages/correctInfo/correctInfo.wxss */
+.userinfo{
+  display: flex;//弹性盒模型
+}
+.avatarimg{
+  height: 50px;
+  width: 50px;
+}
+.avatartext{
+  padding: 10rpx 30rpx;
+  display: flex;//弹性盒模型
+  flex-direction: column;//垂直显示
+  justify-content: space-between;//两边显示
+}
+
+
+.userinfo-avatar {
+overflow: hidden;
+width: 128rpx;
+height: 128rpx;
+margin: 20rpx;
+border-radius: 50%;
+}
+
+.usermotto {
+margin-top: 200px;
+}
+.inputAge {
+display: flex;
+flex-direction: row;
+margin-top: 20rpx;
+}
+.chooseAvater {
+display: flex;
+flex-direction: row;
+margin-top: 20rpx;
+}

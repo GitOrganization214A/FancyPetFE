@@ -8,15 +8,19 @@ Page({
   data: {
     petspaceid:'',
     number:0,
-    list:[
-      
-    ]
+    index:[0,1,2,3,4,5,6,7,8],
+    images:[],
+    current:0,
+    show:false,
+    moreUrl:"../../resource/more.png",
+    showActionsheet:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(event) {
+    
   },
   deletePetSpace:function(event){
     console.log(event.petspaceid)
@@ -52,6 +56,7 @@ Page({
     var that=this
     var index = this.data.number;
     console.log(e)
+    console.log(index)
     var petspaceid=this.data.petspaceid
     wx.showModal({
       title: '提示',
@@ -83,7 +88,17 @@ Page({
   getimageID:function(e){
     console.log(e)
     this.setData({
-      number:e.detail.index
+      number:e.detail.current
+    })
+  },
+  correctInfo:function(e){
+    wx.navigateTo({
+      url:'/pages/correctInfo/correctInfo?petspaceid='+app.globalData.petspaceid,
+    })
+  },
+  showall:function(e){
+    this.setData({
+      show:true
     })
   },
   /**
@@ -112,18 +127,16 @@ Page({
             PetSpaceDetail: res.data
           })
           console.log(res.data.images)
-          for (let image of res.data.images)
-            {
-              that.data.number=that.data.number+1
-              var numstring=that.data.number.toString()
-              var numberlist=[{
-                newUrl:image,
-                key:numstring
-              }]
-              that.data.list=[...that.data.list,...numberlist]
-            }
-            console.log(that.data.list)
+          that.setData({
+            images: res.data.images
+          })
       }
+    })
+  },
+  previewImage: function(e) {
+    wx.previewImage({
+      current: e.currentTarget.id,
+      urls: this.data.images
     })
   },
 

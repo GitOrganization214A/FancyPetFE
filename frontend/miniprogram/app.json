@@ -20,7 +20,7 @@
     "pages/record/record",
     "pages/addrecord/addrecord",
     "pages/message/message",
-    "pages/petdetailshow/petdetailshow"
+    "pages/correctInfo/correctInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,5 +55,8 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  }
 }

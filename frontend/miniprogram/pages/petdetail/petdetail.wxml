@@ -1,11 +1,20 @@
 <l-capsule-bar home-page="/pages/petspace/petspace" title="宠物详情">
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{PetSpaceDetail.avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
+    <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+    <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+        <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
+        </l-button>
+      </l-tag>
+      <text>性别：{{PetSpaceDetail.gender}}</text>
   <!-- 此处为content -->
   </l-card>
 </view>
-<view style="top:200rpx;position:fixed;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
-    <l-grid row-num="3">
+<view style="top:300rpx;position:fixed;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
+    <l-grid row-num="4">
       <l-grid-item key="one" slot="one">
        <l-button width="40" height="20" special="{{true}}" bind:lintap="addremind">
         <view class="container" >
@@ -33,7 +42,24 @@
      </l-grid>  
   </view>
   <button bindtap='deletePetSpace' mode="widthFix" style="position: fixed; left: 50rpx; top: 1500rpx; width: 650rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center;"type="warn"> 删除宠物空间 </button>
-  <view class="album" mode="widthFix" style="position: fixed; left: 50rpx; top: 800rpx; width: 650rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center;">
-    <l-album bind:longpress="deletePhoto"  bind:lintap="getimageID" urls='{{PetSpaceDetail.images}}' multiple-size="200" lazy-load="true"></l-album>
+  <view class="album" mode="widthFix" style="top:800rpx;position:fixed;">
+  <view wx:if="{{ PetSpaceDetail.images.length >= 2 }}">
+    <image src="{{PetSpaceDetail.images[0]}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <image src="{{PetSpaceDetail.images[1]}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <image src="{{moreUrl}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
+    </mp-gallery>
+  </view>
+  <view wx:if="{{ PetSpaceDetail.images.length === 1 }}">
+    <image src="{{PetSpaceDetail.images[0]}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <image src="{{moreUrl}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
+    </mp-gallery>
+  </view>
+  <view wx:if="{{ PetSpaceDetail.images.length === 0 }}">
+    <image src="{{moreUrl}}" style="width: 250rpx;height: 250rpx" bindtap="showall"></image>
+    <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
+    </mp-gallery>
+  </view>
   </view>
 </l-capsule-bar>

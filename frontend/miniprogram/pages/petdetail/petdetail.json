@@ -9,6 +9,11 @@
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
-    "l-album": "/miniprogram_npm/lin-ui/album/index"
+    "l-album": "/miniprogram_npm/lin-ui/album/index",
+    "fui-grid": "/miniprogram_npm/firstui/fui-grid/fui-grid",
+    "fui-grid-item": "/miniprogram_npm/firstui/fui-grid-item/fui-grid-item",
+    "mp-gallery": "weui-miniprogram/gallery/gallery",
+    "fui-actionsheet":"/miniprogram_npm/firstui/fui-actionsheet/fui-actionsheet",
+    "van-field": "/miniprogram_npm/@vant/weapp/field/index"
   }
 }
