@@ -1,6 +1,6 @@
 <!--petspace.wxml-->
 <l-capsule-bar
-  capsule-color="white" bg-color="#ecf4eb"
+  capsule-color="white" bg-color="#60656C"
   title="宠物空间" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
   <view style="top:0rpx;position:fixed;left:0rpx;width: 750rpx;height:100rpx;" class = "addPet">

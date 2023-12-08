@@ -1,6 +1,6 @@
 <!--detail.wxml-->
 <l-capsule-bar
-  capsule-color="white" bg-color="#ecf4eb"
+  capsule-color="white" bg-color="#60656C"
   home-page='/pages/navigator/index/index'>
 
     <!-- 以下部分放置页面内容 -->

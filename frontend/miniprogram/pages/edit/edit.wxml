@@ -1,6 +1,10 @@
 <!--edit.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="发帖" title-color="#ffac63"
+  home-page='/pages/forum/forum'>
 <view class="container" style="width:100%;">
-  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
+  <!-- <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>    -->
   <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
         <view class='by'>
             <view style="top:260rpx;text-align: center;position: fixed;width: 350rpx;font-size: 25px;left:200rpx">发布帖子</view>       
@@ -51,3 +55,4 @@
         </view>
   </view>
 </view>
+</l-capsule-bar>

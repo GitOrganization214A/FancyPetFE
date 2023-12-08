@@ -1,7 +1,7 @@
 {
-  "navigationStyle":"custom",
+  "navigationStyle": "custom",
   "usingComponents": {
     "l-counter": "/miniprogram_npm/lin-ui/counter/index",
-    "fui-actionsheet":"/miniprogram_npm/firstui/fui-actionsheet/fui-actionsheet"
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
   }
 }
