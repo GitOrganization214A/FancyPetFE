@@ -7,6 +7,12 @@
   margin-top: 5rpx;
 }
 
+.userinfotext2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
 .nickname {
   font-size:large;
 }
@@ -54,8 +60,8 @@
 .title {
   font-size: larger;
   font-weight: 900;
-  margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
 }
 
 .content {
@@ -83,9 +89,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left:10rpx;
-  margin-right:160rpx;
-  margin-bottom:20rpx;
+  align-items: center;
+  margin-right: -300rpx;
 }
 
 .time_read_text {
@@ -96,9 +101,15 @@
 .line {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 10rpx;
+  margin-bottom: 40rpx;
   margin-top: 30rpx;
   margin-right: 60rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .line2 {

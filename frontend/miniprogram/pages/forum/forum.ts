@@ -72,6 +72,23 @@ Page({
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
+  onShareAppMessage:function(){
+    wx.showShareMenu({
+      withShareTicket:true,
+      menu:['shareAppMessage','shareTimeline']
+    })
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/shareArticle/',
+      method: 'GET',
+      data: {
+        ArticleID: articleid, 
+      },
+      success: (res) => {
+      }
+    })
+  },
+  onShareTimeline(){
+  },
   // 页面监听函数
   onPageScroll(res) {
     this.setData({
@@ -130,8 +147,9 @@ Page({
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
     const index = event.currentTarget.dataset.index
+    const currentTab = this.data.currentTab
     wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
+      url:'/pages/detail/detail?articleid='+articleid+'&index='+index+'&currentTab='+currentTab,
     })
   },
   //进入用户主页
@@ -162,13 +180,26 @@ Page({
           },
           success: (res) => {
           // 更新点赞数、按钮颜色和状态
-            const currentItem = that.data.hotPosts[index];
-            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-            // 使用 splice 方法更新数组中特定项的值
-            that.data.hotPosts.splice(index, 1, updatedItem);
-            that.setData({
-              ['hotPosts']: that.data.hotPosts
-            });
+            if(that.data.currentTab==='hot')
+            {
+              const currentItem = that.data.hotPosts[index];
+              const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+              // 使用 splice 方法更新数组中特定项的值
+              that.data.hotPosts.splice(index, 1, updatedItem);
+              that.setData({
+                ['hotPosts']: that.data.hotPosts
+              });
+            }
+            else if(that.data.currentTab==='following')
+            {
+              const currentItem = that.data.followPosts[index];
+              const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+              // 使用 splice 方法更新数组中特定项的值
+              that.data.followPosts.splice(index, 1, updatedItem);
+              that.setData({
+                ['followPosts']: that.data.followPosts
+              });
+            }
           }
         });
       }
@@ -183,6 +214,8 @@ Page({
           },
           success: (res) => {
               // 更新点赞数、按钮颜色和状态
+              if(that.data.currentTab==='hot')
+              {
                 const currentItem = that.data.hotPosts[index];
                 const updatedItem = { ...currentItem, liked: 
                   false, like: like - 1 };
@@ -192,6 +225,18 @@ Page({
                   ['hotPosts']: that.data.hotPosts
                 });
               }
+              else if(that.data.currentTab==='following')
+              {
+                const currentItem = that.data.followPosts[index];
+                const updatedItem = { ...currentItem, liked: 
+                  false, like: like - 1 };
+                // 使用 splice 方法更新数组中特定项的值
+                that.data.followPosts.splice(index, 1, updatedItem);
+                that.setData({
+                  ['followPosts']: that.data.followPosts
+                });
+              }
+          }
         });
       }
   },
@@ -213,6 +258,7 @@ Page({
       }
     })
   },
+  //切换分类内的标签
   changeTabs: function (event) {
     console.log(event)
     const key = event.detail.activeKey;
@@ -248,24 +294,24 @@ Page({
         }
       })
     }
-    // if(tab == "following" && this.data.followFirst == false) {
-    //   var that = this
-    //   wx.request({
-    //     url: 'http://43.143.139.4:8000/api/v1/followArticles/',
-    //     method:"GET",
-    //     header: {'content-type': 'application/json' //
-    //     },
-    //     data:{
-    //       openid:app.globalData.openid,
-    //     },
-    //     success:function(res) {
-    //         that.setData({
-    //           followPosts: res.data,
-    //           followFirst: true
-    //         })
-    //     }
-    //   })
-    // }
+    if(tab == "following" && this.data.followFirst == false) {
+      var that = this
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+        },
+        success:function(res) {
+            that.setData({
+              followPosts: res.data,
+              followFirst: true
+            })
+        }
+      })
+    }
   },
   EditAtc:function(e){
         wx.navigateTo({

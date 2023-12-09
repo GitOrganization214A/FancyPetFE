@@ -12,7 +12,11 @@ Page({
     commentsContent:"",//发送评论输入的内容
     showPlaceholder: true, // 控制placeholder显示与隐藏
     index:'', //在热门帖中的序号
+    fromTab: '', //是从热门来的还是关注来的
     Post: {},
+    hotOrTime: true, //true是按热度排，false按时间排
+    commentsHot: {},
+    commentsTime: {},
     popupshow: false,
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
@@ -61,10 +65,27 @@ Page({
           var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
       　　var prevPage = pages[pages.length - 2]    //获取上一个页面
       　　// 设置上一个页面的数据
-          prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
-          prevPage.setData({
-            ['hotPosts']: prevPage.data.hotPosts
-          });
+          if(that.data.fromTab=='hot')
+          {
+            prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
+            prevPage.setData({
+              ['hotPosts']: prevPage.data.hotPosts
+            });
+          }
+          else if(that.data.fromTab=='following')
+          {
+            prevPage.data.followPosts.splice(that.data.index, 1, updatedItem);
+            prevPage.setData({
+              ['followPosts']: prevPage.data.followPosts
+            });
+          }
+          else  //从主页来的
+          {
+            prevPage.data.userInfo.articles.splice(that.data.index, 1, updatedItem);
+            prevPage.setData({
+              ['userInfo']: prevPage.data.userInfo
+            });
+          }
         }
       });
     }
@@ -88,10 +109,27 @@ Page({
               var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
           　　var prevPage = pages[pages.length - 2]    //获取上一个页面
           　　// 设置上一个页面的数据
-              prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
-              prevPage.setData({
-                ['hotPosts']: prevPage.data.hotPosts
-              });
+              if(that.data.fromTab=='hot')
+              {
+                prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
+                prevPage.setData({
+                  ['hotPosts']: prevPage.data.hotPosts
+                });
+              }
+              else if(that.data.fromTab=='following')
+              {
+                prevPage.data.followPosts.splice(that.data.index, 1, updatedItem);
+                prevPage.setData({
+                  ['followPosts']: prevPage.data.followPosts
+                });
+              }
+              else  //从主页来的
+              {
+                prevPage.data.userInfo.articles.splice(that.data.index, 1, updatedItem);
+                prevPage.setData({
+                  ['userInfo']: prevPage.data.userInfo
+                });
+              }
             }
       });
     }
@@ -115,10 +153,27 @@ Page({
               var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
           　　var prevPage = pages[pages.length - 2]    //获取上一个页面
           　　// 设置上一个页面的数据
-              prevPage.data.hotPosts.splice(that.data.index, 1);
-              prevPage.setData({
-                ['hotPosts']: prevPage.data.hotPosts
-              });
+              if(that.data.fromTab=='hot')
+              {
+                prevPage.data.hotPosts.splice(that.data.index, 1);
+                prevPage.setData({
+                  ['hotPosts']: prevPage.data.hotPosts
+                });
+              }
+              else if(that.data.fromTab=='following')
+              {
+                prevPage.data.followPosts.splice(that.data.index, 1);
+                prevPage.setData({
+                  ['followPosts']: prevPage.data.followPosts
+                });
+              }
+              else  //从主页来的
+              {
+                prevPage.data.userInfo.articles.splice(that.data.index, 1);
+                prevPage.setData({
+                  ['userInfo']: prevPage.data.userInfo
+                });
+              }
               wx.showToast({
                 title: '删帖成功',
                 icon: 'none',
@@ -156,21 +211,24 @@ Page({
               CommentID: commentid, 
             },
             success: (res) => {
-              that.data.Post.comments.splice(index, 1);
-              that.data.Post.comment -= 1;
-              that.setData({
-                Post: that.data.Post
-              });
-              var tempcomment = that.data.Post.comment
-              const currentItem = that.data.Post;
-              const updatedItem = { ...currentItem, comment: tempcomment};
-              var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
-          　　var prevPage = pages[pages.length - 2]    //获取上一个页面
-          　　// 设置上一个页面的数据
-              prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
-              prevPage.setData({
-                ['hotPosts']: prevPage.data.hotPosts
-              });
+              if(that.data.hotOrTime) //按热门排的
+              {
+                that.data.commentsHot.splice(index, 1);
+                that.data.Post.comment -= 1;
+                that.setData({
+                  Post: that.data.Post,
+                  commentsHot:that.data.commentsHot
+                });
+              }
+              else //按时间排
+              {
+                that.data.commentsTime.splice(index, 1);
+                that.data.Post.comment -= 1;
+                that.setData({
+                  Post: that.data.Post,
+                  commentsTime:that.data.commentsTime
+                });
+              }
               wx.showToast({
                 title: '删除评论成功',
                 icon: 'none',
@@ -182,6 +240,52 @@ Page({
         }
       }
     })
+  },
+
+  //切换排序方式
+  changeSort: function(event) {
+    var that = this;
+    if(that.data.hotOrTime)  
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsTime: res.data
+            })
+        }
+      })
+    }
+    else //现在是时间，要改为热度
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsHot: res.data
+            })
+        }
+      })
+    }
+    that.setData({
+      hotOrTime: !that.data.hotOrTime,
+    });
+    console.log(that.data.hotOrTime)
+    console.log(that.data.commentsTime)
   },
 
   //点赞评论
@@ -204,12 +308,24 @@ Page({
         },
         success: (res) => {
         // 更新点赞数、按钮颜色和状态
-          const currentItem = that.data.Post.comments[index];
-          const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-          that.data.Post.comments.splice(index, 1, updatedItem);
-          that.setData({
-            Post: that.data.Post
-          });
+          if(that.data.hotOrTime) //按热度
+          {
+            const currentItem = that.data.commentsHot[index];
+            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+            that.data.commentsHot.splice(index, 1, updatedItem);
+            that.setData({
+              commentsHot: that.data.commentsHot
+            });
+          }
+          else
+          {
+            const currentItem = that.data.commentsTime[index];
+            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+            that.data.commentsTime.splice(index, 1, updatedItem);
+            that.setData({
+              commentsTime: that.data.commentsTime
+            });
+          }
         }
       });
     }
@@ -224,12 +340,24 @@ Page({
         },
         success: (res) => {
           // 更新点赞数、按钮颜色和状态
-          const currentItem = that.data.Post.comments[index];
-          const updatedItem = { ...currentItem, liked: false, like: like - 1 };
-          that.data.Post.comments.splice(index, 1, updatedItem);
-          that.setData({
-            Post: that.data.Post
-          });
+          if(that.data.hotOrTime) //按热度
+          {
+            const currentItem = that.data.commentsHot[index];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.commentsHot.splice(index, 1, updatedItem);
+            that.setData({
+              commentsHot: that.data.commentsHot
+            });
+          }
+          else
+          {
+            const currentItem = that.data.commentsTime[index];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.commentsTime.splice(index, 1, updatedItem);
+            that.setData({
+              commentsTime: that.data.commentsTime
+            });
+          }
         }
       });
     }     
@@ -240,6 +368,7 @@ Page({
       var that = this
       this.data.articleid = event.articleid
       this.data.index = event.index
+      this.data.fromTab = event.currentTab
       //获取屏幕高度以及设备信息（是否为苹果手机）
       wx.getSystemInfo({
         success: function(res) {
@@ -252,13 +381,43 @@ Page({
         method:"GET",
         header: {'content-type': 'application/json' //
         },
-        data:{
+         data:{
           openid:app.globalData.openid,
           ArticleID:this.data.articleid,
         },
         success:function(res) {
             that.setData({
               Post: res.data
+            })
+        }
+      });
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsHot: res.data
+            })
+        }
+      })
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsTime: res.data
             })
         }
       })
@@ -364,28 +523,52 @@ Page({
       success:function(res) {
         // 更新页面数据
         that.setData({
-          'Post.comments': res.data.comments,
           'Post.comment': that.data.Post.comment + 1,
           'commentsContent': '', // 清空评论输入框内容
           'showPlaceholder': true, // 显示placeholder
         })
-        var tempcomment = that.data.Post.comment
-        const currentItem = that.data.Post;
-        const updatedItem = { ...currentItem, comment: tempcomment};
-        var pages = getCurrentPages()    //获取加载的页面( 页面栈 )
-    　　var prevPage = pages[pages.length - 2]    //获取上一个页面
-    　　// 设置上一个页面的数据
-        prevPage.data.hotPosts.splice(that.data.index, 1, updatedItem);
-        prevPage.setData({
-          ['hotPosts']: prevPage.data.hotPosts
-        });
-        wx.showToast({
-          title: '发送成功',
-          icon: 'none',
-        });
-        console.log(that.data.Post)
       }
     })
+    if(!that.data.hotOrTime)  //按时间
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsTime: res.data
+            })
+        }
+      })
+    }
+    else //现在是时间，要改为热度
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.articleid,
+        },
+        success:function(res) {
+            that.setData({
+              commentsHot: res.data
+            })
+        }
+      })
+    }
+    wx.showToast({
+      title: '发送成功',
+      icon: 'none',
+    });
   },
 
   //评论框焦点失去监听

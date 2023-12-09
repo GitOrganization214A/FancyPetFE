@@ -1,28 +1,44 @@
 /**index.wxss**/
-
-.userinfo{
-    display: flex;//弹性盒模型
-  }
-.avatarimg{
-    height: 50px;
-    width: 50px;
- }
-.avatartext{
-    padding: 10rpx 30rpx;
-    display: flex;//弹性盒模型
-    flex-direction: column;//垂直显示
-    justify-content: space-between;//两边显示
- }
-
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.container {
+  padding: 0rpx;
 }
 
-.usermotto {
-  margin-top: 200px;
+.userinfo {
+  display: flex;
+  flex-direction:row;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  margin-top: 100rpx;
+}
+
+.avatar {
+  display: flex;
+  flex-direction:column;
+}
+
+.avatarimg{
+  height: 160rpx;
+  width: 160rpx;
+  margin-bottom: 30rpx;
+}
+
+.avatartext {
+  width: 160rpx; 
+  height: 60rpx; 
+  font-size: 28rpx; 
+  line-height:60rpx; 
+  text-align:center;
+}
+
+.message {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nameandnum {
+  margin-left:50rpx;
+  display: flex;
+  flex-direction:column;
 }

@@ -42,7 +42,10 @@
         <text class="actions_text" style="color: {{Post.liked ? '#ffac63' : '#515151'}}">{{Post.like}}</text>
         <l-icon name="comment" type="comment" size="28" color="#515151"></l-icon>
         <text class="actions_text">{{Post.comment}}</text>
-        <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+        <l-button special="{{true}}" open-type="share">
+            <!-- 此处是插槽自定义内容 -->
+          <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+        </l-button>
         <text class="actions_text">{{Post.share}}</text>
       </view>
     </view>
@@ -52,12 +55,12 @@
       <view class ="commentinfo">
         <text class ="commentinfotext">评论</text>
         <view class ="commentsort">
-          <van-icon size="13" name="sort" color="#FF8C00"></van-icon>
-          <text class ="commentsorttext"> 按时间排序</text>
+          <van-icon size="13" name="sort" color="#FF8C00" bindtap="changeSort"></van-icon>
+          <text class ="commentsorttext" bindtap="changeSort">{{hotOrTime ? " 按热度" : " 按时间"}}</text>
         </view>
       </view>
       
-      <block wx:for="{{Post.comments}}" wx:key="commentskey" wx:for-index="commentindex">
+      <block wx:for="{{hotOrTime ? commentsHot : commentsTime}}" wx:key="commentskey" wx:for-index="commentindex">
         <view class="line"></view>
         <view class="userinfoandlike">
           <view class ="userinfo">

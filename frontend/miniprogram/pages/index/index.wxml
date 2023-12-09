@@ -1,23 +1,44 @@
 <!--index.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="个人主页" title-color="#ffac63"
+  home-page='/pages/forum/forum'>
 <view class="container" style="width:100%;">
-  <view wx:if="{{canIUseOpenData}}" style="width:100%;" class="userinfo" >
-    <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
-    <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}"  style="display: inline-block; box-sizing: border-box; position: fixed; height:220rpx; width:220rpx; left:45rpx; top:337.5rpx"></image> 
-    <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="display: inline-block; box-sizing: border-box; position: absolute;  width:50rpx; left:600rpx; top:350rpx;"></image>   
-    <input type="nickname" value="{{nickName}}"   name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="display: inline-block; box-sizing: border-box; position: fixed; width:300rpx; height:100rpx; line-height:100rpx; left:290rpx; top:400rpx; font-size:50rpx"/>
-    <text decode style="color: black; font-weight: 1000; position: fixed; height:60rpx; left: 290rpx; top: 540rpx; font-size: 30rpx;">
-                关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
-    </text>   
-    <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" style="position: fixed; left: 45rpx; top: 570rpx; width: 220rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 设置头像 </button>
-    <button bindtap="quitUser" style="position: fixed; left: 200rpx; top: 1300rpx; width: 350rpx; height: 80rpx; line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx;"> 退出登录 </button>
+  <view wx:if="{{canIUseOpenData}}">
+    <view class="userinfo">
+      <view class="avatar">
+        <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" class="avatarimg"></image>
+        <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" class="avatartext">设置头像</button>  
+      </view> 
+      <view class="nameandnum">  
+        <view class="message">
+          <view>
+            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="width:300rpx; height:100rpx; font-size:50rpx"/>
+          </view>
+          <view>
+            <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="width:50rpx;">
+            </image>   
+          </view>
+        </view>
+        <text decode style="font-size: 30rpx;">
+          关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
+        </text>   
+      </view>
+    </view>
+    
+    
+    <button bindtap="quitUser" style="line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx; width:300rpx; margin-top:100rpx"> 退出登录 </button>
 
   </view>
+
+  <!-- 未登录状态 -->
   <block wx:else>
-      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 0rpx;"></image>
+      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 60rpx;"></image>
       <view>
 
       </view>
-      <button  bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; top: 1300rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; top: 1300rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+      <button bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
   </block>
   
 </view>
+</l-capsule-bar>
