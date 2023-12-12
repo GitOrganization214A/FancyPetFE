@@ -18,6 +18,7 @@ Page({
         atcnum : "",
         openID : "" ,
         newMessage : "0",
+        userid : "",
     },
     beip:"192.168.187.1",
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
@@ -139,7 +140,8 @@ Page({
                         ['fans'] :  res.data.fans,
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
-                        ['newMessage']:res.data.newMessage
+                        ['newMessage']:res.data.newMessage,
+                        ['userid']:res.data.UserID
                     })
                     app.globalData.openid=res.data.openid
                     
@@ -150,6 +152,7 @@ Page({
                     that.data.userInfo.atcnum=res.data.atcnum
                     that.data.userInfo.openID=res.data.openid
                     that.data.userInfo.newMessage=res.data.newMessage
+                    that.data.userInfo.userid=res.data.UserID
                     console.log(that.data.userInfo.newMessage)
                     if(that.data.userInfo.newMessage!="0")
                     {
@@ -187,7 +190,24 @@ Page({
       }
     })
   },
-
+  viewUserInfo: function(event) {
+    const tempuserid = this.data.userInfo.userid
+    wx.navigateTo({
+      url:'/pages/userinfo/userinfo?userid='+tempuserid,
+    })
+  },
+  viewfollowee: function(event) {
+    const tempuserid = this.data.userInfo.userid
+    wx.navigateTo({
+      url:'/pages/follow/follow?userid='+tempuserid+'&type=followee',
+    })
+  },
+  viewfollower: function(event) {
+    const tempuserid = this.data.userInfo.userid
+    wx.navigateTo({
+      url:'/pages/follow/follow?userid='+tempuserid+'&type=follower',
+    })
+  },
   getUserAvatar(e:any) {
     console.log("start")
     console.log(e.detail.avatarUrl)

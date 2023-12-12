@@ -1,10 +1,10 @@
 <!--index.wxml-->
-<l-capsule-bar
+<l-capsule-bar wx:if="{{canIUseOpenData}}"
   capsule-color="white" bg-color="#60656C"
   title="个人主页" title-color="#ffac63"
   home-page='/pages/forum/forum'>
 <view class="container" style="width:100%;">
-  <view wx:if="{{canIUseOpenData}}">
+  <view>
     <view class="userinfo">
       <view class="avatar">
         <l-avatar class="avatarimg" size='160' shape="square" src ='{{avatarUrl}}'></l-avatar>
@@ -20,9 +20,24 @@
             </image>   
           </view>
         </view>
-        <text decode style="font-size: 30rpx;">
-          关注：{{follow}}  &ensp;  粉丝：{{fans}}  &ensp; 发帖：{{atcnum}}
-        </text>   
+        <view style="display: flex;flex-direction:row" bind:tap="viewfollowee"> 
+            <view>
+                <text decode style="font-size: 30rpx;" >
+                    关注：{{follow}}  &ensp; 
+                </text>
+            </view>
+            <view>
+                <text decode style="font-size: 30rpx;" bind:tap="viewfollower">
+                    粉丝：{{fans}}  &ensp; 
+                </text>
+            </view>
+            <view>
+                <text decode style="font-size: 30rpx;" bind:tap="viewUserInfo">
+                    发帖：{{atcnum}}
+                </text> 
+            </view>
+        </view>
+       
       </view>
     </view>
     
@@ -31,14 +46,17 @@
 
   </view>
 
-  <!-- 未登录状态 -->
-  <block wx:else>
-      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 60rpx;"></image>
+ 
+  
+  
+</view>
+</l-capsule-bar>
+
+ <!-- 未登录状态 -->
+<block wx:else>
+      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 0rpx;"></image>
       <view>
 
       </view>
       <button bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
   </block>
-  
-</view>
-</l-capsule-bar>

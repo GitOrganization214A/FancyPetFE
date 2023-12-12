@@ -1,0 +1,25 @@
+<l-capsule-bar 
+  capsule-color="white" bg-color="#60656C"
+  title="{{followtitle}}" title-color="#ffac63"
+  home-page='/pages/forum/forum'>
+<view>
+    <view wx:for="{{followlist}}" wx:key="*this" style="top: 80rpx;left:40rpx;height:150rpx;position: relative;">
+        <view class ="info" >
+            <view class ="userinfotext" bind:tap="viewUserInfo" data-userid="{{item.UserID}}">
+                <l-avatar class="avatar" size='110' shape="square" src ="{{item.avatar}}" style="position:relative;left: 20rpx;"></l-avatar>
+                <view style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;left: 100rpx;">
+                    <view style="position:relative;left:200rpx;top: -100rpx;font-size: larger;">            
+                        <text class="nickname">{{item.nickname}}</text>
+                    </view>                    
+                </view>                
+            </view>
+            <view style="position:relative;left:500rpx;top: -150rpx;margin-right: -20rpx;">
+                    <l-button data-userid="{{item.UserID}}" bg-color="#f2f0fe" height="55" width="120" shape="semicircle" bindtap="followUser">
+                        <text wx:if="{{!item.followed}}" style="color:#7968bd">+关注</text>
+                        <text wx:if="{{item.followed}}" style="color:#7968bd">已关注</text>
+                    </l-button>
+            </view>
+      </view>   
+    </view>
+</view>
+</l-capsule-bar>
