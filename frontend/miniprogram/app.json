@@ -21,7 +21,8 @@
     "pages/message/message",
     "pages/correctInfo/correctInfo",
     "pages/account/account",
-    "pages/petdetailshow/petdetailshow"
+    "pages/petdetailshow/petdetailshow",
+    "pages/follow/follow"
   ],
   "window": {
     "backgroundTextStyle": "light",

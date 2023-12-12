@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+  },
+  "navigationStyle":"custom"
+}

@@ -4,7 +4,7 @@
   capsule-color="white" bg-color="#60656C" title="消息" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
 	<view>
-                <view wx:for="{{messageList}}" wx:key="*this" style="top: -100rpx;position: relative;left:20rpx;width:710rpx;border:grey solid 2rpx">
+                <view wx:for="{{messageList}}" wx:key="*this" style="top: 100rpx;position: relative;left:20rpx;width:710rpx;border:grey solid 2rpx">
                     <view wx:if="{{item.type=='party'}}" >
                         <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;">
                             {{item.time}}

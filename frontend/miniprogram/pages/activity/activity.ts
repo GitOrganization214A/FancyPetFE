@@ -1,8 +1,7 @@
 // activity.ts
 import { areaList } from '../../miniprogram_npm/@vant/area-data/data';
 const app = getApp<IAppOption>()
-
-
+var indx = 0
 Page({
   data: {
     actmain:true,
@@ -34,11 +33,16 @@ Page({
     backurl:"../../resource/back.png",
     editadoptUrl:"../../resource/EditButton.jpg",
     giveupUrl:"../../resource/giveup.png",
+    tolikeUrl:"../../resource/tolike.png",
+    likedUrl:"../../resource/liked.png",
+    commentUrl:"../../resource/comment.png",
+    shareUrl:"../../resource/share.png",
     partyUrl:'',
     partytitle:'',
     partyaddress:'',
     partydate:'',
-    partycontent:''
+    partycontent:'',
+    hkindex: 0,
   },
   onLoad(){
     this.setData({
@@ -154,7 +158,34 @@ Page({
       }
     })
   },
-
+  actcloud(){
+    this.setData({
+        actmain:false,
+        actcloud:true,
+        pageindex:4
+    })
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/petVideos/',//todo
+      data:{
+        openid:app.globalData.openid,      
+      },
+      method: 'GET',
+      header: {'content-type': 'application/json' //
+      },
+      success: function(res) {
+         that.setData({
+           activitylist: res.data
+         })
+         that.data.activitylist = res.data
+         console.log(res.data)
+         console.log(that.data.activitylist)
+      },
+      fail:function(res){
+           console.log(res.errMsg)
+      }
+    })
+  },
   editAdopt(){
     wx.navigateTo({
         url:"../editAdopt/editAdopt"
@@ -381,5 +412,52 @@ Page({
             console.log(res.errMsg)
         }
     })
-  }
+  },
+  bindchangev(e) {
+    this.setData({
+      hkindex: e.detail.current
+    })
+    let videoContext = wx.createVideoContext("myvideo" + e.detail.current + "")
+    let videoContexta = wx.createVideoContext("myvideo" + indx + "")  
+    indx = e.detail.current;
+    videoContexta.pause();
+    videoContexta.seek(0);
+    videoContext.play();
+    let xz = this.data.activitylist.length- e.detail.current ;
+  },
+  videolike(e) {
+    var tempid = e.currentTarget.dataset.atcid
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
+        method: 'GET',
+        data: {
+          openid: app.globalData.openid, // 传递需要点赞的帖子openid
+          ArticleID: articleid, 
+          operation: "like",
+        },
+        success: (res) => {
+        // 更新点赞数、按钮颜色和状态
+          if(that.data.currentTab==='hot')
+          {
+            const currentItem = that.data.hotPosts[index];
+            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+            // 使用 splice 方法更新数组中特定项的值
+            that.data.hotPosts.splice(index, 1, updatedItem);
+            that.setData({
+              ['hotPosts']: that.data.hotPosts
+            });
+          }
+          else if(that.data.currentTab==='following')
+          {
+            const currentItem = that.data.followPosts[index];
+            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+            // 使用 splice 方法更新数组中特定项的值
+            that.data.followPosts.splice(index, 1, updatedItem);
+            that.setData({
+              ['followPosts']: that.data.followPosts
+            });
+          }
+        }
+      });
+  },
 });
