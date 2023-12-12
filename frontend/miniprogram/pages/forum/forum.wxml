@@ -10,7 +10,10 @@
       <l-search-bar placeholder="搜索"
                   bg-color="#f6f6f6"
                   shape="circle"
-                  front-text="北京">
+                  front-text="北京"
+                  bind:linchange="searchInput"
+                  bind:linconfirm="search"
+                  bind:linclear="clearSearchInput">
       </l-search-bar>
     </view>
     <view>

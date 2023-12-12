@@ -7,7 +7,7 @@
   <view wx:if="{{canIUseOpenData}}">
     <view class="userinfo">
       <view class="avatar">
-        <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" class="avatarimg"></image>
+        <l-avatar class="avatarimg" size='160' shape="square" src ='{{avatarUrl}}'></l-avatar>
         <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" class="avatartext">设置头像</button>  
       </view> 
       <view class="nameandnum">  

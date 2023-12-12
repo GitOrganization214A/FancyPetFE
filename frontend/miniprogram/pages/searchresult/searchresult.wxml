@@ -1,0 +1,54 @@
+<!--detail.wxml-->
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="搜索结果" title-color="#ffac63" 
+  home-page='/pages/forum/forum'>
+
+  <view>
+      <!-- 以下部分放置页面内容 -->
+      <view class="intro">
+        <text>以下为“{{searchInput}}”的搜索结果</text>
+      </view>
+      <view>
+        <text></text>
+      </view>
+      <view>
+        <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
+        <view class="line"></view>
+        <view class ="post">
+          <view class ="userinfo">
+            <l-avatar class="avatar" text="{{item.nickname}}" size='70' shape="square" src ='{{item.avatar}}' data-userid="{{item.UserID}}" bindtap="viewUserInfo"></l-avatar>
+          </view>
+          <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+            <text>{{item.title}}</text>
+          </view>
+          <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+            <text class="content_text">{{item.content}}</text>
+          </view>
+          
+          <!-- 图片列表 -->
+          <view class="album">
+            <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
+            <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
+          </view>
+
+          <!-- 点赞、评论、转发 -->
+          <view class="actions">
+            <l-icon name="like" type="like" size="28" color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{item.liked}}" data-like="{{item.like}}" data-articleid="{{item.ArticleID}}"></l-icon>
+            <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
+            <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
+            <text class="actions_text">{{item.comment}}</text>
+            <l-button special="{{true}}" open-type="share">
+                <!-- 此处是插槽自定义内容 -->
+              <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+            </l-button>
+            <text class="actions_text">{{item.share}}</text>
+          </view>
+        </view>
+      </block>
+      <view class="line"></view>
+      </view>
+      
+  </view>
+</l-capsule-bar>
+  

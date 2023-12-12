@@ -18,7 +18,6 @@ Page({
     commentsHot: {},
     commentsTime: {},
     popupshow: false,
-    navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
   onShareAppMessage:function(){

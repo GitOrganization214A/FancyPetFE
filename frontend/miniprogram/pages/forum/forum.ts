@@ -61,12 +61,11 @@ Page({
     nameDataCat,
     sideBarData,
     currentTab: 'following', // 默认显示关注
-    hotFirst: false, //第一次点击热门
-    followFirst: false, //第一次点击关注
     color1: 'red',
     color2: 'black',
     color3: 'black',
     hotPosts: [],
+    searchinput: '',
     followPosts: [], //关注的帖子
     EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
@@ -95,6 +94,38 @@ Page({
       scrollTop: res.scrollTop,
     })
   },
+  // 搜索输入
+  searchInput: function(event) {
+    const input = event.detail.value
+    this.setData({
+      searchinput: input
+    })
+  },
+  clearSearchInput: function(event) {
+    this.setData({
+      searchinput: ''
+    })
+  },
+  //搜索
+  search: function(event) {
+    var that = this
+    if(that.data.searchinput.length===0)
+    {
+      wx.showToast({
+        title: '请输入搜索内容',
+        icon: 'error',
+        duration: 1000,
+      })
+    }
+    else
+    {
+      const searchinput=that.data.searchinput
+      wx.navigateTo({
+        url:'/pages/searchresult/searchresult?searchinput='+searchinput,
+      })
+    }
+  },
+  //下拉刷新
   onPullDownRefresh: function () {
     // 显示顶部刷新图标  
     wx.showNavigationBarLoading();
@@ -252,8 +283,7 @@ Page({
       },
       success:function(res) {
           that.setData({
-            followPosts: res.data,
-            followFirst: true
+            followPosts: res.data
           })
       }
     })
@@ -276,7 +306,7 @@ Page({
         color2: id === '2' ? 'red' : 'black',
         color3: id === '3' ? 'red' : 'black'
     });
-    if(tab == "hot" && this.data.hotFirst == false) {
+    if(tab == "hot") {
       var that = this
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
@@ -288,13 +318,12 @@ Page({
         },
         success:function(res) {
             that.setData({
-              hotPosts: res.data,
-              hotFirst: true
+              hotPosts: res.data
             })
         }
       })
     }
-    if(tab == "following" && this.data.followFirst == false) {
+    if(tab == "following") {
       var that = this
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/followArticles/',
@@ -306,8 +335,7 @@ Page({
         },
         success:function(res) {
             that.setData({
-              followPosts: res.data,
-              followFirst: true
+              followPosts: res.data
             })
         }
       })
