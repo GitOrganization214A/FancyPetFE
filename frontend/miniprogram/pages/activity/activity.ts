@@ -15,16 +15,23 @@ Page({
     showadopt: false,
     showlove: false,
     showparty:false,
+    showcomment:false,
+    hotOrTime:true,
     fieldValue: '',
     cascaderValue: '',
+    commentTarget: '',
     options:[],
     areaList,
     currentadoptNumber: 0,
     currentwxNumber: 0,
+    currentcommentNumber: 0,
     maxadoptLen: 200,
+    maxcommentLen: 200,
     wxcontent: '',
     adoptcontent: '',
+    commentcontent: '',
     adoptTarget: '',
+    videocomments: [],
     navigationurl:"../../resource/navigationbar.png",
     adopturl:"../../resource/adopt.png",
     partyurl:"../../resource/party.png",
@@ -43,6 +50,7 @@ Page({
     partydate:'',
     partycontent:'',
     hkindex: 0,
+    keyboardHeight: 0,
   },
   onLoad(){
     this.setData({
@@ -99,7 +107,6 @@ Page({
       console.log(this.data)
 
   },
-
   actparty(){
     this.setData({
         actmain:false,
@@ -426,38 +433,255 @@ Page({
     let xz = this.data.activitylist.length- e.detail.current ;
   },
   videolike(e) {
-    var tempid = e.currentTarget.dataset.atcid
+    var aid = e.currentTarget.dataset.atcid
+    // var vid = e.currentTarget.dataset.videoid
+    var that = this
     wx.request({
         url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
         method: 'GET',
         data: {
           openid: app.globalData.openid, // 传递需要点赞的帖子openid
-          ArticleID: articleid, 
+          ArticleID: aid, 
+          operation: "like",
+        },
+        success: (res) => {
+            console.log(res.data)
+            var templist = that.data.activitylist
+            for (let item of templist)
+            {
+                if(item.ArticleID==aid)
+                {
+                    item.liked=true
+                    item.like++
+                }
+            }
+            that.setData({
+                activitylist:templist
+            })
+            that.data.activitylist=templist
+        }
+      });
+  },
+  videounlike(e) {
+    var aid = e.currentTarget.dataset.atcid
+    // var vid = e.currentTarget.dataset.videoid
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
+        method: 'GET',
+        data: {
+          openid: app.globalData.openid, // 传递需要点赞的帖子openid
+          ArticleID: aid, 
+          operation: "cancel",
+        },
+        success: (res) => {
+            var templist = that.data.activitylist
+            for (let item of templist)
+            {
+                if(item.ArticleID==aid)
+                {
+                    item.liked=false
+                    item.like--
+                }
+            }
+            that.setData({
+                activitylist:templist
+            })
+            that.data.activitylist=templist
+        }
+      });
+  },
+  videocomment(e){
+        console.log(e)
+        this.setData({
+            showcomment:true,
+            hotOrTime: !this.data.hotOrTime,
+            commentTarget:e.currentTarget.dataset.atcid,
+        })
+        this.changeSort(e)
+  },
+  changeSort: function(event) {
+    var that = this;
+    if(that.data.hotOrTime)  
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:that.data.commentTarget,
+        },
+        success:function(res) {
+            that.setData({
+              videocomments:res.data,
+            })
+        }
+      })
+    }
+    else //现在是时间，要改为热度
+    {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:this.data.commentTarget,
+        },
+        success:function(res) {
+            that.setData({
+              videocomments: res.data,
+            })
+        }
+      })
+    }
+    that.setData({
+      hotOrTime: !that.data.hotOrTime,
+    });
+    console.log(that.data.hotOrTime)
+    console.log(that.data.videocomments)
+  },
+
+  //点赞评论
+  likeComment(event) {
+    // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
+    // 使用微信小程序的wx.request发送HTTP请求
+    var commentid = event.currentTarget.dataset.commentid
+    var liked = event.currentTarget.dataset.liked
+    var like = event.currentTarget.dataset.like
+    var i = -1
+    for (let c of this.data.videocomments)
+    {
+        i++
+        if(c.CommentID==commentid)
+        {
+            break;
+        }
+    }
+    console.log(i)
+    var that = this
+    if (!liked) {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/likeComment/',
+        method: 'GET',
+        data: {
+          openid: app.globalData.openid, // 传递需要点赞的帖子openid
+          CommentID: commentid, 
           operation: "like",
         },
         success: (res) => {
         // 更新点赞数、按钮颜色和状态
-          if(that.data.currentTab==='hot')
+          if(that.data.hotOrTime) //按热度
           {
-            const currentItem = that.data.hotPosts[index];
+            const currentItem = that.data.videocomments[i];
             const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-            // 使用 splice 方法更新数组中特定项的值
-            that.data.hotPosts.splice(index, 1, updatedItem);
+            that.data.videocomments.splice(i, 1, updatedItem);
             that.setData({
-              ['hotPosts']: that.data.hotPosts
+              videocomments: that.data.videocomments
             });
           }
-          else if(that.data.currentTab==='following')
+          else
           {
-            const currentItem = that.data.followPosts[index];
+            const currentItem = that.data.videocomments[i];
             const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-            // 使用 splice 方法更新数组中特定项的值
-            that.data.followPosts.splice(index, 1, updatedItem);
+            that.data.videocomments.splice(i, 1, updatedItem);
             that.setData({
-              ['followPosts']: that.data.followPosts
+              videocomments: that.data.videocomments
             });
           }
         }
       });
+    }
+    else {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/likeComment/',
+        method: 'GET',
+        data: {
+          openid: app.globalData.openid, // 传递需要点赞的帖子openid
+          CommentID: commentid, 
+          operation: "cancel",
+        },
+        success: (res) => {
+          // 更新点赞数、按钮颜色和状态
+          if(that.data.hotOrTime) //按热度
+          {
+            const currentItem = that.data.videocomments[i];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.videocomments.splice(i, 1, updatedItem);
+            that.setData({
+              videocomments: that.data.videocomments
+            });
+          }
+          else
+          {
+            const currentItem = that.data.videocomments[i];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.videocomments.splice(i, 1, updatedItem);
+            that.setData({
+              videocomments: that.data.videocomments
+            });
+          }
+        }
+      });
+    }     
+  },
+//   videocomment(e){
+//     console.log(e)
+//     this.setData({
+//         showcomment:true,
+//         commentTarget:e.currentTarget.dataset.atcid,
+//     })
+//   },
+  inputcomment:function(e){
+    var value = e.detail.value;
+    var len = parseInt(value.length)
+    this.setData({
+        currentcommentNumber: len,
+        commentcontent: value
+    })
+    this.data.currentcommentNumber=len
+    this.data.commentcontent=value    
+  },
+  gucomment(e){
+    this.setData({
+        showcomment:false,
+        currentcommentNumber: 0,
+        commentcontent: ''
+    })
+  },
+  sendcomment(e){
+    var that = this 
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/postComment/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          openid:app.globalData.openid,
+          ArticleID:that.data.commentTarget,
+          content:that.data.commentcontent,
+        },
+        success:function(res) {
+          // 更新页面数据
+          that.setData({
+            hotOrTime: !that.data.hotOrTime,
+          });
+          that.changeSort(e)
+          that.setData({
+            'commentcontent': '', // 清空评论输入框内容
+          })
+        }
+      })
+  },
+  onShareAppMessage:function(){
+    wx.showShareMenu({
+      withShareTicket:true,
+      menu:['shareAppMessage','shareTimeline']
+    })
+  },
+  onShareTimeline(){
   },
 });

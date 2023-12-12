@@ -32,7 +32,7 @@
             </view>
             <view style="top:770rpx;position:fixed;left:20rpx;width: 750rpx;height:650rpx;" class='inputImage' >
                 <!-- <l-album urls='{{images}}' multiple-size="230" lazy-load="true"></l-album> -->
-                <van-uploader file-list="{{ images }}" max-count="9" bind:after-read="chooseImage" accept="media"  multiple="{{true}}" image-fit="aspectFill" preview-size="230rpx" bind:delete="delimage"/>
+                <van-uploader file-list="{{ images }}" bind:after-read="chooseImage" accept="media"  multiple="{{true}}" image-fit="aspectFill" preview-size="230rpx" bind:delete="delimage" />
             </view>
             <!-- <view style="top:1450rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
                     <image style="top:1480rpx;width:50rpx;height:50rpx;left:50rpx;position:fixed;" src='{{chooseImageUrl}}' bindtap='choseImage'></image>
