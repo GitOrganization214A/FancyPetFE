@@ -124,29 +124,38 @@
 
         <view wx:if="{{actcloud}}">
             <view style="position: relative;top: 20rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">云养宠</view>
+            
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 850rpx;  height: 1200rpx;">
                 <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="*this" >
                     <swiper-item>
                         <view class="video-wrap" style="width:700rpx;height:200rpx;position:absolute;left:0rpx;top:-50rpx">  
-                                <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" bindpause="bindpause" bindplay="bindplay" style="width: 750rpx;  height: 1200rpx;  position: absolute;  top:100rpx;  left: 0rpx;  z-index: 1;">
-                                    <cover-image wx:if="{{key.liked}}" src="{{likedUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videounlike" ></cover-image>
-                                    <cover-image wx:if="{{!key.liked}}" src="{{tolikeUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videolike"></cover-image>
-                                    <cover-view class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:680rpx;">{{key.like}}</cover-view> 
-                                    <cover-image src="{{commentUrl}}" style="position:absolute;left: 630rpx;top:730rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" bind:tap="videocomment"></cover-image>
-                                    <cover-view class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:810rpx;" bind:tap="videocomment" >{{key.comment}}</cover-view> 
-                                    <cover-image src="{{shareUrl}}" style="position:absolute;left: 630rpx;top:860rpx;width: 80rpx;height: 80rpx;" >
+                                <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" bindpause="bindpause" bindplay="bindplay" style="width: 750rpx;  height: 1300rpx;  position: absolute;  top:100rpx;  left: 0rpx;  z-index: 1;">
+                                    <cover-image wx:if="{{key.liked&&(!showcomment)}}" src="{{likedUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videounlike" ></cover-image>
+                                    <cover-image wx:if="{{!key.liked&&(!showcomment)}}" src="{{tolikeUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videolike"></cover-image>
+                                    <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:680rpx;">{{key.like}}</cover-view> 
+                                    <cover-image wx:if="{{!showcomment}}" src="{{commentUrl}}" style="position:absolute;left: 630rpx;top:730rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" bind:tap="videocomment"></cover-image>
+                                    <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:810rpx;" bind:tap="videocomment" >{{key.comment}}</cover-view> 
+                                    
+                                    <image wx:if="{{!showcomment}}" src="{{shareUrl}}" style="position:absolute;left: 630rpx;top:860rpx;width: 80rpx;height: 80rpx;" >
+                                    </image>
+                                    <button style="background-color:transparent;left:630rpx;top:860rpx;width:80rpx;height:80rpx;position: absolute;font-size: 16rpx;" open-type="share">    
+                                    </button>
+                                    <!-- <cover-view wx:if="{{!showcomment}}">
                                         
-                                    </cover-image>
-                                    <cover-view class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:940rpx;">{{key.share}}</cover-view> 
-                                    <cover-image src="{{key.avatar}}" style="position:absolute;left: 20rpx;top:1000rpx;width: 60rpx;height: 60rpx;" ></cover-image>
-                                    <cover-view class="anthology" style="font-size: larger;color: chocolate;position:absolute;left: 100rpx;top:1000rpx;">{{key.nickname}}</cover-view> 
-                                    <cover-view class="anthology" style="font-size: medium;color: white;position:absolute;left: 100rpx;top:1050rpx;">{{key.content}}</cover-view> 
+                                    </cover-view> -->
+                                    <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:940rpx;">{{key.share}}</cover-view> 
+                                    <cover-image wx:if="{{!showcomment}}" src="{{key.avatar}}" style="position:absolute;left: 20rpx;top:1000rpx;width: 60rpx;height: 60rpx;" ></cover-image>
+                                    <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: larger;color: chocolate;position:absolute;left: 100rpx;top:1000rpx;">{{key.nickname}}</cover-view> 
+                                    <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: medium;color: white;position:absolute;left: 100rpx;top:1050rpx;">{{key.content}}</cover-view> 
                                 </video>
                                 <!-- 这块用来写标题头像什么的 用 cover-view  cover-等等 -->
+                                
                         </view>
                     </swiper-item>
                 </block>
+                
             </swiper>
+            
             <view style="position: fixed;top: 800rpx;">
                 <van-popup show="{{ showcomment }}" round position="bottom" custom-style="height: 50%;">
                     <!-- 
@@ -179,7 +188,7 @@
                                     </view>
                                     <view >
                                         <view wx:if="{{item.self}}" style="position: relative;left: 540rpx;top: -140rpx;">
-                                            <l-icon name="delete" type="delete" size="30" color="red" bindtap="deleteComment" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}"></l-icon>
+                                            <l-icon name="delete" type="delete" size="30" color="red" bindtap="deletecomment" data-commentid="{{item.CommentID}}" ></l-icon>
                                         </view>
                                         <view class="goodjob">
                                         <view style="position: relative;left: 600rpx;top: -185rpx;"><van-icon color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likeComment" size="18" name="good-job-o" data-liked="{{item.liked}}" data-like="{{item.like}}" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}" ></van-icon></view>
@@ -202,6 +211,7 @@
                     
                 </van-popup>
             </view>
+            
         </view>
     </view>
 </l-capsule-bar>

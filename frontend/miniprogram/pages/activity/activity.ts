@@ -1,5 +1,6 @@
 // activity.ts
 import { areaList } from '../../miniprogram_npm/@vant/area-data/data';
+import { videoProps } from '../../miniprogram_npm/@vant/weapp/uploader/shared';
 const app = getApp<IAppOption>()
 var indx = 0
 Page({
@@ -544,7 +545,47 @@ Page({
     console.log(that.data.hotOrTime)
     console.log(that.data.videocomments)
   },
-
+  //删除评论
+  deletecomment: function(event) {
+    var that = this
+    const commentid = event.currentTarget.dataset.commentid
+    var i = -1
+    for (let c of this.data.videocomments)
+    {
+        i++
+        if(c.CommentID==commentid)
+        {
+            break;
+        }
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确认删除评论？',
+      success (res) {
+        if (res.confirm) {
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/deleteComment/',
+            method: 'GET',
+            data: {
+              CommentID: commentid, 
+            },
+            success: (res) => {
+              that.data.videocomments.splice(i,1)
+              that.setData({
+                  videocomments:that.data.videocomments,
+              })
+              wx.showToast({
+                title: '删除评论成功',
+                icon: 'none',
+              });
+            }
+          });
+        } 
+        else if (res.cancel) {
+        }
+      }
+    })
+  },
   //点赞评论
   likeComment(event) {
     // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
@@ -574,24 +615,12 @@ Page({
         },
         success: (res) => {
         // 更新点赞数、按钮颜色和状态
-          if(that.data.hotOrTime) //按热度
-          {
             const currentItem = that.data.videocomments[i];
             const updatedItem = { ...currentItem, liked: true, like: like + 1 };
             that.data.videocomments.splice(i, 1, updatedItem);
             that.setData({
               videocomments: that.data.videocomments
             });
-          }
-          else
-          {
-            const currentItem = that.data.videocomments[i];
-            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-            that.data.videocomments.splice(i, 1, updatedItem);
-            that.setData({
-              videocomments: that.data.videocomments
-            });
-          }
         }
       });
     }
@@ -606,24 +635,12 @@ Page({
         },
         success: (res) => {
           // 更新点赞数、按钮颜色和状态
-          if(that.data.hotOrTime) //按热度
-          {
             const currentItem = that.data.videocomments[i];
             const updatedItem = { ...currentItem, liked: false, like: like - 1 };
             that.data.videocomments.splice(i, 1, updatedItem);
             that.setData({
               videocomments: that.data.videocomments
             });
-          }
-          else
-          {
-            const currentItem = that.data.videocomments[i];
-            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
-            that.data.videocomments.splice(i, 1, updatedItem);
-            that.setData({
-              videocomments: that.data.videocomments
-            });
-          }
         }
       });
     }     
