@@ -32,7 +32,6 @@ Page({
   //进入用户主页
   viewUserInfo: function(event) {
     const tempuserid = event.currentTarget.dataset.userid
-    console.log("tempuserid",tempuserid) 
     wx.navigateTo({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
@@ -283,8 +282,6 @@ Page({
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
-    console.log(that.data.hotOrTime)
-    console.log(that.data.commentsTime)
   },
 
   //点赞评论
@@ -526,48 +523,52 @@ Page({
           'commentsContent': '', // 清空评论输入框内容
           'showPlaceholder': true, // 显示placeholder
         })
+        if(that.data.hotOrTime===false)  //按时间
+        {
+          console.log("time")
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+            method:"GET",
+            header: {'content-type': 'application/json' //
+            },
+            data:{
+              openid:app.globalData.openid,
+              ArticleID:that.data.articleid,
+            },
+            success:function(res) {
+                that.setData({
+                  commentsTime: res.data
+                })
+            }
+          })
+        }
+        else //现在是热度
+        {
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+            method:"GET",
+            header: {'content-type': 'application/json' //
+            },
+            data:{
+              openid:app.globalData.openid,
+              ArticleID:that.data.articleid,
+            },
+            success:function(res) {
+              console.log(res.data)
+              that.setData({
+                commentsHot: res.data
+              })
+            }
+          })
+        }
+
+        wx.showToast({
+          title: '发送成功',
+          icon: 'none',
+        });
       }
-    })
-    if(!that.data.hotOrTime)  //按时间
-    {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsTime: res.data
-            })
-        }
-      })
-    }
-    else //现在是时间，要改为热度
-    {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsHot: res.data
-            })
-        }
-      })
-    }
-    wx.showToast({
-      title: '发送成功',
-      icon: 'none',
-    });
+    })  
+    
   },
 
   //评论框焦点失去监听
