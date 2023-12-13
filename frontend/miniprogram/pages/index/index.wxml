@@ -20,9 +20,9 @@
             </image>   
           </view>
         </view>
-        <view style="display: flex;flex-direction:row" bind:tap="viewfollowee"> 
+        <view style="display: flex;flex-direction:row" > 
             <view>
-                <text decode style="font-size: 30rpx;" >
+                <text decode style="font-size: 30rpx;" bind:tap="viewfollowee">
                     关注：{{follow}}  &ensp; 
                 </text>
             </view>
