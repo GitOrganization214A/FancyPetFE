@@ -28,7 +28,7 @@ var component_1 = require("../common/component");
         originPrice: String,
         thumbMode: {
             type: String,
-            value: 'aspectFit',
+            value: 'aspectFill',
         },
         currency: {
             type: String,

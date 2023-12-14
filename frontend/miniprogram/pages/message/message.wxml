@@ -44,9 +44,9 @@
                             <view>{{'用户'}}</view>
                             <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
                             <view>{{'申请让其宠物'}}</view>
-                            <view bindtap="surfpet" data-index="{{item.PetSpaceID1}}" style="color: coral;">{{item.PetName1}}</view>
-                            <view>{{'与你的宠物'}}</view>
                             <view bindtap="surfpet" data-index="{{item.PetSpaceID2}}" style="color: coral;">{{item.PetName2}}</view>
+                            <view>{{'与你的宠物'}}</view>
+                            <view bindtap="surfpet" data-index="{{item.PetSpaceID1}}" style="color: coral;">{{item.PetName1}}</view>
                             <view>{{'配种,留言为'}}</view>
                             <view>{{item.content}}</view>
                             <view>{{'。ta的微信号为'}}</view>
