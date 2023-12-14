@@ -10,6 +10,7 @@ Page({
     number:0,
     index:[0,1,2,3,4,5,6,7,8],
     images:[],
+    avatar:'',
     current:0,
     show:false,
     moreUrl:"../../resource/more.png",
@@ -125,6 +126,9 @@ Page({
       success:function(res) {
           that.setData({
             PetSpaceDetail: res.data
+          })
+          that.setData({
+            avatar: res.data.avatar+"?v="+new Date().getTime()
           })
           console.log(res.data.images)
           that.setData({

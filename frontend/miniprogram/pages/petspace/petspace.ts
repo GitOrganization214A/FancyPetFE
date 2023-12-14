@@ -12,6 +12,9 @@ Page({
     header: {'content-type': 'application/json' //
     },
     success: function(res) {
+      for(let item of res.data){
+        item.avatar=item.avatar+"?v="+new Date().getTime();
+      }
       that.setData({
         responseData: res.data
       })

@@ -10,6 +10,7 @@ Page({
 
     },
     images:'',
+    origin_avatar:'',
     year:0,
     month:1,
     gender:[],
@@ -174,16 +175,20 @@ Page({
         sizeType: ['original', 'compressed'],
         success: function (res) {
           that.setData({
-            images: res.tempFilePaths,
+            origin_avatar: res.tempFilePaths,
  
           })
-          console.log(that.data.images)
+          that.setData({
+            images: that.data.origin_avatar,
+ 
+          })
+          console.log(that.data.images[0])
           
         }
     })
   },
   guEdit: function(e) {
-      console.log("gu")
+      console.log(this.data.origin_avatar);
       wx.navigateBack({
         delta: 1
       })
@@ -204,7 +209,8 @@ Page({
           })
           console.log(res.data.avatar)
           that.setData({
-            images: res.data.avatar,
+            origin_avatar: res.data.avatar,
+            images:res.data.avatar,
             titlecontent:res.data.name,
             currentTitleNumber:res.data.name.length,
             year:res.data.year,
@@ -216,6 +222,20 @@ Page({
     })
   },
   sendAtc: function(e) {
+    var that=this;
+    wx.uploadFile({
+      url:'http://43.143.139.4:8000/api/v1/changePetAvatar/',
+      filePath:that.data.origin_avatar[0],
+      name: 'avatar',
+      formData:{
+        PetSpaceID:app.globalData.petspaceid,
+        openid:app.globalData.openid
+      },
+      success: function (res) {
+        //上传成功
+            console.log("修改成功");
+      },
+    })
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/changePetInfo/',
       method:"GET",
@@ -224,7 +244,6 @@ Page({
       data:{
         PetSpaceID:app.globalData.petspaceid,
         openid:app.globalData.openid,
-        avatar:this.data.images,
         name:this.data.titlecontent,
         year:this.data.year,
         month:this.data.month,

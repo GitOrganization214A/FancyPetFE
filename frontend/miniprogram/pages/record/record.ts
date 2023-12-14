@@ -15,7 +15,9 @@ Page({
     hurtUrl:"../../../resource/face_with_head_bandage.png",
     dizzUrl:"../../../resource/tired_face.png",
     hankeyUrl:"../../../resource/hankey.png",
-    loveUrl:"../../../resource/heart_eyes.png"
+    loveUrl:"../../../resource/heart_eyes.png",
+    number:0,
+    index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
   },
 
   /**
@@ -61,6 +63,37 @@ Page({
           })
       }
     })
+  },
+  deleteRecord(e){
+    var that=this;
+    console.log(e);
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此条记录？',
+      success: function (res) {
+       if (res.confirm) {
+        console.log('点击确定了');
+        wx.request({
+          url: 'http://43.143.139.4:8000/api/v1/deleteHealthRecord/',
+          method:"GET",
+          header: {'content-type': 'application/json' //
+          },
+          data:{
+            PetSpaceID:app.globalData.petspaceid,
+            openid:app.globalData.openid,
+            index:e.currentTarget.dataset.index
+          },
+          success:function(res) {
+            that.onShow()
+          }
+        })
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
+      }
+   
+     })
   },
 
   /**
