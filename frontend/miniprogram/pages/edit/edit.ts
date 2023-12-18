@@ -238,7 +238,8 @@ Page({
                 title:that.data.titlecontent,
                 content:that.data.atccontent,
                 zone:breedtag,
-                subzone:that.data.breedcontent
+                subzone:that.data.breedcontent,
+                PetSpaceID:that.data.cascaderValue,
             },
             method:"GET",
             header: {'content-type': 'application/json' //
