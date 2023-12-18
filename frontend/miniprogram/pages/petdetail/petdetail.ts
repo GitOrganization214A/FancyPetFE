@@ -40,9 +40,6 @@ Page({
       }
     })
   },
-  addremind:function(e){
-
-  },
   gotorecord:function(e){
     wx.navigateTo({
       url:'/pages/record/record'

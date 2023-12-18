@@ -1,0 +1,54 @@
+<!--pages/cost/cost.wxml-->
+<l-capsule-bar home-page="/pages/petspace/petspace" title="萌宠相机">
+<view class="by">
+<text>总支出：{{Cost.cost}}</text>
+<view style="top:200rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
+bindtap="addtoBill">记账</view>
+</view>
+<view lazy-load="true" style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:225rpx;" class="petlist" wx:for="{{Cost.bills}}" wx:key="*this">
+<view bind:longpress="deleteBill" data-index="{{index}}">
+  <fui-card wx:if="{{ item.type === '宠物食品' }}" lazy-load="true" src="{{foodUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-break:break-all;;white-space: pre-line;">备注信息：{{item.content}}</view>
+      </view>
+  </fui-card>
+  <fui-card wx:if="{{ item.type === '疫苗' }}" lazy-load="true" src="{{vaccineUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">备注信息：{{item.content}}</view>
+        </view>
+  </fui-card>
+  <fui-card wx:if="{{ item.type === '宠物玩具' }}" lazy-load="true" src="{{toyUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">备注信息：{{item.content}}</view>
+        </view>
+  </fui-card>
+  <fui-card wx:if="{{ item.type === '购买宠物' }}" lazy-load="true" src="{{buyUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">备注信息：{{item.content}}</view>
+        </view>
+  </fui-card>
+  <fui-card wx:if="{{ item.type === '生病' }}" lazy-load="true" src="{{sickUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">备注信息：{{item.content}}</view>
+        </view>
+  </fui-card>
+  <fui-card wx:if="{{ item.type === '服饰' }}" lazy-load="true" src="{{clothUrl}}" title="{{item.type}}" tag="{{item.date}}">
+        <!-- 此处为content -->
+        <view style="display: flex;flex-direction:column">
+          <view>支出：￥{{item.money}}</view>
+        <view style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">备注信息：{{item.content}}</view>
+        </view>
+  </fui-card>
+  </view>
+  </view>
+</l-capsule-bar>

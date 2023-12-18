@@ -17,31 +17,31 @@
             <image style="top:400rpx;position: fixed;left:30rpx;width:50rpx;height:50rpx" src="{{giveupUrl}}" bindtap="guEdit"></image>
             <button style="top:400rpx;position: fixed;left:600rpx;width:140rpx;height:80rpx;text-align: center;" bindtap="sendAtc">添加</button>
             <view class='inputName' >
-                <textarea style="top:800rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                <text class='ctn' style="top:850rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+                <textarea style="top:950rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                <text class='ctn' style="top:975rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
             </view>
             <view>
-                <view class='inputAge' style="top:900rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
+                <view class='inputAge' style="top:1025rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
                 <text>请输入宠物年龄：</text>
                 <l-counter  count="0" min="0" max="100" step="1" bind:lintap="inputYear"></l-counter>
                 <text>年</text>
-                <l-counter  count="1" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
+                <l-counter  count="0" min="0" max="11" step="1" bind:lintap="inputMonth"></l-counter>
                 <text>月</text>
                 </view>
             </view>
-            <view class="page-section-title" style="top:1050rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">请选择宠物性别：
+            <view class="page-section-title" style="top:1150rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">请选择宠物性别：
               <radio-group name="radio" bindchange="getGender">
                  <label><radio value="雌"/>雌</label>
                  <label><radio value="雄"/>雄</label>
               </radio-group>
             </view>
-            <view class="section" style="top:1250rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;">
-              <view class="section__title">请选择宠物种类</view>
-                <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-                <view class="picker">
-                   当前选择：{{multiArray[0][multiIndex[0]]}} > {{multiArray[1][multiIndex[1]]}}
+            <view class='inputBreed' >
+                <textarea style="top:825rpx;position: fixed;width: 800rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
+            </view>
+            <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 840rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
+                <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
+                    {{item}}
                 </view>
-                </picker>
             </view>
         </view>
   </view>

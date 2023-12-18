@@ -30,6 +30,11 @@ Page({
       url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
     })
   },
+  addcost:function(){
+    wx.navigateTo({
+      url:'/pages/cost/cost'
+    })
+  },
   attentionlist:function(){
     wx.navigateTo({
       url:'/pages/list/list'
