@@ -66,6 +66,18 @@
   margin-top: 20rpx;
 }
 
+.line1 {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 30rpx;
+}
+
+.segment {
+  position: fixed;
+  top:400rpx;
+  left:0;
+}
+
 .bottomblock {
   width:100%;
   margin-top:140rpx;
@@ -77,6 +89,21 @@
   margin-bottom: 30rpx;
 }
 // 索引
+
+.subdivision {
+  margin-left: 160rpx;
+}
+
+.tip {
+  margin-left:40rpx;
+  margin-right:80rpx;
+  margin-bottom: 150rpx;
+  margin-top:40rpx;
+}
+
+.tiptitle {
+  border: 1px solid #ffac63;
+}
 
 .l-selected-class{
   background-color: #ffac63 !important;

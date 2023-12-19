@@ -23,6 +23,21 @@
           <l-icon name="delete" type="delete" size="36" color="red" bindtap="deletePost"></l-icon>
         </view>
       </view>
+      <view wx:if="{{Post.pet!==null}}" class = "petspace">
+        <l-card type="avatar" l-class="card" l-img-class="cardavatar" l-title-class="cardtext" image="{{Post.pet.avatar}}" title="{{Post.pets.name}}"describe="{{Post.pet.breed}}">
+          <!-- 此处为content -->
+          <l-tag bg-color="#f3f3f3" 
+                  font-color="#3963BC"
+                  shape="circle" 
+                  slot="more"
+                  width="60"
+                  height="60">
+            <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{Post.pet.PetSpaceID}}">
+              <l-icon size="35" name="right" color="#3683d6" />
+            </l-button>
+          </l-tag>
+        </l-card>
+      </view>
       <view class = "title">
         <text>{{Post.title}}</text>
       </view>

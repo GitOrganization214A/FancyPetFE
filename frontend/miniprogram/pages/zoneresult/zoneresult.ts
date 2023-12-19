@@ -6,7 +6,8 @@ Page({
     hotPosts: {},
     hotOrTime: true, //true是按热度排，false按时间排
     popupshow: false,
-    searchInput: '',
+    zone: '',
+    subzone: '',
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
   onShareAppMessage:function(){
@@ -33,122 +34,137 @@ Page({
     if(that.data.hotOrTime)  
     {
       wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/searchArticlesTime/',
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
         method:"GET",
         header: {'content-type': 'application/json' //
         },
-         data:{
+        data:{
           openid:app.globalData.openid,
-          keyword:that.data.searchInput,
+          ArticleID:this.data.articleid,
         },
         success:function(res) {
             that.setData({
-              hotPosts: res.data
+              commentsTime: res.data
             })
         }
-      });
+      })
     }
     else //现在是时间，要改为热度
     {
       wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/searchArticlesHot/',
+        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
         method:"GET",
         header: {'content-type': 'application/json' //
         },
-         data:{
+        data:{
           openid:app.globalData.openid,
-          keyword:that.data.searchInput,
+          ArticleID:this.data.articleid,
         },
         success:function(res) {
             that.setData({
-              hotPosts: res.data
+              commentsHot: res.data
             })
         }
-      });
+      })
     }
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
-    console.log(that.data.hotPosts)
+    console.log(that.data.hotOrTime)
+    console.log(that.data.commentsTime)
   },
 
-  //详情页
-  postDetail(event) {
-    const articleid = event.currentTarget.dataset.articleid
-    const index = event.currentTarget.dataset.index
-    wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
-    })
-  },
-
-  //点赞帖子
-  likePost(event) {
-    // 发送点赞请求到后端，点赞成功后返回新的点赞数
-    const articleid = event.currentTarget.dataset.articleid
+  //点赞评论
+  likeComment(event) {
+    // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
+    // 使用微信小程序的wx.request发送HTTP请求
+    const commentid = event.currentTarget.dataset.commentid
     const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     const index = event.currentTarget.dataset.index
-    console.log(liked)
     var that = this
-    if (!event.currentTarget.dataset.liked) {
+    if (!liked) {
       wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
+        url: 'http://43.143.139.4:8000/api/v1/likeComment/',
         method: 'GET',
         data: {
           openid: app.globalData.openid, // 传递需要点赞的帖子openid
-          ArticleID: articleid, 
+          CommentID: commentid, 
           operation: "like",
         },
         success: (res) => {
         // 更新点赞数、按钮颜色和状态
-            const currentItem = that.data.hotPosts.articles[index];
+          if(that.data.hotOrTime) //按热度
+          {
+            const currentItem = that.data.commentsHot[index];
             const updatedItem = { ...currentItem, liked: true, like: like + 1 };
-            // 使用 splice 方法更新数组中特定项的值
-            that.data.hotPosts.articles.splice(index, 1, updatedItem);
+            that.data.commentsHot.splice(index, 1, updatedItem);
             that.setData({
-              ['hotPosts']: that.data.hotPosts
+              commentsHot: that.data.commentsHot
             });
+          }
+          else
+          {
+            const currentItem = that.data.commentsTime[index];
+            const updatedItem = { ...currentItem, liked: true, like: like + 1 };
+            that.data.commentsTime.splice(index, 1, updatedItem);
+            that.setData({
+              commentsTime: that.data.commentsTime
+            });
+          }
         }
       });
     }
     else {
       wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/likeArticle/',
+        url: 'http://43.143.139.4:8000/api/v1/likeComment/',
         method: 'GET',
         data: {
           openid: app.globalData.openid, // 传递需要点赞的帖子openid
-          ArticleID: articleid, 
+          CommentID: commentid, 
           operation: "cancel",
         },
         success: (res) => {
-            // 更新点赞数、按钮颜色和状态
-              const currentItem = that.data.hotPosts.articles[index];
-              const updatedItem = { ...currentItem, liked: 
-                false, like: like - 1 };
-              // 使用 splice 方法更新数组中特定项的值
-              that.data.hotPosts.articles.splice(index, 1, updatedItem);
-              that.setData({
-                ['hotPosts']: that.data.hotPosts
-              });
+          // 更新点赞数、按钮颜色和状态
+          if(that.data.hotOrTime) //按热度
+          {
+            const currentItem = that.data.commentsHot[index];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.commentsHot.splice(index, 1, updatedItem);
+            that.setData({
+              commentsHot: that.data.commentsHot
+            });
+          }
+          else
+          {
+            const currentItem = that.data.commentsTime[index];
+            const updatedItem = { ...currentItem, liked: false, like: like - 1 };
+            that.data.commentsTime.splice(index, 1, updatedItem);
+            that.setData({
+              commentsTime: that.data.commentsTime
+            });
+          }
         }
       });
-    }
-},
+    }     
+  },
 
   //初始渲染
   onLoad: function (event) {
       var that = this
       this.setData({
-        searchInput:event.searchinput
+        zone:event.zone,
+        subzone:event.subzone
       })
       wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/searchArticlesHot/',
+        url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesHot/',
         method:"GET",
         header: {'content-type': 'application/json' //
         },
-         data:{
+        data:{
           openid:app.globalData.openid,
-          keyword:event.searchinput,
+          zone:event.zone,
+          subzone:event.subzone
         },
         success:function(res) {
             that.setData({

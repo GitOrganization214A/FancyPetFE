@@ -7,7 +7,6 @@
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
     "l-button": "/miniprogram_npm/lin-ui/button/index",
     "l-input": "/miniprogram_npm/lin-ui/input/index",
-    "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
     "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index"
   }
 }

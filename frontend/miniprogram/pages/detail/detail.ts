@@ -492,6 +492,15 @@ Page({
     });
   },
 
+  //宠物空间
+  showdetails:function(event){
+    const petspaceid = event.currentTarget.dataset.petspaceid
+    app.globalData.petspaceid=petspaceid
+    wx.navigateTo({
+      url:'/pages/petdetailshow/petdetailshow?petspaceid='+petspaceid,
+    })
+  },
+
   //点击评论按钮
   clickComments: function(e) {
     var that = this
