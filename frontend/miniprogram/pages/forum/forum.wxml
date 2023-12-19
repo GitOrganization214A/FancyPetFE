@@ -49,7 +49,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>
@@ -86,7 +86,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>
@@ -193,14 +193,36 @@
             scroll-top="{{scrollTop}}"
             l-selected-class="l-selected-class"
             l-tip-class="l-tip-class"
-            sidebar-data="{{sideBarData}}"
+            sidebar-data="{{sideBarDataRat}}"
             l-sidebar-class="sidebar-class"
             l-tip-text-class="l-tip-text-class">
-            <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+            <block wx:for="{{sideBarDataRat.length}}" wx:key="index" wx:for-index="anchorIndex">
               <l-index-anchor/>
               <block wx:for="{{nameDataRat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
                 <view class="index-item" bindtap="viewZone" data-zone="鼠" data-subzone="{{nameDataRat[anchorIndex][itemIndex]}}">
                   <view class="index-name">{{nameDataRat[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='five'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataBird}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataBird.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataBird[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="鸟" data-subzone="{{nameDataBird[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataBird[anchorIndex][itemIndex]}}</view>
                 </view>
               </block>
             </block>

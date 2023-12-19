@@ -64,7 +64,6 @@ Page({
     titlecontent:[],
     atccontent:[],
     beip:"192.168.187.1",
-    IsEditingText: true, // 如需尝试获取用户信息可改为false
     navigationUrl:"../../resource/navigationbar.png",
     chooseImageUrl:"../../resource/chooseImage.png",
     giveupUrl:"../../resource/giveup.png",
@@ -92,7 +91,6 @@ Page({
     })
     this.data.breedcontent=value
     this.data.possiblebreed=[]
-    console.log(value)
     var pbl = []
     if(value.length>0)
     {
@@ -120,7 +118,6 @@ Page({
         })
         this.data.possiblebreed=pbl
     }
-    console.log(this.data.possiblebreed)
   },
   replaceBreed:function(e){
     this.setData({
@@ -137,7 +134,6 @@ Page({
         })
         this.data.currentTitleNumber=len
         this.data.titlecontent=value
-        console.log(this.data.titlecontent)
   },
   inputText:function(e){
         var value = e.detail.value;
@@ -149,30 +145,6 @@ Page({
         this.data.currentTextNumber=len
         this.data.atccontent=value
   },
-//   choseImage: function() {
-//     var that = this;
-//     if (this.data.images.length  < 9) {
-//       wx.chooseImage({//选择图片
-//         count:1,//一张图片
-//         sizeType: ['original', 'compressed'],
-//         success: function (res) {
-//           that.setData({
-//             images: that.data.images.concat(res.tempFilePaths),
- 
-//           })
-//           console.log(that.data.images)
-          
-//         }
-//       })
-//     } 
-//     else{
-//         wx.showToast({
-//             title: '最多选择九张图片！',
-//             icon: 'none',
-//             duration: 3000
-//           })
-//     }
-//   },
   chooseImage(e){
       var filelist = e.detail.file
       var originfilelist = this.data.images
@@ -180,7 +152,6 @@ Page({
       this.setData({
           images:newfilelist
       })
-      console.log(newfilelist)
   },
   delimage(e){
     var id = e.detail.index   //能获取到对应的下标
@@ -189,12 +160,6 @@ Page({
     this.setData({
       images:delfileList,  //在这里进行重新赋值  删除后 图片剩几张就相当于给后台传几张
     })
-  },
-  guEdit: function(e) {
-      console.log("gu")
-      wx.switchTab({
-          url:"/pages/forum/forum"
-      })
   },
   handleclicksc(e) {
     this.showvideoplay = true;
@@ -218,7 +183,6 @@ Page({
             break;
         }
     }
-    console.log(breedtag)
     if((breedtag=='')&&(this.data.breedcontent.length>0))
     {
         wx.showToast({
@@ -226,57 +190,60 @@ Page({
             icon: 'none',
             duration: 3000
           })
+        return
     }
-    else
+    if(this.data.titlecontent.length<5)
     {
-        var that = this
-        wx.request({
-            url: 'http://43.143.139.4:8000/api/v1/postArticle/',
-            data:{
-                openid:app.globalData.openid,
-                ArticleID:'0',
-                title:that.data.titlecontent,
-                content:that.data.atccontent,
-                zone:breedtag,
-                subzone:that.data.breedcontent,
-                PetSpaceID:that.data.cascaderValue,
-            },
-            method:"GET",
-            header: {'content-type': 'application/json' //
-            },
-            success:function(res) {
-                if(that.data.images.length<1)
-                {
-                    wx.switchTab({
-                        url:"/pages/forum/forum"
-                    })
-                }
-
-                console.log(res.data)
-                var atcid = res.data.ArticleID
-                for (let path of that.data.images)
-                {
-                    console.log(path.url)  
-                    wx.uploadFile({
-                        url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
-                        filePath: path.url,
-                        name: 'image',
-                        formData: {
-                        ArticleID:atcid,
-                        },
-                        success (res){
-                            wx.switchTab({
-                                url:"/pages/forum/forum"
-                            })
-                        }
-                    })
-                }
-            },
-            fail:function(res){
-                console.log("failed")
+      wx.showToast({
+        title: '标题不少于5个字',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
+    var that = this
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/postArticle/',
+        data:{
+            openid:app.globalData.openid,
+            ArticleID:'0',
+            title:that.data.titlecontent,
+            content:that.data.atccontent,
+            zone:breedtag,
+            subzone:that.data.breedcontent,
+            PetSpaceID:that.data.cascaderValue,
+        },
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        success:function(res) {
+            if(that.data.images.length<1)
+            {
+                wx.switchTab({
+                    url:"/pages/forum/forum"
+                })
             }
-        })
-    } 
+            var atcid = res.data.ArticleID
+            for (let path of that.data.images)
+            {
+                wx.uploadFile({
+                    url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
+                    filePath: path.url,
+                    name: 'image',
+                    formData: {
+                    ArticleID:atcid,
+                    },
+                    success (res){
+                        wx.switchTab({
+                            url:"/pages/forum/forum"
+                        })
+                    }
+                })
+            }
+        },
+        fail:function(res){
+        }
+    })
   },
   onClick() {
     var that = this
@@ -303,8 +270,6 @@ Page({
           that.setData({
               options:op,
           })
-          
-          console.log(res.data)
         },
       })
   },

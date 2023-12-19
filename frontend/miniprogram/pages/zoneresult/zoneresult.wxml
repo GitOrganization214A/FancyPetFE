@@ -7,10 +7,11 @@
   <view>
       <!-- 以下部分放置页面内容 -->
       <view class="intro">
-        <text>“{{subzone}}”</text>
+        <l-tag size="large" plain="true" type="reading" sshape="circle">{{subzone}}</l-tag>
       </view>
-      <view>
-        <text></text>
+      <view class="sort">
+        <van-icon size="18" name="sort" color="#FF8C00" bindtap="changeSort" style="margin-right: 16rpx;"></van-icon>
+        <text class ="commentsorttext" bindtap="changeSort">{{hotOrTime ? "按热度排序" : "按时间排序"}}</text>
       </view>
       <view>
         <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
@@ -27,7 +28,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>

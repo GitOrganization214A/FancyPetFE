@@ -31,7 +31,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>

@@ -133,7 +133,7 @@ Page({
         }
       });
     }
-},
+  },
 
   //初始渲染
   onLoad: function (event) {

@@ -29,7 +29,8 @@ Page({
     bgUrl:"../../resource/background.jpg",
     loginbuttonUrl:"../../resource/loginbutton.png",
     navigationUrl:"../../resource/navigationbar.png",
-    messageUrl:"../../resource/nomessage.png"
+    messageUrl:"../../resource/nomessage.png",
+    logging:true
   },
   // 事件处理函数
   bindViewTap() {
@@ -132,7 +133,8 @@ Page({
                         ['atcnum'] :  res.data.atcnum,
                         ['openID']:res.data.openid,
                         ['newMessage']:res.data.newMessage,
-                        ['userid']:res.data.UserID
+                        ['userid']:res.data.UserID,
+                        logging:false,
                     })
                     app.globalData.openid=res.data.openid
                     
@@ -247,6 +249,7 @@ Page({
         ['fans'] : "",
         ['atcnum'] : "",
         ['openID'] : "" ,
+        logging:true,
         canIUseOpenData:false,
     })
     this.data.canIUseOpenData=false

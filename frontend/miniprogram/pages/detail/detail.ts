@@ -457,6 +457,13 @@ Page({
     })
   },
 
+  //点击标签
+  searchtag: function(e) {
+    const searchinput=e.currentTarget.dataset.search
+    wx.navigateTo({
+      url:'/pages/searchresult/searchresult?searchinput='+searchinput,
+    })
+  },
   //评论输入
   inputCommentsContentListening: function(e) {
     var content = e.detail.value;
