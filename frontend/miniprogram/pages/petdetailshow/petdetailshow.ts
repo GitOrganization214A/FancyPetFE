@@ -64,11 +64,10 @@ Page({
       }
     })
   },
-  addremind:function(e){
-
-  },
-  addrecord:function(e){
-
+  showall:function(e){
+    this.setData({
+      show:true
+    })
   },
   takephoto:function(e){
     wx.navigateTo({

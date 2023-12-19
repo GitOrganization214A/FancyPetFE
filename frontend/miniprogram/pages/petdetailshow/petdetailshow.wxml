@@ -1,11 +1,21 @@
 <!--pages/petdetailshow/petdetailshow.wxml-->
 <l-capsule-bar home-page="/pages/petspace/petspace" title="宠物详情">
-<view class="petinfo">
+  <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{PetSpaceDetail.avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
+    <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+      <text>性别：{{PetSpaceDetail.gender}}</text>
   <!-- 此处为content -->
   </l-card>
 </view>
-  <view class="album" mode="widthFix" style="position: fixed; left: 50rpx; top: 800rpx; width: 650rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center;">
-    <l-album urls='{{PetSpaceDetail.images}}' multiple-size="200" lazy-load="true"></l-album>
+<view class="album" mode="widthFix">
+  <scroll-view style="top:200rpx;position:relative;float: left;margin-top: 20rpx;">
+    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;align-items: flex-start;">
+    <view wx:for="{{PetSpaceDetail.images}}" >
+    <image src="{{item}}" style="width: 250rpx;height: 250rpx;" bindtap="showall"></image>
   </view>
+  <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" >
+    </mp-gallery>
+  </view>
+  </scroll-view >
+</view>
 </l-capsule-bar>

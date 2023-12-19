@@ -24,7 +24,9 @@
         "pages/searchresult/searchresult",
         "pages/zoneresult/zoneresult",
         "pages/petdetailshow/petdetailshow",
-        "pages/follow/follow"
+        "pages/follow/follow",
+        "pages/cost/cost",
+        "pages/addcost/addcost"
     ],
     "window": {
         "backgroundTextStyle": "light",
