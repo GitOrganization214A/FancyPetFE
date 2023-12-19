@@ -190,6 +190,7 @@ Page({
     var that = this;
     if(that.data.currentTab==="classification")
     {
+      wx.stopPullDownRefresh();
       return;
     }
     that.setData({

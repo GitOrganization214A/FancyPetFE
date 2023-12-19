@@ -58,5 +58,5 @@
       <view>
 
       </view>
-      <button bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+      <button bindtap="getUserProfile" style="border: none; position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default">  <image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image></button>
   </block>

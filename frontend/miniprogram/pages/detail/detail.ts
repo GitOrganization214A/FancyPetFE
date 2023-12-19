@@ -369,6 +369,9 @@ Page({
       wx.getSystemInfo({
         success: function(res) {
           that.data.windowHeight = res.windowHeight
+          that.setData({
+            windowHeight: res.windowHeight
+          })
           that.data.isIphone = res.model.indexOf("iphone") >= 0 || res.model.indexOf("iPhone") >= 0
         }
       });
@@ -449,38 +452,9 @@ Page({
   //评论框焦点获取监听
   inputCommentsFocus: function(e) {
     var that = this
-    if (!that.data.isIphone) {
-      var keyboardHeight = e.detail.height
-      var windowHeight = that.data.windowHeight
-      var containerHeight = that.data.containerHeight
-      var containerBottomHeight = that.data.containerBottomHeight
-      //整体内容高度大于屏幕高度，才动态计算输入框移动的位置；
-      if (containerHeight > windowHeight) {
-        if ((containerBottomHeight - windowHeight) > keyboardHeight) {
-          //距离底部高度与屏幕高度的差值大于键盘高度，则评论布局上移键盘高度；
-          that.setData({
-            keyboardHeight: e.detail.height
-          })
-        } 
-        else {
-          //距离底部高度与屏幕高度的差值小于键盘高度，则评论布局上移距离底部高度与屏幕高度的差值；
-          var newHeight = containerBottomHeight - windowHeight
-          that.setData({
-            keyboardHeight: newHeight
-          })
-        }
-      } 
-      else {
-        that.setData({
-          keyboardHeight: 0
-        })
-      }
-    } 
-    else {
-      that.setData({
-        keyboardHeight: 0
-      })
-    }
+    that.setData({
+      keyboardHeight: 0
+    })
   },
 
   //评论输入

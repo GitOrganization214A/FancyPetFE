@@ -112,7 +112,7 @@
       <view class="line2"></view>
       <view class="classification">
         <view class="segment">
-          <l-segment active-key="one" class="general" item-height="110" placement="left" bind:linchange="changeTabs">
+          <l-segment active-key="one" class="general" item-height="100" placement="left" bind:linchange="changeTabs">
             <l-segment-item tab="狗狗" key="one" />
             <l-segment-item tab="猫猫" key="two" />
             <l-segment-item tab="兔兔" key="three" />
