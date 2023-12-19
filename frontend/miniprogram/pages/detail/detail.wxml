@@ -47,7 +47,7 @@
       </view>
 
       <!-- 标签 -->
-      <view wx:if="{{Post.subzone!==null}}" class="tags">
+      <view wx:if="{{Post.subzone.length!==0}}" class="tags">
         <l-tag size="large" plain="true" type="reading" sshape="circle" bindtap="searchtag" data-search="{{Post.subzone}}">{{Post.subzone}}</l-tag>
       </view>
 
