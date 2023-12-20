@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
   margin-left:10rpx;
   margin-right:10rpx;
   justify-content: space-between;
@@ -25,17 +25,18 @@
 .inputBreed {
   margin-top: 10rpx;
   margin-bottom: 10rpx;
-  height: 50rpx;
+  height: 40rpx;
   display: flex;
   align-items: center;
 }
 
 .petlabel {
   color: #ffac63;
-  font-size: medium;
+  font-size: small;
 }
 
 .petlabel2 {
+  font-size: smaller;
 }
 
 .line {
@@ -48,7 +49,7 @@
 .inputTitle {
   margin-top: 10rpx;
   margin-bottom: 10rpx;
-  height:100rpx;
+  height:80rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;

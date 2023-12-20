@@ -112,7 +112,8 @@
       <view class="line2"></view>
       <view class="classification">
         <view class="segment">
-          <l-segment active-key="one" class="general" item-height="100" placement="left" bind:linchange="changeTabs">
+          <l-segment active-key="eight" class="general" item-height="105" placement="left" bind:linchange="changeTabs">
+            <l-segment-item tab="版块" key="eight" />
             <l-segment-item tab="狗狗" key="one" />
             <l-segment-item tab="猫猫" key="two" />
             <l-segment-item tab="兔兔" key="three" />
@@ -120,8 +121,6 @@
             <l-segment-item tab="鸟类" key="five" />
             <l-segment-item tab="鱼类" key="six" />
             <l-segment-item tab="龟类" key="seven" />
-            <l-segment-item tab="昆虫" key="eight" />
-            <l-segment-item tab="其他" key="nine" />
           </l-segment>   
         </view>
         <view class="subdivision" wx:if="{{currentClassKey==='one'}}">
@@ -274,6 +273,28 @@
           <view class="tip" >
             <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
             <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='eight'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataOther}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataOther.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataOther[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="其它" data-subzone="{{nameDataOther[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataOther[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">欢迎向我们反馈，添加更多有趣的版块！</view></l-card>
           </view>
         </view>
       </view>

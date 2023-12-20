@@ -22,6 +22,9 @@ const sideBarDataFish = [
 const sideBarDataTortoise = [
   'A', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'S', 'T', 'X', 'Y', 'Z'
 ];
+const sideBarDataOther = [
+  'C', 'H', 'M', 'Q', 'W', 'X', 'Y', 'Z'
+];
 
 const nameDataDog = [
   ['阿富汗猎犬', '阿拉斯加雪橇犬', '爱尔兰猎狼犬', '奥大利亚牧羊犬', '爱尔兰雪达犬', '澳大利亚牧牛犬', '爱尔兰水猎犬', '安纳托利亚牧羊犬', '爱尔兰㹴', '爱尔兰红白雪达犬', '爱尔兰峡谷㹴', '澳大利亚㹴', '爱尔兰软毛㹴'], 
@@ -95,7 +98,8 @@ const nameDataRat = [
   ['鼯鼠', '倭仓鼠'], 
   ['雪地松鼠'], 
   ['英种天竺鼠', '银狐仓鼠', '一线仓鼠', '岩松鼠'], 
-  ['紫衣仓鼠', '长吻松鼠']];
+  ['紫衣仓鼠', '长吻松鼠']
+];
 const nameDataBird = [
   ['斑胸草雀', '白腰文鸟'], 
   ['长尾草雀'],
@@ -103,7 +107,8 @@ const nameDataBird = [
   ['鸡尾鹦鹉', '金丝雀'], 
   ['七彩文鸟'], 
   ['桃脸牡丹鹦鹉'], 
-  ['爪哇禾雀']];
+  ['爪哇禾雀']
+];
 const nameDataFish = [
   ['斑马鱼'], 
   ['成吉思汗鱼', '慈鲷'], 
@@ -117,7 +122,8 @@ const nameDataFish = [
   ['七星刀鱼'], 
   ['神仙鱼', '三湖慈鲷'], 
   ['小丑鱼', '虾虎鱼', '血鹦鹉'], 
-  ['鹦鹉鱼', '月光鱼']];
+  ['鹦鹉鱼', '月光鱼']
+];
 const nameDataTortoise = [
   ['安布闭壳龟', '安哥洛卡象龟', '埃及陆龟', '凹甲陆龟'], 
   ['巴西龟', '百色闭壳龟', '白唇泥龟', '斑点池龟', '白头龟', '豹纹陆龟', '饼干龟'], 
@@ -138,11 +144,23 @@ const nameDataTortoise = [
   ['剃刀龟', '头盔泥龟', '太阳龟'], 
   ['西部锦龟', '西氏长颈龟'], 
   ['云南闭壳龟', '圆澳龟', '眼斑龟', '亚达伯拉象龟', '印度星龟'], 
-  ['真鳄龟', '中华花龟', '猪鼻龟', '窄桥麝香龟', '钻纹龟']]
+  ['真鳄龟', '中华花龟', '猪鼻龟', '窄桥麝香龟', '钻纹龟']
+]
+const nameDataOther = [
+  ['宠物博物馆', '宠物健康知识', '宠物时尚', '宠物美容'], 
+  ['好物种草', '活动推荐'], 
+  ['萌宠漫画', '萌宠视频', '美术展览'], 
+  ['趣闻分享', '趣味测试', '取名创意'], 
+  ['温馨日常', '文艺创作'], 
+  ['小白教程', '训练技巧'], 
+  ['有趣梗图'], 
+  ['珍奇宠物', '主题壁纸']
+];
+
 Page({
   data: {
     // 页面垂直滑动的距离
-    currentClassKey: "one", //当前大分类
+    currentClassKey: "eight", //当前大分类
     scrollTop: undefined,
 
     nameDataDog,
@@ -152,6 +170,7 @@ Page({
     nameDataBird,
     nameDataFish,
     nameDataTortoise,
+    nameDataOther,
     sideBarDataDog,
     sideBarDataCat,
     sideBarDataRabbit,
@@ -159,6 +178,7 @@ Page({
     sideBarDataBird,
     sideBarDataFish,
     sideBarDataTortoise,
+    sideBarDataOther,
 
     currentTab: 'following', // 默认显示关注
     color1: 'red',

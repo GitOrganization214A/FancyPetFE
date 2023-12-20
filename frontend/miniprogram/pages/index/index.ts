@@ -251,6 +251,7 @@ Page({
         ['fans'] : "",
         ['atcnum'] : "",
         ['openID'] : "" ,
+        ['userid'] : "",
         logging:true,
         canIUseOpenData:false,
     })
