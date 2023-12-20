@@ -82,12 +82,12 @@
 .title {
   font-size: larger;
   font-weight: 900;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   margin-bottom: 20rpx;
 }
 
 .content {
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
   line-height: 45rpx;
 }
 .textarea {
@@ -171,6 +171,16 @@
   padding-right: 30rpx;
   background-color: coral;
   z-index: 21;
+}
+
+.petspace {
+  margin-top: 30rpx;
+}
+
+.card {
+  height:120rpx;
+  font-size: larger;
+  font-weight: 500;
 }
 
 .bottomblock1 {

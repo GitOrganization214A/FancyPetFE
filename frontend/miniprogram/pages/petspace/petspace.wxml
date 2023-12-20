@@ -37,9 +37,10 @@
         <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
+                shape="circle"
                 size="large">
         <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{item.PetSpaceID}}">
-         <l-icon size="40" name="right" color="#3683d6" />
+         <l-icon size="35" name="right" color="#3683d6" />
         </l-button>
       </l-tag>
   </l-card>

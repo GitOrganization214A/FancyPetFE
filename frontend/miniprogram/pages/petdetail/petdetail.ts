@@ -31,7 +31,8 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:this.data.petspaceid
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid
       },
       success:function(res) {
         wx.switchTab({
@@ -74,6 +75,7 @@ Page({
           },
           data:{
             PetSpaceID:petspaceid,
+            openid:app.globalData.openid,
             index:index
           },
           success:function(res) {

@@ -3,22 +3,27 @@
   capsule-color="white" bg-color="#60656C"
   title="个人主页" title-color="#ffac63"
   home-page='/pages/forum/forum'>
-<view class="container" style="width:100%;">
+<view class="container" style="width:100%; padding:0;">
   <view>
     <view class="userinfo">
       <view class="avatar">
-        <l-avatar class="avatarimg" size='160' shape="square" src ='{{avatarUrl}}'></l-avatar>
+        <l-avatar class="avatarimg" size='160' shape="square" src ="{{logging?'/miniprogram/resource/defaultAvatar.jpg':avatarUrl}}"></l-avatar>
         <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" class="avatartext">设置头像</button>  
       </view> 
       <view class="nameandnum">  
         <view class="message">
           <view>
-            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="width:300rpx; height:100rpx; font-size:50rpx"/>
+            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="width:300rpx; height:50rpx; font-size:50rpx"/>
           </view>
           <view>
             <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="width:50rpx;">
             </image>   
           </view>
+        </view>
+        <view>
+            <text type="userid"  style="position:relative;width:300rpx; height:100rpx; font-size:30rpx;left: 0rpx;">
+                UserID:#{{userid}}    
+            </text>
         </view>
         <view style="display: flex;flex-direction:row" > 
             <view>
@@ -58,5 +63,5 @@
       <view>
 
       </view>
-      <button bindtap="getUserProfile" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+      <button bindtap="getUserProfile" style="border: none; position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default">  <image src="{{loginbuttonUrl}}" style="position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image></button>
   </block>

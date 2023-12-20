@@ -1,3 +1,68 @@
 .edit.sendbutton::after{
     border:none
 }
+
+.container {
+  padding:0;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+}
+
+.petspace_send {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-left:10rpx;
+  margin-right:10rpx;
+  justify-content: space-between;
+}
+
+.inputBreed {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+}
+
+.petlabel {
+  color: #ffac63;
+  font-size: medium;
+}
+
+.petlabel2 {
+}
+
+.line {
+  height: 1px;
+  border-top: solid Silver 1px;
+  margin-bottom: 10rpx;
+  margin-top: 10rpx;
+}
+
+.inputTitle {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  height:100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inputText {
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  height:400rpx;
+}
+
+.inputImage {
+  margin-top: 20rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}

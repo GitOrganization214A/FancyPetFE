@@ -6,21 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    UserID:''
   },
   addtoShare(){
+    var that=this
     wx.showModal({
       editable:true,//显示输入框
       placeholderText:'输入UserID',//显示输入框提示信息
       success: res => {
         if (res.confirm) { //点击了确认
+          console.log(res.content)
           wx.request({
             url: 'http://43.143.139.4:8000/api/v1/addShareUser/',
             method:"GET",
@@ -33,6 +34,7 @@ Page({
             },
             success:function(res) {
               console.log("成功")
+              that.onShow()
             }
           })
         } else {
@@ -64,11 +66,44 @@ Page({
         PetSpaceID:app.globalData.petspaceid
       },
       success:function(res) {
+        console.log("aaaaaa")
           that.setData({
             ShareUserList: res.data
           })
       }
     })
+  },
+  deleteShareUser(e){
+    var that=this
+    console.log(e)
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此共享用户吗？',
+      success: function (res) {
+       if (res.confirm) {
+        console.log('点击确定了');
+        wx.request({
+          url: 'http://43.143.139.4:8000/api/v1/deleteShareUser/',
+          method:"GET",
+          header: {'content-type': 'application/json' //
+          },
+          data:{
+            openid:app.globalData.openid,
+            PetSpaceID:app.globalData.petspaceid,
+            UserID:e.currentTarget.dataset.userid
+          },
+          success:function(res) {
+            console.log("成功")
+            that.onShow()
+          }
+        })
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
+      }
+   
+     })
   },
 
   /**

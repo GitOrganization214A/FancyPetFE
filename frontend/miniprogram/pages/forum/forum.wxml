@@ -6,11 +6,15 @@
   home-page='/pages/forum/forum'>
 
     <!-- 以下部分放置页面内容 -->
+    
+    <!-- 自定义的加载中图标 -->
+    <view wx:if="{{isLoading}}" style="display: flex; justify-content: center; align-items: center;">
+      <l-loading show="{{isLoading}}" color="#ffac63" size="mini" type="rotate"></l-loading>
+    </view>
     <view class = "search">
       <l-search-bar placeholder="搜索"
                   bg-color="#f6f6f6"
                   shape="circle"
-                  front-text="北京"
                   bind:linchange="searchInput"
                   bind:linconfirm="search"
                   bind:linclear="clearSearchInput">
@@ -31,8 +35,8 @@
     </view>
     <view wx:if="{{currentTab === 'following'}}">
       <!-- 显示关注内容 -->
+      <view class = "line1"></view>
       <block wx:for="{{followPosts}}" wx:key="followPosts" wx:for-index="postindex">
-        <view class="line"></view>
         <view class ="post">
           <view class ="userinfo">
             <l-avatar class="avatar" text="{{item.nickname}}" size='70' shape="square" src ='{{item.avatar}}' data-userid="{{item.UserID}}" bindtap="viewUserInfo"></l-avatar>
@@ -45,7 +49,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>
@@ -63,14 +67,13 @@
             <text class="actions_text">{{item.share}}</text>
           </view>
         </view>
-        
+        <view class="line"></view>
       </block>
-      <view class="line"></view>
     </view>
     <view wx:if="{{currentTab === 'hot'}}">
       <!-- 显示热门内容 -->
+      <view class = "line1"></view>
       <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
-        <view class="line"></view>
         <view class ="post">
           <view class ="userinfo">
             <l-avatar class="avatar" text="{{item.nickname}}" size='70' shape="square" src ='{{item.avatar}}' data-userid="{{item.UserID}}" bindtap="viewUserInfo"></l-avatar>
@@ -83,7 +86,7 @@
           </view>
           
           <!-- 图片列表 -->
-          <view class="album">
+          <view wx:if="{{item.images.length!==0}}" class="album">
             <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
             <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
           </view>
@@ -101,84 +104,133 @@
             <text class="actions_text">{{item.share}}</text>
           </view>
         </view>
-        
+        <view class="line"></view>
       </block>
-      <view class="line"></view>
     </view>
     <view wx:if="{{currentTab === 'classification'}}">
       <!-- 显示分类内容 -->
       <view class="line2"></view>
       <view class="classification">
-        <l-segment active-key="one" class="general" item-height="110" placement="left" bind:linchange="changeTabs">
-          <l-segment-item tab="狗狗" key="one">
-          </l-segment-item>
-          <l-segment-item tab="猫猫" key="two">
-            <view class="subdivision">
-              <l-index-list
-                scroll-top="{{scrollTop}}"
-                l-selected-class="l-selected-class"
-                l-tip-class="l-tip-class"
-                sidebar-data="{{sideBarData}}"
-                l-sidebar-class="sidebar-class"
-                l-tip-text-class="l-tip-text-class">
-                <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
-                  <l-index-anchor/>
-                  <block wx:for="{{nameDataCat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
-                    <view class="index-item">
-                      <view class="index-name">{{nameDataCat[anchorIndex][itemIndex]}}</view>
-                    </view>
-                  </block>
-                </block>
-              <view class="bottomblock"></view>
-            
-              </l-index-list>
-            </view>
-          </l-segment-item>
-          <l-segment-item tab="兔兔" key="three" />
-          <l-segment-item tab="鼠鼠" key="four" />
-          <l-segment-item tab="鸟儿" key="five" />
-          <l-segment-item tab="鱼儿" key="six" />
-          <l-segment-item tab="龟" key="seven" />
-          <l-segment-item tab="昆虫" key="eight" />
-          <l-segment-item tab="其他" key="nine" />
-        </l-segment>   
+        <view class="segment">
+          <l-segment active-key="one" class="general" item-height="100" placement="left" bind:linchange="changeTabs">
+            <l-segment-item tab="狗狗" key="one" />
+            <l-segment-item tab="猫猫" key="two" />
+            <l-segment-item tab="兔兔" key="three" />
+            <l-segment-item tab="鼠类" key="four" />
+            <l-segment-item tab="鸟类" key="five" />
+            <l-segment-item tab="鱼类" key="six" />
+            <l-segment-item tab="龟类" key="seven" />
+            <l-segment-item tab="昆虫" key="eight" />
+            <l-segment-item tab="其他" key="nine" />
+          </l-segment>   
+        </view>
         <view class="subdivision" wx:if="{{currentClassKey==='one'}}">
           <l-index-list
             scroll-top="{{scrollTop}}"
             l-selected-class="l-selected-class"
             l-tip-class="l-tip-class"
-            sidebar-data="{{sideBarData}}"
+            sidebar-data="{{sideBarDataDog}}"
             l-sidebar-class="sidebar-class"
             l-tip-text-class="l-tip-text-class">
-            <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+            <block wx:for="{{sideBarDataDog.length}}" wx:key="index" wx:for-index="anchorIndex">
               <l-index-anchor/>
               <block wx:for="{{nameDataDog[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
-                <view class="index-item">
+                <view class="index-item" bindtap="viewZone" data-zone="狗" data-subzone="{{nameDataDog[anchorIndex][itemIndex]}}">
                   <view class="index-name">{{nameDataDog[anchorIndex][itemIndex]}}</view>
                 </view>
               </block>
             </block>
-          <view class="bottomblock"></view>
           </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示"><view>如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
         </view>
         <view class="subdivision" wx:if="{{currentClassKey==='two'}}">
           <l-index-list
             scroll-top="{{scrollTop}}"
             l-selected-class="l-selected-class"
             l-tip-class="l-tip-class"
-            sidebar-data="{{sideBarData}}"
+            sidebar-data="{{sideBarDataCat}}"
             l-sidebar-class="sidebar-class"
             l-tip-text-class="l-tip-text-class">
-            <block wx:for="{{sideBarData.length}}" wx:key="index" wx:for-index="anchorIndex">
+            <block wx:for="{{sideBarDataCat.length}}" wx:key="index" wx:for-index="anchorIndex">
               <l-index-anchor/>
               <block wx:for="{{nameDataCat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
-                <view class="index-item">
+                <view class="index-item" bindtap="viewZone" data-zone="猫" data-subzone="{{nameDataCat[anchorIndex][itemIndex]}}">
                   <view class="index-name">{{nameDataCat[anchorIndex][itemIndex]}}</view>
                 </view>
               </block>
             </block>
-          <view class="bottomblock"></view>
           </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示"><view>如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='three'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataRabbit}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataRabbit.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataRabbit[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="兔" data-subzone="{{nameDataRabbit[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataRabbit[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='four'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataRat}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataRat.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataRat[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="鼠" data-subzone="{{nameDataRat[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataRat[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='five'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataBird}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataBird.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataBird[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="鸟" data-subzone="{{nameDataBird[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataBird[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
         </view>
       </view>
     </view>

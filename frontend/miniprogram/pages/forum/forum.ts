@@ -1,16 +1,26 @@
 // forum.ts
 import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp<IAppOption>()
-const sideBarData = [
-  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'
+const sideBarDataDog = [
+  'A', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'
 ];
-
+const sideBarDataCat = [
+  'A', 'B', 'D', 'E', 'F', 'H', 'K', 'L', 'M', 'N', 'O', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'
+];
+const sideBarDataRabbit = [
+  'A', 'B', 'C', 'D', 'F', 'H', 'J', 'L', 'M', 'N', 'S', 'T', 'W', 'X', 'Y', 'Z'
+];
+const sideBarDataRat = [
+  'B', 'C', 'D', 'H', 'J', 'M', 'N', 'O', 'R', 'S', 'T', 'W', 'X', 'Y', 'Z'
+];
+const sideBarDataBird = [
+  'B', 'C', 'H', 'J', 'Q', 'T', 'Z'
+];
 const nameDataDog = [
   ['阿富汗猎犬', '阿拉斯加雪橇犬', '爱尔兰猎狼犬', '奥大利亚牧羊犬', '爱尔兰雪达犬', '澳大利亚牧牛犬', '爱尔兰水猎犬', '安纳托利亚牧羊犬', '爱尔兰㹴', '爱尔兰红白雪达犬', '爱尔兰峡谷㹴', '澳大利亚㹴', '爱尔兰软毛㹴'], 
 ['边境牧羊犬', '博美犬', '巴哥犬', '比利时牧羊犬', '北京犬', '伯恩山犬', '波尔多犬', '贝灵顿㹴', '波音达', '波利犬', '波士顿㹴', '比格猎犬', '巴吉度犬', '冰岛牧羊犬', '波兰低地牧羊犬', '比利时马林诺斯犬', '标准型雪纳瑞犬', '巴仙吉犬', '比利时特伏丹犬', '布雷猎犬', '布鲁塞尔格里芬犬', '布列塔尼犬', '比利牛斯牧羊犬', '波兰德斯布比野犬', '布鲁克浣熊猎犬', '贝吉格里芬凡丁犬', '捕鼠㹴', '搏得猎狐犬'], 
 ['柴犬', '粗毛柯利犬'], 
 ['德国牧羊犬', '杜宾犬', '大丹犬', '大白熊犬', '斗牛㹴', '大麦町犬', '斗牛獒犬', '德国宾莎犬', '短毛猎狐㹴', '短脚长身㹴', '大瑞士山地犬', '德国短毛波音达', '德国硬毛波音达'],
-[], 
 ['法国斗牛犬', '法老王猎犬', '法国狼犬', '芬兰拉普猎犬', '芬兰波美拉尼亚丝毛狗', '弗莱特寻回犬'], 
 ['贵宾犬', '刚毛猎狐㹴', '古代英国牧羊犬', '格雷伊猎犬', '戈登雪达犬'], 
 ['哈士奇', '蝴蝶犬', '惠比特犬', '哈瓦那犬', '湖畔㹴', '荷兰毛狮犬', ' 黑俄罗斯㹴', '红骨猎浣熊犬', '猴头㹴', '黑褐猎浣熊犬'],
@@ -19,7 +29,6 @@ const nameDataDog = [
 ['罗威纳犬', '腊肠犬', '兰波格犬', '猎兔犬', '拉布拉多寻回犬', '拉萨犬', '罗得西亚脊背犬', '罗秦犬', '猎水獭犬'], 
 ['马尔济斯犬', '迷你杜宾', '美国爱斯基摩犬', '美国可卡犬', '马士提夫獒犬', '墨西哥无毛犬', '美国猎狐犬', '美国斯塔福郡㹴', '美国水猎犬', '美国英国猎浣熊犬'], 
 ['纽芬兰犬', '挪威伦德猎犬', '挪威猎鹿犬', '挪威㹴犬', '那不勒斯獒', '诺福克㹴', '挪威布哈德犬'],
-[], 
 ['葡萄牙水犬', '彭布罗克威尔士柯基犬', '普罗特猎犬', '帕尔森罗塞尔㹴'], ['秋田犬', '拳狮犬', '奇努克犬', '骑士查理王小猎犬', '切萨皮克海湾寻回犬'], 
 ['瑞典柯基犬', '日本狆'], 
 ['松狮', '萨摩耶犬', '圣伯纳犬', '苏格兰㹴', '苏俄猎狼犬', '丝毛㹴', '山地犬', '萨路基猎犬', '斯塔福郡斗牛㹴', '苏格兰猎鹿犬', '史毕诺犬', '树丛浣熊猎犬', '苏塞克斯猎犬'], 
@@ -32,40 +41,89 @@ const nameDataDog = [
 const nameDataCat = [
   ['阿比西尼亚猫', '澳大利亚雾猫', '埃及猫'], 
   ['巴厘岛猫', '伯曼猫', '波米拉猫', '波米拉长毛猫', '波斯猫', '彼得秃猫', '北美洲短毛猫', '北美洲长毛猫', '布偶猫'], 
-  [],
   ['德文帝王猫', '顿斯科伊猫', '多趾缅因猫', '东方长毛猫', '东方短毛猫', '东奇尼猫'], 
   ['俄罗斯蓝猫'], 
   ['非洲狮子猫'], 
-  [],
   ['哈瓦那棕猫'], 
-  [],
   ['柯尼斯卷毛猫', '科拉特猫', '库里安短尾猫', '库里安长 毛短尾猫'], ['拉波卷毛猫', '拉波短毛卷毛猫', '狼猫'], 
   ['美国断尾猫', '美国短毛断尾猫', '美国卷耳猫', '美国长毛卷耳猫', '美国短毛猫', '美国硬毛猫', '孟加拉猫', '孟加拉长毛猫', '孟买猫', '缅甸猫', '缅因猫', '马恩岛猫', '米努特（小舞步）猫', '米努特长毛猫', '曼基康猫', '曼基康长毛猫'], 
   ['内达华猫', '挪威森林猫'], 
   ['欧西猫'], 
-  [],
-  [],
   ['日本短尾猫', '日本长毛短尾猫'], 
   ['萨凡纳猫', '苏格兰折耳猫', '苏格兰长毛折耳猫', '苏格兰立耳猫', '苏格兰长毛立耳猫', '赛尔凯克卷毛猫', '赛尔凯克长毛卷毛猫', '索马里猫', '斯芬克斯猫', '四川简州猫', '山东狮子猫'], 
   ['泰国御猫', '泰国猫', '土耳其安哥拉猫', '土耳其梵猫'], 
   ['威尔士猫', '玩具虎猫'], 
   ['夏特尔猫', '喜马拉雅猫', '暹罗猫', '西伯利亚猫', '新加坡猫', '雪鞋猫'], 
   ['英国长毛猫', '英国短毛猫', '异国猫'], ['中国狸花猫']
-]
+];
+const nameDataRabbit = [
+  ['安哥拉兔', '阿亨特兔'], 
+  ['比华伦兔', '标准金吉拉兔', '柏鲁美路兔', '波兰兔', '比利时野兔'], 
+  ['垂耳兔'], 
+  ['大型安哥拉兔', '缎毛安哥拉兔', '缎毛兔'], 
+  ['法国安哥拉兔', '佛罗里达州大白兔', '法国垂耳兔'],
+  ['海棠兔', '荷兰兔', '荷兰垂耳兔', '荷兰侏儒兔', '黄褐兔'], 
+  ['加利福尼亚兔', '巨型纹路兔', '金吉拉兔', '巨型金吉拉兔', '巨型花明兔'], 
+  ['拉拿兔', '雷克斯兔'], 
+  ['美国金吉拉兔', '美国垂耳兔', '美国迷你垂耳兔', '迷你雷克斯兔'], 
+  ['奶油兔'], 
+  ['狮子兔'], 
+  ['图林根兔'], 
+  ['维兰特兔'], 
+  ['香槟兔', '夏温拿兔', '喜马拉雅兔', '新西兰兔'], 
+  ['英国安哥拉兔', '英国小型兔', '玉桂兔', '英国斑点兔', '英国垂耳兔', '英国迷你垂耳兔', '银狐兔', '银貂兔'], 
+  ['侏儒海棠兔', '泽西长毛兔', '中国白兔']
+];
+const nameDataRat = [
+  ['布丁鼠', '北非肥尾沙鼠'], 
+  ['草原犬鼠', '赤腹松鼠'], 
+  ['冬白仓鼠'], 
+  ['黄山松鼠', '褐鼠', '花枝鼠'],
+  ['金花鼠', '金狐仓鼠', '金丝熊'], 
+  ['毛丝鼠', '蜜袋鼯'], ['奶茶仓鼠'], 
+  ['欧洲红松鼠'], 
+  ['日本小鼯鼠', '绒鼠'], 
+  ['三线仓鼠', '睡鼠'], 
+  ['天竺鼠', '土拨鼠'], 
+  ['鼯鼠', '倭仓鼠'], 
+  ['雪地松鼠'], 
+  ['英种天竺鼠', '银狐仓鼠', '一线仓鼠', '岩松鼠'], 
+  ['紫衣仓鼠', '长吻松鼠']];
+const nameDataBird = [
+  ['斑胸草雀', '白腰文鸟'], 
+  ['长尾草雀'],
+  ['虎皮鹦鹉'], 
+  ['鸡尾鹦鹉', '金丝雀'], 
+  ['七彩文鸟'], 
+  ['桃脸牡丹鹦鹉'], 
+  ['爪哇禾雀']];
 Page({
   data: {
     // 页面垂直滑动的距离
     currentClassKey: "one", //当前大分类
     scrollTop: undefined,
+
     nameDataDog,
     nameDataCat,
-    sideBarData,
+    nameDataRabbit,
+    nameDataRat,
+    nameDataBird,
+    sideBarDataDog,
+    sideBarDataCat,
+    sideBarDataRabbit,
+    sideBarDataRat,
+    sideBarDataBird,
+    // sideBarDataRabbit,
+    // sideBarDataRat,
+    // sideBarDataBird,
+
     currentTab: 'following', // 默认显示关注
     color1: 'red',
     color2: 'black',
     color3: 'black',
     hotPosts: [],
     searchinput: '',
+    isLoading: false, //加载中图标
     followPosts: [], //关注的帖子
     EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
@@ -128,8 +186,15 @@ Page({
   //下拉刷新
   onPullDownRefresh: function () {
     // 显示顶部刷新图标  
-    wx.showNavigationBarLoading();
     var that = this;
+    if(that.data.currentTab==="classification")
+    {
+      wx.stopPullDownRefresh();
+      return;
+    }
+    that.setData({
+      isLoading:true,
+    })
     if(that.data.currentTab==="hot")
     {
       wx.request({
@@ -144,13 +209,27 @@ Page({
             that.setData({
               hotPosts: res.data
             })
-        wx.hideLoading();
-        // 隐藏导航栏加载框  
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作  
-        wx.stopPullDownRefresh();
+            setTimeout(() => {
+              // 隐藏自定义加载中图标
+              that.setData({
+                isLoading: false,
+              });
+              // 停止下拉刷新
+              wx.stopPullDownRefresh();
+            }, 1000);
+        },
+        fail:function(res) {
+          setTimeout(() => {
+            // 隐藏自定义加载中图标
+            that.setData({
+              isLoading: false,
+            });
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
+          }, 1000);
         }
       })
+      
     }
     if(that.data.currentTab==="following")
     {
@@ -166,11 +245,24 @@ Page({
           that.setData({
             followPosts: res.data
           })
-        wx.hideLoading();
-        // 隐藏导航栏加载框  
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作  
-        wx.stopPullDownRefresh();
+          setTimeout(() => {
+            // 隐藏自定义加载中图标
+            that.setData({
+              isLoading: false,
+            });
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
+          }, 1000);
+        },
+        fail:function(res) {
+          setTimeout(() => {
+            // 隐藏自定义加载中图标
+            that.setData({
+              isLoading: false,
+            });
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
+          }, 1000);
         }
       })
     }
@@ -192,13 +284,10 @@ Page({
   },
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
-      // 使用微信小程序的wx.request发送HTTP请求
-      console.log('Dataset:', event.currentTarget.dataset)
       const articleid = event.currentTarget.dataset.articleid
       const liked = event.currentTarget.dataset.liked
       const like = event.currentTarget.dataset.like
       const index = event.currentTarget.dataset.index
-      console.log(liked)
       var that = this
       if (!event.currentTarget.dataset.liked) {
         wx.request({
@@ -290,11 +379,18 @@ Page({
   },
   //切换分类内的标签
   changeTabs: function (event) {
-    console.log(event)
-    const key = event.detail.activeKey;
-    this.setData({
-      currentClassKey: key,
-    })
+    // 滚动到顶部
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 0, // 滚动动画时长
+      success: () => {
+        // 滚动完成后设置currentClassKey
+        const key = event.detail.activeKey;
+        this.setData({
+          currentClassKey: key,
+        });
+      },
+    });
   },
   //切换关注、热门、分类
   switchTab: function (event) {
@@ -346,4 +442,13 @@ Page({
             url:"../edit/edit"
         })
   },
+  //分类详情
+  viewZone: function(e) {
+    const zone = e.currentTarget.dataset.zone
+    const subzone = e.currentTarget.dataset.subzone
+    var that = this
+    wx.navigateTo({
+      url:'/pages/zoneresult/zoneresult?zone='+zone+'&subzone='+subzone,
+    })
+  }
 });

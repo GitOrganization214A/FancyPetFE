@@ -62,7 +62,8 @@ Page({
     filePath: image,
     name: 'image',
     formData: {
-      PetSpaceID:app.globalData.petspaceid
+      PetSpaceID:app.globalData.petspaceid,
+      openid:app.globalData.openid
     },
     success (res){
       wx.navigateBack({

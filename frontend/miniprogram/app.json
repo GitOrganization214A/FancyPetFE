@@ -22,6 +22,7 @@
     "pages/correctInfo/correctInfo",
     "pages/account/account",
     "pages/searchresult/searchresult",
+    "pages/zoneresult/zoneresult",
     "pages/petdetailshow/petdetailshow",
     "pages/follow/follow",
     "pages/cost/cost",

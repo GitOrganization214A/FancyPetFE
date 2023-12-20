@@ -23,6 +23,16 @@
           <l-icon name="delete" type="delete" size="36" color="red" bindtap="deletePost"></l-icon>
         </view>
       </view>
+      <view wx:if="{{Post.pet!==null}}" class = "petspace">
+        <l-card type="avatar" l-class="card" l-img-class="cardavatar" l-title-class="cardtext" image="{{Post.pet.avatar}}" title="{{Post.pets.name}}"describe="{{Post.pet.breed}}">
+          <!-- 此处为content -->
+          <l-tag bg-color="#f3f3f3" font-color="#3963BC" shape="circle" slot="more" width="60" height="60">
+            <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{Post.pet.PetSpaceID}}">
+              <l-icon size="35" name="right" color="#3683d6" />
+            </l-button>
+          </l-tag>
+        </l-card>
+      </view>
       <view class = "title">
         <text>{{Post.title}}</text>
       </view>
@@ -31,9 +41,14 @@
       </view>
       
       <!-- 图片列表 -->
-      <view class="album">
+      <view wx:if="{{Post.images.length!==0}}" class="album">
         <!-- <l-album urls='{{Post.images}}' multiple-size="200" lazy-load="true"></l-album> -->
         <van-uploader file-list="{{Post.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
+      </view>
+
+      <!-- 标签 -->
+      <view wx:if="{{Post.subzone!==null}}" class="tags">
+        <l-tag size="large" plain="true" type="reading" sshape="circle" bindtap="searchtag" data-search="{{Post.subzone}}">{{Post.subzone}}</l-tag>
       </view>
 
       <!-- 点赞、评论、转发 -->

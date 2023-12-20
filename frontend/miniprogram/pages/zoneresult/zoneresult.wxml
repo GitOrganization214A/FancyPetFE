@@ -1,23 +1,20 @@
-<!--searchresult.wxml-->
+<!--zoneresult.wxml-->
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C"
-  title="搜索结果" title-color="#ffac63" 
+  title="分区" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
 
   <view>
       <!-- 以下部分放置页面内容 -->
       <view class="intro">
-        <text>以下为“{{searchInput}}”的搜索结果，共 {{hotPosts.num}} 条</text>
+        <l-tag size="large" plain="true" type="reading" sshape="circle">{{subzone}}</l-tag>
       </view>
       <view class="sort">
         <van-icon size="18" name="sort" color="#FF8C00" bindtap="changeSort" style="margin-right: 16rpx;"></van-icon>
         <text class ="commentsorttext" bindtap="changeSort">{{hotOrTime ? "按热度排序" : "按时间排序"}}</text>
       </view>
       <view>
-        <text></text>
-      </view>
-      <view>
-        <block wx:for="{{hotPosts.articles}}" wx:key="hotPosts" wx:for-index="postindex">
+        <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
         <view class="line"></view>
         <view class ="post">
           <view class ="userinfo">

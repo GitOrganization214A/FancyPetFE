@@ -1,76 +1,7 @@
 /* pages/shareuser/shareuser.wxss */
 /* 弹出窗 */
-.toast-box {
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-.toastbg {
-  opacity: 0.5;
-  background-color: black;
-  position: absolute;
-  width: 100%;
-  min-height: 100vh;
-}
- 
-.showToast {
-  position: absolute;
-  opacity: 1;
-  width: 80%;
-  margin-left: 10%;
-  margin-top: 70%;
-}
-.toast-main {
-  padding-top: 2vh;
-  padding-bottom: 2vh;
-  background-color: white;
-  text-align: center;
-  border-top-left-radius: 16rpx;
-  border-top-right-radius: 16rpx;
-}
- 
-.toast-input {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top:10%;
-  margin-bottom:10%;
-  background-color: rgb(240, 240, 240);
-  padding-left: 2vh;
-  padding-right: 2vh;
-  padding-top: 1vh;
-  padding-bottom: 1vh;
-}
-.toast-input input{
-  background-color: rgb(240, 240, 240);
-}
-.toast-button {
+.petlist {
   display: flex;
-  background-color: white;
-  height:50px;
-  width:100%;
-  border-radius: 0px;
-  border-bottom-left-radius: 16rpx;
-  border-bottom-right-radius: 16rpx;
-  border-top:1px solid rgb(211, 211, 211);
-}
- 
-.button1 {
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0px;
-  border-bottom-left-radius: 16rpx;
-}
- 
-.button2 {
-  width: 50%;
-  border-left:1px solid rgb(211, 211, 211);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color:#40A4D6;
+  flex-direction: column;
+  margin-top: 20rpx;
 }
