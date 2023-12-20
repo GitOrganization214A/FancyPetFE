@@ -13,16 +13,16 @@
       </view>
       <view class="line"></view>
       <view class='inputBreed'>
-        <textarea style="margin-left:20rpx; line-height:50rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
+        <textarea style="font-size: small; margin-left:20rpx; line-height:40rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
       </view>
       <view class="line"></view>
       <view class='inputTitle'>
-          <textarea style="height:80rpx;margin-left:20rpx; line-height:40rpx; font-weight: 700; font-size: large;" placeholder='请输入标题（5-30个字）' minlength="5" auto-height="true" maxlength="30" bindinput='inputTitle'></textarea>
+          <textarea style="height:80rpx;margin-left:20rpx; line-height:40rpx; font-weight: 700; font-size: medium;" placeholder='请输入标题（5-30个字）' minlength="5" auto-height="true" maxlength="30" bindinput='inputTitle'></textarea>
           <text style="margin-right: 40rpx;">{{currentTitleNumber}}/{{maxTitleLen}}</text>
       </view>
       <view class="line"></view>
       <view class='inputText'>
-          <textarea style="margin-left:20rpx; margin-right:20rpx; width:100%" placeholder='请输入帖子内容' minlength="0" maxlength="1024" bindinput='inputText'></textarea>
+          <textarea style="font-size:small; margin-left:20rpx; margin-right:20rpx; width:100%" placeholder='请输入帖子内容' minlength="0" maxlength="1024" bindinput='inputText'></textarea>
       </view>
       <view style="display: flex; justify-content: flex-end; margin-right:40rpx; line-height:40rpx;"><text>{{currentTextNumber}}/{{maxTextLen}}</text></view>
       <view class="line"></view>

@@ -9,6 +9,10 @@
     "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-tabs": "/miniprogram_npm/lin-ui/tabs/index",
+    "l-card": "/miniprogram_npm/lin-ui/card/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "l-tabpanel": "/miniprogram_npm/lin-ui/tabpanel/index",
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
     "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index"
   }

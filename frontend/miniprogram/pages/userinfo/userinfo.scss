@@ -4,7 +4,9 @@
   display: flex;
   flex-direction: column;
   margin-left: 50rpx;
+  margin-right: 50rpx;
   margin-top: 5rpx;
+  flex:1;
 }
 
 .userinfotext2 {
@@ -22,20 +24,19 @@
   font-size: smaller;
 }
 
-.num {
-  margin-right: 50rpx;
-}
-
 .nums {
   margin-top: 13rpx;
   display: flex;
   flex-direction: row;
+  margin-right: 20rpx;
+  justify-content: space-between;
 }
 
 .info {
   display: flex;
   flex-direction: row;
   margin-left: 60rpx;
+  margin-right: 60rpx;
   margin-top:60rpx;
 }
 
@@ -62,6 +63,10 @@
   font-weight: 900;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
+}
+
+.posts_space {
+  margin-top: 30rpx;
 }
 
 .content {
@@ -94,15 +99,15 @@
 }
 
 .time_read_text {
-  font-size: smaller;
+  font-size: 20rpx;
   font-weight: 300;
 }
 
 .line {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 40rpx;
-  margin-top: 30rpx;
+  margin-bottom: 20rpx;
+  margin-top: 20rpx;
   margin-right: 60rpx;
 }
 
@@ -113,9 +118,24 @@
 }
 
 .line2 {
-  height: 1px;
-  border-top: solid Silver 1px;
   margin-bottom: 50rpx;
+}
+
+
+.petspace {
   margin-top: 40rpx;
-  margin-right: 60rpx;
+}
+
+.card {
+  height:140rpx;
+  font-size: larger;
+  font-weight: 500;
+  border: #f0f0f0 solid 1px;
+}
+
+.nospace {
+  display: flex;
+  margin-top: 60rpx;
+  flex-direction: row;
+  justify-content: center;
 }

@@ -184,4 +184,14 @@ Page({
       url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
     })
   },
+  changeTabs() {
+  },
+  //宠物空间
+  showdetails:function(event){
+    const petspaceid = event.currentTarget.dataset.petspaceid
+    app.globalData.petspaceid=petspaceid
+    wx.navigateTo({
+      url:'/pages/petdetailshow/petdetailshow?petspaceid='+petspaceid,
+    })
+  },
 });

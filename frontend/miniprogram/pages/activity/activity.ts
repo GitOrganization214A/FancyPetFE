@@ -23,6 +23,7 @@ Page({
     commentTarget: '',
     options:[],
     areaList,
+    title:"",
     currentadoptNumber: 0,
     currentwxNumber: 0,
     currentcommentNumber: 0,
@@ -60,14 +61,16 @@ Page({
         actlove:false,
         actparty:false,
         actcloud:false,
-        pageindex:0
+        pageindex:0,
+        title:"活动"
     })
   },
   actadopt(){
       this.setData({
           actmain:false,
           actadopt:true,
-          pageindex:1
+          pageindex:1,
+          title:"宠物领养"
       })
       var that = this
       wx.request({
@@ -101,18 +104,18 @@ Page({
             actlove:false,
             actparty:false,
             actcloud:false,
-            pageindex:0
+            pageindex:0,
+            title:"活动"
           })
-          
       }
       console.log(this.data)
-
   },
   actparty(){
     this.setData({
         actmain:false,
         actparty:true,
-        pageindex:2
+        pageindex:2,
+        title:"宠物聚会"
     })
     var that = this
     
@@ -137,12 +140,12 @@ Page({
         }
       })
   },
-
   actlove(){
     this.setData({
         actmain:false,
         actlove:true,
-        pageindex:3
+        pageindex:3,
+        title:"宠物配种"
     })
     var that = this
     wx.request({
@@ -170,7 +173,8 @@ Page({
     this.setData({
         actmain:false,
         actcloud:true,
-        pageindex:4
+        pageindex:4,
+        title:"云养宠"
     })
     var that = this
     wx.request({
@@ -645,13 +649,6 @@ Page({
       });
     }     
   },
-//   videocomment(e){
-//     console.log(e)
-//     this.setData({
-//         showcomment:true,
-//         commentTarget:e.currentTarget.dataset.atcid,
-//     })
-//   },
   inputcomment:function(e){
     var value = e.detail.value;
     var len = parseInt(value.length)

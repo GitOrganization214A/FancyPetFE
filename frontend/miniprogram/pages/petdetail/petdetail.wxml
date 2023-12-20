@@ -1,6 +1,6 @@
 <l-capsule-bar
-  capsule-color="white" bg-color="#60656C"title-color="#ffac63" title="宠物详情"
-  home-page='/pages/navigator/index/index'>
+  capsule-color="white" bg-color="#60656C" title="宠物详情" title-color="#ffac63"
+  home-page='/pages/forum/forum'>
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
     <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>

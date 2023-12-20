@@ -8,7 +8,7 @@
   bind:linlefttap="switchpage"> -->
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C"
-  title="活动" title-color="#ffac63"
+  title="{{title}}" title-color="#ffac63"
   home-page='/pages/forum/forum'
   bind:linlefttap="switchpage">
 	<view>
@@ -40,7 +40,6 @@
         </view>
 
         <view wx:if="{{actadopt}}">
-            <view style="position: relative;top: 20rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">领养宠物</view>
                 <!-- <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" title="选择城市" style="top: 70rpx;position: relative;"/> -->
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 40rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false" >
@@ -72,7 +71,6 @@
         </view>
 
         <view wx:if="{{actparty}}">
-            <view style="position: relative;top: 20rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">宠物聚会</view>
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 40rpx;position: relative;">
                     <van-card desc="{{item.time}}@{{item.address}}" title="{{item.title}}" thumb="{{item.img}}"  centered="false" >
                         <view slot="footer">
@@ -104,7 +102,6 @@
         </view>
 
         <view wx:if="{{actlove}}">
-            <view style="position: relative;top: 20rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">宠物配种</view>
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 40rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}"  centered="false" >
                         <view slot="footer">
@@ -123,8 +120,6 @@
         </view>
 
         <view wx:if="{{actcloud}}">
-            <view style="position: relative;top: 20rpx;text-align: center;color:coral;font-size: 40rpx;font-family:雅黑;">云养宠</view>
-            
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 850rpx;  height: 1250rpx;">
                 <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="*this" >
                     <swiper-item>
@@ -183,7 +178,7 @@
                                         </view>
                                         <view class ="userinfotext">
                                         <view class="nickname" data-userid="{{item.UserID}}" bindtap="viewUserInfo" style="left: 100rpx;top: -100rpx;position: relative;"><text class="nicknametext">{{item.nickname}}</text></view>
-                                        <view style="left: 100rpx;top: -90rpx;position: relative;font-size:small;"><text class="posttime">{{item.time}}</text></view>
+                                        <view style="left: 100rpx;top: -60rpx;position: relative;font-size:small;"><text class="posttime">{{item.time}}</text></view>
                                         </view>
                                     </view>
                                     <view >

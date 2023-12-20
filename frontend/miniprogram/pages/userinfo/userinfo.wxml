@@ -11,7 +11,7 @@
             <view>            
               <text class="nickname">{{userInfo.nickname}}</text>
             </view>
-            <view wx:if="{{!userInfo.self}}" style="margin-right: -20rpx;">
+            <view wx:if="{{!userInfo.self}}" >
               <l-button bg-color="#f2f0fe" height="55" width="120" shape="semicircle" bindtap="followUser">
                 <text wx:if="{{!userInfo.followed}}" style="color:#7968bd">+关注</text>
                 <text wx:if="{{userInfo.followed}}" style="color:#7968bd">已关注</text>
@@ -25,52 +25,78 @@
           </view>
         </view>
       </view>
-      <!-- 发帖记录 -->
-      <view class="posts">
-        <text>发帖记录</text>
-          <block wx:for="{{userInfo.articles}}" wx:key="articles" wx:for-index="postindex">
-            <view class="line"></view>
-            <view class ="post">
-              <view class ="userinfo">
-                <view>
-                  <l-avatar class="avatar" size='80' shape="square" src ='{{userInfo.avatar}}'></l-avatar>
-                </view>
-                <view class ="userinfotext2">
-                  <view><text>{{userInfo.nickname}}</text></view>
-                  <view class="time_read">
-                    <view><text class="time_read_text">{{item.time}}</text></view>
-                    <view><text class="time_read_text">阅读量：{{item.read}}</text></view>
+      <view class="posts_space">
+        <l-tabs bind:linchange="changeTabs" active-color="#FF8C00" >
+          <!-- 发帖记录 -->
+          <l-tabpanel tab="发帖记录" key="one" slot="one">
+            <view class="posts">
+              <block wx:for="{{userInfo.articles}}" wx:key="articles" wx:for-index="postindex">
+                <view class ="post">
+                  <view class ="userinfo">
+                    <view>
+                      <l-avatar class="avatar" size='60' shape="square" src ='{{userInfo.avatar}}'></l-avatar>
+                    </view>
+                    <view class ="userinfotext2">
+                      <view style="margin-bottom:-10rpx;"><text style="font-size: 28rpx;">{{userInfo.nickname}}</text></view>
+                      <view class="time_read">
+                        <view><text class="time_read_text">{{item.time}}</text></view>
+                        <view><text class="time_read_text">阅读量：{{item.read}}</text></view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+                    <text>{{item.title}}</text>
+                  </view>
+                  <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+                    <text class="content_text">{{item.content}}</text>
+                  </view>
+                  
+                  <!-- 图片列表 -->
+                  <view wx:if="{{item.images.length!==0}}" class="album">
+                    <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
+                    <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
+                  </view>
+
+                  <!-- 点赞、评论、转发 -->
+                  <view class="actions">
+                    <l-icon name="like" type="like" size="28" color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{item.liked}}" data-like="{{item.like}}" data-articleid="{{item.ArticleID}}"></l-icon>
+                    <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
+                    <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
+                    <text class="actions_text">{{item.comment}}</text>
+                    <l-button special="{{true}}" open-type="share">
+                        <!-- 此处是插槽自定义内容 -->
+                      <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
+                    </l-button>
+                    <text class="actions_text">{{item.share}}</text>
                   </view>
                 </view>
-              </view>
-              <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
-                <text>{{item.title}}</text>
-              </view>
-              <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
-                <text class="content_text">{{item.content}}</text>
-              </view>
-              
-              <!-- 图片列表 -->
-              <view wx:if="{{item.images.length!==0}}" class="album">
-                <!-- <l-album urls='{{item.images}}' multiple-size="200" lazy-load="true"></l-album> -->
-                <van-uploader file-list="{{item.images}}" max-count="9" deletable="{{false}}" image-fit="aspectFill" show-upload="{{false}}" accept="media" multiple="{{true}}" preview-size="200rpx" />
-              </view>
-
-              <!-- 点赞、评论、转发 -->
-              <view class="actions">
-                <l-icon name="like" type="like" size="28" color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likePost" data-index="{{postindex}}" data-liked="{{item.liked}}" data-like="{{item.like}}" data-articleid="{{item.ArticleID}}"></l-icon>
-                <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
-                <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
-                <text class="actions_text">{{item.comment}}</text>
-                <l-button special="{{true}}" open-type="share">
-                    <!-- 此处是插槽自定义内容 -->
-                  <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
-                </l-button>
-                <text class="actions_text">{{item.share}}</text>
-              </view>
+                <view class="line"></view>
+              </block>
+              <view class="line2"></view>
             </view>
-          </block>
-        <view class="line2"></view>
+          </l-tabpanel>
+          <!-- 宠物空间 -->
+          <l-tabpanel tab="宠物空间" key="two" slot="two">
+            <view wx:if="{{userInfo.pets.length>0}}">
+              <block wx:for="{{userInfo.pets}}" wx:key="pet" wx:for-index="petindex">
+                <view class ="petspace">
+                  <l-card type="avatar" l-class="card" l-img-class="cardavatar" l-title-class="cardtext" image="{{item.avatar}}" title="{{item.name}}"describe="{{item.breed}}">
+                    <!-- 此处为content -->
+                    <l-tag bg-color="#f3f3f3" font-color="#3963BC" shape="circle" slot="more" width="60" height="60">
+                      <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{item.PetSpaceID}}">
+                        <l-icon size="35" name="right" color="#ffac63" />
+                      </l-button>
+                    </l-tag>
+                  </l-card>
+                </view>
+              </block>
+            </view>
+            <view class="nospace" wx:if="{{userInfo.pets.length==0}}">
+              <text style="color: #c0c0c0;">暂无公开宠物空间</text>
+            </view>
+          </l-tabpanel>
+        </l-tabs>
       </view>
+
 </l-capsule-bar>
   
