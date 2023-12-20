@@ -138,6 +138,7 @@ Page({
                         logging:false,
                     })
                     app.globalData.openid=res.data.openid
+                    app.globalData.userid=res.data.UserID
                     
                     that.data.userInfo.nickName=res.data.nickname
                     that.data.userInfo.avatarUrl=res.data.avatar+"?v="+new Date().getTime()
