@@ -1,0 +1,8 @@
+{
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "l-card": "/miniprogram_npm/lin-ui/card/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "fui-card": "/miniprogram_npm/firstui/fui-card/fui-card"
+  }
+}

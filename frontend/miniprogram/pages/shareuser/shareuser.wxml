@@ -1,0 +1,12 @@
+<!--pages/shareuser/shareuser.wxml-->
+<l-capsule-bar home-page="/pages/petspace/petspace" title="共享用户列表">
+<view class="by">
+<view style="top:200rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
+bindtap="addtoShare">添加</view>
+</view>
+<view style="top:400rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{ShareUserList}}" wx:key="*this">
+  <l-card type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.nickname}}"describe="{{item.UserID}}">
+        <!-- 此处为content -->
+  </l-card>
+  </view>
+</l-capsule-bar>

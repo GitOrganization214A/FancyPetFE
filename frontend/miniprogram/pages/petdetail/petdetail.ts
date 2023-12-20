@@ -45,6 +45,11 @@ Page({
       url:'/pages/record/record'
     })
   },
+  gotouser:function(e){
+    wx.navigateTo({
+      url:'/pages/shareuser/shareuser'
+    })
+  },
   takephoto:function(e){
     wx.navigateTo({
       url:'/pages/photo/photo'
@@ -118,7 +123,8 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:this.data.petspaceid
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid
       },
       success:function(res) {
           that.setData({
