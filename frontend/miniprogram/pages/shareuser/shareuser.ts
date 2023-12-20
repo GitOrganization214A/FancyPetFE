@@ -6,13 +6,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
+    show: false,
+    options:[],
+    cascaderValue: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  onFinish(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确定将该宠物主人换为此人吗？',
+      success: function (res) {
+       if (res.confirm) {
+        const { selectedOptions, value } = e.detail;
+        const fieldValue = selectedOptions
+            .map((option) => option.text || option.name)
+            .join('/');
+        console.log('点击确定了');
+        wx.request({
+          url: 'http://43.143.139.4:8000/api/v1/changeOwner/',
+          method:"GET",
+          header: {'content-type': 'application/json' //
+          },
+          data:{
+            openid:app.globalData.openid,
+            PetSpaceID:app.globalData.petspaceid,
+            UserID:value
+          },
+          success:function(res) {
+            console.log("成功")
+          }
+        })
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
+      }
+   
+     })
   },
   addtoShare(){
     var that=this
@@ -43,6 +84,12 @@ Page({
       }
     })
   },
+  changeowner(){
+    var that = this
+    this.setData({
+      show: true,
+    });
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -69,6 +116,17 @@ Page({
         console.log("aaaaaa")
           that.setData({
             ShareUserList: res.data
+          })
+          var op = []
+          for (let user of res.data)
+          {
+              op.push({
+                  text:user.nickname,
+                  value:user.UserID
+              })
+          }
+          that.setData({
+              options:op,
           })
       }
     })
