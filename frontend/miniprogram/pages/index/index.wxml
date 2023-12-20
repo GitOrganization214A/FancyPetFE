@@ -7,7 +7,7 @@
   <view>
     <view class="userinfo">
       <view class="avatar">
-        <l-avatar class="avatarimg" size='160' shape="square" src ="{{logging?'/miniprogram/resource/defaultAvatar.jpg':avatarUrl}}"></l-avatar>
+        <image wx:if="{{defaultUrl.length>0}}" class="avatarimg" mode="aspectFit" src ="{{logging?defaultUrl:avatarUrl}}"></image>
         <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" class="avatartext">设置头像</button>  
       </view> 
       <view class="nameandnum">  

@@ -232,6 +232,50 @@
             <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
           </view>
         </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='six'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataFish}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataFish.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataFish[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="鸟" data-subzone="{{nameDataFish[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataFish[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
+        <view class="subdivision" wx:if="{{currentClassKey==='seven'}}">
+          <l-index-list
+            scroll-top="{{scrollTop}}"
+            l-selected-class="l-selected-class"
+            l-tip-class="l-tip-class"
+            sidebar-data="{{sideBarDataTortoise}}"
+            l-sidebar-class="sidebar-class"
+            l-tip-text-class="l-tip-text-class">
+            <block wx:for="{{sideBarDataTortoise.length}}" wx:key="index" wx:for-index="anchorIndex">
+              <l-index-anchor/>
+              <block wx:for="{{nameDataTortoise[anchorIndex].length}}" wx:key="index" wx:for-index="itemIndex">
+                <view class="index-item" bindtap="viewZone" data-zone="龟" data-subzone="{{nameDataTortoise[anchorIndex][itemIndex]}}">
+                  <view class="index-name">{{nameDataTortoise[anchorIndex][itemIndex]}}</view>
+                </view>
+              </block>
+            </block>
+          </l-index-list>
+          <view class="tip" >
+            <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示">
+            <view style="margin-top:10rpx;">如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+          </view>
+        </view>
       </view>
     </view>
   

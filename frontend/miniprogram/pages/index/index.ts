@@ -30,6 +30,7 @@ Page({
     loginbuttonUrl:"../../resource/loginbutton.png",
     navigationUrl:"../../resource/navigationbar.png",
     messageUrl:"../../resource/nomessage.png",
+    defaultUrl:"../../resource/defaultAvatar.jpg",
     logging:true
   },
   // 事件处理函数
