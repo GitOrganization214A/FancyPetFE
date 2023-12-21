@@ -16,7 +16,7 @@ bindtap="changeowner">换主</view>
             <van-cascader
                 wx:if="{{ show }}"
                 value="{{ cascaderValue }}"
-                title="请选择宠物空间"
+                title="请选择新主人"
                 options="{{ options }}"
                 bind:close="onClose"
                 bind:finish="onFinish"
