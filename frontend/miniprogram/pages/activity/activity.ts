@@ -227,8 +227,9 @@ Page({
     }
     console.log(aid)
     console.log(pid)
+    app.globalData.petspaceid=pid
     wx.navigateTo({
-        url:"../petdetailshow/petdetailshow?petspaceid="+pid
+        url:"../petdetail/petdetail?petspaceid="+pid
     })
   },
   surfParty(e){
