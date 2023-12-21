@@ -163,6 +163,7 @@ Page({
     currentClassKey: "eight", //当前大分类
     scrollTop: undefined,
 
+    //下面是分区的索引栏和内容数据
     nameDataDog,
     nameDataCat,
     nameDataRabbit,
@@ -186,13 +187,22 @@ Page({
     color3: 'black',
     hotPosts: [],
     searchinput: '',
+
+    pageHot:1,//用于分页推送热门帖子
+    pageFollow:1,//用于分页推送关注帖子
+    pageSize:10,
+    hasMoreDataHot:true,
+    hasMoreDataFollow:true,
+
     isLoading: false, //加载中图标
     followPosts: [], //关注的帖子
     EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
-  onShareAppMessage:function(){
+  onShareAppMessage:function(event){
+    console.log(event)
+    const articleid=event.currentTarget.dataset.articleid
     wx.showShareMenu({
       withShareTicket:true,
       menu:['shareAppMessage','shareTimeline']
@@ -222,9 +232,28 @@ Page({
       searchinput: input
     })
   },
+  //清除搜索框
   clearSearchInput: function(event) {
     this.setData({
       searchinput: ''
+    })
+  },
+  //向后端发送请求获取分区帖子
+  getFollowArticles: function (event) {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+      },
+      success:function(res) {
+          that.setData({
+            followPosts: res.data
+          })
+      }
     })
   },
   //搜索
@@ -330,6 +359,18 @@ Page({
       })
     }
   },
+  //上拉加载
+  onReachBottom: function () {
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多帖子')
+    } 
+    else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+  },
+  //查看帖子详情
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
     const index = event.currentTarget.dataset.index
@@ -345,6 +386,7 @@ Page({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
   },
+  //点赞帖子，内外同步
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
       const articleid = event.currentTarget.dataset.articleid
@@ -500,6 +542,7 @@ Page({
       })
     }
   },
+  //进入发帖页面
   EditAtc:function(e){
         wx.navigateTo({
             url:"../edit/edit"
@@ -513,5 +556,6 @@ Page({
     wx.navigateTo({
       url:'/pages/zoneresult/zoneresult?zone='+zone+'&subzone='+subzone,
     })
-  }
+  },
+  
 });
