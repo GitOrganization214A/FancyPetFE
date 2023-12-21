@@ -6,6 +6,7 @@
       "van-field": "/miniprogram_npm/@vant/weapp/field/index",
       "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
       "l-album": "/miniprogram_npm/lin-ui/album/index",
-      "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+      "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+      "l-button": "/miniprogram_npm/lin-ui/button/index"
     }
 }
