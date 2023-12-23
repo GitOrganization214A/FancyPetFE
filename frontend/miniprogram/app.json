@@ -1,69 +1,70 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/userinfo/userinfo",
-    "pages/activity/activity",
-    "pages/petspace/petspace",
-    "pages/editAdopt/editAdopt",
-    "pages/editParty/editParty",
-    "pages/editLove/editLove",
-    "pages/editsendLove/editsendLove",
-    "pages/forum/forum",
-    "pages/logs/logs",
-    "pages/edit/edit",
-    "pages/detail/detail",
-    "pages/list/list",
-    "pages/addpet/addpet",
-    "pages/petdetail/petdetail",
-    "pages/photo/photo",
-    "pages/record/record",
-    "pages/addrecord/addrecord",
-    "pages/message/message",
-    "pages/correctInfo/correctInfo",
-    "pages/account/account",
-    "pages/searchresult/searchresult",
-    "pages/zoneresult/zoneresult",
-    "pages/petdetailshow/petdetailshow",
-    "pages/follow/follow",
-    "pages/cost/cost",
-    "pages/addcost/addcost",
-    "pages/shareuser/shareuser"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff"
-  },
-  "tabBar": {
-    "selectedColor": "#33a3dc",
-    "list": [
-      {
-        "pagePath": "pages/forum/forum",
-        "text": "社区",
-        "iconPath": "resource/forumiconus.png",
-        "selectedIconPath": "resource/forumicons.png"
-      },
-      {
-        "pagePath": "pages/activity/activity",
-        "text": "活动",
-        "iconPath": "resource/activityicon.png",
-        "selectedIconPath": "resource/activityicons.png"
-      },
-      {
-        "pagePath": "pages/petspace/petspace",
-        "text": "宠物空间",
-        "iconPath": "resource/petspaceiconus.png",
-        "selectedIconPath": "resource/petspaceicons.png"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "个人主页",
-        "iconPath": "resource/indexiconus.png",
-        "selectedIconPath": "resource/indexicons.png"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json",
-  "useExtendedLib": {
-    "weui": true
-  }
+    "pages": [
+        "pages/index/index",
+        "pages/userinfo/userinfo",
+        "pages/activity/activity",
+        "pages/petspace/petspace",
+        "pages/editAdopt/editAdopt",
+        "pages/editParty/editParty",
+        "pages/editLove/editLove",
+        "pages/editsendLove/editsendLove",
+        "pages/forum/forum",
+        "pages/logs/logs",
+        "pages/edit/edit",
+        "pages/detail/detail",
+        "pages/list/list",
+        "pages/addpet/addpet",
+        "pages/petdetail/petdetail",
+        "pages/photo/photo",
+        "pages/record/record",
+        "pages/addrecord/addrecord",
+        "pages/message/message",
+        "pages/correctInfo/correctInfo",
+        "pages/account/account",
+        "pages/searchresult/searchresult",
+        "pages/zoneresult/zoneresult",
+        "pages/petdetailshow/petdetailshow",
+        "pages/follow/follow",
+        "pages/cost/cost",
+        "pages/addcost/addcost",
+        "pages/shareuser/shareuser"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff"
+    },
+    "tabBar": {
+        "selectedColor": "#33a3dc",
+        "list": [
+            {
+                "pagePath": "pages/forum/forum",
+                "text": "社区",
+                "iconPath": "resource/forumiconus.png",
+                "selectedIconPath": "resource/forumicons.png"
+            },
+            {
+                "pagePath": "pages/activity/activity",
+                "text": "活动",
+                "iconPath": "resource/activityicon.png",
+                "selectedIconPath": "resource/activityicons.png"
+            },
+            {
+                "pagePath": "pages/petspace/petspace",
+                "text": "宠物空间",
+                "iconPath": "resource/petspaceiconus.png",
+                "selectedIconPath": "resource/petspaceicons.png"
+            },
+            {
+                "pagePath": "pages/index/index",
+                "text": "个人主页",
+                "iconPath": "resource/indexiconus.png",
+                "selectedIconPath": "resource/indexicons.png"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "useExtendedLib": {
+        "weui": true
+    },
+    "lazyCodeLoading": "requiredComponents"
 }

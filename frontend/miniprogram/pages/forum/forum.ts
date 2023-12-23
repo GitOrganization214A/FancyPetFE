@@ -145,7 +145,7 @@ const nameDataTortoise = [
   ['西部锦龟', '西氏长颈龟'], 
   ['云南闭壳龟', '圆澳龟', '眼斑龟', '亚达伯拉象龟', '印度星龟'], 
   ['真鳄龟', '中华花龟', '猪鼻龟', '窄桥麝香龟', '钻纹龟']
-]
+];
 const nameDataOther = [
   ['宠物博物馆', '宠物健康知识', '宠物时尚', '宠物美容'], 
   ['好物种草', '活动推荐'], 
@@ -163,6 +163,7 @@ Page({
     currentClassKey: "eight", //当前大分类
     scrollTop: undefined,
 
+    //下面是分区的索引栏和内容数据
     nameDataDog,
     nameDataCat,
     nameDataRabbit,
@@ -186,26 +187,34 @@ Page({
     color3: 'black',
     hotPosts: [],
     searchinput: '',
+
+    pageHot:1,//用于分页推送热门帖子
+    pageFollow:1,//用于分页推送关注帖子
+    pageSize:10,
+    hasMoreDataHot:true,
+    hasMoreDataFollow:true,
+
     isLoading: false, //加载中图标
     followPosts: [], //关注的帖子
     EditAtcUrl:"../../resource/EditButton.jpg",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
-  onShareAppMessage:function(){
+  onShareAppMessage:function(event){
+    const articleid=event.currentTarget.dataset.articleid
     wx.showShareMenu({
       withShareTicket:true,
       menu:['shareAppMessage','shareTimeline']
     })
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/shareArticle/',
-      method: 'GET',
-      data: {
-        ArticleID: articleid, 
-      },
-      success: (res) => {
-      }
-    })
+    // wx.request({
+    //   url: 'http://43.143.139.4:8000/api/v1/shareArticle/',
+    //   method: 'GET',
+    //   data: {
+    //     ArticleID: articleid, 
+    //   },
+    //   success: (res) => {
+    //   }
+    // })
   },
   onShareTimeline(){
   },
@@ -222,11 +231,66 @@ Page({
       searchinput: input
     })
   },
+  //清除搜索框
   clearSearchInput: function(event) {
     this.setData({
       searchinput: ''
     })
   },
+  //向后端发送请求获取关注帖子
+  getFollowArticles: function () {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/followArticles/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        page:that.data.pageFollow
+      },
+      success:function(res) {
+        if(res.data.length<10)
+        {
+          that.setData({
+            hasMoreDataFollow:false,
+          })
+        }
+        that.setData({
+          followPosts:that.data.followPosts.concat(res.data),
+          pageFollow: that.data.pageFollow + 1
+        })
+      }
+    })
+  },
+
+  //向后端发送请求获取热门帖子
+  getHotArticles: function () {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        page:that.data.pageHot
+      },
+      success:function(res) {
+        that.setData({
+          hotPosts:that.data.hotPosts.concat(res.data),
+          pageHot: that.data.pageHot + 1
+        })
+        if(res.data.length<10)
+        {
+          that.setData({
+            hasMoreDataHot:false,
+          })
+        }
+      }
+    })
+  },
+
   //搜索
   search: function(event) {
     var that = this
@@ -257,8 +321,15 @@ Page({
     }
     that.setData({
       isLoading:true,
-    })
-    if(that.data.currentTab==="hot")
+      pageFollow:1,
+      pageHot:1,
+      hasMoreDataFollow:true,
+      hasMoreDataHot:true,
+      hotPosts:[],
+      followPosts:[],
+    }, function () {
+      // setData 生效后执行的操作
+      if(that.data.currentTab==="hot")
     {
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
@@ -267,10 +338,12 @@ Page({
         },
         data:{
           openid:app.globalData.openid,
+          page:that.data.pageHot,
         },
         success:function(res) {
             that.setData({
-              hotPosts: res.data
+              hotPosts: res.data,
+              pageHot:that.data.pageHot+1
             })
             setTimeout(() => {
               // 隐藏自定义加载中图标
@@ -303,10 +376,12 @@ Page({
         },
         data:{
           openid:app.globalData.openid,
+          page:that.data.pageFollow
         },
         success:function(res) {
           that.setData({
-            followPosts: res.data
+            followPosts: res.data,
+            pageFollow: that.data.pageFollow
           })
           setTimeout(() => {
             // 隐藏自定义加载中图标
@@ -329,7 +404,26 @@ Page({
         }
       })
     }
+    });
   },
+  //上拉加载
+  onReachBottom: function () {
+    var that =this
+    if (that.data.hasMoreDataHot && that.data.currentTab=="hot") {
+      that.getHotArticles();
+    }
+    else if(that.data.hasMoreDataFollow && that.data.currentTab=="following")
+    {
+      that.getFollowArticles();
+    }
+    else {
+      wx.showToast({
+        title: '没有更多数据',
+        duration: 1000
+      })
+    }
+  },
+  //查看帖子详情
   postDetail(event) {
     const articleid = event.currentTarget.dataset.articleid
     const index = event.currentTarget.dataset.index
@@ -345,6 +439,7 @@ Page({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
   },
+  //点赞帖子，内外同步
   likePost(event) {
       // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
       const articleid = event.currentTarget.dataset.articleid
@@ -425,20 +520,7 @@ Page({
   },
   onLoad: function (event) {
     var that = this
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/followArticles/',
-      method:"GET",
-      header: {'content-type': 'application/json' //
-      },
-      data:{
-        openid:app.globalData.openid,
-      },
-      success:function(res) {
-          that.setData({
-            followPosts: res.data
-          })
-      }
-    })
+    that.getFollowArticles()
   },
   //切换分类内的标签
   changeTabs: function (event) {
@@ -467,39 +549,28 @@ Page({
     });
     if(tab == "hot") {
       var that = this
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-        },
-        success:function(res) {
-            that.setData({
-              hotPosts: res.data
-            })
-        }
-      })
+      that.setData({
+        hasMoreDataHot:true,
+        pageHot:1,
+        hotPosts:[],
+      }, function () {
+        // setData 生效后执行的操作
+        that.getHotArticles();
+      });
     }
     if(tab == "following") {
       var that = this
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/followArticles/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-        },
-        success:function(res) {
-            that.setData({
-              followPosts: res.data
-            })
-        }
-      })
+      that.setData({
+        hasMoreDataFollow:true,
+        pageFollow:1,
+        followPosts:[],
+      }, function () {
+        // setData 生效后执行的操作
+        that.getFollowArticles();
+      });
     }
   },
+  //进入发帖页面
   EditAtc:function(e){
         wx.navigateTo({
             url:"../edit/edit"
@@ -513,5 +584,6 @@ Page({
     wx.navigateTo({
       url:'/pages/zoneresult/zoneresult?zone='+zone+'&subzone='+subzone,
     })
-  }
+  },
+  
 });

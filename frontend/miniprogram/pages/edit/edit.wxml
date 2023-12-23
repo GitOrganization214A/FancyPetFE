@@ -18,27 +18,27 @@
       <view class="line"></view>
       <view class='inputTitle'>
           <textarea style="height:80rpx;margin-left:20rpx; line-height:40rpx; font-weight: 700; font-size: medium;" placeholder='请输入标题（5-30个字）' minlength="5" auto-height="true" maxlength="30" bindinput='inputTitle'></textarea>
-          <text style="margin-right: 40rpx;">{{currentTitleNumber}}/{{maxTitleLen}}</text>
+          <text style="margin-right: 40rpx; font-size:26rpx">{{currentTitleNumber}}/{{maxTitleLen}}</text>
       </view>
       <view class="line"></view>
       <view class='inputText'>
           <textarea style="font-size:small; margin-left:20rpx; margin-right:20rpx; width:100%" placeholder='请输入帖子内容' minlength="0" maxlength="1024" bindinput='inputText'></textarea>
       </view>
-      <view style="display: flex; justify-content: flex-end; margin-right:40rpx; line-height:40rpx;"><text>{{currentTextNumber}}/{{maxTextLen}}</text></view>
+      <view style="display: flex; justify-content: flex-end; margin-right:40rpx; line-height:40rpx;"><text style="font-weight: 300; font-size: 26rpx;">{{currentTextNumber}}/{{maxTextLen}}</text></view>
       <view class="line"></view>
       <view class='inputImage'>
           <!-- <l-album urls='{{images}}' multiple-size="230" lazy-load="true"></l-album> -->
           <van-uploader file-list="{{ images }}" bind:after-read="chooseImage" max-count="9" accept="media" multiple="{{true}}" image-fit="aspectFill" preview-size="210rpx" bind:delete="delimage" />
       </view>
-      <view wx:if="{{breedfocus&&(breedcontent.length>0)}}" style="top: 410rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
-          <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
+      <view wx:if="{{breedfocus&&(breedcontent.length>0)}}" style="top: 410rpx;position:fixed;left: 30rpx;height: auto;width:700rpx;display: flex;flex-direction: column;">
+          <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: -60rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
               {{item}}
           </view>
       </view>
     </view>   
   </view>
 
-    <view style="position: fixed;top: 600rpx;">
+  <view style="position: fixed;top: 600rpx;">
             <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
             <van-cascader
                 wx:if="{{ show }}"
@@ -50,5 +50,5 @@
             />
             </van-popup>
 
-    </view>
+  </view>
 </l-capsule-bar>

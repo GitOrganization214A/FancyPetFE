@@ -60,7 +60,7 @@
             <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
             <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
             <text class="actions_text">{{item.comment}}</text>
-            <l-button special="{{true}}" open-type="share">
+            <l-button special="{{true}}" open-type="share" data-articleid="{{item.ArticleID}}">
                 <!-- 此处是插槽自定义内容 -->
               <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
             </l-button>
@@ -97,7 +97,7 @@
             <text class="actions_text" style="color: {{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text>
             <l-icon name="comment" type="comment" size="28" color="#515151" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}"></l-icon>
             <text class="actions_text">{{item.comment}}</text>
-            <l-button special="{{true}}" open-type="share">
+            <l-button special="{{true}}" open-type="share" data-articleid="{{item.ArticleID}}">
                 <!-- 此处是插槽自定义内容 -->
               <l-icon name="share" type="share" size="28" color="#515151"></l-icon>
             </l-button>
