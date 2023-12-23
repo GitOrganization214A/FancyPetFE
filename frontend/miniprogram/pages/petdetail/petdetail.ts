@@ -31,7 +31,8 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:this.data.petspaceid
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid
       },
       success:function(res) {
         wx.switchTab({
@@ -43,6 +44,11 @@ Page({
   gotorecord:function(e){
     wx.navigateTo({
       url:'/pages/record/record'
+    })
+  },
+  gotouser:function(e){
+    wx.navigateTo({
+      url:'/pages/shareuser/shareuser'
     })
   },
   takephoto:function(e){
@@ -69,6 +75,7 @@ Page({
           },
           data:{
             PetSpaceID:petspaceid,
+            openid:app.globalData.openid,
             index:index
           },
           success:function(res) {
@@ -118,7 +125,8 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:this.data.petspaceid
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid
       },
       success:function(res) {
           that.setData({

@@ -1,5 +1,5 @@
 <!--pages/cost/cost.wxml-->
-<l-capsule-bar home-page="/pages/petspace/petspace" title="萌宠相机">
+<l-capsule-bar home-page="/pages/petspace/petspace" title="账单">
 <view class="by">
 <text>总支出：{{Cost.cost}}</text>
 <view style="top:200rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 

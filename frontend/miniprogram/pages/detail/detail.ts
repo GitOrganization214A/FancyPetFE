@@ -459,9 +459,9 @@ Page({
 
   //点击标签
   searchtag: function(e) {
-    const searchinput=e.currentTarget.dataset.search
+    const subzone=e.currentTarget.dataset.search
     wx.navigateTo({
-      url:'/pages/searchresult/searchresult?searchinput='+searchinput,
+      url:'/pages/zoneresult/zoneresult?subzone='+subzone,
     })
   },
   //评论输入

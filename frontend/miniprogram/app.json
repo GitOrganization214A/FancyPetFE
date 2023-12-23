@@ -26,7 +26,8 @@
         "pages/petdetailshow/petdetailshow",
         "pages/follow/follow",
         "pages/cost/cost",
-        "pages/addcost/addcost"
+        "pages/addcost/addcost",
+        "pages/shareuser/shareuser"
     ],
     "window": {
         "backgroundTextStyle": "light",

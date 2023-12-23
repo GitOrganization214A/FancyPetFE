@@ -16,7 +16,15 @@
   </l-card>
 </view>
 <view style="top:-100rpx;position:relative;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
-    <l-grid row-num="2">
+    <l-grid row-num="4">
+      <l-grid-item key="one" slot="one">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="gotouser">
+          <view class="container">
+           <l-icon size="40" name="user" color="#3683d6" />
+           <text class="describe">共享用户 </text>
+          </view>
+         </l-button>  
+       </l-grid-item>
       <l-grid-item key="two" slot="two">
         <l-button width="40" height="20" special="{{true}}" bind:lintap="gotorecord">
           <view class="container">
@@ -38,9 +46,9 @@
   <button bindtap='deletePetSpace' mode="widthFix" style="position:fixed; bottom:0;width: 750rpx;z-index: 3"type="warn"> 删除宠物空间 </button>
   <view class="album" mode="widthFix">
   <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;">
-    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: space-around;align-items: flex-start;">
-    <view wx:for="{{PetSpaceDetail.images}}" >
-    <image src="{{item}}" style="width: 250rpx;height: 250rpx;" bindtap="showall"></image>
+    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
+    <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
+    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
   </view>
   <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
     </mp-gallery>
