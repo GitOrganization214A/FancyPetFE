@@ -9,7 +9,7 @@
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C"
   title="{{title}}" title-color="#ffac63"
-  home-page='/pages/forum/forum'
+  home-page='/pages/activity/activity'
   bind:linlefttap="switchpage">
 	<view>
         <!-- <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>   -->
