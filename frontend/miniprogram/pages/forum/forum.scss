@@ -2,7 +2,8 @@
 
 .search {
   flex-direction: column;
-  margin-top: 20rpx;
+  margin-top: 10rpx;
+  margin-bottom: 30rpx;
 }
 .following {
   display: flex;
@@ -69,7 +70,8 @@
 .line1 {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 30rpx;
+  margin-top: -10rpx;
+  margin-bottom: 10rpx;
 }
 
 .segment {

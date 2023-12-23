@@ -188,7 +188,7 @@ Page({
     searchinput: '',
     isLoading: false, //加载中图标
     followPosts: [], //关注的帖子
-    EditAtcUrl:"../../resource/EditButton.jpg",
+    EditAtcUrl:"../../resource/EditButtonr.png",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -461,9 +461,9 @@ Page({
     const id = event.currentTarget.dataset.id;
     this.setData({
         currentTab: tab,
-        color1: id === '1' ? 'red' : 'black',
-        color2: id === '2' ? 'red' : 'black',
-        color3: id === '3' ? 'red' : 'black'
+        color1: id === '1' ? 'coral' : 'black',
+        color2: id === '2' ? 'coral' : 'black',
+        color3: id === '3' ? 'coral' : 'black'
     });
     if(tab == "hot") {
       var that = this

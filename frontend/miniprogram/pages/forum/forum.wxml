@@ -11,15 +11,6 @@
     <view wx:if="{{isLoading}}" style="display: flex; justify-content: center; align-items: center;">
       <l-loading show="{{isLoading}}" color="#ffac63" size="mini" type="rotate"></l-loading>
     </view>
-    <view class = "search">
-      <l-search-bar placeholder="搜索"
-                  bg-color="#f6f6f6"
-                  shape="circle"
-                  bind:linchange="searchInput"
-                  bind:linconfirm="search"
-                  bind:linclear="clearSearchInput">
-      </l-search-bar>
-    </view>
     <view>
       <l-grid row-num="3">
         <l-grid-item key="one" slot="one">
@@ -33,9 +24,18 @@
         </l-grid-item>      
       </l-grid>
     </view>
+    <view class="line1"></view>
+    <view class = "search">
+      <l-search-bar placeholder="搜索"
+                  bg-color="#f6f6f6"
+                  shape="circle"
+                  bind:linchange="searchInput"
+                  bind:linconfirm="search"
+                  bind:linclear="clearSearchInput">
+      </l-search-bar>
+    </view>
     <view wx:if="{{currentTab === 'following'}}">
       <!-- 显示关注内容 -->
-      <view class = "line1"></view>
       <block wx:for="{{followPosts}}" wx:key="followPosts" wx:for-index="postindex">
         <view class ="post">
           <view class ="userinfo">
@@ -72,7 +72,6 @@
     </view>
     <view wx:if="{{currentTab === 'hot'}}">
       <!-- 显示热门内容 -->
-      <view class = "line1"></view>
       <block wx:for="{{hotPosts}}" wx:key="hotPosts" wx:for-index="postindex">
         <view class ="post">
           <view class ="userinfo">
@@ -109,7 +108,6 @@
     </view>
     <view wx:if="{{currentTab === 'classification'}}">
       <!-- 显示分类内容 -->
-      <view class="line2"></view>
       <view class="classification">
         <view class="segment">
           <l-segment active-key="eight" class="general" item-height="105" placement="left" bind:linchange="changeTabs">
@@ -302,5 +300,5 @@
   
 </l-capsule-bar>
   <view>
-    <button  bindtap="EditAtc" style="position: fixed; left: 337.5rpx; bottom:25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box"></image>  </button>
+    <button  bindtap="EditAtc" style="background-color: transparent;position: fixed; left: 340rpx; bottom:30rpx;  display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; "></image>  </button>
   </view>

@@ -5,7 +5,6 @@ const app = getApp<IAppOption>()
 var indx = 0
 Page({
   data: {
-    actmain:true,
     actadopt:false,
     actparty:false,
     actlove:false,
@@ -40,7 +39,7 @@ Page({
     loveurl:"../../resource/love.png",
     cloudpeturl:"../../resource/cloudpet.png",
     backurl:"../../resource/back.png",
-    editadoptUrl:"../../resource/EditButton.jpg",
+    editadoptUrl:"../../resource/EditButtonr.png",
     giveupUrl:"../../resource/giveup.png",
     tolikeUrl:"../../resource/tolike.png",
     likedUrl:"../../resource/liked.png",
@@ -53,22 +52,36 @@ Page({
     partycontent:'',
     hkindex: 0,
     keyboardHeight: 0,
+    colorcloud:'black',
+    coloradopt:'black',
+    colorparty:'black',
+    colorlove:'black'
   },
   onLoad(){
     this.setData({
-        actmain:true,
         actadopt:false,
         actlove:false,
         actparty:false,
-        actcloud:false,
+        actcloud:true,
+        colorcloud:'coral',
+        coloradopt:'black',
+        colorparty:'black',
+        colorlove:'black',
         pageindex:0,
         title:"活动"
     })
+    this.actcloud()
   },
   actadopt(){
       this.setData({
-          actmain:false,
           actadopt:true,
+          actlove:false,
+          actparty:false,
+          actcloud:false,
+          colorcloud:'black',
+          coloradopt:'coral',
+          colorparty:'black',
+          colorlove:'black',
           pageindex:1,
           title:"宠物领养"
       })
@@ -99,7 +112,6 @@ Page({
       if(curindex < 5)
       {
           this.setData({
-            actmain:true,
             actadopt:false,
             actlove:false,
             actparty:false,
@@ -112,8 +124,14 @@ Page({
   },
   actparty(){
     this.setData({
-        actmain:false,
+        actadopt:false,
+        actlove:false,
         actparty:true,
+        actcloud:false,
+        colorcloud:'black',
+        coloradopt:'black',
+        colorparty:'coral',
+        colorlove:'black',
         pageindex:2,
         title:"宠物聚会"
     })
@@ -142,8 +160,14 @@ Page({
   },
   actlove(){
     this.setData({
-        actmain:false,
+        actadopt:false,
         actlove:true,
+        actparty:false,
+        actcloud:false,
+        colorcloud:'black',
+        coloradopt:'black',
+        colorparty:'black',
+        colorlove:'coral',
         pageindex:3,
         title:"宠物配种"
     })
@@ -171,8 +195,14 @@ Page({
   },
   actcloud(){
     this.setData({
-        actmain:false,
+        actadopt:false,
+        actlove:false,
+        actparty:false,
         actcloud:true,
+        colorcloud:'coral',
+        coloradopt:'black',
+        colorparty:'black',
+        colorlove:'black',
         pageindex:4,
         title:"云养宠"
     })

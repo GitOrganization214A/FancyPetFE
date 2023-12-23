@@ -9,7 +9,7 @@
 
     
     <cover-view class="title-bar" style="height: {{titleBarHeight}}rpx;background-color: {{titleBarColor}};">
-      <cover-image style="width:55rpx; height:55rpx" src="{{capsuleLeftIconPath?capsuleLeftIconPath:'icons/Navbarlogo'+'.png'}}"></cover-image>
+      <!-- <cover-image style="width:55rpx; height:55rpx" src="{{capsuleLeftIconPath?capsuleLeftIconPath:'icons/Navbarlogo'+'.png'}}"></cover-image> -->
       <cover-view wx:if="{{!hiddenTitle}}" class="title l-title-class" style="margin-left:10rpx; color: {{titleColor}};">{{title}}</cover-view>
       <slot name="title"/>
     </cover-view>
