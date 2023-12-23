@@ -8,7 +8,7 @@
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
-                size="large">
+                size="medium">
     <l-button  special="{{true}}" bind:lintap="setpublic">
          <text wx:if="{{status}}" style="color:#7968bd">设为私密</text>
          <text wx:if="{{!status}}" style="color:#7968bd">设为公开</text>
@@ -17,7 +17,7 @@
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
-                size="large">
+                size="medium">
         <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
         </l-button>
       </l-tag>
@@ -70,6 +70,15 @@
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
     <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+    <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="medium">
+    <l-button  special="{{true}}" bind:lintap="setpublic">
+         <text wx:if="{{PetSpaceDetail.public}}" style="color:#7968bd">设为私密</text>
+         <text wx:if="{{!PetSpaceDetail.public}}" style="color:#7968bd">设为公开</text>
+    </l-button>
+  </l-tag>
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"

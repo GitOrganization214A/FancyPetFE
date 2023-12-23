@@ -39,11 +39,12 @@ Page({
             header: {'content-type': 'application/json' //
             },
             data:{
-                PetspaceID:app.globalData.petspaceid,
+                PetSpaceID:app.globalData.petspaceid,
                 openid:app.globalData.openid,
-                operation:'public',
+                operation:'private',
             },
             success:function(res) {
+              that.onShow()
             }
           })
         }
@@ -54,11 +55,12 @@ Page({
             header: {'content-type': 'application/json' //
             },
             data:{
-                PetspaceID:app.globalData.petspaceid,
+                PetSpaceID:app.globalData.petspaceid,
                 openid:app.globalData.openid,
-                operation:'private',
+                operation:'public',
             },
             success:function(res) {
+              that.onShow()
             }
           })
         }
@@ -197,7 +199,7 @@ Page({
           })
           console.log(res.data.images)
           that.setData({
-            images: res.data.images
+            status: res.data.public
           })
       },
       fail(err){
