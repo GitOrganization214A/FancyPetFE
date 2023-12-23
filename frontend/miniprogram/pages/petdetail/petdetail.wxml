@@ -1,9 +1,19 @@
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C" title="宠物详情" title-color="#ffac63"
   home-page='/pages/forum/forum'>
+<view  wx:if="{{PetSpaceDetail.role === 'owner'}}">
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
     <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+    <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+    <l-button  special="{{true}}" bind:lintap="setpublic">
+         <text wx:if="{{status}}" style="color:#7968bd">设为私密</text>
+         <text wx:if="{{!status}}" style="color:#7968bd">设为公开</text>
+    </l-button>
+  </l-tag>
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
@@ -54,5 +64,81 @@
     </mp-gallery>
   </view>
   </scroll-view >
+</view>
+</view>
+<view  wx:if="{{PetSpaceDetail.role === 'shareUser'}}">
+<view class="petinfo">
+  <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
+    <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+    <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="large">
+        <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
+        </l-button>
+      </l-tag>
+      <text>性别：{{PetSpaceDetail.gender}}</text>
+  <!-- 此处为content -->
+  </l-card>
+</view>
+<view style="top:-100rpx;position:relative;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
+    <l-grid row-num="4">
+      <l-grid-item key="one" slot="one">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="gotouser">
+          <view class="container">
+           <l-icon size="40" name="user" color="#3683d6" />
+           <text class="describe">共享用户 </text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+      <l-grid-item key="two" slot="two">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="gotorecord">
+          <view class="container">
+           <l-icon size="40" name="history" color="#3683d6" />
+           <text class="describe">健康状态记录</text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+       <l-grid-item key="three" slot="three">
+        <l-button width="40" height="20" special="{{true}}" bind:lintap="takephoto">
+          <view class="container">
+           <l-icon size="40" name="phone" color="#3683d6" />
+           <text class="describe">萌宠相机</text>
+          </view>
+         </l-button>  
+       </l-grid-item>
+     </l-grid>  
+  </view>
+  <view class="album" mode="widthFix">
+  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;">
+    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
+    <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
+    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
+  </view>
+  <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
+    </mp-gallery>
+  </view>
+  </scroll-view >
+</view>
+</view>
+<view  wx:if="{{PetSpaceDetail.role === 'visitor'}}">
+<view class="petinfo">
+  <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
+    <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
+      <text>性别：{{PetSpaceDetail.gender}}</text>
+  <!-- 此处为content -->
+  </l-card>
+</view>
+  <view class="album" mode="widthFix">
+  <scroll-view style="top:0rpx;position:relative;float: left;margin-top: 20rpx;">
+    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
+    <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
+    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
+  </view>
+  <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:change="getimageID">
+    </mp-gallery>
+  </view>
+  </scroll-view >
+</view>
 </view>
 </l-capsule-bar>

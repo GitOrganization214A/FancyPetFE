@@ -15,6 +15,7 @@ Page({
     show:false,
     moreUrl:"../../resource/more.png",
     showActionsheet:false,
+    status:true
   },
 
   /**
@@ -23,23 +24,82 @@ Page({
   onLoad(event) {
     
   },
-  deletePetSpace:function(event){
-    console.log(event.petspaceid)
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/deletePetSpace/',
-      method:"GET",
-      header: {'content-type': 'application/json' //
-      },
-      data:{
-        PetSpaceID:this.data.petspaceid,
-        openid:app.globalData.openid
-      },
-      success:function(res) {
-        wx.switchTab({
-          url:'/pages/petspace/petspace'
-        })
+  setpublic:function(e){
+    var that=this
+    wx.showModal({
+      title: '提示',
+      content: '确定要修改宠物空间公开状态吗？',
+      success: function (res) {
+       if (res.confirm) {
+        console.log('点击确定了');
+        if(that.data.status){
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/setPublic/',
+            method:"GET",
+            header: {'content-type': 'application/json' //
+            },
+            data:{
+                PetspaceID:app.globalData.petspaceid,
+                openid:app.globalData.openid,
+                operation:'public',
+            },
+            success:function(res) {
+            }
+          })
+        }
+        else{
+          wx.request({
+            url: 'http://43.143.139.4:8000/api/v1/setPublic/',
+            method:"GET",
+            header: {'content-type': 'application/json' //
+            },
+            data:{
+                PetspaceID:app.globalData.petspaceid,
+                openid:app.globalData.openid,
+                operation:'private',
+            },
+            success:function(res) {
+            }
+          })
+        }
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
       }
-    })
+   
+     })
+  },
+  deletePetSpace:function(event){
+    var that=this
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除此宠物空间吗？',
+      success: function (res) {
+       if (res.confirm) {
+        console.log('点击确定了');
+        wx.request({
+          url: 'http://43.143.139.4:8000/api/v1/deletePetSpace/',
+          method:"GET",
+          header: {'content-type': 'application/json' //
+          },
+          data:{
+            PetSpaceID:that.data.petspaceid,
+            openid:app.globalData.openid
+          },
+          success:function(res) {
+            wx.switchTab({
+              url:'/pages/petspace/petspace'
+            })
+          }
+        })
+       } else if (res.cancel) {
+         console.log('点击取消了');
+         return false;   
+        }
+      }
+   
+     })
   },
   gotorecord:function(e){
     wx.navigateTo({
@@ -139,6 +199,16 @@ Page({
           that.setData({
             images: res.data.images
           })
+      },
+      fail(err){
+        wx.showToast({
+          title: '该宠物空间无法查看',
+          icon: 'none',
+          duration: 2000//持续的时间
+        })
+        wx.navigateBack({
+          delta: 1
+        });
       }
     })
   },
