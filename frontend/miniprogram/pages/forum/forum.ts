@@ -416,7 +416,7 @@ Page({
     {
       that.getFollowArticles();
     }
-    else {
+    else if(that.data.currentTab=="following" || that.data.currentTab=="hot") {
       wx.showToast({
         title: '没有更多数据',
         duration: 1000
