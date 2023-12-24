@@ -12,9 +12,6 @@ Page({
     header: {'content-type': 'application/json' //
     },
     success: function(res) {
-      for(let item of res.data){
-        item.avatar=item.avatar+"?v="+new Date().getTime();
-      }
       that.setData({
         responseData: res.data
       })
@@ -24,7 +21,6 @@ Page({
   },
   showdetails:function(event){
     const petspaceid = event.currentTarget.dataset.petspaceid
-    (petspaceid)
     app.globalData.petspaceid=petspaceid
     wx.navigateTo({
       url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
