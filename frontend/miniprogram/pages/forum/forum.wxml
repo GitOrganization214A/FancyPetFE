@@ -11,29 +11,8 @@
     <view wx:if="{{isLoading}}" style="display: flex; justify-content: center; align-items: center;">
       <l-loading show="{{isLoading}}" color="#ffac63" size="mini" type="rotate"></l-loading>
     </view>
-    <view>
-      <l-grid row-num="3">
-        <l-grid-item key="one" slot="one">
-          <view class="tab" data-id="1" data-tab="following" bindtap="switchTab" style="color: {{color1}}">关注</view>
-        </l-grid-item>
-        <l-grid-item key="two" slot="two">
-          <view class="tab" data-id="2" data-tab="hot" bindtap="switchTab" style="color: {{color2}}">热门</view>
-        </l-grid-item>
-        <l-grid-item key="three" slot="three">
-          <view class="tab" data-id="3" data-tab="classification" bindtap="switchTab" style="color: {{color3}}">分类</view>
-        </l-grid-item>      
-      </l-grid>
-    </view>
-    <view class="line1"></view>
-    <view class = "search">
-      <l-search-bar placeholder="搜索"
-                  bg-color="#f6f6f6"
-                  shape="circle"
-                  bind:linchange="searchInput"
-                  bind:linconfirm="search"
-                  bind:linclear="clearSearchInput">
-      </l-search-bar>
-    </view>
+    
+
     <view wx:if="{{currentTab === 'following'}}">
       <!-- 显示关注内容 -->
       <block wx:for="{{followPosts}}" wx:key="followPosts" wx:for-index="postindex">
@@ -299,6 +278,30 @@
     </view>
   
 </l-capsule-bar>
+    <view class="grid" style="position: fixed;left: 0;width: 750rpx;top: 140rpx;background-color: white;height: 200rpx;line-height: 60rpx;">
+        <l-grid row-num="3">
+            <l-grid-item key="one" slot="one">
+            <view class="tab" data-id="1" data-tab="following" bindtap="switchTab" style="color: {{color1}}">关注</view>
+            </l-grid-item>
+            <l-grid-item key="two" slot="two">
+            <view class="tab" data-id="2" data-tab="hot" bindtap="switchTab" style="color: {{color2}}">热门</view>
+            </l-grid-item>
+            <l-grid-item key="three" slot="three">
+            <view class="tab" data-id="3" data-tab="classification" bindtap="switchTab" style="color: {{color3}}">分类</view>
+            </l-grid-item>      
+        </l-grid>
+        <view class="line1" style="top: -15rpx;position: relative;"></view>
+        <view class = "search" style="top: -20rpx;position: relative;">
+            <l-search-bar placeholder="搜索"
+                        bg-color="#f6f6f6"
+                        shape="circle"
+                        bind:linchange="searchInput"
+                        bind:linconfirm="search"
+                        bind:linclear="clearSearchInput">
+            </l-search-bar>
+        </view>
+    </view>
+        
   <view>
     <button  bindtap="EditAtc" style="background-color: transparent;position: fixed; left: 340rpx; bottom:30rpx;  display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; "></image>  </button>
   </view>

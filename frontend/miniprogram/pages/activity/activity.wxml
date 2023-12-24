@@ -10,7 +10,7 @@
   capsule-color="white" bg-color="#60656C"
   title="{{title}}" title-color="#ffac63"
   home-page='/pages/activity/activity'
-  bind:linlefttap="switchpage">
+  >
 	<view style="padding: 0;">
         <!-- <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>   -->
         <!-- <view wx:if="{{actmain}}">
@@ -39,24 +39,8 @@
             <text style="font-size: larger;color: chocolate;left:460rpx;top:860rpx;position:fixed">云养宠</text>
         </view> -->
 
-        <view>
-            <l-grid row-num="4">
-                <l-grid-item key="one" slot="one">
-                <view class="tab" data-id="1" data-tab="cloud" bindtap="actcloud" style="color: {{colorcloud}}">云养宠</view>
-                </l-grid-item>
-                <l-grid-item key="two" slot="two">
-                <view class="tab" data-id="2" data-tab="adopt" bindtap="actadopt" style="color: {{coloradopt}}">宠物领养</view>
-                </l-grid-item>
-                <l-grid-item key="three" slot="three">
-                <view class="tab" data-id="3" data-tab="party" bindtap="actparty" style="color: {{colorparty}}">宠物聚会</view>
-                </l-grid-item>      
-                <l-grid-item key="four" slot="four">
-                <view class="tab" data-id="4" data-tab="love" bindtap="actlove" style="color: {{colorlove}}">宠物配种</view>
-                </l-grid-item>      
-            </l-grid>
-        </view>
-        <view class = "line" style="top: -30rpx;position: relative;"></view>
-        <view wx:if="{{actadopt}}">
+        
+        <view wx:if="{{actadopt}}" style="top: 80rpx; position: relative;">
                 <!-- <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" title="选择城市" style="top: 70rpx;position: relative;"/> -->
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false" >
@@ -73,23 +57,12 @@
                 </image>
             </button>
 
-            <view style="position: fixed;top: 600rpx;">
-                <van-popup show="{{ showadopt }}" round position="bottom" custom-style="height: 50%;">
-                    <image style="top: 40rpx;position: relative;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guadopt"></image>
-                    <text style="top: 40rpx;position: relative;text-align: center;left: 100rpx;height: 30rpx;line-height: 30rpx;color: chocolate;font-size: larger;">请输入发送给宠物主人的信息</text>
-                    <textarea style="top:120rpx;position: relative;left:20rpx;width: 710rpx;height:40rpx;" placeholder='请留下你的微信号' minlength="1" maxlength="50"  bindinput='inputwx' value="{{wxcontent}}" ></textarea>
-                    <textarea style="top:190rpx;position: relative;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请留下你想发送给宠物主人的话，如养宠经历以及想问的问题等' minlength="1" maxlength="200"  bindinput='inputadopt' value="{{adoptcontent}}" ></textarea>
-                    <text class='ctn' style="top:290rpx;position: relative;left:630rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentadoptNumber}}/{{maxadoptLen}}</text>
-                    <button style="top: 340rpx;position: relative;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="sendadopt">发送</button>
-                </van-popup>
-            </view>
-
 
         </view>
 
-        <view wx:if="{{actparty}}">
+        <view wx:if="{{actparty}}" style="top: 80rpx; position: relative;">
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
-                    <van-card desc="{{item.time}}@{{item.address}}" title="{{item.title}}" thumb="{{item.img}}"  centered="false" >
+                    <van-card info="{{item.time}}" desc="{{item.address}}" title="{{item.title}}" thumb="{{item.img}}"  centered="false" >
                         <view slot="footer">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surfParty">查看详细信息</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="participate">申请参加</van-button>
@@ -103,22 +76,24 @@
                 </image>
             </button>
 
-            <view style="position: fixed;top: 400rpx;">
+            <view style="position: fixed;top: 400rpx;display: flex;flex-direction: row;">
                 <van-popup show="{{ showparty }}" round position="bottom" custom-style="height: 60%;">
-                    <image style="top: -100rpx;position: relative;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guparty"></image>
-                    <image style="top: 140rpx;position: relative;left:40rpx;width:200rpx;height:200rpx;" src="{{partyUrl}}" bindtap="guadopt"></image>
-                    <text style="top: -20rpx;position: relative;text-align: center;left: 320rpx;height: 30rpx;width:200rpx;line-height: 30rpx;color: chocolate;font-size: larger;">
+                    <image style="top: -120rpx;position: relative;left:10rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guparty"></image>
+                    <image style="top: 100rpx;position: relative;left:225rpx;width:200rpx;height:200rpx;" src="{{partyUrl}}" bindtap="guadopt"></image>
+                    <view style="top: 120rpx;position: relative;text-align: center;left: 50rpx;height: 30rpx;width:600rpx;line-height: 30rpx;color: chocolate;font-size: larger;display: flex;flex-direction: row;">
                         {{partytitle}}
+                    </view>
+                    <view style="top: 150rpx;position: relative;text-align: center;left: 50rpx;height: 30rpx;width:500rpx;line-height: 30rpx;color: chocolate;font-size: 25rpx;display: flex;flex-direction: row;">
                         {{partydate}}
-                        {{partyaddress}}
-                    </text>
-                    <text style="top:120rpx;position: relative;left:80rpx;width: 600rpx;height:100rpx;">{{partycontent}}</text>
+                    </view>
+                    <view style="top:170rpx;position: relative;font-size:20rpx;left:50rpx;width: 650rpx;word-wrap:break-word;height:100rpx;color: coral;text-align: left;">{{partyaddress}}</view>
+                    <view style="top:120rpx;position: relative;font-size:35rpx;left:50rpx;width: 600rpx;word-wrap:break-word;height:100rpx;">{{partycontent}}</view>
                 </van-popup>
             </view>
 
         </view>
 
-        <view wx:if="{{actlove}}">
+        <view wx:if="{{actlove}}" style="top: 80rpx; position: relative;">
                 <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}"  centered="false" >
                         <view slot="footer">
@@ -136,12 +111,12 @@
 
         </view>
 
-        <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: -50rpx;">
+        <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: 80rpx;">
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 750rpx;  height: 1250rpx;">
                 <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="*this" >
                     <swiper-item>
                         <view class="video-wrap" style="width:700rpx;height:200rpx;position:absolute;left:0rpx;top:-80rpx;">  
-                                <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" bindpause="bindpause" bindplay="bindplay" style="width: 750rpx;  height: 1200rpx;  position: absolute;  top:80rpx;  left: 0rpx;  z-index: 1;">
+                                <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" style="width: 750rpx;  height: 1200rpx;  position: absolute;  top:80rpx;  left: 0rpx;  z-index: 1;">
                                     <cover-image wx:if="{{key.liked&&(!showcomment)}}" src="{{likedUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videounlike" ></cover-image>
                                     <cover-image wx:if="{{!key.liked&&(!showcomment)}}" src="{{tolikeUrl}}" style="position:absolute;left: 630rpx;top:600rpx;width: 80rpx;height: 80rpx;" data-atcid="{{key.ArticleID}}" data-videoid="{{key.VideoID}}" bind:tap="videolike"></cover-image>
                                     <cover-view wx:if="{{!showcomment}}" class="anthology" style="font-size: medium;color: white;width:80rpx;text-align: center;position:absolute;left: 630rpx;top:680rpx;">{{key.like}}</cover-view> 
@@ -225,6 +200,26 @@
             </view>
             
         </view>
+
+        <view style="position: fixed;left: 0;width: 750rpx;top: 140rpx;background-color: white;height: 100rpx;line-height: 60rpx;">
+            <l-grid row-num="4">
+                <l-grid-item key="one" slot="one">
+                <view class="tab" data-id="1" data-tab="cloud" bindtap="actcloud" style="color: {{colorcloud}}">云养宠</view>
+                </l-grid-item>
+                <l-grid-item key="two" slot="two">
+                <view class="tab" data-id="2" data-tab="adopt" bindtap="actadopt" style="color: {{coloradopt}}">宠物领养</view>
+                </l-grid-item>
+                <l-grid-item key="three" slot="three">
+                <view class="tab" data-id="3" data-tab="party" bindtap="actparty" style="color: {{colorparty}}">宠物聚会</view>
+                </l-grid-item>      
+                <l-grid-item key="four" slot="four">
+                <view class="tab" data-id="4" data-tab="love" bindtap="actlove" style="color: {{colorlove}}">宠物配种</view>
+                </l-grid-item>      
+            </l-grid>
+            <view class="line" style="top: -45rpx;position: relative;"></view>
+        </view>
+
+    
     </view>
 </l-capsule-bar>
 

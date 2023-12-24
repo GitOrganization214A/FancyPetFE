@@ -1,10 +1,7 @@
 /* pages/forum/forum.wxss */
-
-.search {
-  flex-direction: column;
-  margin-top: 10rpx;
-  margin-bottom: 30rpx;
+.grid {
 }
+
 .following {
   display: flex;
 }
@@ -12,6 +9,7 @@
 .post {
   display: flex;
   flex-direction:column;
+  margin-top: 200rpx;
   margin-left: 50rpx;
   margin-right: 50rpx
 }

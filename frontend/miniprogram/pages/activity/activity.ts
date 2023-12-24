@@ -9,6 +9,11 @@ Page({
     actparty:false,
     actlove:false,
     actcloud:false,
+    pageAdopt:1,
+    pageParty:1,
+    pageLove:1,
+    pageCloud:1,
+    morePost:true,
     activitylist:[],
     pageindex:0,
     show: false,
@@ -55,7 +60,8 @@ Page({
     colorcloud:'black',
     coloradopt:'black',
     colorparty:'black',
-    colorlove:'black'
+    colorlove:'black',
+    current:0,
   },
   onLoad(){
     this.setData({
@@ -63,6 +69,11 @@ Page({
         actlove:false,
         actparty:false,
         actcloud:true,
+        pageAdopt:1,
+        pageParty:1,
+        pageLove:1,
+        pageCloud:1,
+        activitylist:[],
         colorcloud:'coral',
         coloradopt:'black',
         colorparty:'black',
@@ -72,12 +83,38 @@ Page({
     })
     this.actcloud()
   },
+  onReachBottom: function () {
+    var that =this
+    if (that.data.morePost && that.data.actadopt) {
+        that.actadopt();
+    }
+    else if (that.data.morePost && that.data.actparty) {
+        that.actparty();
+    }
+    else if (that.data.morePost && that.data.actlove) {
+        that.actlove();
+    }
+    else if (that.data.morePost && that.data.actcloud) {
+        that.actcloud();
+    }
+  },
   actadopt(){
+      if(!this.data.actadopt)
+      {
+          this.setData({
+              activitylist:[],
+              pageAdopt:1,
+              morePost:true,
+          })
+      }
       this.setData({
           actadopt:true,
           actlove:false,
           actparty:false,
           actcloud:false,
+          pageParty:1,
+          pageLove:1,
+          pageCloud:1,
           colorcloud:'black',
           coloradopt:'coral',
           colorparty:'black',
@@ -90,44 +127,47 @@ Page({
         url: 'http://43.143.139.4:8000/api/v1/adoptPet/',
         data:{
           openid:app.globalData.openid,
+          page:that.data.pageAdopt,
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
           that.setData({
-            activitylist: res.data
+            activitylist: that.data.activitylist.concat(res.data),
+            pageAdopt:that.data.pageAdopt+1
           })
-          that.data.activitylist = res.data
           console.log(res.data)
           console.log(that.data.actadopt)
+          if(res.data.length<10)
+          {
+              that.setData({
+                  morePost:false,
+              })
+          }
         },
         fail:function(res){
             console.log(res.errMsg)
         }
       })
   },
-  switchpage(){
-      var curindex = this.data.pageindex
-      if(curindex < 5)
-      {
-          this.setData({
-            actadopt:false,
-            actlove:false,
-            actparty:false,
-            actcloud:false,
-            pageindex:0,
-            title:"活动"
-          })
-      }
-      console.log(this.data)
-  },
   actparty(){
+    if(!this.data.actparty)
+    {
+        this.setData({
+            activitylist:[],
+            pageParty:1,
+            morePost:true,
+        })
+    }
     this.setData({
         actadopt:false,
         actlove:false,
         actparty:true,
         actcloud:false,
+        pageAdopt:1,
+        pageLove:1,
+        pageCloud:1,
         colorcloud:'black',
         coloradopt:'black',
         colorparty:'coral',
@@ -141,17 +181,24 @@ Page({
         url: 'http://43.143.139.4:8000/api/v1/partyPet/',
         data:{
           openid:app.globalData.openid,
+          page:that.data.pageParty,
         },
         method: 'GET',
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
           that.setData({
-            activitylist: res.data
+            activitylist: that.data.activitylist.concat(res.data),
+            pageParty:that.data.pageParty+1
           })
-          that.data.activitylist = res.data
           console.log(res.data)
           console.log(that.data.actadopt)
+          if(res.data.length<10)
+          {
+              that.setData({
+                  morePost:false,
+              })
+          }
         },
         fail:function(res){
             console.log(res.errMsg)
@@ -159,11 +206,22 @@ Page({
       })
   },
   actlove(){
+    if(!this.data.actlove)
+    {
+        this.setData({
+            activitylist:[],
+            pageLove:1,
+            morePost:true,
+        })
+    }
     this.setData({
         actadopt:false,
         actlove:true,
         actparty:false,
         actcloud:false,
+        pageAdopt:1,
+        pageParty:1,
+        pageCloud:1,
         colorcloud:'black',
         coloradopt:'black',
         colorparty:'black',
@@ -175,18 +233,25 @@ Page({
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/lovePet/',//todo
       data:{
-        openid:app.globalData.openid,      
+        openid:app.globalData.openid,     
+        page:that.data.pageLove, 
       },
       method: 'GET',
       header: {'content-type': 'application/json' //
       },
       success: function(res) {
          that.setData({
-           activitylist: res.data
+           activitylist: that.data.activitylist.concat(res.data),
+           pageLove:that.data.pageLove+1,
          })
-         that.data.activitylist = res.data
          console.log(res.data)
          console.log(that.data.activitylist)
+         if(res.data.length<10)
+          {
+              that.setData({
+                  morePost:false,
+              })
+          }
       },
       fail:function(res){
            console.log(res.errMsg)
@@ -194,11 +259,22 @@ Page({
     })
   },
   actcloud(){
+    if(!this.data.actcloud)
+    {
+        this.setData({
+            activitylist:[],
+            pageCloud:1,
+            morePost:true,
+        })
+    }
     this.setData({
         actadopt:false,
         actlove:false,
         actparty:false,
         actcloud:true,
+        pageAdopt:1,
+        pageLove:1,
+        pageParty:1,
         colorcloud:'coral',
         coloradopt:'black',
         colorparty:'black',
@@ -210,18 +286,25 @@ Page({
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/petVideos/',//todo
       data:{
-        openid:app.globalData.openid,      
+        openid:app.globalData.openid,    
+        page:that.data.pageCloud  
       },
       method: 'GET',
       header: {'content-type': 'application/json' //
       },
       success: function(res) {
          that.setData({
-           activitylist: res.data
+           activitylist: that.data.activitylist.concat(res.data),
+           pageCloud: that.data.pageCloud+1,
          })
-         that.data.activitylist = res.data
          console.log(res.data)
          console.log(that.data.activitylist)
+         if(res.data.length<5)
+          {
+              that.setData({
+                  morePost:false,
+              })
+          }
       },
       fail:function(res){
            console.log(res.errMsg)
@@ -281,9 +364,8 @@ Page({
   },
   adopt(e){
     console.log(e)
-    this.setData({
-        showadopt:true,
-        adoptTarget:e.target.dataset.index
+    wx.navigateTo({
+        url:"../editsendAdopt/editsendAdopt?activityid="+e.target.dataset.index
     })
   },
   deleteactivity(e){
@@ -321,73 +403,9 @@ Page({
         }
       })
   },
-  inputwx:function(e){
-    var value = e.detail.value;
-    var len = parseInt(value.length)
-    this.setData({
-        currentwxNumber: len,
-        wxcontent: value
-    })
-    this.data.currentwxNumber=len
-    this.data.wxcontent=value    
-    console.log(this.data.adoptcontent)
-  },
-  inputadopt:function(e){
-    var value = e.detail.value;
-    var len = parseInt(value.length)
-    this.setData({
-        currentadoptNumber: len,
-        adoptcontent: value
-    })
-    this.data.currentadoptNumber=len
-    this.data.adoptcontent=value    
-    console.log(this.data.adoptcontent)
-  },
-  guadopt(e){
-    this.setData({
-        showadopt:false,
-        currentadoptNumber: 0,
-        adoptcontent: ''
-    })
-  },
   guparty(e){
     this.setData({
         showparty:false,
-    })
-  },
-  sendadopt(e){
-    var that = this 
-    wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/applyAdopt/',
-        data:{
-          openid:app.globalData.openid,
-          ActivityID:that.data.adoptTarget,
-          content:that.data.adoptcontent,
-          wxid:that.data.wxcontent
-        },
-        method: 'GET',
-        header: {'content-type': 'application/json' //
-        },
-        success: function(res) {
-            console.log(res.data.openid)
-            wx.showToast({
-                title: '发送成功！',
-                icon: 'none',
-                duration: 2000
-            })
-            that.setData({
-                showadopt:false,
-                currentadoptNumber: 0,
-                adoptcontent: '',
-                wxcontent:''
-            })
-            that.data.currentadoptNumber=0
-            that.data.adoptcontent='' 
-            that.data.wxcontent='' 
-        },
-        fail:function(res){
-            console.log(res.errMsg)
-        }
     })
   },
   love(e){
@@ -457,6 +475,10 @@ Page({
     })
   },
   bindchangev(e) {
+    if(this.data.hkindex==this.data.activitylist.length-2&&e.detail.current==this.data.activitylist.length-1)
+    {
+        this.actcloud()
+    }
     this.setData({
       hkindex: e.detail.current
     })

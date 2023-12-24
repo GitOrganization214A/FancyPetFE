@@ -6,6 +6,7 @@ var component_1 = require("../common/component");
     classes: [
         'num-class',
         'desc-class',
+        'info-class',
         'thumb-class',
         'title-class',
         'price-class',
@@ -16,6 +17,7 @@ var component_1 = require("../common/component");
         tag: String,
         num: String,
         desc: String,
+        info: String,
         thumb: String,
         title: String,
         price: {

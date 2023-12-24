@@ -22,7 +22,7 @@
                 <view style="top: 15.5%;position: fixed;left:620rpx;width: 140rpx;height: 50rpx;"><l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" bindtap="sendadopt">发布</l-button></view>
                 <view class='inputText'>
                     <textarea  style="top:25%;position: fixed;left:20rpx;width: 710rpx;height:30%;"   
-                    placeholder='请输入待领养宠物的情况介绍' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
+                    placeholder='请输入待领养宠物的情况介绍' minlength="0" maxlength="100"  bindinput='inputText'></textarea>
                     <text style="top:65%;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
                 </view>
                 <view style="position: fixed;top: 600rpx;">

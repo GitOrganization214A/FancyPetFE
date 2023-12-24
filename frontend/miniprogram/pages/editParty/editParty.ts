@@ -13,7 +13,7 @@ Page({
 
     },
     text: '',
-    avatarUrl:'',
+    avatarUrl:'../../resource/cameraparty.png',
     show: false,
     titlecontent:[],
     addrcontent:[],
@@ -29,7 +29,7 @@ Page({
     currentTextNumber: 0,
     maxTitleLen: 30,
     maxAddrLen: 50,
-    maxTextLen: 1024,
+    maxTextLen: 100,
 
   },
   chooseAvatar(event){
@@ -169,8 +169,8 @@ Page({
         name: 'image',
         formData: {
             openid:app.globalData.openid,
-            date:that.data.date,
-            address:that.data.addrcontent,
+            date:"时间:"+that.data.date,
+            address:"地点:"+that.data.addrcontent,
             title:that.data.titlecontent,
             content:that.data.atccontent,
         },

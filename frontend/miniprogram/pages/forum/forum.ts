@@ -181,9 +181,9 @@ Page({
     sideBarDataTortoise,
     sideBarDataOther,
 
-    currentTab: 'following', // 默认显示关注
-    color1: 'red',
-    color2: 'black',
+    currentTab: 'hot', // 默认显示热门
+    color1: 'black',
+    color2: 'coral',
     color3: 'black',
     hotPosts: [],
     searchinput: '',
@@ -250,6 +250,7 @@ Page({
         page:that.data.pageFollow
       },
       success:function(res) {
+        console.log(res.data)
         if(res.data.length<10)
         {
           that.setData({
@@ -520,7 +521,7 @@ Page({
   },
   onLoad: function (event) {
     var that = this
-    that.getFollowArticles()
+    that.getHotArticles()
   },
   //切换分类内的标签
   changeTabs: function (event) {

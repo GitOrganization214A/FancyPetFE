@@ -29,7 +29,7 @@ Page({
     currentWxidNumber:0,
     currentTextNumber:0,
 
-    maxTextLen: 1024,
+    maxTextLen: 100,
 
   },
   onLoad(e){

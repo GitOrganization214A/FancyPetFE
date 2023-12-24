@@ -17,7 +17,7 @@
         plain
         type="primary"
         custom-class="van-card__tag"
-        style="position:absolute;left:500rpx;top: 50rpx;width: 200rpx;"
+        style="position:absolute;left:550rpx;top: 10rpx;width: 200rpx;"
       >
         {{ tag }}
       </van-tag>
@@ -26,10 +26,13 @@
 
     <view class="van-card__content {{ utils.bem('card__content', { center: centered }) }}">
       <view>
-        <view wx:if="{{ title }}" class="van-card__title title-class" style="font-size: 40rpx;top:20rpx;position: absolute;">{{ title }}</view>
+        <view wx:if="{{ title }}" class="van-card__title title-class" style="font-size: 30rpx;top:10rpx;position: absolute;">{{ title }}</view>
         <slot wx:else name="title" />
 
-        <view wx:if="{{ desc }}" class="van-card__desc desc-class" style="font-size: 30rpx;">{{ desc }}</view>
+        <view wx:if="{{ info }}" class="van-card__info info-class" style="font-size: 20rpx;top: 50rpx;width:500rpx;position: absolute;">{{ info }}</view>
+        <slot wx:else name="info" />
+
+        <view wx:if="{{ desc }}" class="van-card__desc desc-class" style="font-size: 16rpx;top: 80rpx;width:500rpx;position: absolute;">{{ desc }}</view>
         <slot wx:else name="desc" />
 
         <slot name="tags" />

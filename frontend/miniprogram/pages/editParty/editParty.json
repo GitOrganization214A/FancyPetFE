@@ -3,6 +3,8 @@
     "usingComponents": {
       "van-cell": "/miniprogram_npm/@vant/weapp/cell/index",
       "van-calendar": "/miniprogram_npm/@vant/weapp/calendar/index",
+      "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+      "l-button": "/miniprogram_npm/lin-ui/button/index",
       "l-album": "/miniprogram_npm/lin-ui/album/index"
     }
 }

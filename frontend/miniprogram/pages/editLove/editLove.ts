@@ -27,7 +27,7 @@ Page({
 
     currentTextNumber:0,
 
-    maxTextLen: 1024,
+    maxTextLen: 100,
 
   },
   // 事件处理函数
