@@ -4,7 +4,7 @@
   title="宠物空间" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
   <view style="top:0rpx;position:fixed;left:0rpx;width: 750rpx;height:100rpx;" class = "addPet">
-    <l-grid row-num="3">
+    <l-grid row-num="2">
       <l-grid-item key="three" slot="three">
        <l-button width="40" height="20" special="{{true}}" bind:lintap="addcost">
         <view class="container" >
@@ -21,14 +21,6 @@
         </view>
        </l-button>
       </l-grid-item>
-      <l-grid-item key="two" slot="two">
-        <l-button width="40" height="20" special="{{true}}" bind:lintap="attentionlist">
-          <view class="container">
-           <l-icon size="40" name="order" color="#3683d6" />
-           <text class="describe">关注列表</text>
-          </view>
-         </l-button>  
-       </l-grid-item>
      </l-grid>  
   </view>
   <view style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{responseData}}" wx:key="*this">
