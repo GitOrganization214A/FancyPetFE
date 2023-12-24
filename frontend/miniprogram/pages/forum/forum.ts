@@ -558,7 +558,7 @@ Page({
         that.getHotArticles();
       });
     }
-    if(tab == "following") {
+    if(tab == "following") {  
       var that = this
       that.setData({
         hasMoreDataFollow:true,
