@@ -137,7 +137,6 @@ Page({
             activitylist: that.data.activitylist.concat(res.data),
             pageAdopt:that.data.pageAdopt+1
           })
-<<<<<<< HEAD
           console.log(res.data)
           console.log(that.data.actadopt)
           if(res.data.length<10)
@@ -146,11 +145,6 @@ Page({
                   morePost:false,
               })
           }
-=======
-          that.data.activitylist = res.data
-          (res.data)
-          (that.data.actadopt)
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
         },
         fail:function(res){
             (res.errMsg)
