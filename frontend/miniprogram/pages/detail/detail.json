@@ -1,5 +1,6 @@
 {
   "navigationStyle":"custom",
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",

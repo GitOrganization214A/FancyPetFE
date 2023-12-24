@@ -250,8 +250,7 @@ Page({
         page:that.data.pageFollow
       },
       success:function(res) {
-        console.log(res.data)
-        if(res.data.length<10)
+        if(res.data.length<that.data.pageSize)
         {
           that.setData({
             hasMoreDataFollow:false,
@@ -282,7 +281,7 @@ Page({
           hotPosts:that.data.hotPosts.concat(res.data),
           pageHot: that.data.pageHot + 1
         })
-        if(res.data.length<10)
+        if(res.data.length<that.data.pageSize)
         {
           that.setData({
             hasMoreDataHot:false,
@@ -559,7 +558,7 @@ Page({
         that.getHotArticles();
       });
     }
-    if(tab == "following") {
+    if(tab == "following") {  
       var that = this
       that.setData({
         hasMoreDataFollow:true,

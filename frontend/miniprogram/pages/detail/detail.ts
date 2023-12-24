@@ -15,8 +15,13 @@ Page({
     fromTab: '', //是从热门来的还是关注来的
     Post: {},
     hotOrTime: true, //true是按热度排，false按时间排
-    commentsHot: {},
-    commentsTime: {},
+    commentsHot: [],
+    commentsTime: [],
+    commentPageHot:1,
+    commentPageTime:1,
+    hasMoreDataHot:true,
+    hasMoreDataTime:true,
+    pageSize:10,
     popupshow: false,
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -240,50 +245,100 @@ Page({
     })
   },
 
+  //获取热门评论
+  getHotComments: function () {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        ArticleID:that.data.articleid,
+        page:that.data.commentPageHot,
+      },
+      success:function(res) {
+        that.setData({
+          commentsHot: that.data.commentsHot.concat(res.data),
+          commentPageHot: that.data.commentPageHot + 1
+        })
+        if(res.data.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreDataHot:false,
+          })
+        }
+      }
+    })
+  },
+  //获取时间评论
+  getTimeComments: function () {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        ArticleID:that.data.articleid,
+        page:that.data.commentPageTime,
+      },
+      success:function(res) {
+        that.setData({
+          commentsTime: that.data.commentsTime.concat(res.data),
+          commentPageTime: that.data.commentPageTime + 1
+        })
+        if(res.data.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreDataTime:false,
+          })
+        }
+      }
+    })
+  },
   //切换排序方式
   changeSort: function(event) {
     var that = this;
     if(that.data.hotOrTime)  
     {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsTime: res.data
-            })
-        }
+      that.setData({
+        commentPageTime:1,
+        hasMoreDataTime:true,
+        commentsTime:[],
       })
+      that.getTimeComments()
     }
     else //现在是时间，要改为热度
     {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsHot: res.data
-            })
-        }
+      that.setData({
+        commentPageHot:1,
+        hasMoreDataHot:true,
+        commentsHot:[],
       })
+      that.getHotComments()
     }
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
   },
-
+  //不支持下拉刷新
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+  },
+  //上拉加载
+  onReachBottom: function () {
+    var that =this
+    if (that.data.hasMoreDataHot && that.data.hotOrTime) {
+      that.getHotComments();
+    }
+    else if(that.data.hasMoreDataTime && !that.data.hotOrTime)
+    {
+      that.getTimeComments();
+    }
+  },
   //点赞评论
   likeComment(event) {
     // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
@@ -362,9 +417,11 @@ Page({
   //初始渲染
   onLoad: function (event) {
       var that = this
-      this.data.articleid = event.articleid
-      this.data.index = event.index
-      this.data.fromTab = event.currentTab
+      that.setData({
+        articleid:event.articleid,
+        index: event.index,
+        fromTab: event.currentTab
+      })
       //获取屏幕高度以及设备信息（是否为苹果手机）
       wx.getSystemInfo({
         success: function(res) {
@@ -390,36 +447,8 @@ Page({
             })
         }
       });
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsHot/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsHot: res.data
-            })
-        }
-      })
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          ArticleID:this.data.articleid,
-        },
-        success:function(res) {
-            that.setData({
-              commentsTime: res.data
-            })
-        }
-      })
+      that.getTimeComments();
+      that.getHotComments();
   },
 
   onReady: function() {
@@ -515,7 +544,7 @@ Page({
         })
         if(that.data.hotOrTime===false)  //按时间
         {
-          console.log("time")
+          ("time")
           wx.request({
             url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
             method:"GET",
@@ -544,7 +573,7 @@ Page({
               ArticleID:that.data.articleid,
             },
             success:function(res) {
-              console.log(res.data)
+              (res.data)
               that.setData({
                 commentsHot: res.data
               })
