@@ -17,7 +17,7 @@ Page({
     hankeyUrl:"../../../resource/hankey.png",
     loveUrl:"../../../resource/heart_eyes.png",
     number:0,
-    index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19]
+    index:[]
   },
 
   /**
@@ -61,6 +61,16 @@ Page({
           that.setData({
             RecordDetail: res.data
           })
+          for (let record of res.data){
+            console.log("1")
+            var originindex=that.data.index
+            let numberArray = [];
+            for (let i = 0; i < that.data.number.toString().length; i++) {
+              numberArray.push(parseInt(that.data.number.toString()[i]));
+            }
+            that.data.number=that.data.number+1
+            that.data.index=[...originindex,...numberArray]
+          }
       }
     })
   },
