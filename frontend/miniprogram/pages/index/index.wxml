@@ -55,9 +55,10 @@
 
  <!-- 未登录状态 -->
 <block wx:else>
-      <image wx:if="{{bgUrl.length>0}}" src="{{bgUrl}}" style="width: 750rpx; height: 100%; display: block; box-sizing: border-box; position: fixed; left: 0rpx; top: 0rpx;"></image>
+      <image wx:if="{{bgUrl.length>0}}" mode="widthFix" src="{{bgUrl}}" style="width: 750rpx;position: absolute; left: 0rpx; top: 0rpx;"></image>
+
       <view>
 
       </view>
-      <button bindtap="getUserProfile" style="padding:0;border: none; position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box" type="default">  <image src="{{loginbuttonUrl}}" style="border: none; position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image></button>
+      <button bindtap="getUserProfile" style="padding:0;border: none; position: fixed; left: 50rpx; bottom: 200rpx; display: block; box-sizing: border-box" type="default">  <image src="{{loginbuttonUrl}}" style="border: none; position: fixed; left: 37.5rpx; bottom: 200rpx; width: 675rpx; height: 75rpx; display: block; box-sizing: border-box"></image></button>
   </block>

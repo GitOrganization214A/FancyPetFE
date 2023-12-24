@@ -1,34 +1,34 @@
 <!--index.wxml-->
-<image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: relative; height:-190rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
-<view class="container" style="width:100%;">
-
-  <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
-        <view class='by'>
-            <view style="top:280rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">发布聚会信息</view>    
-            
-            <image style="top:280rpx;position: fixed;left:30rpx;width:40rpx;height:40rpx;" src="{{giveupUrl}}" bindtap="guEdit"></image>
-            <text style="top:280rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="sendparty">发布</text>
-
-
-            <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:45rpx; top:340rpx" >
-                <view wx:if="{{avatarUrl.length==0}}" style="line-height: 75rpx;height:150rpx;width:100rpx;font-size: 40rpx;">选择封面</view>
-                <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}"  style="display: inline-block; box-sizing: border-box; position: fixed; height:200rpx; width:200rpx; left:45rpx; top:340rpx"></image> 
-            </button>
-
-            <van-cell style="top:540rpx;position: fixed;width: 750rpx;" title="选择单个日期" value="{{ date }}" bind:click="onDisplay" />
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="发布聚会" title-color="#ffac63"
+  home-page='/pages/activity/activity'>
+    <view class="container" style="width:100%;">
+        <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
+                <view class='by'>
+                    
+                    <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="sendparty">发布</l-button>
 
 
-            <view class='inputText'>
-                <textarea style="top:660rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                <text class='ctn' style="top:710rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
-                <textarea  style="top:800rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
-                placeholder='请输入聚会地点' minlength="0" maxlength="50"  bindinput='inputAddr'></textarea>
-                <text style="top:900rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentAddrNumber}}/{{maxAddrLen}}</text>
-                <textarea  style="top:980rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
-                placeholder='请输入聚会的基本情况介绍' minlength="0" maxlength="1024"  bindinput='inputText'></textarea>
-                <text style="top:1300rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
-            </view>
-            <van-calendar  show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" />
+                    <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" >
+                        <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill" style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
+                    </button>
+
+                    <van-cell style="top:440rpx;position: fixed;width: 750rpx;" title="选择单个日期" value="{{ date }}" bind:click="onDisplay" />
+
+
+                    <view class='inputText'>
+                        <textarea style="top:560rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;" placeholder='请输入标题' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                        <text class='ctn' style="top:610rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+                        <textarea  style="top:700rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+                        placeholder='请输入聚会地点' minlength="0" maxlength="50"  bindinput='inputAddr'></textarea>
+                        <text style="top:800rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentAddrNumber}}/{{maxAddrLen}}</text>
+                        <textarea  style="top:880rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+                        placeholder='请输入聚会的基本情况介绍' minlength="0" maxlength="100"  bindinput='inputText'></textarea>
+                        <text style="top:1200rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+                    </view>
+                    <van-calendar  show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" />
+                </view>
         </view>
-  </view>
-</view>
+    </view>
+</l-capsule-bar>

@@ -27,7 +27,7 @@ Page({
 
     currentTextNumber:0,
 
-    maxTextLen: 1024,
+    maxTextLen: 100,
 
   },
   // 事件处理函数
@@ -42,7 +42,7 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-      console.log("gu")
+      ("gu")
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -73,7 +73,7 @@ Page({
               options:op,
           })
           
-          console.log(res.data)
+          (res.data)
         },
       })
   },
@@ -105,19 +105,19 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-            console.log(res.data)
+            (res.data)
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-                    console.log(page)
+                    (page)
                 }
             })
         },
         fail:function(res){
-            console.log("failed")
+            ("failed")
         }
     })
 

@@ -8,6 +8,7 @@
         "pages/editParty/editParty",
         "pages/editLove/editLove",
         "pages/editsendLove/editsendLove",
+        "pages/editsendAdopt/editsendAdopt",
         "pages/forum/forum",
         "pages/logs/logs",
         "pages/edit/edit",

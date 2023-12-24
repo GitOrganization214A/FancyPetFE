@@ -8,6 +8,8 @@
     "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
     "van-icon": "/miniprogram_npm/@vant/weapp/icon/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
-    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "l-grid": "/miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index"
   }
 }

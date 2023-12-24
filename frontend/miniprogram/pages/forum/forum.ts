@@ -181,9 +181,9 @@ Page({
     sideBarDataTortoise,
     sideBarDataOther,
 
-    currentTab: 'following', // 默认显示关注
-    color1: 'red',
-    color2: 'black',
+    currentTab: 'hot', // 默认显示热门
+    color1: 'black',
+    color2: 'coral',
     color3: 'black',
     hotPosts: [],
     searchinput: '',
@@ -196,7 +196,7 @@ Page({
 
     isLoading: false, //加载中图标
     followPosts: [], //关注的帖子
-    EditAtcUrl:"../../resource/EditButton.jpg",
+    EditAtcUrl:"../../resource/EditButtonr.png",
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -250,7 +250,7 @@ Page({
         page:that.data.pageFollow
       },
       success:function(res) {
-        if(res.data.length<10)
+        if(res.data.length<that.data.pageSize)
         {
           that.setData({
             hasMoreDataFollow:false,
@@ -281,7 +281,7 @@ Page({
           hotPosts:that.data.hotPosts.concat(res.data),
           pageHot: that.data.pageHot + 1
         })
-        if(res.data.length<10)
+        if(res.data.length<that.data.pageSize)
         {
           that.setData({
             hasMoreDataHot:false,
@@ -416,7 +416,7 @@ Page({
     {
       that.getFollowArticles();
     }
-    else {
+    else if(that.data.currentTab=="following" || that.data.currentTab=="hot") {
       wx.showToast({
         title: '没有更多数据',
         duration: 1000
@@ -520,7 +520,7 @@ Page({
   },
   onLoad: function (event) {
     var that = this
-    that.getFollowArticles()
+    that.getHotArticles()
   },
   //切换分类内的标签
   changeTabs: function (event) {
@@ -543,9 +543,9 @@ Page({
     const id = event.currentTarget.dataset.id;
     this.setData({
         currentTab: tab,
-        color1: id === '1' ? 'red' : 'black',
-        color2: id === '2' ? 'red' : 'black',
-        color3: id === '3' ? 'red' : 'black'
+        color1: id === '1' ? 'coral' : 'black',
+        color2: id === '2' ? 'coral' : 'black',
+        color3: id === '3' ? 'coral' : 'black'
     });
     if(tab == "hot") {
       var that = this
@@ -558,7 +558,7 @@ Page({
         that.getHotArticles();
       });
     }
-    if(tab == "following") {
+    if(tab == "following") {  
       var that = this
       that.setData({
         hasMoreDataFollow:true,

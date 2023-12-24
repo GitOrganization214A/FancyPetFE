@@ -1,9 +1,7 @@
 /* pages/forum/forum.wxss */
-
-.search {
-  flex-direction: column;
-  margin-top: 20rpx;
+.grid {
 }
+
 .following {
   display: flex;
 }
@@ -11,6 +9,7 @@
 .post {
   display: flex;
   flex-direction:column;
+  margin-top: 200rpx;
   margin-left: 50rpx;
   margin-right: 50rpx
 }
@@ -69,7 +68,8 @@
 .line1 {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 30rpx;
+  margin-top: -10rpx;
+  margin-bottom: 10rpx;
 }
 
 .segment {
@@ -98,6 +98,7 @@
 
 .subdivision {
   margin-left: 160rpx;
+  margin-top:200rpx;
 }
 
 .tip {

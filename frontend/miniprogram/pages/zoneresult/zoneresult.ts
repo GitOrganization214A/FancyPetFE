@@ -3,8 +3,11 @@ import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp<IAppOption>()
 Page({
   data: {
-    hotPosts: {},
+    hotPosts: [],
     hotOrTime: true, //true是按热度排，false按时间排
+    hasMoreData:true,
+    page:1,
+    pageSize:10,
     popupshow: false,
     zone: '',
     subzone: '',
@@ -31,52 +34,103 @@ Page({
   //进入用户主页
   viewUserInfo: function(event) {
     const tempuserid = event.currentTarget.dataset.userid
-    console.log("tempuserid",tempuserid) 
+    ("tempuserid",tempuserid) 
     wx.navigateTo({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
   },
 
+  //热门排序
+  getHotArticles() {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesHot/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        zone:that.data.zone,
+        subzone:that.data.subzone,
+        page:that.data.page
+      },
+      success:function(res) {
+        that.setData({
+          hotPosts: that.data.hotPosts.concat(res.data),
+          page: that.data.page + 1,
+        })
+        if(res.data.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreData:false,
+          })
+        }
+      }
+    });
+  },
+  //时间排序
+  getTimeArticles() {
+    var that = this
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesTime/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        openid:app.globalData.openid,
+        zone:that.data.zone,
+        subzone:that.data.subzone,
+        page:that.data.page
+      },
+      success:function(res) {
+        that.setData({
+          hotPosts: that.data.hotPosts.concat(res.data),
+          page: that.data.page + 1,
+        })
+        if(res.data.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreData:false,
+          })
+        }
+      }
+    });
+  },
+  //不支持下拉刷新
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh();
+  },
+  //上拉加载
+  onReachBottom: function () {
+    var that =this
+    if (that.data.hasMoreData && that.data.hotOrTime) {
+      that.getHotArticles();
+    }
+    else if(that.data.hasMoreData && !that.data.hotOrTime)
+    {
+      that.getTimeArticles();
+    }
+  },
   //切换排序方式
   changeSort: function(event) {
     var that = this;
     if(that.data.hotOrTime)  
     {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesTime/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          zone:that.data.zone,
-          subzone:that.data.subzone
-        },
-        success:function(res) {
-            that.setData({
-              hotPosts: res.data
-            })
-        }
-      });
+      that.setData({
+        page:1,
+        hasMoreData:true,
+        hotPosts:[],
+      })
+      that.getTimeArticles()
     }
     else //现在是时间，要改为热度
     {
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesHot/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          zone:that.data.zone,
-          subzone:that.data.subzone
-        },
-        success:function(res) {
-            that.setData({
-              hotPosts: res.data
-            })
-        }
-      });
+      that.setData({
+        page:1,
+        hasMoreData:true,
+        hotPosts:[],
+      })
+      that.getHotArticles()
     }
     that.setData({
       hotOrTime: !that.data.hotOrTime,
@@ -90,7 +144,7 @@ Page({
     const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     const index = event.currentTarget.dataset.index
-    console.log(liked)
+    (liked)
     var that = this
     if (!event.currentTarget.dataset.liked) {
       wx.request({
@@ -139,26 +193,11 @@ Page({
 
   //初始渲染
   onLoad: function (event) {
-      var that = this
-      this.setData({
-        zone:event.zone,
-        subzone:event.subzone
-      })
-      wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/viewZoneArticlesHot/',
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        data:{
-          openid:app.globalData.openid,
-          zone:event.zone,
-          subzone:event.subzone
-        },
-        success:function(res) {
-            that.setData({
-              hotPosts: res.data
-            })
-        }
-      });
+    var that = this
+    that.setData({
+      zone:event.zone,
+      subzone:event.subzone,
+    })
+    that.getHotArticles()
   },
 });

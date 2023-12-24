@@ -32,7 +32,7 @@ Page({
         const fieldValue = selectedOptions
             .map((option) => option.text || option.name)
             .join('/');
-        console.log('点击确定了');
+        ('点击确定了');
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/changeOwner/',
           method:"GET",
@@ -44,11 +44,11 @@ Page({
             UserID:value
           },
           success:function(res) {
-            console.log("成功")
+            ("成功")
           }
         })
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }
@@ -62,7 +62,7 @@ Page({
       placeholderText:'输入UserID',//显示输入框提示信息
       success: res => {
         if (res.confirm) { //点击了确认
-          console.log(res.content)
+          (res.content)
           wx.request({
             url: 'http://43.143.139.4:8000/api/v1/addShareUser/',
             method:"GET",
@@ -74,12 +74,12 @@ Page({
               UserID:res.content
             },
             success:function(res) {
-              console.log("成功")
+              ("成功")
               that.onShow()
             }
           })
         } else {
-          console.log('用户点击了取消')
+          ('用户点击了取消')
         }
       }
     })
@@ -113,7 +113,7 @@ Page({
         PetSpaceID:app.globalData.petspaceid
       },
       success:function(res) {
-        console.log("aaaaaa")
+        ("aaaaaa")
           that.setData({
             ShareUserList: res.data
           })
@@ -133,13 +133,13 @@ Page({
   },
   deleteShareUser(e){
     var that=this
-    console.log(e)
+    (e)
     wx.showModal({
       title: '提示',
       content: '确定要删除此共享用户吗？',
       success: function (res) {
        if (res.confirm) {
-        console.log('点击确定了');
+        ('点击确定了');
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deleteShareUser/',
           method:"GET",
@@ -151,12 +151,12 @@ Page({
             UserID:e.currentTarget.dataset.userid
           },
           success:function(res) {
-            console.log("成功")
+            ("成功")
             that.onShow()
           }
         })
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }
