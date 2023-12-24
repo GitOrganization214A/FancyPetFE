@@ -24,7 +24,6 @@ Page({
   },
   showdetails:function(event){
     const petspaceid = event.currentTarget.dataset.petspaceid
-    (petspaceid)
     app.globalData.petspaceid=petspaceid
     wx.navigateTo({
       url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
