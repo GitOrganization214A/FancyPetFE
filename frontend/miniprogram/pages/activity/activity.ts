@@ -151,25 +151,6 @@ Page({
         }
       })
   },
-<<<<<<< HEAD
-=======
-  switchpage(){
-      var curindex = this.data.pageindex
-      if(curindex < 5)
-      {
-          this.setData({
-            actmain:true,
-            actadopt:false,
-            actlove:false,
-            actparty:false,
-            actcloud:false,
-            pageindex:0,
-            title:"活动"
-          })
-      }
-      (this.data)
-  },
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
   actparty(){
     if(!this.data.actparty)
     {
@@ -210,7 +191,6 @@ Page({
             activitylist: that.data.activitylist.concat(res.data),
             pageParty:that.data.pageParty+1
           })
-<<<<<<< HEAD
           console.log(res.data)
           console.log(that.data.actadopt)
           if(res.data.length<10)
@@ -219,11 +199,6 @@ Page({
                   morePost:false,
               })
           }
-=======
-          that.data.activitylist = res.data
-          (res.data)
-          (that.data.actadopt)
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
         },
         fail:function(res){
             (res.errMsg)
@@ -269,7 +244,6 @@ Page({
            activitylist: that.data.activitylist.concat(res.data),
            pageLove:that.data.pageLove+1,
          })
-<<<<<<< HEAD
          console.log(res.data)
          console.log(that.data.activitylist)
          if(res.data.length<10)
@@ -278,11 +252,6 @@ Page({
                   morePost:false,
               })
           }
-=======
-         that.data.activitylist = res.data
-         (res.data)
-         (that.data.activitylist)
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
       },
       fail:function(res){
            (res.errMsg)
@@ -328,7 +297,6 @@ Page({
            activitylist: that.data.activitylist.concat(res.data),
            pageCloud: that.data.pageCloud+1,
          })
-<<<<<<< HEAD
          console.log(res.data)
          console.log(that.data.activitylist)
          if(res.data.length<5)
@@ -337,11 +305,6 @@ Page({
                   morePost:false,
               })
           }
-=======
-         that.data.activitylist = res.data
-         (res.data)
-         (that.data.activitylist)
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
       },
       fail:function(res){
            (res.errMsg)
@@ -400,16 +363,9 @@ Page({
     }
   },
   adopt(e){
-<<<<<<< HEAD
     console.log(e)
     wx.navigateTo({
         url:"../editsendAdopt/editsendAdopt?activityid="+e.target.dataset.index
-=======
-    (e)
-    this.setData({
-        showadopt:true,
-        adoptTarget:e.target.dataset.index
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
     })
   },
   deleteactivity(e){
@@ -447,81 +403,11 @@ Page({
         }
       })
   },
-<<<<<<< HEAD
-=======
-  inputwx:function(e){
-    var value = e.detail.value;
-    var len = parseInt(value.length)
-    this.setData({
-        currentwxNumber: len,
-        wxcontent: value
-    })
-    this.data.currentwxNumber=len
-    this.data.wxcontent=value    
-    (this.data.adoptcontent)
-  },
-  inputadopt:function(e){
-    var value = e.detail.value;
-    var len = parseInt(value.length)
-    this.setData({
-        currentadoptNumber: len,
-        adoptcontent: value
-    })
-    this.data.currentadoptNumber=len
-    this.data.adoptcontent=value    
-    (this.data.adoptcontent)
-  },
-  guadopt(e){
-    this.setData({
-        showadopt:false,
-        currentadoptNumber: 0,
-        adoptcontent: ''
-    })
-  },
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
   guparty(e){
     this.setData({
         showparty:false,
     })
   },
-<<<<<<< HEAD
-=======
-  sendadopt(e){
-    var that = this 
-    wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/applyAdopt/',
-        data:{
-          openid:app.globalData.openid,
-          ActivityID:that.data.adoptTarget,
-          content:that.data.adoptcontent,
-          wxid:that.data.wxcontent
-        },
-        method: 'GET',
-        header: {'content-type': 'application/json' //
-        },
-        success: function(res) {
-            (res.data.openid)
-            wx.showToast({
-                title: '发送成功！',
-                icon: 'none',
-                duration: 2000
-            })
-            that.setData({
-                showadopt:false,
-                currentadoptNumber: 0,
-                adoptcontent: '',
-                wxcontent:''
-            })
-            that.data.currentadoptNumber=0
-            that.data.adoptcontent='' 
-            that.data.wxcontent='' 
-        },
-        fail:function(res){
-            (res.errMsg)
-        }
-    })
-  },
->>>>>>> 6f7290334fa0ecb586065cb3507a7494790ebadf
   love(e){
     wx.navigateTo({
         url:"../editsendLove/editsendLove?activityid="+e.currentTarget.dataset.index
