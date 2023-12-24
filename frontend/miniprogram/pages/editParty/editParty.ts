@@ -33,7 +33,7 @@ Page({
 
   },
   chooseAvatar(event){
-    console.log(event)
+    (event)
     this.setData({
         avatarUrl:event.detail.avatarUrl
     })
@@ -59,7 +59,7 @@ Page({
     })
     this.data.currentTitleNumber=len
     this.data.titlecontent=value
-    console.log(this.data.titlecontent)
+    (this.data.titlecontent)
   },
   inputText:function(e){
         var value = e.detail.value;
@@ -72,7 +72,7 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-      console.log("gu")
+      ("gu")
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -103,7 +103,7 @@ Page({
               options:op,
           })
           
-          console.log(res.data)
+          (res.data)
         },
       })
   },
@@ -120,19 +120,19 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-            console.log(res.data)
+            (res.data)
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-                    console.log(page)
+                    (page)
                 }
             })
         },
         fail:function(res){
-            console.log("failed")
+            ("failed")
         }
     })
 
@@ -154,7 +154,7 @@ Page({
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   onConfirm(event) {
-      console.log(event)
+      (event)
     this.setData({
       show: false,
       date:this.formatDate(event.detail)
@@ -162,7 +162,7 @@ Page({
   },
   sendparty: function(e) {
     var that = this
-    console.log("发布")
+    ("发布")
     wx.uploadFile({
         url: 'http://43.143.139.4:8000/api/v1/postParty/', 
         filePath: that.data.avatarUrl,
@@ -175,19 +175,19 @@ Page({
             content:that.data.atccontent,
         },
         success (res){
-            console.log(res.data)
+            (res.data)
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actparty();
-                    console.log(page)
+                    (page)
                 }
             })
         },
         fail (res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
     })
   }

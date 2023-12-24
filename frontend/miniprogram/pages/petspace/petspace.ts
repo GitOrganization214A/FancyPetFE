@@ -18,13 +18,13 @@ Page({
       that.setData({
         responseData: res.data
       })
-      console.log(res.data)
+      (res.data)
     },
   })
   },
   showdetails:function(event){
     const petspaceid = event.currentTarget.dataset.petspaceid
-    console.log(petspaceid)
+    (petspaceid)
     app.globalData.petspaceid=petspaceid
     wx.navigateTo({
       url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,

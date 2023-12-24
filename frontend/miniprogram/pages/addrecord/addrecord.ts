@@ -25,27 +25,27 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    ('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       index: e.detail.value
     })
   },
   bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    ('picker发送选择改变，携带值为', e.detail.value)
     var splitted = e.detail.value.split("-", 3)
     var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
     var selectdate=splitted[0]+splitted[1]+splitted[2]
     var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
-    console.log(selectdate)
+    (selectdate)
 
     if (selectdate<nowdate){
-      console.log(1)
+      (1)
       this.setData({
         date: e.detail.value
       })
     }
     else{
-    console.log(2)
+    (2)
     this.setData({
       date: new Date().toJSON().substring(0, 10)
     })
@@ -68,7 +68,7 @@ chooseImage(e){
   this.setData({
       images:newfilelist
   })
-  console.log(newfilelist)
+  (newfilelist)
 },
 delimage(e){
 var id = e.detail.index   //能获取到对应的下标
@@ -99,7 +99,7 @@ addNewRecord: function(e) {
         })
       },
       fail:function(res){
-          console.log("failed")
+          ("failed")
       }
   })
 },

@@ -62,7 +62,7 @@ Page({
             RecordDetail: res.data
           })
           for (let record of res.data){
-            console.log("1")
+            ("1")
             var originindex=that.data.index
             let numberArray = [];
             for (let i = 0; i < that.data.number.toString().length; i++) {
@@ -76,13 +76,13 @@ Page({
   },
   deleteRecord(e){
     var that=this;
-    console.log(e);
+    (e);
     wx.showModal({
       title: '提示',
       content: '确定要删除此条记录？',
       success: function (res) {
        if (res.confirm) {
-        console.log('点击确定了');
+        ('点击确定了');
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deleteHealthRecord/',
           method:"GET",
@@ -98,7 +98,7 @@ Page({
           }
         })
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }

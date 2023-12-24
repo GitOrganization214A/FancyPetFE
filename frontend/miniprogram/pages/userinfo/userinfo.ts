@@ -5,6 +5,9 @@ Page({
   data: {
     userid:'',
     userInfo: {},
+    page:1,
+    hasMoreData:true,
+    pageSize:10,
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
@@ -14,9 +17,9 @@ Page({
       menu:['shareAppMessage','shareTimeline']
     })
   },
-  onLoad: function (event) {
+  //获取发帖记录
+  getArticles: function () {
     var that = this
-    this.data.userid = event.userid
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/viewUserInfo/',
       method:"GET",
@@ -25,23 +28,61 @@ Page({
       data:{
         UserID:that.data.userid,
         openid:app.globalData.openid,
+        page:that.data.page,
       },
       success:function(res) {
         that.setData({
-          userInfo: res.data
+          'userInfo.articles':that.data.userInfo.articles.concat(res.data.articles),
+          page: that.data.page + 1
         })
+        if(res.data.articles.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreData:false,
+          })
+        }
       }
     })
   },
+  onLoad: function (event) {
+    var that = this
+    that.setData({
+      userid:event.userid
+    })
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewUserInfo/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        UserID:that.data.userid,
+        openid:app.globalData.openid,
+        page:that.data.page,
+      },
+      success:function(res) {
+        that.setData({
+          userInfo:res.data,
+          page: that.data.page + 1
+        })
+        if(res.data.articles.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreData:false,
+          })
+        }
+      }
+    })
+  },
+  //点赞帖子
   likePost(event) {
     // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
     // 使用微信小程序的wx.request发送HTTP请求
-    console.log('Dataset:', event.currentTarget.dataset)
+    ('Dataset:', event.currentTarget.dataset)
     const articleid = event.currentTarget.dataset.articleid
     const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     const index = event.currentTarget.dataset.index
-    console.log(liked)
+    (liked)
     var that = this
     if (!event.currentTarget.dataset.liked) {
       wx.request({
@@ -155,26 +196,39 @@ Page({
     // 显示顶部刷新图标  
     wx.showNavigationBarLoading();
     var that = this;
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/viewUserInfo/',
-      method:"GET",
-      header: {'content-type': 'application/json' //
-      },
-      data:{
-        UserID:that.data.userid,
-        openid:app.globalData.openid,
-      },
-      success:function(res) {
-        that.setData({
-          userInfo: res.data
-        })
-        wx.hideLoading();
-        // 隐藏导航栏加载框  
-        wx.hideNavigationBarLoading();
-        // 停止下拉动作  
-        wx.stopPullDownRefresh();
-      }
+    that.setData({
+      hasMoreData:true,
+      page:1,
+    }, function() {
+      wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/viewUserInfo/',
+        method:"GET",
+        header: {'content-type': 'application/json' //
+        },
+        data:{
+          UserID:that.data.userid,
+          openid:app.globalData.openid,
+          page:that.data.page
+        },
+        success:function(res) {
+          that.setData({
+            userInfo: res.data,
+            page:that.data.page+1
+          })
+          wx.hideLoading();
+          // 隐藏导航栏加载框  
+          wx.hideNavigationBarLoading();
+          // 停止下拉动作  
+          wx.stopPullDownRefresh();
+        }
+      })
     })
+    
+  },
+  //上拉加载
+  onReachBottom: function () {
+    var that =this
+    that.getArticles();
   },
   //帖子详情
   postDetail(event) {

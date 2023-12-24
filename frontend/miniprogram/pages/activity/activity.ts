@@ -86,11 +86,11 @@ Page({
             activitylist: res.data
           })
           that.data.activitylist = res.data
-          console.log(res.data)
-          console.log(that.data.actadopt)
+          (res.data)
+          (that.data.actadopt)
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
       })
   },
@@ -108,7 +108,7 @@ Page({
             title:"活动"
           })
       }
-      console.log(this.data)
+      (this.data)
   },
   actparty(){
     this.setData({
@@ -132,11 +132,11 @@ Page({
             activitylist: res.data
           })
           that.data.activitylist = res.data
-          console.log(res.data)
-          console.log(that.data.actadopt)
+          (res.data)
+          (that.data.actadopt)
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
       })
   },
@@ -161,11 +161,11 @@ Page({
            activitylist: res.data
          })
          that.data.activitylist = res.data
-         console.log(res.data)
-         console.log(that.data.activitylist)
+         (res.data)
+         (that.data.activitylist)
       },
       fail:function(res){
-           console.log(res.errMsg)
+           (res.errMsg)
       }
     })
   },
@@ -190,11 +190,11 @@ Page({
            activitylist: res.data
          })
          that.data.activitylist = res.data
-         console.log(res.data)
-         console.log(that.data.activitylist)
+         (res.data)
+         (that.data.activitylist)
       },
       fail:function(res){
-           console.log(res.errMsg)
+           (res.errMsg)
       }
     })
   },
@@ -214,7 +214,7 @@ Page({
     })
   },
   surf(e){
-    console.log(e)
+    (e)
     var aid = e.currentTarget.dataset.index
     var pid = -1
     for (var activ of this.data.activitylist)
@@ -225,8 +225,8 @@ Page({
             break
         }
     }
-    console.log(aid)
-    console.log(pid)
+    (aid)
+    (pid)
     app.globalData.petspaceid=pid
     wx.navigateTo({
         url:"../petdetail/petdetail?petspaceid="+pid
@@ -250,7 +250,7 @@ Page({
     }
   },
   adopt(e){
-    console.log(e)
+    (e)
     this.setData({
         showadopt:true,
         adoptTarget:e.target.dataset.index
@@ -281,13 +281,13 @@ Page({
                         activitylist:templist
                     })
                     that.data.activitylist=templist
-                    console.log(that.data.activitylist)
+                    (that.data.activitylist)
                     break
                 }
             }
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
       })
   },
@@ -300,7 +300,7 @@ Page({
     })
     this.data.currentwxNumber=len
     this.data.wxcontent=value    
-    console.log(this.data.adoptcontent)
+    (this.data.adoptcontent)
   },
   inputadopt:function(e){
     var value = e.detail.value;
@@ -311,7 +311,7 @@ Page({
     })
     this.data.currentadoptNumber=len
     this.data.adoptcontent=value    
-    console.log(this.data.adoptcontent)
+    (this.data.adoptcontent)
   },
   guadopt(e){
     this.setData({
@@ -339,7 +339,7 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            console.log(res.data.openid)
+            (res.data.openid)
             wx.showToast({
                 title: '发送成功！',
                 icon: 'none',
@@ -356,7 +356,7 @@ Page({
             that.data.wxcontent='' 
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
     })
   },
@@ -372,7 +372,7 @@ Page({
   },
   onFinish(e) {
     var that = this
-    console.log(e)
+    (e)
     const { selectedOptions, value } = e.detail;
     const fieldValue = selectedOptions
         .map((option) => option.text || option.name)
@@ -393,12 +393,12 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            console.log(e.currentTarget.id)
-            console.log(that.data.fieldValue)
-            console.log(res.data.openid)
+            (e.currentTarget.id)
+            (that.data.fieldValue)
+            (res.data.openid)
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
       })
   },
@@ -414,7 +414,7 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            console.log(res.data.openid)
+            (res.data.openid)
             wx.showToast({
                 title: '发送成功！',
                 icon: 'none',
@@ -422,7 +422,7 @@ Page({
             })
         },
         fail:function(res){
-            console.log(res.errMsg)
+            (res.errMsg)
         }
     })
   },
@@ -451,7 +451,7 @@ Page({
           operation: "like",
         },
         success: (res) => {
-            console.log(res.data)
+            (res.data)
             var templist = that.data.activitylist
             for (let item of templist)
             {
@@ -498,7 +498,7 @@ Page({
       });
   },
   videocomment(e){
-        console.log(e)
+        (e)
         this.setData({
             showcomment:true,
             hotOrTime: !this.data.hotOrTime,
@@ -547,8 +547,8 @@ Page({
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
-    console.log(that.data.hotOrTime)
-    console.log(that.data.videocomments)
+    (that.data.hotOrTime)
+    (that.data.videocomments)
   },
   //删除评论
   deletecomment: function(event) {
@@ -607,7 +607,7 @@ Page({
             break;
         }
     }
-    console.log(i)
+    (i)
     var that = this
     if (!liked) {
       wx.request({

@@ -31,7 +31,7 @@ Page({
       content: '确定要修改宠物空间公开状态吗？',
       success: function (res) {
        if (res.confirm) {
-        console.log('点击确定了');
+        ('点击确定了');
         if(that.data.status){
           wx.request({
             url: 'http://43.143.139.4:8000/api/v1/setPublic/',
@@ -65,7 +65,7 @@ Page({
           })
         }
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }
@@ -79,7 +79,7 @@ Page({
       content: '确定要删除此宠物空间吗？',
       success: function (res) {
        if (res.confirm) {
-        console.log('点击确定了');
+        ('点击确定了');
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deletePetSpace/',
           method:"GET",
@@ -96,7 +96,7 @@ Page({
           }
         })
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }
@@ -121,15 +121,15 @@ Page({
   deletePhoto:function(e){
     var that=this
     var index = this.data.number;
-    console.log(e)
-    console.log(index)
+    (e)
+    (index)
     var petspaceid=this.data.petspaceid
     wx.showModal({
       title: '提示',
       content: '确定要删除此图片吗？',
       success: function (res) {
        if (res.confirm) {
-        console.log('点击确定了');
+        ('点击确定了');
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deletePhoto/',
           method:"GET",
@@ -145,7 +145,7 @@ Page({
           }
         })
        } else if (res.cancel) {
-         console.log('点击取消了');
+         ('点击取消了');
          return false;   
         }
       }
@@ -153,7 +153,7 @@ Page({
      })
   },
   getimageID:function(e){
-    console.log(e)
+    (e)
     this.setData({
       number:e.detail.current
     })
@@ -197,7 +197,7 @@ Page({
           that.setData({
             avatar: res.data.avatar+"?v="+new Date().getTime()
           })
-          console.log(res.data.images)
+          (res.data.images)
           that.setData({
             status: res.data.public
           })
