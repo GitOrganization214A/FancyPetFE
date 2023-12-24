@@ -197,7 +197,6 @@ Page({
           that.setData({
             avatar: res.data.avatar+"?v="+new Date().getTime()
           })
-          (res.data.images)
           that.setData({
             status: res.data.public
           })
