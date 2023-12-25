@@ -136,6 +136,7 @@ Page({
     userInfo: {
 
     },
+    avatarUrl:'../../resource/cameraparty.png',
     images:[],
     year:0,
     month:0,
@@ -262,7 +263,6 @@ Page({
     })
     this.data.breed=value
     this.data.possiblebreed=[]
-    (value)
     var pbl = []
     if(value.length>0)
     {
@@ -400,9 +400,6 @@ Page({
         data.multiIndex[1] = 0;
         break;
     }
-    (this.data.multiArray[1])
-    (data.multiIndex);
-    this.setData(data);
   },
   chosePetImage: function(e) {
     var that = this;
@@ -431,7 +428,7 @@ Page({
     })
     this.data.breed="边境牧羊犬"
   },
-  sendAtc: function(e) {
+  addPet: function(e) {
     const tempFilePaths=this.data.images[0]
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPetSpace/', 

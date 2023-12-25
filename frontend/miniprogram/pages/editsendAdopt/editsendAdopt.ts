@@ -33,7 +33,6 @@ Page({
     })
     this.data.currentwxNumber=len
     this.data.wxcontent=value    
-    console.log(this.data.adoptcontent)
   },
   inputadopt:function(e){
     var value = e.detail.value;
@@ -44,7 +43,6 @@ Page({
     })
     this.data.currentadoptNumber=len
     this.data.adoptcontent=value    
-    console.log(this.data.adoptcontent)
   },
   sendadopt(e){
     var that = this 
@@ -60,14 +58,12 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            console.log(res.data.openid)
             wx.switchTab({
                 url:"../activity/activity",
                 success(){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actadopt();
-                    console.log(page)
                 }
             })
             wx.showToast({
@@ -83,7 +79,6 @@ Page({
             })
         },
         fail:function(res){
-            console.log(res.errMsg)
         }
     })
   },

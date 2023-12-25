@@ -33,7 +33,6 @@ Page({
 
   },
   chooseAvatar(event){
-    (event)
     this.setData({
         avatarUrl:event.detail.avatarUrl
     })
@@ -59,7 +58,6 @@ Page({
     })
     this.data.currentTitleNumber=len
     this.data.titlecontent=value
-    (this.data.titlecontent)
   },
   inputText:function(e){
         var value = e.detail.value;
@@ -72,7 +70,6 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-      ("gu")
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -102,8 +99,6 @@ Page({
           that.setData({
               options:op,
           })
-          
-          (res.data)
         },
       })
   },
@@ -154,7 +149,6 @@ Page({
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   onConfirm(event) {
-      (event)
     this.setData({
       show: false,
       date:this.formatDate(event.detail)
@@ -182,12 +176,10 @@ Page({
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actparty();
-                    (page)
                 }
             })
         },
         fail (res){
-            (res.errMsg)
         }
     })
   }

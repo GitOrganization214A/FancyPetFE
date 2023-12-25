@@ -23,24 +23,19 @@ Page({
           that.setData({
             messageList: res.data
           })
-          that.data.messageList = res.data
-          (res.data)
         },
         fail:function(res){
-            (res.errMsg)
         }
       })
   },
   surfindex(e){
     const tempuid = e.target.dataset.index
-    (tempuid)
     wx.navigateTo({
       url:'/pages/userinfo/userinfo?userid='+tempuid,
     })
   },
   surfpet(e){
     const temppid = e.target.dataset.index
-    (temppid)
     wx.navigateTo({
       url:'/pages/petdetailshow/petdetailshow?petspaceid='+temppid,
     })
@@ -76,7 +71,6 @@ Page({
             }
         },
         fail:function(res){
-            (res.errMsg)
         }
       })
   }
