@@ -9,7 +9,8 @@ Page({
     index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
     show: false,
     options:[],
-    cascaderValue: ''
+    cascaderValue: '',
+    ismaster:false
   },
 
   /**
@@ -113,17 +114,27 @@ Page({
         PetSpaceID:app.globalData.petspaceid
       },
       success:function(res) {
-
           that.setData({
             ShareUserList: res.data
           })
           var op = []
+          var m = 0
           for (let user of res.data)
           {
+              if(m==0)
+              {
+                  if(user.UserID==app.globalData.userid)
+                  {
+                      that.setData({
+                          ismaster:true,
+                      })
+                  }
+              }
               op.push({
                   text:user.nickname,
                   value:user.UserID
               })
+              m++
           }
           that.setData({
               options:op,
@@ -133,7 +144,7 @@ Page({
   },
   deleteShareUser(e){
     var that=this
-
+    if(e.currentTarget)
     wx.showModal({
       title: '提示',
       content: '确定要删除此共享用户吗？',

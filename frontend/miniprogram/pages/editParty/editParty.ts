@@ -104,42 +104,6 @@ Page({
         },
       })
   },
-  sendlove: function(e) {
-    var that = this
-    wx.request({
-        url: 'http://43.143.139.4:8000/api/v1/postLove/',//todo
-        data:{
-            openid:app.globalData.openid,
-            content:that.data.atccontent,
-            PetSpaceID:that.data.cascaderValue,
-        },
-        method:"GET",
-        header: {'content-type': 'application/json' //
-        },
-        success:function(res) {
-
-            wx.switchTab({
-                url:"../activity/activity",
-                success(e){
-                    var page = getCurrentPages().pop();
-                    if (page == undefined || page == null) return;
-                    page.actlove();
-
-                }
-            })
-        },
-        fail:function(res){
-
-        }
-    })
-
-
-
-    
-    
-
-    
-  },
   onDisplay() {
     this.setData({ show: true });
   },
@@ -158,7 +122,6 @@ Page({
   },
   sendparty: function(e) {
     var that = this
-
     wx.uploadFile({
         url: 'http://43.143.139.4:8000/api/v1/postParty/', 
         filePath: that.data.avatarUrl,

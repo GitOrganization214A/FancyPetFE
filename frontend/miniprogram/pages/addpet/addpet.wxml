@@ -9,7 +9,7 @@
             <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" >
                 <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill" style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
             </button>
-            <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="addPet">发布</l-button>
+            <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="addPet">添加</l-button>
             <view class='inputName' >
                 <textarea style="top:450rpx;position: fixed;left:20rpx;width: 750rpx;height:100rpx;" placeholder='请输入宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
                 <text class='ctn' style="top:500rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
@@ -32,7 +32,7 @@
             <view class='inputBreed' >
                 <textarea style="top:550rpx;left:20rpx;position: fixed;width: 800rpx;height:100rpx;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
             </view>
-            <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 840rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
+            <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 560rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
                 <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
                     {{item}}
                 </view>

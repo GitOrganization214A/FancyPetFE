@@ -1,14 +1,18 @@
 <!--pages/shareuser/shareuser.wxml-->
-<l-capsule-bar home-page="/pages/petspace/petspace" title="共享用户列表">
+<l-capsule-bar capsule-color="white" bg-color="#60656C" title="共享用户列表" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
 <view class="by">
 <view style="top:200rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
 bindtap="addtoShare">添加</view>
-<view style="top:200rpx;position: fixed;left:40rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;" 
+<view wx:if="{{ismaster}}" style="top:200rpx;position: fixed;left:40rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:coral;" 
 bindtap="changeowner">换主</view>
 </view>
-<view style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{ShareUserList}}" wx:key="*this">
-  <l-card bind:longpress="deleteShareUser" type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.nickname}}" describe="{{item.UserID}}" data-userid="{{item.UserID}}">
+<view style="top:100rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{ShareUserList}}" wx:key="*this">
+  <l-card wx:if="{{index==0}}"type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.nickname}}" describe="{{item.UserID}}" data-userid="{{item.UserID}}" data-master="1">
         <!-- 此处为content -->
+        <view style="color: red;left: 550rpx;top:-70rpx;position: relative;">主人</view>
+  </l-card>
+  <l-card wx:else="{{index>0}}" bind:longpress="deleteShareUser" type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.nickname}}" describe="{{item.UserID}}" data-userid="{{item.UserID}}" data-master="0">
   </l-card>
 </view>
 <view style="position: fixed;top: 600rpx;">
@@ -16,7 +20,7 @@ bindtap="changeowner">换主</view>
             <van-cascader
                 wx:if="{{ show }}"
                 value="{{ cascaderValue }}"
-                title="请选择新主人"
+                title="请选择主人"
                 options="{{ options }}"
                 bind:close="onClose"
                 bind:finish="onFinish"

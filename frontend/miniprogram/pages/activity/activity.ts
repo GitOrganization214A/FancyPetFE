@@ -79,7 +79,7 @@ Page({
         colorparty:'black',
         colorlove:'black',
         pageindex:0,
-        title:"活动"
+        title:"宠物活动"
     })
     this.actcloud()
   },
@@ -120,7 +120,7 @@ Page({
           colorparty:'black',
           colorlove:'black',
           pageindex:1,
-          title:"宠物领养"
+          title:"宠物活动"
       })
       var that = this
       wx.request({
@@ -171,7 +171,7 @@ Page({
         colorparty:'coral',
         colorlove:'black',
         pageindex:2,
-        title:"宠物聚会"
+        title:"宠物活动"
     })
     var that = this
     
@@ -222,7 +222,7 @@ Page({
         colorparty:'black',
         colorlove:'coral',
         pageindex:3,
-        title:"宠物配种"
+        title:"宠物活动"
     })
     var that = this
     wx.request({
@@ -272,7 +272,7 @@ Page({
         colorparty:'black',
         colorlove:'black',
         pageindex:4,
-        title:"云养宠"
+        title:"宠物活动"
     })
     var that = this
     wx.request({

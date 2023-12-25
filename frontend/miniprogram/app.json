@@ -39,13 +39,13 @@
         "list": [
             {
                 "pagePath": "pages/forum/forum",
-                "text": "社区",
+                "text": "宠物社区",
                 "iconPath": "resource/forumiconus.png",
                 "selectedIconPath": "resource/forumicons.png"
             },
             {
                 "pagePath": "pages/activity/activity",
-                "text": "活动",
+                "text": "宠物活动",
                 "iconPath": "resource/activityicon.png",
                 "selectedIconPath": "resource/activityicons.png"
             },

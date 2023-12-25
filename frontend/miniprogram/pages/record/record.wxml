@@ -1,42 +1,43 @@
 <!--pages/record/record.wxml-->
-<view class='by'>
-    <view style="top:175rpx;text-align: center;position: fixed;width: 400rpx;font-size: 25px;left:200rpx">健康状态记录列表</view>       
-    <image style="top:175rpx;position: fixed;left:30rpx;width:60rpx;height:60rpx;" src="{{giveupUrl}}" bindtap="goback"></image>
-    <image style="top:175rpx;position: fixed;left:640rpx;width:60rpx;height:60rpx;line-height:50rpx;align-items: center;justify-content: center;font-size:17px ;"       src="{{addNewUrl}}" bindtap="addNewRecord"></image>
-</view>
-<view lazy-load="true" style="top:400rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{RecordDetail}}" wx:key="*this">
-<view bind:longpress="deleteRecord" data-index="{{index}}">
-  <fui-card wx:if="{{ item.type === '打喷嚏' }}" lazy-load="true" src="{{sneezeUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '呕吐' }}" lazy-load="true" src="{{vomiteUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '发烧' }}" lazy-load="true" src="{{overheatUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '外伤' }}" lazy-load="true" src="{{hurtUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '嗜睡' }}" lazy-load="true" src="{{sleepUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '抽搐' }}" lazy-load="true" src="{{dizzUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '腹泻' }}" lazy-load="true" src="{{hankeyUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  <fui-card wx:if="{{ item.type === '发情' }}" lazy-load="true" src="{{loveUrl}}" title="{{item.type}}" tag="{{item.date}}">
-        <!-- 此处为content -->
-        <text style="display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
-  </fui-card>
-  </view>
-  </view>
+<l-capsule-bar capsule-color="white" bg-color="#60656C" title="健康状态记录" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
+    <view class='by'>
+        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top: 230rpx;position: fixed;left:250rpx;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="addNewRecord">增加健康状态记录</l-button>
+    </view>
+    <view lazy-load="true" style="top:150rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{RecordDetail}}" wx:key="*this">
+    <view bind:longpress="deleteRecord" data-index="{{index}}">
+    <fui-card wx:if="{{ item.type === '打喷嚏' }}" lazy-load="true" src="{{sneezeUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '呕吐' }}" lazy-load="true" src="{{vomiteUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '发烧' }}" lazy-load="true" src="{{overheatUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '外伤' }}" lazy-load="true" src="{{hurtUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '嗜睡' }}" lazy-load="true" src="{{sleepUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '抽搐' }}" lazy-load="true" src="{{dizzUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '腹泻' }}" lazy-load="true" src="{{hankeyUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    <fui-card wx:if="{{ item.type === '发情' }}" lazy-load="true" src="{{loveUrl}}" title="{{item.type}}" tag="{{item.date}}">
+            <!-- 此处为content -->
+            <text style="left:30rpx;position:relative;display: flex;flex-direction:column;word-break: keep-all;word-wrap: break-word;white-space: pre-line;">{{item.content}}</text>
+    </fui-card>
+    </view>
+    </view>
+</l-capsule-bar>
