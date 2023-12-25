@@ -18,7 +18,6 @@ Page({
       that.setData({
         responseData: res.data
       })
-      (res.data)
     },
   })
   },
