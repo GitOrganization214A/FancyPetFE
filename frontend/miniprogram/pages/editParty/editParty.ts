@@ -33,10 +33,6 @@ Page({
 
   },
   chooseAvatar(event){
-<<<<<<< HEAD
-=======
-
->>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
     this.setData({
         avatarUrl:event.detail.avatarUrl
     })
@@ -62,10 +58,6 @@ Page({
     })
     this.data.currentTitleNumber=len
     this.data.titlecontent=value
-<<<<<<< HEAD
-=======
-
->>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
   },
   inputText:function(e){
         var value = e.detail.value;
@@ -78,10 +70,6 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -111,11 +99,8 @@ Page({
           that.setData({
               options:op,
           })
-<<<<<<< HEAD
-=======
           
 
->>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
         },
       })
   },
@@ -166,10 +151,6 @@ Page({
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   onConfirm(event) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
     this.setData({
       show: false,
       date:this.formatDate(event.detail)
