@@ -141,7 +141,7 @@
   <view class="album" mode="widthFix">
   <scroll-view style="top:0rpx;position:relative;float: left;margin-top: 20rpx;">
     <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
-    <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
+    <view style="text-align:right" wx:for="{{images}}" >
     <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
   </view>
   <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:change="getimageID">
