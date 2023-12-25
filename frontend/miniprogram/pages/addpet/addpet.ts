@@ -335,7 +335,6 @@ Page({
         })
         this.data.possiblebreed=pbl
     }
-    (this.data.possiblebreed)
   },
   replaceBreed:function(e){
     this.setData({
@@ -352,14 +351,12 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     var Breed=this.data.multiArray[1][e.detail.value[1]];
-    ('picker发送选择改变，携带值为', this.data.multiArray[1][e.detail.value[1]])
     this.setData({
       breed: Breed
     })
     this.data.breed=Breed
   },
   bindMultiPickerColumnChange: function (e) {
-    ('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -400,6 +397,7 @@ Page({
         data.multiIndex[1] = 0;
         break;
     }
+    this.setData(data);
   },
   chosePetImage: function(e) {
     var that = this;
@@ -411,13 +409,10 @@ Page({
             images: res.tempFilePaths,
  
           })
-          (that.data.images)
-          
         }
     })
   },
   guEdit: function(e) {
-      ("gu")
       wx.navigateBack({
         delta: 1
       })
