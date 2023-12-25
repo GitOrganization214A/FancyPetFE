@@ -77,12 +77,12 @@ Page({
   likePost(event) {
     // 发送点赞请求到后端，假设点赞成功后返回新的点赞数
     // 使用微信小程序的wx.request发送HTTP请求
-    ('Dataset:', event.currentTarget.dataset)
+
     const articleid = event.currentTarget.dataset.articleid
     const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     const index = event.currentTarget.dataset.index
-    (liked)
+
     var that = this
     if (!event.currentTarget.dataset.liked) {
       wx.request({

@@ -277,7 +277,6 @@ Page({
     })
   },
   inputTitle:function(e){
-        (app.globalData.userid)
         var value = e.detail.value;
         var len = parseInt(value.length)
         this.setData({

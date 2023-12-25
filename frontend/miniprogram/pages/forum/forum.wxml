@@ -1,12 +1,12 @@
 
 <!--forum.wxml-->
-<l-capsule-bar
+<l-capsule-bar class="capsule"
   capsule-color="white" bg-color="#60656C"
   title="宠物社区" title-color="#ffac63"
   home-page='/pages/forum/forum'/>
 
     <!-- 以下部分放置页面内容 -->
-    <view class="grid" style="position: fixed;left: 0;width: 750rpx;top: 140rpx;background-color: white;height: 180rpx;line-height: 60rpx;z-index: 30;">
+    <view class="grid" style="position: fixed;left: 0;width: 750rpx;top: {{capsuleBarHeight}}rpx;background-color: white;height: 180rpx;line-height: 60rpx;z-index: 30;">
         <l-grid row-num="3">
             <l-grid-item key="one" slot="one">
             <view class="tab" data-id="1" data-tab="following" bindtap="switchTab" style="color: {{color1}}">关注</view>

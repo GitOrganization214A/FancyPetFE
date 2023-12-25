@@ -93,7 +93,7 @@ Page({
   //进入用户主页
   viewUserInfo: function(event) {
     const tempuserid = event.currentTarget.dataset.userid
-    ("tempuserid",tempuserid) 
+ 
     wx.navigateTo({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
@@ -141,7 +141,7 @@ Page({
     const liked = event.currentTarget.dataset.liked
     const like = event.currentTarget.dataset.like
     const index = event.currentTarget.dataset.index
-    (liked)
+
     var that = this
     if (!event.currentTarget.dataset.liked) {
       wx.request({

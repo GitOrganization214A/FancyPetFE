@@ -200,10 +200,6 @@ Page({
     navigationUrl:"../../resource/navigationbar.png",
     capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
-  getNavigationBarHeight() {
-    const capsuleBarHeight = deviceUtil.getNavigationBarHeight()
-    console.log(`CapsuleBar 的高度为${capsuleBarHeight}rpx`)
-  },
   onShareAppMessage:function(event){
     const articleid=event.currentTarget.dataset.articleid
     wx.showShareMenu({
@@ -227,7 +223,6 @@ Page({
     this.setData({
       scrollTop: res.scrollTop,
     })
-    this.getNavigationBarHeight()
   },
   // 搜索输入
   searchInput: function(event) {

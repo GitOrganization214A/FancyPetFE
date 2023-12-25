@@ -29,7 +29,7 @@ Page({
   //进入用户主页
   viewUserInfo: function(event) {
     const tempuserid = event.currentTarget.dataset.userid
-    ("tempuserid",tempuserid) 
+ 
     wx.navigateTo({
       url:'/pages/userinfo/userinfo?userid='+tempuserid,
     })
@@ -383,7 +383,6 @@ Page({
           title: '发送成功',
           icon: 'none',
         });
-        (that.data.Post)
       }
     })
   },

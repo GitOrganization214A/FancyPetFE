@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(event) {
-    (event.petspaceid)
+
     var that = this
     this.data.petspaceid = event.petspaceid
     wx.request({
@@ -32,7 +32,7 @@ Page({
           that.setData({
             PetSpaceDetail: res.data
           })
-          (res.data.images)
+
           for (let image of res.data.images)
             {
               that.data.number=that.data.number+1
@@ -43,12 +43,12 @@ Page({
               }]
               that.data.list=[...that.data.list,...numberlist]
             }
-            (that.data.list)
+
       }
     })
   },
   deletePetSpace:function(event){
-    (event.petspaceid)
+
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/deletePetSpace/',
       method:"GET",
@@ -76,14 +76,14 @@ Page({
   },
   deletePhoto:function(e){
     var index = this.data.number;
-    (e)
+
     var petspaceid=this.data.petspaceid
     wx.showModal({
       title: '提示',
       content: '确定要删除此图片吗？',
       success: function (res) {
        if (res.confirm) {
-        ('点击确定了');
+;
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deletePhoto/',
           method:"GET",
@@ -100,7 +100,7 @@ Page({
           }
         })
        } else if (res.cancel) {
-         ('点击取消了');
+;
          return false;   
         }
       }
@@ -108,7 +108,7 @@ Page({
      })
   },
   getimageID:function(e){
-    (e)
+
     this.setData({
       number:e.detail.index
     })

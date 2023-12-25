@@ -42,7 +42,7 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-      ("gu")
+
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -73,7 +73,7 @@ Page({
               options:op,
           })
           
-          (res.data)
+
         },
       })
   },
@@ -105,19 +105,19 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-            (res.data)
+
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-                    (page)
+
                 }
             })
         },
         fail:function(res){
-            ("failed")
+
         }
     })
 

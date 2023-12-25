@@ -147,7 +147,7 @@ Page({
           }
         },
         fail:function(res){
-            (res.errMsg)
+
         }
       })
   },
@@ -201,7 +201,7 @@ Page({
           }
         },
         fail:function(res){
-            (res.errMsg)
+
         }
       })
   },
@@ -254,7 +254,7 @@ Page({
           }
       },
       fail:function(res){
-           (res.errMsg)
+
       }
     })
   },
@@ -307,7 +307,7 @@ Page({
           }
       },
       fail:function(res){
-           (res.errMsg)
+
       }
     })
   },
@@ -327,7 +327,7 @@ Page({
     })
   },
   surf(e){
-    (e)
+
     var aid = e.currentTarget.dataset.index
     var pid = -1
     for (var activ of this.data.activitylist)
@@ -338,8 +338,8 @@ Page({
             break
         }
     }
-    (aid)
-    (pid)
+
+
     app.globalData.petspaceid=pid
     wx.navigateTo({
         url:"../petdetail/petdetail?petspaceid="+pid
@@ -393,13 +393,13 @@ Page({
                         activitylist:templist
                     })
                     that.data.activitylist=templist
-                    (that.data.activitylist)
+
                     break
                 }
             }
         },
         fail:function(res){
-            (res.errMsg)
+
         }
       })
   },
@@ -420,7 +420,7 @@ Page({
   },
   onFinish(e) {
     var that = this
-    (e)
+
     const { selectedOptions, value } = e.detail;
     const fieldValue = selectedOptions
         .map((option) => option.text || option.name)
@@ -441,12 +441,12 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            (e.currentTarget.id)
-            (that.data.fieldValue)
-            (res.data.openid)
+
+
+
         },
         fail:function(res){
-            (res.errMsg)
+
         }
       })
   },
@@ -462,7 +462,7 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-            (res.data.openid)
+
             wx.showToast({
                 title: '发送成功！',
                 icon: 'none',
@@ -470,7 +470,7 @@ Page({
             })
         },
         fail:function(res){
-            (res.errMsg)
+
         }
     })
   },
@@ -503,7 +503,7 @@ Page({
           operation: "like",
         },
         success: (res) => {
-            (res.data)
+
             var templist = that.data.activitylist
             for (let item of templist)
             {
@@ -550,7 +550,7 @@ Page({
       });
   },
   videocomment(e){
-        (e)
+
         this.setData({
             showcomment:true,
             hotOrTime: !this.data.hotOrTime,
@@ -599,8 +599,8 @@ Page({
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
-    (that.data.hotOrTime)
-    (that.data.videocomments)
+
+
   },
   //删除评论
   deletecomment: function(event) {
@@ -659,7 +659,7 @@ Page({
             break;
         }
     }
-    (i)
+
     var that = this
     if (!liked) {
       wx.request({

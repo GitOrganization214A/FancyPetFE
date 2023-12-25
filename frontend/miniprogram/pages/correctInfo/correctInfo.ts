@@ -228,7 +228,7 @@ Page({
         })
         this.data.currentTitleNumber=len
         this.data.titlecontent=value
-        (this.data.titlecontent)
+
   },
   inputYear:function(e){
         var count=e.detail.count;
@@ -262,7 +262,7 @@ Page({
     })
     this.data.breed=value
     this.data.possiblebreed=[]
-    (value)
+
     var pbl = []
     if(value.length>0)
     {
@@ -335,7 +335,7 @@ Page({
         })
         this.data.possiblebreed=pbl
     }
-    (this.data.possiblebreed)
+
   },
   replaceBreed:function(e){
     this.setData({
@@ -352,14 +352,14 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     var Breed=this.data.multiArray[1][e.detail.value[1]];
-    ('picker发送选择改变，携带值为', this.data.multiArray[1][e.detail.value[1]])
+
     this.setData({
       breed: Breed
     })
     this.data.breed=Breed
   },
   bindMultiPickerColumnChange: function (e) {
-    ('修改的列为', e.detail.column, '，值为', e.detail.value);
+;
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -400,8 +400,8 @@ Page({
         data.multiIndex[1] = 0;
         break;
     }
-    (this.data.multiArray[1])
-    (data.multiIndex);
+
+;
     this.setData(data);
   },
   chosePetImage: function(e) {
@@ -418,13 +418,13 @@ Page({
             images: that.data.origin_avatar,
  
           })
-          (that.data.images[0])
+
           
         }
     })
   },
   guEdit: function(e) {
-      (this.data.origin_avatar);
+;
       wx.navigateBack({
         delta: 1
       })
@@ -443,7 +443,7 @@ Page({
           that.setData({
             PetSpaceDetail: res.data
           })
-          (res.data.avatar)
+
           that.setData({
             origin_avatar: res.data.avatar,
             images:res.data.avatar,
@@ -469,7 +469,7 @@ Page({
       },
       success: function (res) {
         //上传成功
-            ("修改成功");
+;
       },
     })
     wx.request({
