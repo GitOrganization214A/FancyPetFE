@@ -15,7 +15,10 @@ Page({
     show:false,
     moreUrl:"../../resource/more.png",
     showActionsheet:false,
-    status:true
+    status:true,
+    hasMoreImage:true,
+    pageImage:1,
+    pageSize:27
   },
 
   /**
@@ -187,11 +190,15 @@ Page({
       },
       data:{
         PetSpaceID:this.data.petspaceid,
-        openid:app.globalData.openid
+        openid:app.globalData.openid,
+        page:that.data.pageImage
       },
       success:function(res) {
           that.setData({
             PetSpaceDetail: res.data
+          })
+          that.setData({
+            images: res.data.images
           })
           that.setData({
             avatar: res.data.avatar+"?v="+new Date().getTime()
@@ -243,8 +250,39 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
+  onReachBottom: function () {
+    var that =this
+    if (that.data.hasMoreImage) {
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid,
+        page:that.data.pageImage
+      },
+      success:function(res) {
+        that.setData({
+          images:that.data.images.concat(res.data.images),
+          pageImage: that.data.pageImage + 1
+        })
+        if(res.data.images.length<that.data.pageSize)
+        {
+          that.setData({
+            hasMoreImage:false,
+          })
+        }
+      }
+    })
+    }
+    else{
+      wx.showToast({
+        title: '没有更多图片',
+        duration: 1000
+      })
+    }
   },
 
   /**
