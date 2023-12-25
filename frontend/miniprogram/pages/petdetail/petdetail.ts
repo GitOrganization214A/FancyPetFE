@@ -153,7 +153,6 @@ Page({
      })
   },
   getimageID:function(e){
-
     this.setData({
       number:e.detail.current
     })

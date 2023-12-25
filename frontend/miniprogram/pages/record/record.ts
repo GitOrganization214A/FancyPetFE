@@ -62,7 +62,6 @@ Page({
             RecordDetail: res.data
           })
           for (let record of res.data){
-
             var originindex=that.data.index
             let numberArray = [];
             for (let i = 0; i < that.data.number.toString().length; i++) {

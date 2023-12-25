@@ -25,18 +25,15 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-
     this.setData({
       index: e.detail.value
     })
   },
   bindDateChange: function(e) {
-
     var splitted = e.detail.value.split("-", 3)
     var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
     var selectdate=splitted[0]+splitted[1]+splitted[2]
     var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
-
 
     if (selectdate<nowdate){
 
@@ -68,7 +65,6 @@ chooseImage(e){
   this.setData({
       images:newfilelist
   })
-
 },
 delimage(e){
 var id = e.detail.index   //能获取到对应的下标
@@ -99,7 +95,6 @@ addNewRecord: function(e) {
         })
       },
       fail:function(res){
-
       }
   })
 },

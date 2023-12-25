@@ -48,13 +48,11 @@ Page({
     })
   },
   bindPickerChange: function(e) {
-
     this.setData({
       index: e.detail.value
     })
   },
   bindDateChange: function(e) {
-
     var splitted = e.detail.value.split("-", 3)
     var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
     var selectdate=splitted[0]+splitted[1]+splitted[2]

@@ -262,7 +262,6 @@ Page({
     })
     this.data.breed=value
     this.data.possiblebreed=[]
-
     var pbl = []
     if(value.length>0)
     {
@@ -335,7 +334,6 @@ Page({
         })
         this.data.possiblebreed=pbl
     }
-
   },
   replaceBreed:function(e){
     this.setData({
@@ -352,7 +350,6 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     var Breed=this.data.multiArray[1][e.detail.value[1]];
-
     this.setData({
       breed: Breed
     })
@@ -414,13 +411,11 @@ Page({
             images: res.tempFilePaths,
  
           })
-
           
         }
     })
   },
   guEdit: function(e) {
-
       wx.navigateBack({
         delta: 1
       })

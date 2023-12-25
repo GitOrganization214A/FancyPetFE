@@ -352,7 +352,6 @@ Page({
   },
   bindMultiPickerChange: function (e) {
     var Breed=this.data.multiArray[1][e.detail.value[1]];
-
     this.setData({
       breed: Breed
     })
@@ -416,9 +415,7 @@ Page({
           })
           that.setData({
             images: that.data.origin_avatar,
- 
           })
-
           
         }
     })
@@ -443,7 +440,6 @@ Page({
           that.setData({
             PetSpaceDetail: res.data
           })
-
           that.setData({
             origin_avatar: res.data.avatar,
             images:res.data.avatar,
