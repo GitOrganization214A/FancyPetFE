@@ -128,7 +128,7 @@ Page({
                     })
                     that.setData({
                         ['nickName'] : res.data.nickname,
-                        ['avatarUrl'] :  res.data.avatar+"?v="+new Date().getTime(),
+                        ['avatarUrl'] :  res.data.avatar,
                         ['follow'] :  res.data.follow,
                         ['fans'] :  res.data.fans,
                         ['atcnum'] :  res.data.atcnum,
@@ -141,7 +141,7 @@ Page({
                     app.globalData.userid=res.data.UserID
                     
                     that.data.userInfo.nickName=res.data.nickname
-                    that.data.userInfo.avatarUrl=res.data.avatar+"?v="+new Date().getTime()
+                    that.data.userInfo.avatarUrl=res.data.avatar
                     that.data.userInfo.follow=res.data.follow
                     that.data.userInfo.fans=res.data.fans
                     that.data.userInfo.atcnum=res.data.atcnum
@@ -202,10 +202,10 @@ Page({
     const UseravatarUrl = e.detail.avatarUrl
     this.setData({
         ['haveAvatar']:true,
-        ['avatarUrl']:UseravatarUrl+"?v="+new Date().getTime(),
+        ['avatarUrl']:UseravatarUrl,
     })
     
-    this.data.userInfo.avatarUrl = UseravatarUrl+"?v="+new Date().getTime()
+    this.data.userInfo.avatarUrl = UseravatarUrl
 
     const tempFilePaths = e.detail.avatarUrl
     wx.uploadFile({

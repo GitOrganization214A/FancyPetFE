@@ -24,12 +24,13 @@ Page({
   },
   deleteBill(e){
     var that=this;
-    (e);
+;
     wx.showModal({
       title: '提示',
       content: '确定要删除此条账单？',
       success: function (res) {
        if (res.confirm) {
+;
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/deleteBill/',
           method:"GET",
@@ -44,6 +45,7 @@ Page({
           }
         })
        } else if (res.cancel) {
+;
          return false;   
         }
       }

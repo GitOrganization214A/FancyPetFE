@@ -36,13 +36,13 @@ Page({
     var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
 
     if (selectdate<nowdate){
-      (1)
+
       this.setData({
         date: e.detail.value
       })
     }
     else{
-    (2)
+
     this.setData({
       date: new Date().toJSON().substring(0, 10)
     })

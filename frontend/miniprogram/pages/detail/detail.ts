@@ -544,7 +544,6 @@ Page({
         })
         if(that.data.hotOrTime===false)  //按时间
         {
-          ("time")
           wx.request({
             url: 'http://43.143.139.4:8000/api/v1/viewCommentsTime/',
             method:"GET",
@@ -573,7 +572,6 @@ Page({
               ArticleID:that.data.articleid,
             },
             success:function(res) {
-              (res.data)
               that.setData({
                 commentsHot: res.data
               })

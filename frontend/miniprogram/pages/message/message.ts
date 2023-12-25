@@ -65,7 +65,7 @@ Page({
                         messageList:templist
                     })
                     that.data.messageList=templist
-                    (that.data.messageList)
+
                     break
                 }
             }

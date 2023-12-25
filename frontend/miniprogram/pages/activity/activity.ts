@@ -145,7 +145,7 @@ Page({
           }
         },
         fail:function(res){
-            (res.errMsg)
+
         }
       })
   },
@@ -326,6 +326,8 @@ Page({
             break
         }
     }
+
+
     app.globalData.petspaceid=pid
     wx.navigateTo({
         url:"../petdetail/petdetail?petspaceid="+pid
@@ -378,7 +380,7 @@ Page({
                         activitylist:templist
                     })
                     that.data.activitylist=templist
-                    (that.data.activitylist)
+
                     break
                 }
             }
@@ -401,6 +403,38 @@ Page({
     this.setData({
       show: false,
     });
+  },
+  onFinish(e) {
+    var that = this
+
+    const { selectedOptions, value } = e.detail;
+    const fieldValue = selectedOptions
+        .map((option) => option.text || option.name)
+        .join('/');
+    this.setData({
+      fieldValue,
+      cascaderValue: value,
+    })
+    wx.request({
+        url: 'http://43.143.139.4:8000/api/v1/applyLove/',//todo
+        data:{
+          openid:app.globalData.openid,
+          ActivityID:e.currentTarget.id,
+          petSpaceid:that.data.fieldValue,//todo
+          type:"love"
+        },
+        method: 'GET',
+        header: {'content-type': 'application/json' //
+        },
+        success: function(res) {
+
+
+
+        },
+        fail:function(res){
+
+        }
+      })
   },
   participate(e){
     var that = this 

@@ -42,7 +42,7 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-      ("gu")
+
       wx.switchTab({
           url:"/pages/activity/activity"
       })

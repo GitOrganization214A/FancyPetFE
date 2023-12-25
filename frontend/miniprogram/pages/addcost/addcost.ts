@@ -57,14 +57,16 @@ Page({
     var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
     var selectdate=splitted[0]+splitted[1]+splitted[2]
     var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
+
+
     if (selectdate<nowdate){
-      (1)
+
       this.setData({
         date: e.detail.value
       })
     }
     else{
-    (2)
+
     this.setData({
       date: new Date().toJSON().substring(0, 10)
     })
@@ -95,6 +97,8 @@ Page({
           that.setData({
               options:op,
           })
+          
+
         },
       })
   },
@@ -136,7 +140,7 @@ Page({
         })
       },
       fail:function(res){
-          ("failed")
+
       }
   })
   },

@@ -228,7 +228,7 @@ Page({
         })
         this.data.currentTitleNumber=len
         this.data.titlecontent=value
-        (this.data.titlecontent)
+
   },
   inputYear:function(e){
         var count=e.detail.count;
@@ -262,7 +262,7 @@ Page({
     })
     this.data.breed=value
     this.data.possiblebreed=[]
-    (value)
+
     var pbl = []
     if(value.length>0)
     {
@@ -335,7 +335,7 @@ Page({
         })
         this.data.possiblebreed=pbl
     }
-    (this.data.possiblebreed)
+
   },
   replaceBreed:function(e){
     this.setData({
@@ -358,6 +358,7 @@ Page({
     this.data.breed=Breed
   },
   bindMultiPickerColumnChange: function (e) {
+;
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -398,6 +399,8 @@ Page({
         data.multiIndex[1] = 0;
         break;
     }
+
+;
     this.setData(data);
   },
   chosePetImage: function(e) {
@@ -418,6 +421,7 @@ Page({
     })
   },
   guEdit: function(e) {
+;
       wx.navigateBack({
         delta: 1
       })
@@ -461,7 +465,7 @@ Page({
       },
       success: function (res) {
         //上传成功
-            ("修改成功");
+;
       },
     })
     wx.request({

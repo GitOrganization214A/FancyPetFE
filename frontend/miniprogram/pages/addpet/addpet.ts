@@ -229,7 +229,7 @@ Page({
         })
         this.data.currentTitleNumber=len
         this.data.titlecontent=value
-        (this.data.titlecontent)
+
   },
   inputYear:function(e){
         var count=e.detail.count;
@@ -357,6 +357,7 @@ Page({
     this.data.breed=Breed
   },
   bindMultiPickerColumnChange: function (e) {
+;
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -397,6 +398,8 @@ Page({
         data.multiIndex[1] = 0;
         break;
     }
+
+;
     this.setData(data);
   },
   chosePetImage: function(e) {
@@ -438,7 +441,7 @@ Page({
         breed:this.data.breed
       },
       success (res){
-        (res.data)
+
         wx.navigateBack({
           delta: 1
         })

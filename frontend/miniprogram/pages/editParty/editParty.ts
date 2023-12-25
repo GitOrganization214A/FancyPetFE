@@ -33,6 +33,10 @@ Page({
 
   },
   chooseAvatar(event){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
     this.setData({
         avatarUrl:event.detail.avatarUrl
     })
@@ -58,6 +62,10 @@ Page({
     })
     this.data.currentTitleNumber=len
     this.data.titlecontent=value
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
   },
   inputText:function(e){
         var value = e.detail.value;
@@ -70,6 +78,10 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -99,6 +111,11 @@ Page({
           that.setData({
               options:op,
           })
+<<<<<<< HEAD
+=======
+          
+
+>>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
         },
       })
   },
@@ -115,19 +132,19 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-            (res.data)
+
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-                    (page)
+
                 }
             })
         },
         fail:function(res){
-            ("failed")
+
         }
     })
 
@@ -149,6 +166,10 @@ Page({
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
   },
   onConfirm(event) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 61784f08e636de5f090d51d04a032b4a816f1ec5
     this.setData({
       show: false,
       date:this.formatDate(event.detail)
@@ -156,7 +177,7 @@ Page({
   },
   sendparty: function(e) {
     var that = this
-    ("发布")
+
     wx.uploadFile({
         url: 'http://43.143.139.4:8000/api/v1/postParty/', 
         filePath: that.data.avatarUrl,
@@ -169,7 +190,7 @@ Page({
             content:that.data.atccontent,
         },
         success (res){
-            (res.data)
+
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){

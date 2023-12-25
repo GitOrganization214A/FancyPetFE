@@ -88,6 +88,8 @@ Page({
           that.setData({
               options:op,
           })
+          
+
         },
       })
   },
@@ -127,7 +129,7 @@ Page({
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-                    (page)
+
                 }
             })
             wx.showToast({

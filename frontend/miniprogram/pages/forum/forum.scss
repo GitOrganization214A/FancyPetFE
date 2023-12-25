@@ -1,6 +1,4 @@
 /* pages/forum/forum.wxss */
-.grid {
-}
 
 .following {
   display: flex;
@@ -9,7 +7,7 @@
 .post {
   display: flex;
   flex-direction:column;
-  margin-top: 200rpx;
+  margin-top: 30rpx;
   margin-left: 50rpx;
   margin-right: 50rpx
 }

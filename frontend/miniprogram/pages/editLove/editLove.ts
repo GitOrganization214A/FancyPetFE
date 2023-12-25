@@ -71,6 +71,8 @@ Page({
           that.setData({
               options:op,
           })
+          
+
         },
       })
   },
@@ -102,7 +104,7 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-            (res.data)
+
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
