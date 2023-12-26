@@ -8,8 +8,10 @@ Page({
   data: {
     wh:0,
     src:'',
+    srcs:[],
     pos:'back',
-    istake:0
+    imagetype:0,
+    allsuccess:true
   },
   takePhoto() {
     const ctx = wx.createCameraContext();
@@ -19,28 +21,38 @@ Page({
      success: (res) => {
      //res.tempImagePath表示获取到的图片地址
       that.setData({ src: res.tempImagePath });
+      this.setData({
+        imagetype:1
+      })
     }
   }); 
   },
   choosePhoto(){
-    var that = this;
+    var that = this
     wx.chooseImage({
-     count: 1,
+     count: 9,
      mediaType:['image'],
      sizeType: ['original'],
      sourceType: ['album'],
      success (res) {
       if(res.errMsg === 'chooseImage:ok' && res.tempFilePaths.length !== 0) {          
         that.setData({            
-        src: res.tempFilePaths[0]          
+        srcs: res.tempFilePaths          
+        })
+        that.setData({
+          imagetype:2
         })
     }
   }
   })
  },
  reChoose:function(){
+  this.setData({
+    imagetype:0
+  })
    this.setData({
-     src:''
+     src:'',
+     srcs:[]
    })
  },
  changePos:function(){
@@ -56,6 +68,8 @@ Page({
     }
  },
  addtoAlbum:function(){
+  var that=this
+  if(this.data.imagetype==1){
   var image=this.data.src
   wx.uploadFile({
     url: 'http://43.143.139.4:8000/api/v1/newPhoto/', 
@@ -66,11 +80,37 @@ Page({
       openid:app.globalData.openid
     },
     success (res){
+      that.setData({
+        imagetype:0
+      })
       wx.navigateBack({
         delta: 1
       })
     }
   })
+}
+else if(this.data.imagetype==2){
+  for (let images of this.data.srcs){
+    wx.uploadFile({
+      url: 'http://43.143.139.4:8000/api/v1/newPhoto/', 
+      filePath: images,
+      name: 'image',
+      formData: {
+        PetSpaceID:app.globalData.petspaceid,
+        openid:app.globalData.openid
+      },
+      success (res){
+        
+      }
+    })
+  }
+  that.setData({
+    imagetype:0
+  })
+  wx.navigateBack({
+    delta: 1
+  })
+}
  },
   /**
    * 生命周期函数--监听页面加载

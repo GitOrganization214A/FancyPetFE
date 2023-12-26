@@ -1,6 +1,7 @@
 {
   "navigationStyle":"custom",
   "usingComponents": {
+    "l-album": "/miniprogram_npm/lin-ui/album/index",
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
   }
 }
