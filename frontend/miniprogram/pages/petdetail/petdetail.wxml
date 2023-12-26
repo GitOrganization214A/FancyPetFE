@@ -1,6 +1,6 @@
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C" title="宠物详情" title-color="#ffac63"
-  home-page='/pages/forum/forum'>
+  home-page='/pages/petspace/petspace'>
 <view  wx:if="{{PetSpaceDetail.role === 'owner'}}">
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
@@ -9,23 +9,23 @@
                 font-color="#3963BC" 
                 slot="more"
                 size="medium">
-    <l-button  special="{{true}}" bind:lintap="setpublic">
-         <text wx:if="{{status}}" style="color:#7968bd">设为私密</text>
-         <text wx:if="{{!status}}" style="color:#7968bd">设为公开</text>
-    </l-button>
-  </l-tag>
+        <l-button  special="{{true}}" bind:lintap="setpublic">
+            <text wx:if="{{status}}" style="color:coral">已公开</text>
+            <text wx:if="{{!status}}" style="color:purple">公开</text>
+        </l-button>
+    </l-tag>
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
                 size="medium">
         <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
         </l-button>
-      </l-tag>
-      <text>性别：{{PetSpaceDetail.gender}}</text>
+    </l-tag>
+    <text>性别：{{PetSpaceDetail.gender}}</text>
   <!-- 此处为content -->
   </l-card>
 </view>
-<view style="top:-100rpx;position:relative;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
+<view style="top:-150rpx;position:relative;left:50rpx;width: 650rpx;height:650rpx;" class = "pettool">
     <l-grid row-num="4">
       <l-grid-item key="one" slot="one">
         <l-button width="40" height="20" special="{{true}}" bind:lintap="gotouser">
@@ -47,7 +47,7 @@
         <l-button width="40" height="20" special="{{true}}" bind:lintap="takephoto">
           <view class="container">
            <l-icon size="40" name="phone" color="#3683d6" />
-           <text class="describe">萌宠相机</text>
+           <text class="describe">宠物相机</text>
           </view>
          </l-button>  
        </l-grid-item>
@@ -55,10 +55,10 @@
   </view>
   <button bindtap='deletePetSpace' mode="widthFix" style="position:fixed; bottom:0;width: 750rpx;z-index: 3"type="warn"> 删除宠物空间 </button>
   <view class="album" mode="widthFix">
-  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;">
+  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;left:45rpx;">
     <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
     <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
-    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
+    <image src="{{item}}" mode="aspectFill" style="width: 220rpx;height: 220rpx;text-align: right;" bindtap="showall"></image>
   </view>
   <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
     </mp-gallery>
@@ -74,9 +74,9 @@
                 font-color="#3963BC" 
                 slot="more"
                 size="medium">
-    <l-button  special="{{true}}" bind:lintap="setpublic">
-         <text wx:if="{{PetSpaceDetail.public}}" style="color:#7968bd">设为私密</text>
-         <text wx:if="{{!PetSpaceDetail.public}}" style="color:#7968bd">设为公开</text>
+    <l-button  special="{{true}}" bind:lintap="setpublic">            
+            <text wx:if="{{status}}" style="color:coral">已公开</text>
+            <text wx:if="{{!status}}" style="color:purple">公开</text>
     </l-button>
   </l-tag>
     <l-tag bg-color="#f3f3f3" 
@@ -90,7 +90,7 @@
   <!-- 此处为content -->
   </l-card>
 </view>
-<view style="top:-100rpx;position:relative;left:0rpx;width: 650rpx;height:650rpx;" class = "pettool">
+<view style="top:-150rpx;position:relative;left:50rpx;width: 650rpx;height:650rpx;" class = "pettool">
     <l-grid row-num="4">
       <l-grid-item key="one" slot="one">
         <l-button width="40" height="20" special="{{true}}" bind:lintap="gotouser">
@@ -112,17 +112,17 @@
         <l-button width="40" height="20" special="{{true}}" bind:lintap="takephoto">
           <view class="container">
            <l-icon size="40" name="phone" color="#3683d6" />
-           <text class="describe">萌宠相机</text>
+           <text class="describe">宠物相机</text>
           </view>
          </l-button>  
        </l-grid-item>
      </l-grid>  
   </view>
   <view class="album" mode="widthFix">
-  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;">
+  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;left:45rpx;">
     <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
     <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
-    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
+    <image src="{{item}}" mode="aspectFill" style="width: 220rpx;height: 220rpx;text-align: right;" bindtap="showall"></image>
   </view>
   <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
     </mp-gallery>
@@ -139,12 +139,12 @@
   </l-card>
 </view>
   <view class="album" mode="widthFix">
-  <scroll-view style="top:0rpx;position:relative;float: left;margin-top: 20rpx;">
+  <scroll-view style="top:-400rpx;position:relative;float: left;margin-top: 20rpx;left:45rpx;">
     <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
     <view style="text-align:right" wx:for="{{PetSpaceDetail.images}}" >
-    <image src="{{item}}" style="width: 250rpx;height: 250rpx;text-align: right;" bindtap="showall"></image>
+    <image src="{{item}}" mode="aspectFill" style="width: 220rpx;height: 220rpx;text-align: right;" bindtap="showall"></image>
   </view>
-  <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:change="getimageID">
+  <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{PetSpaceDetail.images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
     </mp-gallery>
   </view>
   </scroll-view >

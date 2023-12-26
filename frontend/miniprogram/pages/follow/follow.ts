@@ -51,7 +51,6 @@ Page({
                   openid:app.globalData.openid,
                 },
                 success:function(res) {
-
                   that.setData({
                     followlist: res.data
                   })
@@ -64,7 +63,6 @@ Page({
         var that = this
         var followtag = false ;
         const tempuserid = event.currentTarget.dataset.userid
-
         var target =  "";
         var iindex = -1;
         for (let item of this.data.followlist )
@@ -73,7 +71,6 @@ Page({
             if (item.UserID==tempuserid)
             {
                 target = item
-
                 followtag=item.followed
                 break
             }
@@ -91,7 +88,6 @@ Page({
                 operation:'follow',
             },
             success:function(res) {
-
                 var newlist = that.data.followlist
                 newlist[iindex].followed = true
                 that.setData({
@@ -114,7 +110,6 @@ Page({
                 operation:'cancel',
             },
             success:function(res) {
-
                 var newlist = that.data.followlist
                 newlist[iindex].followed = false
                 if(that.data.followee)

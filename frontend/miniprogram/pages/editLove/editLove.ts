@@ -42,7 +42,6 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -112,12 +111,10 @@ Page({
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actlove();
-
                 }
             })
         },
         fail:function(res){
-
         }
     })
 

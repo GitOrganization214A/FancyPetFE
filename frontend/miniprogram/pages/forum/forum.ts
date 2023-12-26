@@ -206,15 +206,6 @@ Page({
       withShareTicket:true,
       menu:['shareAppMessage','shareTimeline']
     })
-    // wx.request({
-    //   url: 'http://43.143.139.4:8000/api/v1/shareArticle/',
-    //   method: 'GET',
-    //   data: {
-    //     ArticleID: articleid, 
-    //   },
-    //   success: (res) => {
-    //   }
-    // })
   },
   onShareTimeline(){
   },

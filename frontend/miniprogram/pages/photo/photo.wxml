@@ -1,19 +1,21 @@
 <!--pages/photo/photo.wxml-->
-<l-capsule-bar home-page="/pages/petspace/petspace" title="萌宠相机">
+<l-capsule-bar capsule-color="white" bg-color="#60656C" title="宠物相机" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
 <view wx:if="{{src === ''}}">
 <camera style="width:100%; height: {{wh}}px;" device-position='{{pos}}'>  
 <cover-view class='btns-box'>    
-<cover-image src='/resource/album1.png' bindtap="choosePhoto"></cover-image>    
-<cover-image src='/resource/take1.png' bindtap="takePhoto"></cover-image>   
-<cover-image src='/resource/change1.png' bindtap="changePos"></cover-image>    
+<cover-image src='/resource/album1.png' bindtap="choosePhoto"  style="width: 20%;"></cover-image>    
+<cover-image src='/resource/take1.png' bindtap="takePhoto" style="width: 20%;"></cover-image>   
+<cover-image src='/resource/change1.png' bindtap="changePos" style="width: 20%"></cover-image>    
 </cover-view>
 </camera>
 ​</view>
 <!-- 加载拍照的图片 -->
-<view wx:else>  
-<button type='primary' bindtap='addtoAlbum'>添加</button>
-<image src='{{src}}' style='height: {{wh}}px; width: 100%; display: block;' mode='aspectFit'></image>  
-<button type='warn' bindtap='reChoose'>重拍</button>
+<view wx:else style="display: block">  
+<image src='{{src}}' style="height:80%;width:100%;top: 12%;position: fixed;" mode='aspectFit'></image>  
+<button type='primary' bindtap='addtoAlbum' style="height: 5%;width:50%;top: 93%;left:0%;position: fixed;">添加</button>
+
+<button type='warn' bindtap='reChoose' style="height:5%;width:50%;position: fixed;right:0%;top:93%;">重拍</button>
 </view>
 </l-capsule-bar>
 ​

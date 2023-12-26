@@ -136,11 +136,12 @@ Page({
     userInfo: {
 
     },
+    avatarUrl:'../../resource/cameraparty.png',
     images:[],
     year:0,
     month:0,
     gender:[],
-    breed:"边境牧羊犬",
+    breed:"",
     titlecontent:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
@@ -401,19 +402,11 @@ Page({
 ;
     this.setData(data);
   },
-  chosePetImage: function(e) {
-    var that = this;
-    wx.chooseImage({//选择图片.
-        count:1,//一张图片
-        sizeType: ['original', 'compressed'],
-        success: function (res) {
-          that.setData({
-            images: res.tempFilePaths,
- 
-          })
-          
-        }
+  chooseAvatar(event){
+    this.setData({
+        avatarUrl:event.detail.avatarUrl
     })
+    this.data.avatarUrl = event.detail.avatarUrl
   },
   guEdit: function(e) {
       wx.navigateBack({
@@ -421,32 +414,95 @@ Page({
       })
   },
   onLoad(e){
-    this.setData({
-      breed: "边境牧羊犬"
-    })
-    this.data.breed="边境牧羊犬"
   },
-  sendAtc: function(e) {
-    const tempFilePaths=this.data.images[0]
+  addPet: function(e) {
+    var breedtag = '';
+    var pbreed = this.data.breed
+    for (let b of this.data.dogoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '狗'
+            break;
+        }
+    }
+    for (let b of this.data.catoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '猫'
+            break;
+        }
+    }
+    for (let b of this.data.rabbitoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '兔'
+            break;
+        }
+    }
+    for (let b of this.data.mouseoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '鼠'
+            break;
+        }
+    }
+    for (let b of this.data.birdoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '鸟'
+            break;
+        }
+    }
+    for (let b of this.data.fishoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '鱼'
+            break;
+        }
+    }
+    for (let b of this.data.tortoiseoptions)
+    {
+        if(pbreed===b)
+        {
+            breedtag = '龟'
+            break;
+        }
+    }
+    if(((breedtag=='')&&(this.data.breed.length>=0))||(this.data.titlecontent.length==0)||(this.data.gender.length==0)||(this.data.avatarUrl.length==0))
+    {
+        wx.showToast({
+            title: '请填写正确的宠物信息',
+            icon: 'none',
+            duration: 3000
+          })
+        return
+    }
+    var that = this
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPetSpace/', 
-      filePath: tempFilePaths,
+      filePath: that.data.avatarUrl,
       name: 'avatar',
       formData: {
         openid:app.globalData.openid,
-        name:this.data.titlecontent,
-        year:this.data.year,
-        month:this.data.month,
-        gender:this.data.gender,
-        breed:this.data.breed
+        name:that.data.titlecontent,
+        year:that.data.year,
+        month:that.data.month,
+        gender:that.data.gender,
+        breed:that.data.breed
       },
       success (res){
-
-        wx.navigateBack({
-          delta: 1
+        wx.switchTab({
+            url:"/pages/petspace/petspace"
         })
-
-        //do something
+      },
+      fail(e){
+        console.log(e)
       }
     })
 

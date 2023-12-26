@@ -59,7 +59,6 @@ Page({
         this.data.atccontent=value
   },
   guEdit: function(e) {
-
       wx.switchTab({
           url:"/pages/activity/activity"
       })
@@ -124,7 +123,6 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-
             wx.switchTab({
                 url:"../activity/activity",
                 success(){
@@ -141,7 +139,6 @@ Page({
             })
         },
         fail:function(res){
-
         }
     })
 

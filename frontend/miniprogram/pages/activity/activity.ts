@@ -79,7 +79,7 @@ Page({
         colorparty:'black',
         colorlove:'black',
         pageindex:0,
-        title:"活动"
+        title:"宠物活动"
     })
     this.actcloud()
   },
@@ -120,7 +120,7 @@ Page({
           colorparty:'black',
           colorlove:'black',
           pageindex:1,
-          title:"宠物领养"
+          title:"宠物活动"
       })
       var that = this
       wx.request({
@@ -137,8 +137,6 @@ Page({
             activitylist: that.data.activitylist.concat(res.data),
             pageAdopt:that.data.pageAdopt+1
           })
-          console.log(res.data)
-          console.log(that.data.actadopt)
           if(res.data.length<10)
           {
               that.setData({
@@ -173,7 +171,7 @@ Page({
         colorparty:'coral',
         colorlove:'black',
         pageindex:2,
-        title:"宠物聚会"
+        title:"宠物活动"
     })
     var that = this
     
@@ -191,8 +189,6 @@ Page({
             activitylist: that.data.activitylist.concat(res.data),
             pageParty:that.data.pageParty+1
           })
-          console.log(res.data)
-          console.log(that.data.actadopt)
           if(res.data.length<10)
           {
               that.setData({
@@ -201,7 +197,6 @@ Page({
           }
         },
         fail:function(res){
-
         }
       })
   },
@@ -227,7 +222,7 @@ Page({
         colorparty:'black',
         colorlove:'coral',
         pageindex:3,
-        title:"宠物配种"
+        title:"宠物活动"
     })
     var that = this
     wx.request({
@@ -244,8 +239,6 @@ Page({
            activitylist: that.data.activitylist.concat(res.data),
            pageLove:that.data.pageLove+1,
          })
-         console.log(res.data)
-         console.log(that.data.activitylist)
          if(res.data.length<10)
           {
               that.setData({
@@ -254,7 +247,6 @@ Page({
           }
       },
       fail:function(res){
-
       }
     })
   },
@@ -280,7 +272,7 @@ Page({
         colorparty:'black',
         colorlove:'black',
         pageindex:4,
-        title:"云养宠"
+        title:"宠物活动"
     })
     var that = this
     wx.request({
@@ -297,8 +289,6 @@ Page({
            activitylist: that.data.activitylist.concat(res.data),
            pageCloud: that.data.pageCloud+1,
          })
-         console.log(res.data)
-         console.log(that.data.activitylist)
          if(res.data.length<5)
           {
               that.setData({
@@ -307,7 +297,6 @@ Page({
           }
       },
       fail:function(res){
-
       }
     })
   },
@@ -327,7 +316,6 @@ Page({
     })
   },
   surf(e){
-
     var aid = e.currentTarget.dataset.index
     var pid = -1
     for (var activ of this.data.activitylist)
@@ -363,7 +351,6 @@ Page({
     }
   },
   adopt(e){
-    console.log(e)
     wx.navigateTo({
         url:"../editsendAdopt/editsendAdopt?activityid="+e.target.dataset.index
     })
@@ -399,7 +386,6 @@ Page({
             }
         },
         fail:function(res){
-
         }
       })
   },
@@ -462,7 +448,6 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success: function(res) {
-
             wx.showToast({
                 title: '发送成功！',
                 icon: 'none',
@@ -470,7 +455,6 @@ Page({
             })
         },
         fail:function(res){
-
         }
     })
   },
@@ -503,7 +487,6 @@ Page({
           operation: "like",
         },
         success: (res) => {
-
             var templist = that.data.activitylist
             for (let item of templist)
             {
@@ -550,7 +533,6 @@ Page({
       });
   },
   videocomment(e){
-
         this.setData({
             showcomment:true,
             hotOrTime: !this.data.hotOrTime,
@@ -599,8 +581,6 @@ Page({
     that.setData({
       hotOrTime: !that.data.hotOrTime,
     });
-
-
   },
   //删除评论
   deletecomment: function(event) {
@@ -659,7 +639,6 @@ Page({
             break;
         }
     }
-
     var that = this
     if (!liked) {
       wx.request({

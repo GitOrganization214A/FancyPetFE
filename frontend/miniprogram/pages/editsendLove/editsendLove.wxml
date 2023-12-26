@@ -17,13 +17,17 @@
                     />
                 </view>
                 <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:15.5%;position: fixed;left:620rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="sendlove">发送</l-button>
+                <view style="top:20%;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
                 <view class='inputText'>
                     <textarea  style="top:22%;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
                     placeholder='请输入你的微信号' minlength="0" maxlength="50"  bindinput='inputWxid'></textarea>
-                    <textarea  style="top:30%;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+                    <view style="top:26%;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+                   <textarea  style="top:30%;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
                     placeholder='请输入你给宠物主人的留言，包括你的宠物的信息等' minlength="0" maxlength="100"  bindinput='inputText'></textarea>
                     <text style="top:50%;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+                    <view style="top:55%;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
                 </view>
+
                 <view style="position: fixed;top: 600rpx;">
                     <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
                     <van-cascader

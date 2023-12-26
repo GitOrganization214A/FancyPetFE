@@ -8,16 +8,16 @@
       <l-grid-item key="three" slot="three">
        <l-button width="40" height="20" special="{{true}}" bind:lintap="addcost">
         <view class="container" >
-         <l-icon size="40" name="checked" color="#3683d6" />
-         <text class="describe">账单</text>
+         <l-icon size="40" name="checked" color="coral" style="position: fixed;top: 240rpx;"/>
+         <text class="describe" style="color:coral;position: fixed;top: 300rpx;left: 110rpx;">宠物账单</text>
         </view>
        </l-button>
       </l-grid-item>
       <l-grid-item key="one" slot="one">
        <l-button width="40" height="20" special="{{true}}" bind:lintap="addpet">
         <view class="container" >
-         <l-icon size="40" name="add" color="#3683d6" />
-         <text class="describe">添加我的宠物</text>
+         <l-icon size="40" name="add" color="coral" style="position: fixed;top: 240rpx;"/>
+         <text class="describe" style="color:coral;position: fixed;top: 300rpx;right: 100rpx;">添加我的宠物</text>
         </view>
        </l-button>
       </l-grid-item>
@@ -32,7 +32,7 @@
                 shape="circle"
                 size="large">
         <l-button special="{{true}}" bind:lintap="showdetails" data-petspaceid="{{item.PetSpaceID}}">
-         <l-icon size="35" name="right" color="#3683d6" />
+         <l-icon size="35" name="right" color="coral" />
         </l-button>
       </l-tag>
   </l-card>

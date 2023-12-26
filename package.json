@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "@vant/area-data": "^1.5.1"
+  },
+  "dependencies": {
+    "@miniprogram-component-plus/video-swiper": "^1.0.1",
+    "area-data": "^5.0.6"
+  }
+}

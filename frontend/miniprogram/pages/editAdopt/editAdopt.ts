@@ -72,8 +72,6 @@ Page({
           that.setData({
               options:op,
           })
-          
-
         },
       })
   },
@@ -105,21 +103,17 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-
-
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){
                     var page = getCurrentPages().pop();
                     if (page == undefined || page == null) return;
                     page.actadopt();
-
                 }
             })
             
         },
         fail:function(res){
-
         }
     })
 
