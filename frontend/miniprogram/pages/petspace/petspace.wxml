@@ -3,27 +3,25 @@
   capsule-color="white" bg-color="#60656C"
   title="宠物空间" title-color="#ffac63" 
   home-page='/pages/petspace/petspace'>
-  <view style="top:0rpx;position:fixed;left:0rpx;width: 750rpx;height:100rpx;" class = "addPet">
-    <l-grid row-num="2">
-      <l-grid-item key="three" slot="three">
-       <l-button width="40" height="20" special="{{true}}" bind:lintap="addcost">
-        <view class="petbill" >
-         <l-icon size="40" name="checked" color="coral" style="position: fixed;top: 240rpx;"/>
-         <text class="describe" style="color:coral;position: fixed;top: 300rpx;left: 110rpx;">宠物账单</text>
+  <view style="top:{{capsuleBarHeight}}rpx;" class="grid">
+    <view>
+      <l-button special="{{true}}" bind:lintap="addcost">
+        <view class="griditem">
+         <l-icon size="40" name="checked" color="coral"/>
+         <text style="color:coral;">宠物账单</text>
         </view>
        </l-button>
-      </l-grid-item>
-      <l-grid-item key="one" slot="one">
-       <l-button width="40" height="20" special="{{true}}" bind:lintap="addpet">
-        <view class="addpet" >
-         <l-icon size="40" name="add" color="coral" style="position: fixed;top: 240rpx;"/>
-         <text class="describe" style="color:coral;position: fixed;top: 300rpx;right: 100rpx;">添加我的宠物</text>
+    </view>
+    <view>
+      <l-button special="{{true}}" bind:lintap="addpet">
+        <view class="griditem">
+         <l-icon size="40" name="add" color="coral"/>
+         <text style="color:coral;">添加我的宠物</text>
         </view>
        </l-button>
-      </l-grid-item>
-     </l-grid>  
+    </view>
   </view>
-  <view style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{responseData}}" wx:key="*this">
+  <view style="position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{responseData}}" wx:key="pet">
   <l-card type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.name}}"describe="{{item.breed}}">
         <!-- 此处为content -->
         <l-tag class="gotodetail" bg-color="#f3f3f3" 

@@ -1,8 +1,10 @@
 // petinfo.ts
+import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp<IAppOption>()
 Page({
   data: {
-    responseData:{}
+    responseData:{},
+    capsuleBarHeight: deviceUtil.getNavigationBarHeight()
   },
   onShow() {
     var that=this

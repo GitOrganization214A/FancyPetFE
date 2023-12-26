@@ -11,46 +11,17 @@
   title="{{title}}" title-color="#ffac63"
   home-page='/pages/activity/activity'
   >
-	<view style="padding: 0;">
-        <!-- <image src="{{navigationurl}}" mode="widthFix"  style="position:relative;width:750rpx; left:0rpx; top:-190rpx;" ></image>   -->
-        <!-- <view wx:if="{{actmain}}">
-            
-
-            <button bind:tap="actadopt"> 
-                <image src="{{adopturl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:150rpx; top:400rpx; ">
-                </image>
-            </button>
-            <text style="font-size: larger;color: chocolate;left:160rpx;top:560rpx;position:fixed">宠物领养</text>
-            
-            <button bind:tap="actparty">
-                <image src="{{partyurl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:450rpx; top:400rpx; ">
-                </image>
-            </button>
-            <text style="font-size: larger;color: chocolate;left:460rpx;top:560rpx;position:fixed">宠物聚会</text>
-            
-            <button bind:tap="actlove">
-                <image src="{{loveurl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:150rpx; top:700rpx; "></image>
-            </button>
-            <text style="font-size: larger;color: chocolate;left:160rpx;top:860rpx;position:fixed">宠物配种</text>
-            
-            <button bind:tap="actcloud">
-                <image src="{{cloudpeturl}}" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:450rpx; top:700rpx; "></image>
-            </button>
-            <text style="font-size: larger;color: chocolate;left:460rpx;top:860rpx;position:fixed">云养宠</text>
-        </view> -->
-
-        
-        <view wx:if="{{actadopt}}" style="top: 80rpx; position: relative;">
-                <!-- <van-area area-list="{{ areaList }}" columns-num="{{ 2 }}" title="选择城市" style="top: 70rpx;position: relative;"/> -->
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
-                    <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false" >
-                        <view slot="footer">
-                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
-                            <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
-                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
-                        </view>
-                    </van-card>       
-                </view>
+	<view style="padding: 0; position: relative;top:40rpx">
+        <view wx:if="{{actadopt}}" style="top: 60rpx; position: relative;">
+            <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
+                <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false">
+                    <view slot="footer" style="margin-top: 20rpx;">
+                        <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
+                        <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
+                        <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
+                    </view>
+                </van-card>       
+            </view>
 
             <button  bindtap="editAdopt" style="position: fixed; left: 337.5rpx; bottom:25rpx;  display: block; box-sizing: border-box" type="default">
                 <image src="{{editadoptUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box">
@@ -60,10 +31,10 @@
 
         </view>
 
-        <view wx:if="{{actparty}}" style="top: 80rpx; position: relative;">
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
+        <view wx:if="{{actparty}}" style="top: 60rpx; position: relative;">
+                <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
                     <van-card info="{{item.time}}" desc="{{item.address}}" title="{{item.title}}" thumb="{{item.img}}"  centered="false" >
-                        <view slot="footer">
+                        <view slot="footer" style="margin-top: 20rpx;">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surfParty">查看详细信息</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="participate">申请参加</van-button>
                             <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
@@ -93,10 +64,10 @@
 
         </view>
 
-        <view wx:if="{{actlove}}" style="top: 80rpx; position: relative;">
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
+        <view wx:if="{{actlove}}" style="top: 60rpx; position: relative;">
+                <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}"  centered="false" >
-                        <view slot="footer">
+                        <view slot="footer" style="margin-top: 20rpx;">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="love">申请配种</van-button>
                             <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
@@ -113,7 +84,7 @@
 
         <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: 80rpx;">
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 750rpx;  height: 1250rpx;">
-                <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="*this" >
+                <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="activity" >
                     <swiper-item>
                         <view class="video-wrap" style="width:700rpx;height:200rpx;position:absolute;left:0rpx;top:-80rpx;">  
                                 <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" style="width: 750rpx;  height: 1200rpx;  position: absolute;  top:80rpx;  left: 0rpx;  z-index: 1;">
@@ -145,11 +116,6 @@
             
             <view style="position: fixed;top: 800rpx;">
                 <van-popup show="{{ showcomment }}" round position="bottom" custom-style="height: 50%;">
-                    <!-- 
-                    <text style="top: 40rpx;position: relative;text-align: center;left: 100rpx;height: 30rpx;line-height: 30rpx;color: chocolate;font-size: larger;">请输入评论</text>
-                    <textarea style="top:90rpx;position: relative;left:40rpx;width: 710rpx;height:100rpx;"  minlength="1" maxlength="200" placeholder="评论"  bindinput='inputcomment' value="{{commentcontent}}" ></textarea>
-                    <text class='ctn' style="top:290rpx;position: relative;left:630rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentcommentNumber}}/{{maxcommentLen}}</text>
-                    <button style="top: 340rpx;position: relative;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="sendcomment">发送</button> -->
                     
                         <view class = "comments" style="top:40rpx;left: 40rpx;position: relative;display: flex;flex-direction: row;">
                             <text class ="commentinfotext" style="left: 0rpx;position: relative;color: coral;">评论</text>
@@ -201,7 +167,7 @@
             
         </view>
 
-        <view style="position: fixed;left: 0;width: 750rpx;top: 140rpx;background-color: white;height: 100rpx;line-height: 60rpx;">
+        <view style="position: fixed;left: 0;width: 750rpx;top:{{capsuleBarHeight}}rpx;background-color: white;height: 100rpx;line-height: 60rpx;">
             <l-grid row-num="4">
                 <l-grid-item key="one" slot="one">
                 <view class="tab" data-id="1" data-tab="cloud" bindtap="actcloud" style="color: {{colorcloud}}">云养宠</view>
@@ -216,7 +182,7 @@
                 <view class="tab" data-id="4" data-tab="love" bindtap="actlove" style="color: {{colorlove}}">宠物配种</view>
                 </l-grid-item>      
             </l-grid>
-            <view class="line" style="top: -45rpx;position: relative;"></view>
+            <view class="line"></view>
         </view>
 
     

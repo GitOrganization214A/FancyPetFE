@@ -1,6 +1,7 @@
 // activity.ts
 import { areaList } from '../../miniprogram_npm/@vant/area-data/data';
 import { videoProps } from '../../miniprogram_npm/@vant/weapp/uploader/shared';
+import deviceUtil from "../../miniprogram_npm/lin-ui/utils/device-util"
 const app = getApp<IAppOption>()
 var indx = 0
 Page({
@@ -62,6 +63,7 @@ Page({
     colorparty:'black',
     colorlove:'black',
     current:0,
+    capsuleBarHeight: deviceUtil.getNavigationBarHeight(),
   },
   onLoad(){
     this.setData({

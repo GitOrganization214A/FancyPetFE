@@ -31,7 +31,7 @@
           <van-uploader file-list="{{ images }}" bind:after-read="chooseImage" max-count="9" accept="media" multiple="{{true}}" image-fit="aspectFill" preview-size="210rpx" bind:delete="delimage" />
       </view>
       <view wx:if="{{breedfocus&&(breedcontent.length>0)}}" style="top: 410rpx;position:fixed;left: 30rpx;height: auto;width:700rpx;display: flex;flex-direction: column;">
-          <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: -60rpx;position: relative;font-size: 40rpx;background-color:gray;" bindtap="replaceBreed">
+          <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="breed" style="top: -60rpx;position: relative;font-size: 40rpx;background-color:gray;" bindtap="replaceBreed">
               {{item}}
           </view>
       </view>

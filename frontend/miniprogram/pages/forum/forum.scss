@@ -23,6 +23,7 @@
   /*强制英文单词自动换行*/
   word-break:break-all;
 }
+
 .title {
   font-size: large;
   font-weight: 900;
@@ -68,12 +69,6 @@
   border-top: solid Silver 1px;
   margin-top: -10rpx;
   margin-bottom: 10rpx;
-}
-
-.segment {
-  position: fixed;
-  top:400rpx;
-  left:0;
 }
 
 .segment {

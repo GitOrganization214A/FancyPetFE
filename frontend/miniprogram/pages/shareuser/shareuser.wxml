@@ -7,7 +7,7 @@ bindtap="addtoShare">添加</view>
 <view wx:if="{{ismaster}}" style="top:200rpx;position: fixed;left:40rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:coral;" 
 bindtap="changeowner">换主</view>
 </view>
-<view style="top:100rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{ShareUserList}}" wx:key="*this">
+<view style="top:100rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{ShareUserList}}" wx:key="user">
   <l-card wx:if="{{index==0}}"type="avatar" l-class="card" image="{{item.avatar}}" title="{{item.nickname}}" describe="{{'#'+item.UserID}}" data-userid="{{item.UserID}}" data-master="1" >
         <!-- 此处为content -->
         <view style="color: red;left: 550rpx;top:-70rpx;position: relative;">主人</view>

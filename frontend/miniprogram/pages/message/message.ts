@@ -1,4 +1,4 @@
-// activity.ts
+// message.ts
 
 const app = getApp<IAppOption>()
 

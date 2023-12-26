@@ -3,7 +3,7 @@
   title="{{followtitle}}" title-color="#ffac63"
   home-page='/pages/forum/forum'>
 <view>
-    <view wx:for="{{followlist}}" wx:key="*this" style="top: 80rpx;left:40rpx;height:150rpx;position: relative;">
+    <view wx:for="{{followlist}}" wx:key="user" style="top: 80rpx;left:40rpx;height:150rpx;position: relative;">
         <view class ="info" >
             <view class ="userinfotext" bind:tap="viewUserInfo" data-userid="{{item.UserID}}">
                 <l-avatar class="avatar" size='110' shape="square" src ="{{item.avatar}}" style="position:relative;left: 20rpx;"></l-avatar>

@@ -4,7 +4,7 @@
     <view class='by'>
         <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top: 230rpx;position: fixed;left:250rpx;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="addNewRecord">增加健康状态记录</l-button>
     </view>
-    <view lazy-load="true" style="top:150rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{RecordDetail}}" wx:key="*this">
+    <view lazy-load="true" style="top:150rpx;position:relative;left:0rpx;width: 750rpx;height:150rpx;" class="petlist" wx:for="{{RecordDetail}}" wx:key="record">
     <view bind:longpress="deleteRecord" data-index="{{index}}">
     <fui-card wx:if="{{ item.type === '打喷嚏' }}" lazy-load="true" src="{{sneezeUrl}}" title="{{item.type}}" tag="{{item.date}}">
             <!-- 此处为content -->

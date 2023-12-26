@@ -45,7 +45,7 @@
                         <textarea style="top:550rpx;left:25rpx;position: fixed;width: 800rpx;height:100rpx;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
                     </view>
                     <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 560rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
-                        <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
+                        <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="breed" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
                             {{item}}
                         </view>
                     </view>

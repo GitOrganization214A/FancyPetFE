@@ -5,6 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+<<<<<<< HEAD
+    petspaceid:'',
+    number:0,
+    index:[0,1,2,3,4,5,6,7,8],
+    images:[],
+    avatar:'',
+    current:0,
+    show:false,
+    moreUrl:"../../resource/more.png",
+    showActionsheet:false,
+    status:true,
+    hasMoreImage:true,
+    pageImage:1,
+    pageSize:27,
+=======
     petspaceid: "",
     number: 0,
     index: [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -19,6 +34,7 @@ Page({
     pageImage: 1,
     pageSize: 27,
     refresh: false,
+>>>>>>> 2dea03f3b964641bd58dfd85f5d54be76f19d5e7
   },
 
   /**

@@ -150,9 +150,7 @@ Page({
     giveupUrl:"../../resource/giveup.png",
     currentTitleNumber: 0,
     currentTextNumber:0,
-    maxTitleLen: 30,
-    maxTextLen: 1024,
-    multiArray: [['狗狗', '猫猫', '兔兔', '鼠鼠', '鸟儿', '鱼儿', '龟'], ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬']],
+    maxTitleLen: 10,
     showbreed: false,
     breedfocus: false,
     options:[],
@@ -164,60 +162,6 @@ Page({
     birdoptions,
     fishoptions,
     tortoiseoptions,
-    objectMultiArray: [
-      [
-        {
-          id: 0,
-          name: '狗狗'
-        },
-        {
-          id: 1,
-          name: '猫猫'
-        },
-        {
-          id: 2,
-          name: '兔兔'
-        },
-        {
-          id: 3,
-          name: '鼠鼠'
-        },
-        {
-          id: 4,
-          name: '鸟儿'
-        },
-        {
-          id: 5,
-          name: '鱼儿'
-        },
-        {
-          id: 6,
-          name: '龟'
-        }
-      ], [
-        {
-          id: 0,
-          name: '边境牧羊犬'
-        },
-        {
-          id: 1,
-          name: '博美犬'
-        },
-        {
-          id: 2,
-          name: '哈士奇'
-        },
-        {
-          id: 3,
-          name: '瑞典柯基犬'
-        },
-        {
-          id: 4,
-          name: '金毛寻回犬'
-        }
-      ]
-    ],
-    multiIndex: [0, 0]
   },
   // 事件处理函数
   inputTitle:function(e){

@@ -18,11 +18,23 @@
   flex-direction: column;
   margin-top: 20rpx;
 }
-.describe {
-  color: #3683d6;
-  font-size: 28rpx;
-  margin-left:20rpx;
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 50rpx;
+  margin-bottom: 50rpx;
 }
+
+.griditem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .capsule-bar-bg{
   width:100%;
   position:fixed;
