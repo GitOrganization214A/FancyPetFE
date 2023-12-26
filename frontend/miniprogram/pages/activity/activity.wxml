@@ -11,18 +11,17 @@
   title="{{title}}" title-color="#ffac63"
   home-page='/pages/activity/activity'
   >
-	<view style="padding: 0;">
-        
-        <view wx:if="{{actadopt}}" style="top: 80rpx; position: relative;">
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
-                    <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false" >
-                        <view slot="footer">
-                            <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
-                            <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
-                            <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
-                        </view>
-                    </van-card>       
-                </view>
+	<view style="padding: 0; position: relative;top:40rpx">
+        <view wx:if="{{actadopt}}" style="top: 60rpx; position: relative;">
+            <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
+                <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}" centered="false">
+                    <view slot="footer" style="margin-top: 20rpx;">
+                        <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf" >查看宠物空间</van-button>
+                        <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="adopt">申请领养</van-button>
+                        <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
+                    </view>
+                </van-card>       
+            </view>
 
             <button  bindtap="editAdopt" style="position: fixed; left: 337.5rpx; bottom:25rpx;  display: block; box-sizing: border-box" type="default">
                 <image src="{{editadoptUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; display: block; box-sizing: border-box">
@@ -32,10 +31,10 @@
 
         </view>
 
-        <view wx:if="{{actparty}}" style="top: 80rpx; position: relative;">
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
+        <view wx:if="{{actparty}}" style="top: 60rpx; position: relative;">
+                <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
                     <van-card info="{{item.time}}" desc="{{item.address}}" title="{{item.title}}" thumb="{{item.img}}"  centered="false" >
-                        <view slot="footer">
+                        <view slot="footer" style="margin-top: 20rpx;">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surfParty">查看详细信息</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="participate">申请参加</van-button>
                             <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
@@ -65,10 +64,10 @@
 
         </view>
 
-        <view wx:if="{{actlove}}" style="top: 80rpx; position: relative;">
-                <view wx:for="{{activitylist}}" wx:key="*this" style="top: 0rpx;position: relative;">
+        <view wx:if="{{actlove}}" style="top: 60rpx; position: relative;">
+                <view wx:for="{{activitylist}}" wx:key="activity" style="padding-top: 20rpx;position: relative;">
                     <van-card tag="{{item.pet.breed}}" desc="{{item.content}}" title="{{item.pet.name}}" thumb="{{item.pet.avatar}}"  centered="false" >
-                        <view slot="footer">
+                        <view slot="footer" style="margin-top: 20rpx;">
                             <van-button data-index="{{item.ActivityID}}" size="large"  bind:tap="surf">查看宠物空间</van-button>
                             <van-button wx:if="{{!item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="love">申请配种</van-button>
                             <van-button wx:if="{{item.self}}" data-index="{{item.ActivityID}}" size="large" bind:tap="deleteactivity">删除</van-button>
@@ -85,7 +84,7 @@
 
         <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: 80rpx;">
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 750rpx;  height: 1250rpx;">
-                <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="*this" >
+                <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="activity" >
                     <swiper-item>
                         <view class="video-wrap" style="width:700rpx;height:200rpx;position:absolute;left:0rpx;top:-80rpx;">  
                                 <video wx:if="{{index==hkindex||index==hkindex-1||index==hkindex+1}}" show-center-play-btn="{{true}}"  id="myvideo{{index}}" class="video" src="{{key.video.url}}" loop show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" enable-play-gesture controls="{{true}}" style="width: 750rpx;  height: 1200rpx;  position: absolute;  top:80rpx;  left: 0rpx;  z-index: 1;">

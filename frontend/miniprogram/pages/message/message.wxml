@@ -3,63 +3,56 @@
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C" title="消息" title-color="#ffac63" 
   home-page='/pages/forum/forum'>
-	<view>
-                <view wx:for="{{messageList}}" wx:key="*this" style="top: 100rpx;position: relative;left:20rpx;width:710rpx;">
-                    <view style="width:700rpx;height: 1px;background-color: silver;position: fixed;"></view>
-                    <view wx:if="{{item.type=='party'}}" >
-                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;top: 50rpx;">
-                            {{item.time}}
-                        </view>
-                        <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 650rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
-                        <view style="display: flex;flex-wrap: wrap;">
-                            <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
-                            <view>{{'申请参加你的聚会'}}</view>
-                            <view data-index="{{item.MessageID}}" style="color: coral;">{{item.ActivityName}}</view>
-                            <view>{{'。'}}</view>
-                        </view>                      
-                    </view>
-                    <view wx:elif="{{item.type=='adopt'}}">
-                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;top: 50rpx;">
-                            {{item.time}}
-                        </view>
-                        <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 650rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
-                        <view style="display: flex;flex-wrap: wrap;">
-                            <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
-                            <view>{{'申请领养你的宠物'}}</view>
-                            <view bindtap="surfpet" data-index="{{item.PetSpaceID}}" style="color: coral;">{{item.PetName}}</view>
-                            <view>{{',留言为'}}</view>
-                            <view>{{item.content+'。'}}</view>
-                            <view>{{'ta的微信号为'}}</view>
-                            <view>{{item.wxid}}</view>
-                            <view>{{'。'}}</view>
-                        </view>       
-                    </view>
-                    <view wx:elif="{{item.type=='love'}}">
-                        <view style="font-size: 20rpx;width:200rpx;left: 275rpx;position:relative;top: 50rpx;">
-                            {{item.time}}
-                        </view>
-                        <image src="{{deleteurl}}" style="height:30rpx;width:30rpx;top:-25rpx;left: 650rpx;position:relative;" data-index="{{item.MessageID}}" bind:tap="deletemessage"></image>
-                        <view style="display: flex;flex-wrap: wrap;">
-                            <view>{{'用户'}}</view>
-                            <view bindtap="surfindex" data-index="{{item.UserID}}" style="color: coral;">{{item.nickname}}</view>
-                            <view>{{'申请让其宠物'}}</view>
-                            <view bindtap="surfpet" data-index="{{item.PetSpaceID2}}" style="color: coral;">{{item.PetName2}}</view>
-                            <view>{{'与你的宠物'}}</view>
-                            <view bindtap="surfpet" data-index="{{item.PetSpaceID1}}" style="color: coral;">{{item.PetName1}}</view>
-                            <view>{{'配种,留言为'}}</view>
-                            <view>{{item.content}}</view>
-                            <view>{{'ta的微信号为'}}</view>
-                            <view>{{item.wxid}}</view>
-                            <view>{{'。'}}</view>
-                        </view>       
-                    </view>
-                    <view style="width:700rpx;height: 1px;background-color: silver;position:fixed;"></view>
-                </view>
-
-    </view>
 </l-capsule-bar>
-
+  <view>
+    <block wx:for="{{messageList}}" wx:key="messagekey" wx:for-index="messageindex">
+      <view class="message">
+        <view class="line"></view>
+        <view class="userinfoanddelete">
+          <view class ="userinfo">
+            <view>
+              <l-avatar class="avatar" size='70' shape="square" src ='{{item.avatar}}' data-userid="{{item.UserID}}" bindtap="viewUserInfo"></l-avatar>
+            </view>
+            <view class ="userinfotext">
+              <view class="nickname" data-userid="{{item.UserID}}" bindtap="viewUserInfo"><text class="nicknametext">{{item.nickname}}</text></view>
+              <view><text class="posttime">{{item.time}}</text></view>
+            </view>
+          </view>
+          <view style="display: flex; flex-direction: row; align-items: center;">
+            <l-icon name="delete" type="delete" size="30" color="red" bindtap="deletemessage" data-index="{{messageindex}}" style="margin-right: 30rpx;"></l-icon>
+          </view>
+        </view>
+        <!-- 宠物聚会 -->
+        <view wx:if="{{item.type=='party'}}" class="content">
+          <view>申请参加你的聚会<text style="color:coral"> {{item.ActivityName}} </text></view>
+          <view></view>
+        </view>
+        <!-- 宠物领养 -->
+        <view wx:if="{{item.type=='adopt'}}" class="content">
+          <view>申请领养你的宠物<text bindtap="surfpet" data-index="{{item.PetSpaceID}}" style="color: coral;"> {{item.PetName}} </text></view>
+          <view><text>ta 的微信号为</text><text style="color: coral;"> {{item.wxid}} </text></view>
+          <view>留言内容：</view>
+          <view>{{item.content}}</view>
+        </view>
+        <!-- 宠物配种 -->
+        <view wx:if="{{item.type=='love'}}" class="content">
+          <view>
+            <text>申请让其宠物</text>
+            <text bindtap="surfpet" data-index="{{item.PetSpaceID2}}" style="color: coral;"> {{item.PetName2}} </text>
+            <text bindtap="surfpet" data-index="{{item.PetSpaceID2}}" style="color: coral; font-size: small;"> (点击查看宠物空间) </text>
+          </view>
+          <view>
+            <text>与你的宠物</text>
+            <text bindtap="surfpet" data-index="{{item.PetSpaceID1}}" style="color: coral;"> {{item.PetName1}} </text>
+            <text>配种</text>
+          </view>
+          <view><text>ta 的微信号为</text><text style="color: coral;"> {{item.wxid}} </text></view>
+          <view>留言内容：</view>
+          <view>{{item.content=="[]" ? "<空>" : item.content}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="line2"></view>
 
     

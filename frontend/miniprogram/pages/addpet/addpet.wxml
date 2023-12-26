@@ -11,8 +11,8 @@
             </button>
             <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="addPet">添加</l-button>
             <view style="top:440rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
-            <view class='inputName' >
-                <textarea style="top:450rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;" placeholder='请输入宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+            <view class='inputName'>
+                <textarea style="top:450rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;" placeholder='请输入宠物名字' minlength="1" maxlength="10"  bindinput='inputTitle'></textarea>
                 <text class='ctn' style="top:500rpx;position: fixed;right:25rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
             </view>
             <view style="top:540rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
@@ -38,7 +38,7 @@
             </view>
             <view style="top:850rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
             <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 560rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
-                <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
+                <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="breed" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
                     {{item}}
                 </view>
             </view>

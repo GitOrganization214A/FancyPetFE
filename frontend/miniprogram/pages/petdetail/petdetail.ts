@@ -18,7 +18,7 @@ Page({
     status:true,
     hasMoreImage:true,
     pageImage:1,
-    pageSize:27
+    pageSize:27,
   },
 
   /**

@@ -1,68 +1,43 @@
-/* pages/forum/forum.wxss */
+/* pages/message/message.wxss */
 
-.search {
-  flex-direction: column;
-  margin-top: 20rpx;
-}
-.capsule-bar-bg{
-  width:100%;
-  position:fixed;
-  top:0;
-  left:0;
-}
-.following {
-  display: flex;
-}
-
-.post {
-  display: flex;
-  flex-direction:column;
+.message {
   margin-left: 50rpx;
-  margin-right: 50rpx
-}
-.content_text {
-  display:-webkit-box;
-  /* 表示几行后超出隐藏 */
-  -webkit-line-clamp:5;
-  /* 超出隐藏 */
-  overflow:hidden;
-  /*超出显示为省略号*/
-  text-overflow:ellipsis;
-  -webkit-box-orient:vertical;
-  /*强制英文单词自动换行*/
-  word-break:break-all;
-}
-.title {
-  font-size: large;
-  font-weight: 900;
-  margin-top: 4rpx;
-  margin-bottom: 10rpx;
-}
-.sidebar {
-  margin-top:200rpx;
+  margin-right:50rpx;
 }
 
-.classification {
+.userinfotext {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30rpx;
+}
+
+.nicknametext {
+  font-size:26rpx;
+}
+
+.posttime {
+  font-weight: lighter;
+  font-size: 20rpx;
+}
+
+.userinfo {
   display: flex;
   flex-direction: row;
-}
-.content {
-  margin-bottom: 10rpx;
-}
-.actions {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-left: 20px;
-  margin-right: 30px;
   align-items: center;
+  justify-content: space-between;
 }
 
-.actions_text {
-  font-size:smaller;
-  vertical-align: middle;
-  margin-right: 10px;
-  color: #515151;
+.content {
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+  margin-bottom: 5rpx;
+  margin-right: 20rpx;
+}
+
+.commentinfo {
+  margin-bottom: 10rpx;
+  display: flex; 
+  justify-content: space-between;
 }
 
 .line {
@@ -71,42 +46,19 @@
   margin-bottom: 30rpx;
   margin-top: 20rpx;
 }
+
 .line2 {
   height: 1px;
   border-top: solid Silver 1px;
-  margin-bottom: 30rpx;
-}
-// 索引
-
-.l-selected-class{
-  background-color: #ffac63 !important;
+  padding-bottom: 60rpx;
+  margin-top: 20rpx;
 }
 
-.l-tip-text-class{
-  color: #fff !important;
-  font-size: 40rpx !important;
+.commentlike {
+  margin-left: 15rpx;
 }
-
-.l-tip-class{
-  background-color: #cccccc !important;
-}
-
-.index-item{
-  display: flex;
+.userinfoanddelete {
+  display: flex; 
+  justify-content: space-between;
   align-items: center;
-  color: #1a1a1a;
-  background-color: #fff;
-  height: 60rpx;
-  box-sizing: border-box;
-  padding-left: 80rpx;
-}
-
-.index-name{
-  margin-left: 20rpx;
-}
-
-.sidebar-class{
-  right: 0 !important;
-  padding-left: 10rpx !important;
-  padding-right: 20rpx !important;
 }

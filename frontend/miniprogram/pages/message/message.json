@@ -6,6 +6,8 @@
     "van-cascader": "/miniprogram_npm/@vant/weapp/cascader/index",
     "van-area": "/miniprogram_npm/@vant/weapp/area/index",
     "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
-    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index"
   }
 }
