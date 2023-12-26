@@ -1,5 +1,8 @@
-{
+{    
+  "navigationStyle":"custom",
   "usingComponents": {
-    "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index"
+    "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
   }
 }
