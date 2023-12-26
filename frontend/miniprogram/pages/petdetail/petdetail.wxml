@@ -72,25 +72,27 @@
 <view class="petinfo">
   <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
     <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
-    <l-tag bg-color="#f3f3f3" 
-                font-color="#3963BC" 
-                slot="more"
-                size="medium">
-    <l-button  special="{{true}}" bind:lintap="setpublic">            
-            <text wx:if="{{status}}" style="color:coral">已公开</text>
-            <text wx:if="{{!status}}" style="color:purple">公开</text>
-    </l-button>
-  </l-tag>
-    <l-tag bg-color="#f3f3f3" 
-                font-color="#3963BC" 
-                slot="more"
-                size="large">
-        <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
-        </l-button>
-      </l-tag>
-      <text>性别：{{PetSpaceDetail.gender}}</text>
+    <text>性别：{{PetSpaceDetail.gender}}</text>
   <!-- 此处为content -->
   </l-card>
+  <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="medium" 
+                style="position:relative;left:460rpx;top:-200rpx;">
+        <l-button  special="{{true}}" bind:lintap="setpublic">
+            <text wx:if="{{status}}" style="color:coral">已公开</text>
+            <text wx:if="{{!status}}" style="color:purple">公开</text>
+        </l-button>
+    </l-tag>
+    <l-tag bg-color="#f3f3f3" 
+                font-color="#3963BC" 
+                slot="more"
+                size="medium"
+                style="position:relative;left:420rpx;top:-160rpx;width: 250rpx;height: 60rpx;">
+        <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
+        </l-button>
+    </l-tag>
 </view>
 <view style="top:0rpx;position:relative;left:0rpx;width: 650rpx;height:200rpx;align-items: center;" class = "pettool">
     <l-grid row-num="4" style="top:0rpx;position: relative;">
