@@ -1,24 +1,27 @@
 <!--pages/addrecord/addrecord.wxml-->
-<view class='by'>
-    <view style="top:10rpx;text-align: center;position: fixed;width: 400rpx;font-size: 25px;left:200rpx">添加健康状态记录</view>       
-    <image style="top:10rpx;position: fixed;left:30rpx;width:60rpx;height:60rpx;" src="{{giveupUrl}}" bindtap="goback">
-    </image>
-    <view style="top:10rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;"   bindtap="addNewRecord">添加</view>
-</view>
-<view class='main'>
-  <picker style="top:200rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <view class="picker">
-      异常种类：{{array[index]}}
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C" title="添加健康信息记录" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
+  <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:200rpx;position: fixed;left:615rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="addNewRecord">确认</l-button>
+    <view class='main'>
+        <picker style="top:200rpx;position: fixed;left:25rpx;width: 510rpx;height:300rpx;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker">
+            异常种类：{{array[index]}}
+            </view>
+        </picker>
+        <view style="top:280rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <picker  style="top:300rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;" mode="date" value="{{date}}" start="2015-09-01" end="2024-02-01" bindchange="bindDateChange">
+            <view class="picker">
+            日期: {{date}}
+            </view>
+        </picker>
+        <view style="top:380rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view class='inputText'>
+            <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+            placeholder='请输入备注信息' minlength="0" maxlength="140"  bindinput='inputText'></textarea>
+            <text style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+        </view>
+        <view style="top:550rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+    
     </view>
-  </picker>
-  <picker  style="top:300rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;" mode="date" value="{{date}}" start="2015-09-01" end="2024-02-01" bindchange="bindDateChange">
-    <view class="picker">
-      日期: {{date}}
-    </view>
-  </picker>
-  <view class='inputText'>
-    <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
-    placeholder='请输入备注信息' minlength="0" maxlength="140"  bindinput='inputText'></textarea>
-    <text style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
-  </view>
-</view>
+</l-capsule-bar>
