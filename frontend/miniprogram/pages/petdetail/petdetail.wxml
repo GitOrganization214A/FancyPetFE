@@ -59,8 +59,8 @@
   <view class="album" mode="widthFix">
   <scroll-view style="top:-50rpx;position:relative;float: left;margin-top: 20rpx;left:45rpx;">
     <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: flex-start;text-align:right">
-    <view style="text-align:right" wx:for="{{images}}" >
-    <image src="{{item}}" mode="aspectFill" style="width: 220rpx;height: 220rpx;text-align: right;" bindtap="showall"></image>
+    <view style="text-align:right" wx:for="{{images}}" wx:for-index="imageindex">
+    <image src="{{item}}" mode="aspectFill" style="width: 220rpx;height: 220rpx;text-align: right;" bindtap="showall" data-index="{{imageindex}}"></image>
   </view>
   <mp-gallery style="height: 40%;width: 100%;" imgUrls="{{images}}" show="{{show}}"  current="{{current}}" showDelete="{{false}}" bind:longpress='deletePhoto' bind:change="getimageID">
     </mp-gallery>

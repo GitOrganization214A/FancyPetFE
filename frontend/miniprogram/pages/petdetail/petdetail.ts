@@ -113,9 +113,51 @@ Page({
     });
   },
   takephoto: function (e) {
-    wx.navigateTo({
-      url: "/pages/photo/photo",
-    });
+    let that = this;
+    wx.showActionSheet({
+      itemList: ['从相册中选择', '拍照'],
+      itemColor: "coral",
+      success: function(res) {
+          if (res.tapIndex == 0) {
+            that.chooseWxImage('album');
+          } else if (res.tapIndex == 1) {
+            that.chooseWxImage('camera');
+          }
+      }
+    })
+  },
+  uploadimage:function(files,i){
+    wx.uploadFile({
+      url: 'http://43.143.139.4:8000/api/v1/newPhoto/', 
+      filePath: files[i],
+      name: 'image',
+      formData: {
+        PetSpaceID:app.globalData.petspaceid,
+        openid:app.globalData.openid
+      },
+      success (res){
+      },
+      complete: () => {
+        i++;
+        if (i == files.length) {
+          this.onShow()
+        } else {
+          this.uploadimage(files,i);
+        }
+      },
+    })
+  },
+  chooseWxImage: function(type) {
+    let that = this;
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original', 'compressed'],
+      sourceType: [type],
+      success: function(res) {
+        // 选择图片后的完成确认操作
+        that.uploadimage(res.tempFilePaths,0)
+      }
+    })
   },
   deletePhoto: function (e) {
     var that = this;
@@ -162,6 +204,7 @@ Page({
   },
   showall: function (e) {
     this.setData({
+      current:e.currentTarget.dataset.index,
       show: true,
     });
   },
@@ -215,12 +258,6 @@ Page({
           delta: 1,
         });
       },
-    });
-  },
-  previewImage: function (e) {
-    wx.previewImage({
-      current: e.currentTarget.id,
-      urls: this.data.images,
     });
   },
 
