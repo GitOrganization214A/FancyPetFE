@@ -326,9 +326,6 @@ Page({
             break
         }
     }
-
-
-    app.globalData.petspaceid=pid
     wx.navigateTo({
         url:"../petdetail/petdetail?petspaceid="+pid
     })

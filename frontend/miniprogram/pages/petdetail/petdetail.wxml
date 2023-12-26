@@ -3,12 +3,16 @@
   home-page='/pages/petspace/petspace'>
 <view  wx:if="{{PetSpaceDetail.role === 'owner'}}">
 <view class="petinfo">
-  <l-card type="avatar" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}"describe="{{PetSpaceDetail.breed}}">
+  <l-card type="avatar" mode="aspectFill" l-class="card" image="{{avatar}}" title="{{PetSpaceDetail.name}}" describe="{{PetSpaceDetail.breed}}" >
     <text>年龄：{{PetSpaceDetail.year}} 年 {{PetSpaceDetail.month}} 月</text>
-    <l-tag bg-color="#f3f3f3" 
+    <text>性别：{{PetSpaceDetail.gender}}</text>
+  <!-- 此处为content -->
+  </l-card>
+  <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
-                size="medium">
+                size="medium" 
+                style="position:relative;left:460rpx;top:-200rpx;">
         <l-button  special="{{true}}" bind:lintap="setpublic">
             <text wx:if="{{status}}" style="color:coral">已公开</text>
             <text wx:if="{{!status}}" style="color:purple">公开</text>
@@ -17,37 +21,35 @@
     <l-tag bg-color="#f3f3f3" 
                 font-color="#3963BC" 
                 slot="more"
-                size="medium">
+                size="medium"
+                style="position:relative;left:420rpx;top:-160rpx;width: 250rpx;height: 60rpx;">
         <l-button special="{{true}}" bind:lintap="correctInfo">修改宠物信息
         </l-button>
     </l-tag>
-    <text>性别：{{PetSpaceDetail.gender}}</text>
-  <!-- 此处为content -->
-  </l-card>
 </view>
-<view style="top:-150rpx;position:relative;left:50rpx;width: 650rpx;height:650rpx;" class = "pettool">
-    <l-grid row-num="4">
+<view style="top:50rpx;position:relative;left:0rpx;width: 650rpx;height:200rpx;align-items: center;" class = "pettool">
+    <l-grid row-num="4" style="top:0rpx;position: relative;">
       <l-grid-item key="one" slot="one">
-        <l-button width="40" height="20" special="{{true}}" bind:lintap="gotouser">
+        <l-button special="{{true}}" bind:lintap="gotouser" style="height: 100rpx;">
           <view class="container">
-           <l-icon size="40" name="user" color="#3683d6" />
-           <text class="describe">共享用户 </text>
+           <l-icon name="user" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <text class="describe" style="position: relative;top:-200rpx;" >共享用户 </text>
           </view>
          </l-button>  
        </l-grid-item>
       <l-grid-item key="two" slot="two">
-        <l-button width="40" height="20" special="{{true}}" bind:lintap="gotorecord">
+        <l-button special="{{true}}" bind:lintap="gotorecord" style="height: 100rpx;">
           <view class="container">
-           <l-icon size="40" name="history" color="#3683d6" />
-           <text class="describe">健康状态记录</text>
+           <l-icon name="history" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <text class="describe" style="position: relative;top:-200rpx;">健康状态记录</text>
           </view>
          </l-button>  
        </l-grid-item>
        <l-grid-item key="three" slot="three">
-        <l-button width="40" height="20" special="{{true}}" bind:lintap="takephoto">
+        <l-button special="{{true}}" bind:lintap="takephoto" style="height: 100rpx;">
           <view class="container">
-           <l-icon size="40" name="phone" color="#3683d6" />
-           <text class="describe">宠物相机</text>
+           <l-icon name="phone" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <text class="describe" style="position: relative;top:-200rpx;">宠物相机</text>
           </view>
          </l-button>  
        </l-grid-item>

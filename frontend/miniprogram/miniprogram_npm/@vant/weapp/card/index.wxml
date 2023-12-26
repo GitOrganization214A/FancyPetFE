@@ -18,7 +18,7 @@
         type="primary"
         color="coral"
         custom-class="van-card__tag"
-        style="position:absolute;left:550rpx;top: 10rpx;width: 200rpx;"
+        style="position:absolute;left:400rpx;top: 30rpx;width: 250rpx;"
       >
         {{ tag }}
       </van-tag>

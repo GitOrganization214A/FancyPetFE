@@ -6,9 +6,10 @@
       "van-popup": "/miniprogram_npm/@vant/weapp/popup/index",
       "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index",
       "l-segment": "/miniprogram_npm/lin-ui/segment/index",
-        "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
-        "l-index-anchor": "/miniprogram_npm/lin-ui/index-anchor/index",
-        "l-index-list": "/miniprogram_npm/lin-ui/index-list/index",
+      "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
+      "l-index-anchor": "/miniprogram_npm/lin-ui/index-anchor/index",
+      "l-index-list": "/miniprogram_npm/lin-ui/index-list/index",
+      "l-button": "/miniprogram_npm/lin-ui/button/index",
       "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
       "l-album": "/miniprogram_npm/lin-ui/album/index"
     }

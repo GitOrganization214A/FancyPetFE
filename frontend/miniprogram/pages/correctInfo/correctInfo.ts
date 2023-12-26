@@ -136,11 +136,11 @@ Page({
 
     },
     images:'',
-    origin_avatar:'',
+    avatarUrl:'',
     year:0,
     month:1,
     gender:[],
-    breed:"边境牧羊犬",
+    breed:"",
     titlecontent:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
@@ -409,14 +409,10 @@ Page({
         count:1,//一张图片
         sizeType: ['original', 'compressed'],
         success: function (res) {
+          console.log(res)
           that.setData({
-            origin_avatar: res.tempFilePaths,
- 
-          })
-          that.setData({
-            images: that.data.origin_avatar,
-          })
-          
+            avatarUrl: res.tempFilePaths[0],
+          })          
         }
     })
   },
@@ -434,14 +430,16 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:app.globalData.petspaceid
+        PetSpaceID:app.globalData.petspaceid,
+        openid:app.globalData.openid,
       },
       success:function(res) {
+          console.log(res.data)
           that.setData({
             PetSpaceDetail: res.data
           })
           that.setData({
-            origin_avatar: res.data.avatar,
+            avatarUrl: res.data.avatar,
             images:res.data.avatar,
             titlecontent:res.data.name,
             currentTitleNumber:res.data.name.length,
@@ -457,7 +455,7 @@ Page({
     var that=this;
     wx.uploadFile({
       url:'http://43.143.139.4:8000/api/v1/changePetAvatar/',
-      filePath:that.data.origin_avatar[0],
+      filePath:that.data.avatarUrl,
       name: 'avatar',
       formData:{
         PetSpaceID:app.globalData.petspaceid,

@@ -1,50 +1,55 @@
 <!--pages/correctInfo/correctInfo.wxml-->
-<view class="container" style="width:100%;">
-  <view style="top:500rpx;position:fixed;left:50rpx;width: 750rpx;height:650rpx;" class='inputImage' >
-                    <image style="height:187.5rpx;width:187.5rpx;" src='{{images}}' data-in='{{[index]}}' class='cimage'  bindlongtap='dimage'></image>
-  </view>
-  <button bindtap='chosePetImage' mode="widthFix" style="position: fixed; left: 45rpx; top: 700rpx; width: 320rpx; height: 60rpx; display: block; box-sizing: border-box;font-size: 30rpx; line-height:60rpx;text-align:center; "> 修改宠物头像 </button>
-  <image src="{{navigationUrl}}" mode="widthFix"  style="display: inline-block; box-sizing: border-box; position: absolute; height:30rpx; width:750rpx; left:0rpx; top:0rpx;"></image>   
-  <view wx:if="{{IsEditingText}}" style="width:100%;top: 0rpx;position: fixed" class="editText" >
-        <view class='by'>
-            <view style="top:400rpx;text-align: center;position: fixed;width: 350rpx;font-size: larger;left:200rpx">修改宠物信息</view>       
-            <image style="top:400rpx;position: fixed;left:30rpx;width:50rpx;height:50rpx" src="{{giveupUrl}}" bindtap="guEdit"></image>
-            <button style="top:400rpx;position: fixed;left:600rpx;width:140rpx;height:80rpx;text-align: center;" bindtap="sendAtc">确认</button>
-            <view class='inputName' >
-                <textarea value="{{titlecontent}}" style="top:950rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入修改后的宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                <text class='ctn' style="top:975rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
-            </view>
-            <view>
-                <view class='inputAge' style="top:1025rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">
-                <text>请输入修改后的宠物年龄：</text>
-                <l-counter  count="{{year}}" min="0" max="100" step="1" bind:lintap="inputYear"></l-counter>
-                <text>年</text>
-                <l-counter  count="{{month}}" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
-                <text>月</text>
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C" title="修改宠物信息" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
+    <view class="container" style="width:100%;">
+        <button  style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" bindtap='chosePetImage' bindlongtap='dimage' >
+                <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill"  style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
+        </button>   
+        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="sendAtc">确认</l-button>
+        <view style="top:440rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="top:540rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="top:610rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="top:730rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="top:850rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="width:100%;top: 0rpx;position: fixed" class="editText" >
+                <view class='by'>
+                    <view class='inputName' >
+                        <textarea value="{{titlecontent}}" style="top:450rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;" placeholder='请输入修改后的宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
+                        <text class='ctn' style="top:500rpx;position: fixed;right: 25rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+                    </view>
+                    <view>
+                        <view class='inputAge' style="top:750rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;">
+                        <text>请输入修改后的宠物年龄：</text>
+                        <l-counter  count="{{year}}" min="0" max="100" step="1" bind:lintap="inputYear"></l-counter>
+                        <text>年</text>
+                        <l-counter  count="{{month}}" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
+                        <text>月</text>
+                        </view>
+                    </view>
+                    <view class="page-section-title" style="top:650rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;display: flex;flex-direction: row;">请选择宠物性别：
+                    <view  wx:if="{{gender === '雌'}}">
+                        <radio-group name="radio" bindchange="getGender">
+                            <label><radio value="雌" checked="true"/>雌</label>
+                            <label><radio value="雄"/>雄</label>
+                        </radio-group>
+                    </view>
+                    <view  wx:if="{{gender === '雄'}}">
+                    <radio-group name="radio" bindchange="getGender">
+                        <label><radio value="雌" />雌</label>
+                        <label><radio value="雄" checked="true"/>雄</label>
+                    </radio-group>
+                    </view>
+                    </view>
+                    <view class='inputBreed' >
+                        <textarea style="top:550rpx;left:25rpx;position: fixed;width: 800rpx;height:100rpx;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
+                    </view>
+                    <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 560rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
+                        <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
+                            {{item}}
+                        </view>
+                    </view>
                 </view>
-            </view>
-            <view class="page-section-title" style="top:1150rpx;position: fixed;left:0rpx;width: 750rpx;height:100rpx;border: 3rpx solid grey;">请选择宠物性别：
-            <view  wx:if="{{gender === '雌'}}">
-              <radio-group name="radio" bindchange="getGender">
-                 <label><radio value="雌" checked="true"/>雌</label>
-                 <label><radio value="雄"/>雄</label>
-              </radio-group>
-            </view>
-            <view  wx:if="{{gender === '雄'}}">
-              <radio-group name="radio" bindchange="getGender">
-                 <label><radio value="雌" />雌</label>
-                 <label><radio value="雄" checked="true"/>雄</label>
-              </radio-group>
-            </view>
-            </view>
-            <view class='inputBreed' >
-                <textarea style="top:825rpx;position: fixed;width: 800rpx;height:100rpx;border: 3rpx solid grey;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
-            </view>
-            <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 840rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
-                <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="*this" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
-                    {{item}}
-                </view>
-            </view>
         </view>
-  </view>
-</view>
+    </view>
+</l-capsule-bar>

@@ -1,50 +1,58 @@
 <!--pages/addcost/addcost.wxml-->
-<view class='by'>
-    <view style="top:175rpx;text-align: center;position: fixed;width: 400rpx;font-size: 25px;left:200rpx">添加账单</view>       
-    <image style="top:175rpx;position: fixed;left:30rpx;width:60rpx;height:60rpx;" src="{{giveupUrl}}" bindtap="goback">
-    </image>
-    <view style="top:190rpx;position: fixed;left:640rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;border: none;font-size:17px ;color:dodgerblue;"   bindtap="addNewCost">添加</view>
-</view>
-<view class='main'>
-  <view style="position: fixed;top: 270rpx;width:750rpx;">
-    <van-field 
-      value="{{ fieldValue }}"
-      is-link
-      readonly
-      label="宠物空间"
-      placeholder="请选择宠物空间"
-      bind:tap="onClick"
-      />
-  </view>
-  <picker style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <view class="picker">
-      支出类型：{{array[index]}}
+<l-capsule-bar
+  capsule-color="white" bg-color="#60656C"
+  title="添加账单" title-color="#ffac63"
+  home-page='/pages/petspace/petspace'>
+    <view style="top:320rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+    <view style="top:400rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+    <view style="top:480rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+    <view style="top:560rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+    <view style="top:850rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        
+    <view class='by'>
+        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:240rpx;position: fixed;left:615rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="addNewRecord">添加</l-button>
     </view>
-  </picker>
-  <picker  style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;" mode="date" value="{{date}}" start="2015-09-01" end="2024-02-01" bindchange="bindDateChange">
-    <view class="picker">
-      日期: {{date}}
+    <view class='main'>
+    <view style="position: fixed;top: 220rpx;width:600rpx;left: -5rpx;">
+        <van-field 
+        value="{{ fieldValue }}"
+        is-link
+        readonly
+        label="宠物空间"
+        placeholder="请选择宠物空间"
+        bind:tap="onClick"
+        />
     </view>
-  </picker>
-  <view style="top:600rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;">
-  <input  class="flex-right" type="digit" placeholder="￥0.00" maxlength="7" value="{{money}}" bindinput="handleInput" />
-</view>
-  <view class='inputText'>
-    <textarea  style="top:700rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
-    placeholder='请输入备注信息' minlength="0" maxlength="140"  bindinput='inputText'></textarea>
-    <text style="top:800rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
-  </view>
-  <view style="position: fixed;top: 600rpx;">
-                <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
-                <van-cascader
-                    wx:if="{{ show }}"
-                    value="{{ cascaderValue }}"
-                    title="请选择宠物空间"
-                    options="{{ options }}"
-                    bind:close="onClose"
-                    bind:finish="onFinish"
-                />
-                </van-popup>
+    <picker style="top:340rpx;position: fixed;left:25rpx;width: 710rpx;height:300rpx;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+        支出类型：{{array[index]}}
+        </view>
+    </picker>
+    <picker  style="top:420rpx;position: fixed;left:25rpx;width: 710rpx;height:300rpx;" mode="date" value="{{date}}" start="2015-09-01" end="2024-02-01" bindchange="bindDateChange">
+        <view class="picker">
+        日期: {{date}}
+        </view>
+    </picker>
+    <view style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;">
+    <input  class="flex-right" type="digit" placeholder="￥0.00" maxlength="7" value="{{money}}" bindinput="handleInput" />
+    </view>
+    <view class='inputText'>
+        <textarea  style="top:580rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+        placeholder='请输入备注信息' minlength="0" maxlength="140"  bindinput='inputText'></textarea>
+        <text style="top:800rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+    </view>
+    <view style="position: fixed;top: 600rpx;">
+                    <van-popup show="{{ show }}" round position="bottom" custom-style="height: 40%;">
+                    <van-cascader
+                        wx:if="{{ show }}"
+                        value="{{ cascaderValue }}"
+                        title="请选择宠物空间"
+                        options="{{ options }}"
+                        bind:close="onClose"
+                        bind:finish="onFinish"
+                    />
+                    </van-popup>
 
-  </view>
-</view>
+    </view>
+    </view>
+</l-capsule-bar>
