@@ -90,32 +90,26 @@ Page({
   })
 }
 else if(this.data.imagetype==2){
-  for (let image of that.data.srcs){
+  for (let images of this.data.srcs){
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPhoto/', 
-      filePath: image,
+      filePath: images,
       name: 'image',
       formData: {
         PetSpaceID:app.globalData.petspaceid,
         openid:app.globalData.openid
       },
       success (res){
-        that.setData({
-          imagetype:0
-        })
-      },
-      fail(err){
-        that.setData({
-          allsuccess:false
-        })
+        
       }
     })
   }
-  if(this.data.allsuccess==true){
-    wx.navigateBack({
-      delta: 1
-    })
-  }
+  that.setData({
+    imagetype:0
+  })
+  wx.navigateBack({
+    delta: 1
+  })
 }
  },
   /**
