@@ -507,7 +507,7 @@ Page({
     const petspaceid = event.currentTarget.dataset.petspaceid
     app.globalData.petspaceid=petspaceid
     wx.navigateTo({
-      url:'/pages/petdetailshow/petdetailshow?petspaceid='+petspaceid,
+      url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
     })
   },
 

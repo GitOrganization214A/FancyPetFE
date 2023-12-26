@@ -328,8 +328,8 @@ Page({
       hotPosts:[],
       followPosts:[],
     }, function () {
-      // setData 生效后执行的操作
-      if(that.data.currentTab==="hot")
+    // setData 生效后执行的操作
+    if(that.data.currentTab==="hot")
     {
       wx.request({
         url: 'http://43.143.139.4:8000/api/v1/HotArticles/',
@@ -346,26 +346,25 @@ Page({
               pageHot:that.data.pageHot+1
             })
             setTimeout(() => {
+              // 停止下拉刷新
+              wx.stopPullDownRefresh();
               // 隐藏自定义加载中图标
               that.setData({
                 isLoading: false,
               });
-              // 停止下拉刷新
-              wx.stopPullDownRefresh();
             }, 1000);
         },
         fail:function(res) {
           setTimeout(() => {
-            // 隐藏自定义加载中图标
-            that.setData({
-              isLoading: false,
-            });
             // 停止下拉刷新
             wx.stopPullDownRefresh();
           }, 1000);
+          // 隐藏自定义加载中图标
+          that.setData({
+            isLoading: false,
+          });
         }
       })
-      
     }
     if(that.data.currentTab==="following")
     {
@@ -384,22 +383,22 @@ Page({
             pageFollow: that.data.pageFollow
           })
           setTimeout(() => {
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
             // 隐藏自定义加载中图标
             that.setData({
               isLoading: false,
             });
-            // 停止下拉刷新
-            wx.stopPullDownRefresh();
           }, 1000);
         },
         fail:function(res) {
           setTimeout(() => {
+            // 停止下拉刷新
+            wx.stopPullDownRefresh();
             // 隐藏自定义加载中图标
             that.setData({
               isLoading: false,
             });
-            // 停止下拉刷新
-            wx.stopPullDownRefresh();
           }, 1000);
         }
       })
