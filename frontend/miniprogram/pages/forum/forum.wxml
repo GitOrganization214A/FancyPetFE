@@ -297,5 +297,5 @@
     </view>
    
   <view>
-    <button  bindtap="EditAtc" style="background-color: transparent;position: fixed; left: 340rpx; bottom:30rpx;  display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; "></image>  </button>
+    <button  class="add" bindtap="EditAtc" style="background-color: transparent;position: fixed; left: 340rpx; bottom:30rpx;  display: block; box-sizing: border-box" type="default"><image src="{{EditAtcUrl}}" style="position: fixed; left: 337.5rpx; bottom: 25rpx; width: 75rpx; height: 75rpx; "></image>  </button>
   </view>

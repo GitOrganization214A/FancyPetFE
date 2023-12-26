@@ -32,7 +32,7 @@
       <l-grid-item key="one" slot="one">
         <l-button special="{{true}}" bind:lintap="gotouser" style="height: 100rpx;">
           <view class="container">
-           <l-icon name="user" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <l-icon class="user" name="user" color="#3683d6" style="position: relative;top:-200rpx;" />
            <text class="describe" style="position: relative;top:-200rpx;" >共享用户 </text>
           </view>
          </l-button>  
@@ -40,7 +40,7 @@
       <l-grid-item key="two" slot="two">
         <l-button special="{{true}}" bind:lintap="gotorecord" style="height: 100rpx;">
           <view class="container">
-           <l-icon name="history" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <l-icon class="history" name="history" color="#3683d6" style="position: relative;top:-200rpx;" />
            <text class="describe" style="position: relative;top:-200rpx;">健康状态记录</text>
           </view>
          </l-button>  
@@ -48,7 +48,7 @@
        <l-grid-item key="three" slot="three">
         <l-button special="{{true}}" bind:lintap="takephoto" style="height: 100rpx;">
           <view class="container">
-           <l-icon name="phone" color="#3683d6" style="position: relative;top:-200rpx;" />
+           <l-icon class="camera" name="phone" color="#3683d6" style="position: relative;top:-200rpx;" />
            <text class="describe" style="position: relative;top:-200rpx;">宠物相机</text>
           </view>
          </l-button>  
