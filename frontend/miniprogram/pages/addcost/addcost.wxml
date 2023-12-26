@@ -10,7 +10,7 @@
     <view style="top:850rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
         
     <view class='by'>
-        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:240rpx;position: fixed;left:615rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="addNewRecord">添加</l-button>
+        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:240rpx;position: fixed;left:615rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="addNewCost">添加</l-button>
     </view>
     <view class='main'>
     <view style="position: fixed;top: 220rpx;width:600rpx;left: -5rpx;">

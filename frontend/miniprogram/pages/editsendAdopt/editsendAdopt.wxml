@@ -5,7 +5,7 @@
   home-page='/pages/activity/activity'>
 
     <view class="container" style="width:100%;">
-        <textarea style="top:250rpx;position: fixed;left:30rpx;width: 500rpx;height:40rpx;" placeholder='请留下你的微信号' minlength="1" maxlength="50"  bindinput='inputwx' value="{{wxcontent}}" ></textarea>
+        <textarea style="top:250rpx;position: fixed;left:30rpx;width: 500rpx;height:60rpx;" placeholder='请留下你的微信号' minlength="1" maxlength="50"  bindinput='inputwx' value="{{wxcontent}}" ></textarea>
         <view style="top:350rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
         <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top: 230rpx;position: fixed;left:600rpx;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="sendadopt">发送</l-button>
         <textarea style="top:370rpx;position: fixed;left:30rpx;width: 650rpx;height:300rpx;" placeholder='请留下你想发送给宠物主人的话，如养宠经历以及想问的问题等' minlength="1" maxlength="200"  bindinput='inputadopt' value="{{adoptcontent}}" ></textarea>

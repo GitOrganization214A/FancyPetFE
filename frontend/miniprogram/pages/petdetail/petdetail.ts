@@ -25,7 +25,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(event) {
-    
+    var that = this
+    this.setData({
+        petspaceid: event.petspaceid
+    })
+    wx.request({
+      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
+      method:"GET",
+      header: {'content-type': 'application/json' //
+      },
+      data:{
+        PetSpaceID:this.data.petspaceid,
+        openid:app.globalData.openid,
+        page:that.data.pageImage
+      },
+      success:function(res) {
+          that.setData({
+            PetSpaceDetail: res.data
+          })
+          that.setData({
+            images: res.data.images
+          })
+          that.setData({
+            avatar: res.data.avatar+"?v="+new Date().getTime()
+          })
+          that.setData({
+            status: res.data.public
+          })
+      },
+      fail(err){
+        wx.showToast({
+          title: '该宠物空间无法查看',
+          icon: 'none',
+          duration: 2000//持续的时间
+        })
+        wx.navigateBack({
+          delta: 1
+        });
+      }
+    })
   },
   setpublic:function(e){
     var that=this
@@ -180,44 +218,8 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow() {
-    var that = this
-    this.data.petspaceid = app.globalData.petspaceid
-    wx.request({
-      url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
-      method:"GET",
-      header: {'content-type': 'application/json' //
-      },
-      data:{
-        PetSpaceID:this.data.petspaceid,
-        openid:app.globalData.openid,
-        page:that.data.pageImage
-      },
-      success:function(res) {
-          that.setData({
-            PetSpaceDetail: res.data
-          })
-          that.setData({
-            images: res.data.images
-          })
-          that.setData({
-            avatar: res.data.avatar+"?v="+new Date().getTime()
-          })
-          that.setData({
-            status: res.data.public
-          })
-      },
-      fail(err){
-        wx.showToast({
-          title: '该宠物空间无法查看',
-          icon: 'none',
-          duration: 2000//持续的时间
-        })
-        wx.navigateBack({
-          delta: 1
-        });
-      }
-    })
+  onShow(e) {
+    
   },
   previewImage: function(e) {
     wx.previewImage({
