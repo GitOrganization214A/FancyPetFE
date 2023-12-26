@@ -37,7 +37,7 @@ Page({
   surfpet(e){
     const temppid = e.target.dataset.index
     wx.navigateTo({
-      url:'/pages/petdetailshow/petdetailshow?petspaceid='+temppid,
+      url:'/pages/petdetail/petdetail?petspaceid='+temppid,
     })
   },
   deletemessage(e){
