@@ -15,7 +15,7 @@ Page({
     date: new Date().toJSON().substring(0, 10),
     currentTextNumber:0,
     maxTextLen: 140,
-    atccontent:[],
+    atccontent:'',
     money: ''
   },
 

@@ -75,9 +75,9 @@ Page({
       },
       success:function(res) {
           that.setData({
-            Cost: res.data
+            Cost:res.data
           })
-          for (let record of res.data){
+          for (let bill of res.data.bills){
             var originindex=that.data.index
             let numberArray = [];
             for (let i = 0; i < that.data.number.toString().length; i++) {

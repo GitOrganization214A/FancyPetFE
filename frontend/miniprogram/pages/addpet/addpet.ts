@@ -483,6 +483,15 @@ Page({
           })
         return
     }
+    if(this.data.titlecontent.length==0)
+    {
+      wx.showToast({
+        title: '名字不可为空',
+        icon: 'none',
+        duration: 3000
+      })
+      return
+    }
     var that = this
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPetSpace/', 

@@ -18,7 +18,8 @@ Page({
     status:true,
     hasMoreImage:true,
     pageImage:1,
-    pageSize:27
+    pageSize:27,
+    refresh:false
   },
 
   /**
@@ -181,7 +182,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    if(!this.data.refresh){
     var that = this
+    this.setData({
+      pageImage:1,
+      images:[],
+      hasMoreImage:true,
+      refresh:false
+    })
     this.data.petspaceid = app.globalData.petspaceid
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
@@ -194,6 +202,9 @@ Page({
         page:that.data.pageImage
       },
       success:function(res) {
+          that.setData({
+            pageImage: that.data.pageImage+1
+          })
           that.setData({
             PetSpaceDetail: res.data
           })
@@ -218,6 +229,7 @@ Page({
         });
       }
     })
+  }
   },
   previewImage: function(e) {
     wx.previewImage({
@@ -266,8 +278,10 @@ Page({
       success:function(res) {
         that.setData({
           images:that.data.images.concat(res.data.images),
-          pageImage: that.data.pageImage + 1
+          pageImage: that.data.pageImage + 1,
+          refresh:true
         })
+        that.onShow()
         if(res.data.images.length<that.data.pageSize)
         {
           that.setData({

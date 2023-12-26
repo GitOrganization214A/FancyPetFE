@@ -11,7 +11,7 @@ Page({
     index: 0,
     date: new Date().toJSON().substring(0, 10),
     currentTextNumber:0,
-    atccontent:[],
+    atccontent:'',
     images:[],
     maxTextLen: 140
   },
