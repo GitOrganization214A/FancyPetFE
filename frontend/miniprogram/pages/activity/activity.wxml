@@ -82,7 +82,7 @@
 
         </view>
 
-        <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: 80rpx;">
+        <view wx:if="{{actcloud}}" style="padding: 0;position: relative;top: 40rpx;">
             <swiper class="swiper" vertical='true' easing-function='default' bindchange='bindchangev' style="width: 750rpx;  height: 1250rpx;">
                 <block wx:for="{{activitylist}}" wx:for-item="key" wx:key="activity" >
                     <swiper-item>

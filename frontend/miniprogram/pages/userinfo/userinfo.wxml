@@ -47,7 +47,7 @@
                   <view class = "title" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
                     <text>{{item.title}}</text>
                   </view>
-                  <view class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
+                  <view wx:if="{{item.content!=='[]'}}" class = "content" bindtap="postDetail" data-articleid="{{item.ArticleID}}" data-index="{{postindex}}">
                     <text class="content_text">{{item.content}}</text>
                   </view>
                   

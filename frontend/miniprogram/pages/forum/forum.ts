@@ -160,7 +160,7 @@ const nameDataOther = [
 Page({
   data: {
     // 页面垂直滑动的距离
-    currentClassKey: "eight", //当前大分类
+    currentClassKey: "one", //当前大分类
     scrollTop: undefined,
 
     //下面是分区的索引栏和内容数据
@@ -558,6 +558,12 @@ Page({
         // setData 生效后执行的操作
         that.getFollowArticles();
       });
+    }
+    if(tab == "classification") {
+      var that = this
+      that.setData({
+        currentClassKey:'one',
+      })
     }
   },
   //进入发帖页面

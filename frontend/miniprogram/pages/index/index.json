@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
-    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index"
+    "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index"
   },
   "navigationStyle":"custom",
   "disableScroll":true

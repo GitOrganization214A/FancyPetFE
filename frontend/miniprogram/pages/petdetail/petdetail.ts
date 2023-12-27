@@ -105,13 +105,15 @@ Page({
     });
   },
   gotorecord: function (e) {
+    var that = this
     wx.navigateTo({
-      url: "/pages/record/record",
+      url: "/pages/record/record?petspaceid="+that.data.petspaceid
     });
   },
   gotouser: function (e) {
+    var that=this
     wx.navigateTo({
-      url: "/pages/shareuser/shareuser",
+      url: "/pages/shareuser/shareuser?petspaceid="+that.data.petspaceid
     });
   },
   takephoto: function (e) {

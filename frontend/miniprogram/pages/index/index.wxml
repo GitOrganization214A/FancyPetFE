@@ -41,15 +41,13 @@
        
       </view>
     </view>
-    
-    
-    <button bindtap="quitUser" style="line-height:80rpx; display: block; box-sizing: border-box;font-size: 40rpx; width:300rpx; margin-top:100rpx"> 退出登录 </button>
-
+    <view style="display:flex;margin-top:100rpx; justify-content:center;">
+      <l-button shape="semicircle" bg-color="#ffac60" bindtap="contactus" width="300">联系我们</l-button>
+    </view>
+    <view style="display:flex;margin-top:50rpx; justify-content:center;">
+      <l-button shape="semicircle" bg-color="#ffac60" bindtap="quitUser" width="300">退出登录</l-button>
+    </view>
   </view>
-
- 
-  
-  
 </view>
 </l-capsule-bar>
 

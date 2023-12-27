@@ -44,6 +44,7 @@
   display: flex;
   flex-direction: column;
   margin-left: 60rpx;
+  margin-right: 60rpx;
   margin-top:60rpx;
 }
 
@@ -55,6 +56,14 @@
   margin-right: 50rpx
 }
 .content_text {
+  display:-webkit-box;
+  /* 表示几行后超出隐藏 */
+  -webkit-line-clamp:5;
+  /* 超出隐藏 */
+  overflow:hidden;
+  /*超出显示为省略号*/
+  text-overflow:ellipsis;
+  -webkit-box-orient:vertical;
   /*强制英文单词自动换行*/
   word-break:break-all;
 }
@@ -77,7 +86,7 @@
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  margin-right: 80rpx;
+  margin-right: 20rpx;
   margin-left: 20px;
   display: flex;
   align-items: center;
@@ -108,7 +117,6 @@
   border-top: solid Silver 1px;
   margin-bottom: 20rpx;
   margin-top: 20rpx;
-  margin-right: 60rpx;
 }
 
 .userinfo {

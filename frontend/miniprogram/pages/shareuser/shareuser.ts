@@ -38,7 +38,7 @@ Page({
         const fieldValue = selectedOptions
             .map((option) => option.text || option.name)
             .join('/');
-;
+        var that = this
         wx.request({
           url: 'http://43.143.139.4:8000/api/v1/changeOwner/',
           method:"GET",

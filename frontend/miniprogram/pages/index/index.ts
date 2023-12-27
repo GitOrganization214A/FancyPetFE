@@ -244,21 +244,28 @@ Page({
       })
   },
   quitUser(){
-      this.setData({
-        ['nickName'] : "",
-        ['avatarUrl'] : "",
-        ['follow'] : "",
-        ['fans'] : "",
-        ['atcnum'] : "",
-        ['openID'] : "" ,
-        ['userid'] : "",
-        logging:true,
-        canIUseOpenData:false,
-    })
-    this.data.canIUseOpenData=false
-    wx.hideTabBar({
-        success:()=>{
+    var that=this
+    wx.showModal({
+        title: '提示',
+        content: '确认退出登录？',
+        success (res) {
+          if (res.confirm) {
+          that.setData({
+            ['nickName'] : "",
+            ['avatarUrl'] : "",
+            ['follow'] : "",
+            ['fans'] : "",
+            ['atcnum'] : "",
+            ['openID'] : "" ,
+            ['userid'] : "",
+            logging:true,
+            canIUseOpenData:false,
+        })
+        wx.hideTabBar({
+          success:()=>{
+          }
+        })}
         }
-    })
+      })
   }
 })
