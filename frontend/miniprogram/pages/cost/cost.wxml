@@ -3,11 +3,7 @@
   home-page='/pages/petspace/petspace'>
 <text style="left: 40rpx;top: 240rpx;position: fixed;">总支出：￥{{Cost.cost}}</text>
 <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top: 230rpx;position: fixed;left:600rpx;width: 200rpx;height: 70rpx;line-height: 70rpx;" bind:tap="addtoBill">记账</l-button>
-<<<<<<< HEAD
-<view lazy-load="true" style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:225rpx;" class="petlist" wx:for="{{Cost.bills}}" wx:key="pet">
-=======
-<view lazy-load="true" style="top:200rpx;position:relative;left:0rpx;width: 750rpx;height:250rpx;" class="petlist" wx:for="{{Cost.bills}}" wx:key="*this">
->>>>>>> 2dea03f3b964641bd58dfd85f5d54be76f19d5e7
+<view lazy-load="true" style="top:200rpx;position:relative;left:0rpx;width: 750rpx;" class="petlist" wx:for="{{Cost.bills}}" wx:key="*this">
     <view bind:longpress="deleteBill" data-index="{{index}}">
         <fui-card wx:if="{{ item.type === '宠物食品' }}" lazy-load="true" src="{{foodUrl}}" title="{{item.type}}" tag="{{item.date}}">
                 <!-- 此处为content -->

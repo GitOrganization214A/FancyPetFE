@@ -17,11 +17,11 @@
         </picker>
         <view style="top:380rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
         <view class='inputText'>
-            <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:300rpx;"   
+            <textarea  style="top:400rpx;position: fixed;left:20rpx;width: 710rpx;height:500rpx;"   
             placeholder='请输入备注信息' minlength="0" maxlength="140"  bindinput='inputText'></textarea>
-            <text style="top:500rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
+            <text style="top:600rpx;position: fixed;left:20rpx;width: 710rpx;height:100rpx;text-align: right;" >{{currentTextNumber}}/{{maxTextLen}}</text>
         </view>
-        <view style="top:550rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        <view style="top:650rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
     
     </view>
 </l-capsule-bar>
