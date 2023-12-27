@@ -136,10 +136,10 @@ Page({
     userInfo: {
 
     },
-    avatarUrl:'../../resource/cameraparty.png',
+    show:false,
+    date: new Date().toJSON().substring(0, 10),
+    avatarUrl:'',
     images:[],
-    year:0,
-    month:0,
     gender:[],
     breed:"",
     titlecontent:[],
@@ -175,19 +175,25 @@ Page({
         this.data.titlecontent=value
 
   },
-  inputYear:function(e){
-        var count=e.detail.count;
-        this.setData({
-          year: count
-        })
-        this.data.year=count
-  },
-  inputMonth:function(e){
-    var count=e.detail.count;
+  bindDateChange: function(e) {
+    var splitted = e.detail.value.split("-", 3)
+    var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
+    var selectdate=splitted[0]+splitted[1]+splitted[2]
+    var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
+
+
+    if (selectdate<nowdate){
+
+      this.setData({
+        date: e.detail.value
+      })
+    }
+    else{
+
     this.setData({
-      month: count
+      date: new Date().toJSON().substring(0, 10)
     })
-    this.data.month=count
+    } 
   },
   breedFocus(e){
     this.setData({
@@ -293,59 +299,6 @@ Page({
     })
     this.data.gender=Gender
   },
-  bindMultiPickerChange: function (e) {
-    var Breed=this.data.multiArray[1][e.detail.value[1]];
-    this.setData({
-      breed: Breed
-    })
-    this.data.breed=Breed
-  },
-  bindMultiPickerColumnChange: function (e) {
-;
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 1:
-            data.multiArray[1] = ['美国短毛猫', '加菲猫', '英国短毛猫', '波斯猫', '苏格兰折耳猫'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 2:
-            data.multiArray[1] = ['垂耳兔', '猫猫兔', '侏儒兔'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 3:
-            data.multiArray[1] = ['三线仓鼠', '天竺鼠', '豚鼠', '龙猫'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 4:
-            data.multiArray[1] = ['金丝雀', '鹦鹉', '百灵鸟'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 5:
-            data.multiArray[1] = ['孔雀鱼', '草金鱼', '中国斗鱼'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 6:
-            data.multiArray[1] = ['巴西龟', '火焰龟'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        break;
-    }
-
-;
-    this.setData(data);
-  },
   chooseAvatar(event){
     this.setData({
         avatarUrl:event.detail.avatarUrl
@@ -418,15 +371,6 @@ Page({
             break;
         }
     }
-    if(((breedtag=='')&&(this.data.breed.length>=0))||(this.data.titlecontent.length==0)||(this.data.gender.length==0)||(this.data.avatarUrl.length==0))
-    {
-        wx.showToast({
-            title: '请填写正确的宠物信息',
-            icon: 'none',
-            duration: 3000
-          })
-        return
-    }
     if(this.data.titlecontent.length==0)
     {
       wx.showToast({
@@ -436,6 +380,33 @@ Page({
       })
       return
     }
+    if(((breedtag=='')&&(this.data.breed.length>=0)))
+    {
+        wx.showToast({
+            title: '请输入已有的种类',
+            icon: 'none',
+            duration: 3000
+          })
+        return
+    }
+    if(this.data.avatarUrl.length==0)
+    {
+        wx.showToast({
+            title: '请选择宠物头像',
+            icon: 'none',
+            duration: 3000
+          })
+        return
+    }
+    if(this.data.gender.length==0)
+    {
+        wx.showToast({
+            title: '请选择宠物性别',
+            icon: 'none',
+            duration: 3000
+          })
+        return
+    }
     var that = this
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPetSpace/', 
@@ -444,8 +415,7 @@ Page({
       formData: {
         openid:app.globalData.openid,
         name:that.data.titlecontent,
-        year:that.data.year,
-        month:that.data.month,
+        birthday:that.data.date,
         gender:that.data.gender,
         breed:that.data.breed
       },
@@ -460,6 +430,22 @@ Page({
     })
 
     
+  },
+  onDisplay() {
+    this.setData({ show: true });
+  },
+  onClose() {
+    this.setData({ show: false });
+  },
+  formatDate(date) {
+    date = new Date(date);
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+  },
+  onConfirm(event) {
+    this.setData({
+      show: false,
+      date:this.formatDate(event.detail)
+    });
   },
   
 })

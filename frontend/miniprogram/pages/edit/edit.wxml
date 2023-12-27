@@ -13,7 +13,7 @@
       </view>
       <view class="line"></view>
       <view class='inputBreed'>
-        <textarea style="font-size: small; margin-left:20rpx; line-height:40rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
+        <textarea style="font-size: smaller; margin-left:20rpx; line-height:40rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
       </view>
       <view class="line"></view>
       <view class='inputTitle'>
@@ -22,7 +22,7 @@
       </view>
       <view class="line"></view>
       <view class='inputText'>
-          <textarea style="font-size:small; margin-left:20rpx; margin-right:20rpx; width:100%" placeholder='请输入帖子内容' minlength="0" maxlength="1024" bindinput='inputText'></textarea>
+          <textarea style="margin-left:20rpx; margin-right:20rpx; width:100%" placeholder='请输入帖子内容' minlength="0" maxlength="1024" bindinput='inputText'></textarea>
       </view>
       <view style="display: flex; justify-content: flex-end; margin-right:40rpx; line-height:40rpx;"><text style="font-weight: 300; font-size: 26rpx;">{{currentTextNumber}}/{{maxTextLen}}</text></view>
       <view class="line"></view>

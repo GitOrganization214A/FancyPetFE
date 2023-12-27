@@ -243,7 +243,6 @@ Page({
   //宠物空间
   showdetails:function(event){
     const petspaceid = event.currentTarget.dataset.petspaceid
-    app.globalData.petspaceid=petspaceid
     wx.navigateTo({
       url:'/pages/petdetail/petdetail?petspaceid='+petspaceid,
     })

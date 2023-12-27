@@ -13,13 +13,13 @@ Page({
 
     },
     text: '',
-    avatarUrl:'../../resource/cameraparty.png',
+    avatarUrl:'',
     show: false,
-    titlecontent:[],
-    addrcontent:[],
+    titlecontent:'',
+    addrcontent:'',
     atccontent:[],
     responseData:[],
-    date:[],
+    date:'',
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
     navigationUrl:"../../resource/navigationbar.png",
@@ -122,6 +122,33 @@ Page({
   },
   sendparty: function(e) {
     var that = this
+    if(that.data.titlecontent=='')
+    {
+      wx.showToast({
+        title: '请输入标题',
+        icon: 'none',
+        duration: 1000, 
+      });
+      return
+    }
+    if(that.data.addrcontent=='')
+    {
+      wx.showToast({
+        title: '请输入地点',
+        icon: 'none',
+        duration: 1000, 
+      });
+      return
+    }
+    if(that.data.date=='')
+    {
+      wx.showToast({
+        title: '请选择时间',
+        icon: 'none',
+        duration: 1000, 
+      });
+      return
+    }
     wx.uploadFile({
         url: 'http://43.143.139.4:8000/api/v1/postParty/', 
         filePath: that.data.avatarUrl,
@@ -134,7 +161,6 @@ Page({
             content:that.data.atccontent,
         },
         success (res){
-
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){

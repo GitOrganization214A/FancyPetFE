@@ -93,6 +93,15 @@ Page({
   },
   sendlove: function(e) {
     var that = this
+    if(that.data.cascaderValue=='')
+    {
+      wx.showToast({
+        title: '请选择宠物空间',
+        icon: 'none',
+        duration: 1000, 
+      });
+      return
+    }
     wx.request({
         url: 'http://43.143.139.4:8000/api/v1/postLove/',//todo
         data:{
@@ -104,7 +113,6 @@ Page({
         header: {'content-type': 'application/json' //
         },
         success:function(res) {
-
             wx.switchTab({
                 url:"../activity/activity",
                 success(e){

@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    petspaceid:'',
     addNewUrl:"../../resource/th1.png",
     giveupUrl:"../../resource/th.png",
     sneezeUrl:"../../../resource/sneezing_face.png",
@@ -23,8 +24,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
-
+  onLoad(e) {
+    this.setData({
+      petspaceid:e.petspaceid
+    })
   },
   addNewRecord(){
     wx.navigateTo({
@@ -55,7 +58,7 @@ Page({
       },
       data:{
         openid:app.globalData.openid,
-        PetSpaceID:app.globalData.petspaceid
+        PetSpaceID:that.data.petspaceid
       },
       success:function(res) {
           that.setData({
@@ -88,7 +91,7 @@ Page({
           header: {'content-type': 'application/json' //
           },
           data:{
-            PetSpaceID:app.globalData.petspaceid,
+            PetSpaceID:that.data.petspaceid,
             openid:app.globalData.openid,
             index:e.currentTarget.dataset.index
           },

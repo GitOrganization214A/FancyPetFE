@@ -37,7 +37,7 @@
         <text>{{Post.title}}</text>
       </view>
       <view wx:if="{{Post.content!=='[]'}}" class = "content">
-        <text class="content_text">{{Post.content}}</text>
+        <text class="content_text" user-select>{{Post.content}}</text>
       </view>
       
       <!-- 图片列表 -->

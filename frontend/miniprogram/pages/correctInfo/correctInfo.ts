@@ -135,12 +135,12 @@ Page({
     userInfo: {
 
     },
+    date: new Date().toJSON().substring(0, 10),
     images:'',
     avatarUrl:'',
-    year:0,
-    month:1,
     gender:[],
     breed:"",
+    petspaceid:'',
     titlecontent:[],
     beip:"192.168.187.1",
     IsEditingText: true, // 如需尝试获取用户信息可改为false
@@ -149,9 +149,8 @@ Page({
     giveupUrl:"../../resource/giveup.png",
     currentTitleNumber: 0,
     currentTextNumber:0,
-    maxTitleLen: 30,
+    maxTitleLen: 10,
     maxTextLen: 1024,
-    multiArray: [['狗狗', '猫猫', '兔兔', '鼠鼠', '鸟儿', '鱼儿', '龟'], ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬']],
     showbreed: false,
     breedfocus: false,
     options:[],
@@ -162,61 +161,7 @@ Page({
     mouseoptions,
     birdoptions,
     fishoptions,
-    tortoiseoptions,
-    objectMultiArray: [
-      [
-        {
-          id: 0,
-          name: '狗狗'
-        },
-        {
-          id: 1,
-          name: '猫猫'
-        },
-        {
-          id: 2,
-          name: '兔兔'
-        },
-        {
-          id: 3,
-          name: '鼠鼠'
-        },
-        {
-          id: 4,
-          name: '鸟儿'
-        },
-        {
-          id: 5,
-          name: '鱼儿'
-        },
-        {
-          id: 6,
-          name: '龟'
-        }
-      ], [
-        {
-          id: 0,
-          name: '边境牧羊犬'
-        },
-        {
-          id: 1,
-          name: '博美犬'
-        },
-        {
-          id: 2,
-          name: '哈士奇'
-        },
-        {
-          id: 3,
-          name: '瑞典柯基犬'
-        },
-        {
-          id: 4,
-          name: '金毛寻回犬'
-        }
-      ]
-    ],
-    multiIndex: [0, 0]
+    tortoiseoptions
   },
   // 事件处理函数
   inputTitle:function(e){
@@ -229,20 +174,6 @@ Page({
         this.data.currentTitleNumber=len
         this.data.titlecontent=value
 
-  },
-  inputYear:function(e){
-        var count=e.detail.count;
-        this.setData({
-          year: count
-        })
-        this.data.year=count
-  },
-  inputMonth:function(e){
-    var count=e.detail.count;
-    this.setData({
-      month: count
-    })
-    this.data.month=count
   },
   breedFocus(e){
     this.setData({
@@ -350,58 +281,25 @@ Page({
     })
     this.data.gender=Gender
   },
-  bindMultiPickerChange: function (e) {
-    var Breed=this.data.multiArray[1][e.detail.value[1]];
-    this.setData({
-      breed: Breed
-    })
-    this.data.breed=Breed
-  },
-  bindMultiPickerColumnChange: function (e) {
-;
-    var data = {
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-    data.multiIndex[e.detail.column] = e.detail.value;
-    switch (e.detail.column) {
-      case 0:
-        switch (data.multiIndex[0]) {
-          case 0:
-            data.multiArray[1] = ['边境牧羊犬', '博美犬', '哈士奇', '瑞典柯基犬', '金毛寻回犬'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 1:
-            data.multiArray[1] = ['美国短毛猫', '加菲猫', '英国短毛猫', '波斯猫', '苏格兰折耳猫'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 2:
-            data.multiArray[1] = ['垂耳兔', '猫猫兔', '侏儒兔'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 3:
-            data.multiArray[1] = ['三线仓鼠', '天竺鼠', '豚鼠', '龙猫'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 4:
-            data.multiArray[1] = ['金丝雀', '鹦鹉', '百灵鸟'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 5:
-            data.multiArray[1] = ['孔雀鱼', '草金鱼', '中国斗鱼'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-          case 6:
-            data.multiArray[1] = ['巴西龟', '火焰龟'];
-            this.data.multiArray[1]=data.multiArray[1];
-            break;
-        }
-        data.multiIndex[1] = 0;
-        break;
-    }
+  bindDateChange: function(e) {
+    var splitted = e.detail.value.split("-", 3)
+    var splitted2=new Date().toJSON().substring(0, 10).split("-", 3)
+    var selectdate=splitted[0]+splitted[1]+splitted[2]
+    var nowdate=splitted2[0]+splitted2[1]+splitted2[2]
 
-;
-    this.setData(data);
+
+    if (selectdate<nowdate){
+
+      this.setData({
+        date: e.detail.value
+      })
+    }
+    else{
+
+    this.setData({
+      date: new Date().toJSON().substring(0, 10)
+    })
+    } 
   },
   chosePetImage: function(e) {
     var that = this;
@@ -424,13 +322,16 @@ Page({
   },
   onLoad(e){
     var that = this
+    that.setData({
+      petspaceid:e.petspaceid
+    })
     wx.request({
       url: 'http://43.143.139.4:8000/api/v1/viewPetSpace/',
       method:"GET",
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:app.globalData.petspaceid,
+        PetSpaceID:that.data.petspaceid,
         openid:app.globalData.openid,
       },
       success:function(res) {
@@ -451,19 +352,18 @@ Page({
       }
     })
   },
-  sendAtc: function(e) {
+  editPet: function(e) {
     var that=this;
     wx.uploadFile({
       url:'http://43.143.139.4:8000/api/v1/changePetAvatar/',
       filePath:that.data.avatarUrl,
       name: 'avatar',
       formData:{
-        PetSpaceID:app.globalData.petspaceid,
+        PetSpaceID:that.data.petspaceid,
         openid:app.globalData.openid
       },
       success: function (res) {
         //上传成功
-;
       },
     })
     wx.request({
@@ -472,11 +372,10 @@ Page({
       header: {'content-type': 'application/json' //
       },
       data:{
-        PetSpaceID:app.globalData.petspaceid,
+        PetSpaceID:that.data.petspaceid,
         openid:app.globalData.openid,
         name:this.data.titlecontent,
-        year:this.data.year,
-        month:this.data.month,
+        birthday:this.data.date,
         gender:this.data.gender,
         breed:this.data.breed
       },

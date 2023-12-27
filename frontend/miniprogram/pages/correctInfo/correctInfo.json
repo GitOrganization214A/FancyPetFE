@@ -4,6 +4,7 @@
     "l-counter": "/miniprogram_npm/lin-ui/counter/index",
     "fui-actionsheet":"/miniprogram_npm/firstui/fui-actionsheet/fui-actionsheet",
     "l-button": "/miniprogram_npm/lin-ui/button/index",
-    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index"
+    "l-capsule-bar": "/miniprogram_npm/lin-ui/capsule-bar/index",
+    "l-card": "/miniprogram_npm/lin-ui/card/index"
   }
 }

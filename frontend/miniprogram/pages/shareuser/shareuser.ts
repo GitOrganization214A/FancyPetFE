@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    petspaceid:'',
     index:[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19],
     show: false,
     options:[],
@@ -17,7 +18,10 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(e) {
+    this.setData({
+      petspaceid:e.petspaceid
+    })
   },
   onClose() {
     this.setData({
@@ -42,7 +46,7 @@ Page({
           },
           data:{
             openid:app.globalData.openid,
-            PetSpaceID:app.globalData.petspaceid,
+            PetSpaceID:that.data.petspaceid,
             UserID:value
           },
           success:function(res) {
@@ -72,7 +76,7 @@ Page({
             },
             data:{
               openid:app.globalData.openid,
-              PetSpaceID:app.globalData.petspaceid,
+              PetSpaceID:that.data.petspaceid,
               UserID:res.content
             },
             success:function(res) {
@@ -112,7 +116,7 @@ Page({
       },
       data:{
         openid:app.globalData.openid,
-        PetSpaceID:app.globalData.petspaceid
+        PetSpaceID:that.data.petspaceid
       },
       success:function(res) {
           that.setData({
@@ -163,7 +167,7 @@ Page({
           },
           data:{
             openid:app.globalData.openid,
-            PetSpaceID:app.globalData.petspaceid,
+            PetSpaceID:that.data.petspaceid,
             UserID:e.currentTarget.dataset.userid
           },
           success:function(res) {

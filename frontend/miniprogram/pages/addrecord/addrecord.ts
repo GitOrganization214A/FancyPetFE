@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    petspaceid:'',
     giveupUrl:"../../resource/th.png",
     array:['打喷嚏','呕吐','腹泻','发烧','外伤','抽搐','嗜睡','发情'],
     index: 0,
@@ -19,8 +20,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(event) {
     this.setData({
+      petspaceid:event.petspaceid,
       date: new Date().toJSON().substring(0, 10)
     })
   },
@@ -81,7 +83,7 @@ addNewRecord: function(e) {
       url: 'http://43.143.139.4:8000/api/v1/addHealthRecord/',
       data:{
           openid:app.globalData.openid,
-          PetSpaceID:app.globalData.petspaceid,
+          PetSpaceID:that.data.petspaceid,
           date:that.data.date,
           content:that.data.atccontent,
           type:that.data.array[num]

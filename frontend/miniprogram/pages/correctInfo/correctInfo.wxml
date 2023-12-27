@@ -2,54 +2,69 @@
 <l-capsule-bar
   capsule-color="white" bg-color="#60656C" title="修改宠物信息" title-color="#ffac63"
   home-page='/pages/petspace/petspace'>
-    <view class="container" style="width:100%;">
+    <view style="width:100%;">
         <button  style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" bindtap='chosePetImage' bindlongtap='dimage' >
                 <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill"  style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
-        </button>   
-        <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50" style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bind:tap="sendAtc">确认</l-button>
-        <view style="top:440rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
-        <view style="top:540rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
-        <view style="top:610rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
-        <view style="top:730rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
-        <view style="top:850rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+        </button>
         <view style="width:100%;top: 0rpx;position: fixed" class="editText" >
-                <view class='by'>
-                    <view class='inputName' >
-                        <textarea value="{{titlecontent}}" style="top:450rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;" placeholder='请输入修改后的宠物名字' minlength="1" maxlength="30"  bindinput='inputTitle'></textarea>
-                        <text class='ctn' style="top:500rpx;position: fixed;right: 25rpx;width: 750rpx;height:100rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
-                    </view>
-                    <view>
-                        <view class='inputAge' style="top:750rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;">
-                        <text>请输入修改后的宠物年龄：</text>
-                        <l-counter  count="{{year}}" min="0" max="100" step="1" bind:lintap="inputYear"></l-counter>
-                        <text>年</text>
-                        <l-counter  count="{{month}}" min="1" max="12" step="1" bind:lintap="inputMonth"></l-counter>
-                        <text>月</text>
-                        </view>
-                    </view>
-                    <view class="page-section-title" style="top:650rpx;position: fixed;left:25rpx;width: 750rpx;height:100rpx;display: flex;flex-direction: row;">请选择宠物性别：
-                    <view  wx:if="{{gender === '雌'}}">
+          <view class='by'>
+            <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" >
+                <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill" style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
+                <van-icon wx:if="{{avatarUrl.length==0}}" name="photograph" size="30" style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:40rpx;left: -25rpx;position: relative;" />
+            </button>
+            <l-button shape="semicircle" bg-color="#ffac63" width="110" height="50"  style="top:380rpx;position: fixed;left:315rpx;width:140rpx;height:50rpx;line-height:50rpx;align-items: center;justify-content: center;font-size: 16px;color: dodgerblue;" bindtap="editPet">修改</l-button>
+            <view style="top:440rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+            <view class='inputName'>
+                <input style="line-height: 60rpx; top:460rpx;position: fixed;left:40rpx;width:600rpx;height:60rpx;" value="{{titlecontent}}" placeholder='请输入修改后的宠物名字' minlength="1" maxlength="10"  bindinput='inputTitle'></input>
+                <text class='ctn' style="top:470rpx;position: fixed;right:40rpx;width: 60rpx;height:50rpx;text-align: right;" >{{currentTitleNumber}}/{{maxTitleLen}}</text>
+            </view>
+            <view style="top:540rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+            
+            <view style="top:640rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+            <view class="page-section-title" style="align-items: center; top:660rpx;position: fixed;left:40rpx;width: 670rpx;height:60rpx;display: flex;flex-direction: row;">
+              <text>请选择宠物性别：</text>
+              <radio-group name="radio" bindchange="getGender" style="left: 100rpx;position: relative;">
+                <view  wx:if="{{gender === '雌'}}">
                         <radio-group name="radio" bindchange="getGender">
-                            <label><radio value="雌" checked="true"/>雌</label>
-                            <label><radio value="雄"/>雄</label>
+                          <label style="margin-left: 40rpx;"><radio color="#ffac63"value="雌" checked="true"/>雌</label>
+                          <label style="margin-left: 40rpx;"><radio color="#ffac63" value="雄"/>雄</label>
                         </radio-group>
                     </view>
                     <view  wx:if="{{gender === '雄'}}">
                     <radio-group name="radio" bindchange="getGender">
-                        <label><radio value="雌" />雌</label>
-                        <label><radio value="雄" checked="true"/>雄</label>
+                      <label style="margin-left: 40rpx;"><radio color="#ffac63"value="雌"/>雌</label>
+                      <label style="margin-left: 40rpx;"><radio color="#ffac63" value="雄" checked="true"/>雄</label>
                     </radio-group>
                     </view>
-                    </view>
-                    <view class='inputBreed' >
-                        <textarea style="top:550rpx;left:25rpx;position: fixed;width: 800rpx;height:100rpx;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
-                    </view>
-                    <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top: 560rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
-                        <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="breed" style="top: 40rpx;position: relative;font-size: 40rpx;background-color: grey;" bindtap="replaceBreed">
-                            {{item}}
-                        </view>
-                    </view>
+              </radio-group>
+            </view>
+            <view style="top:740rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+            <view class='inputBreed'>
+                <input style="top:560rpx;left:40rpx;position: fixed;width: 670rpx;line-height:60rpx;height:60rpx;" placeholder='请输入宠物种类' minlength="1" maxlength="30" value="{{breed}}"  bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></input>
+            </view>
+            
+
+            <view>
+                <view class='inputAge' style="align-items: center; top:760rpx;position: fixed;left:25rpx;width: 750rpx;height:60rpx;">
+                  <picker style="align-items: center;top:770rpx;position: fixed;left:40rpx;width: 710rpx;height:60rpx;" mode="date" value="{{date}}" start="2010-09-01" end="2024-01-01" bindchange="bindDateChange">
+                      <view class="picker">
+                      <view>请选择出生日期:<text style="position:relative;left:170rpx">{{date}}</text></view>
+                      </view>
+                  </picker>
                 </view>
+            </view>
+            <view style="top:840rpx;width:700rpx;height: 1px;background-color: silver;position: fixed;left: 25rpx;"></view>
+
+            <view style="top:900rpx;width:700rpx;position: fixed;left: 25rpx;">
+              <l-card l-class="tiptitle" type="primary" plaintext="true" title="提示"><view>如果找不到自己宠物的种类，不妨搜索一下爱宠的别名哦。</view></l-card>
+            </view>
+
+            <view wx:if="{{breedfocus&&(breed.length>0)}}" style="top:610rpx;position:fixed;left: 20rpx;height: auto;width:730rpx;display: flex;flex-direction: column;">
+                <view wx:for="{{possiblebreed}}" data-breed="{{item}}" wx:key="breed" style="top: 40rpx;position: relative;left:10rpx;width:690rpx;font-size: 40rpx;background-color: silver;" bindtap="replaceBreed">
+                    <text style="margin-left: 30rpx;">{{item}}</text>
+                </view>
+            </view>
+        </view>
         </view>
     </view>
 </l-capsule-bar>

@@ -1,16 +1,12 @@
 /* pages/petdetail/petdetail.wxss */
-.petinfo {
-  display: flex;
-  flex-direction:column;
-  margin-top: 50rpx;
-  margin-left: 50rpx;
-  margin-right: 50rpx
-}
 .pettool {
   display: flex;
   flex-direction:column;
   margin-left: 50rpx;
   margin-right: 50rpx
+}
+.avatar{
+  margin-left:30rpx;
 }
 .capsule-bar-bg{
   width:100%;

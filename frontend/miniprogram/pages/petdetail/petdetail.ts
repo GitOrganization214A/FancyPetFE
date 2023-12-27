@@ -5,21 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-<<<<<<< HEAD
-    petspaceid:'',
-    number:0,
-    index:[0,1,2,3,4,5,6,7,8],
-    images:[],
-    avatar:'',
-    current:0,
-    show:false,
-    moreUrl:"../../resource/more.png",
-    showActionsheet:false,
-    status:true,
-    hasMoreImage:true,
-    pageImage:1,
-    pageSize:27,
-=======
     petspaceid: "",
     number: 0,
     index: [0, 1, 2, 3, 4, 5, 6, 7, 8],
@@ -34,14 +19,15 @@ Page({
     pageImage: 1,
     pageSize: 27,
     refresh: false,
->>>>>>> 2dea03f3b964641bd58dfd85f5d54be76f19d5e7
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(event) {
-    
+    this.setData({
+      petspaceid:event.petspaceid
+    })
   },
   setpublic: function (e) {
     var that = this;
@@ -58,7 +44,7 @@ Page({
                 "content-type": "application/json", //
               },
               data: {
-                PetSpaceID: app.globalData.petspaceid,
+                PetSpaceID: that.data.petspaceid,
                 openid: app.globalData.openid,
                 operation: "private",
               },
@@ -74,7 +60,7 @@ Page({
                 "content-type": "application/json", //
               },
               data: {
-                PetSpaceID: app.globalData.petspaceid,
+                PetSpaceID: that.data.petspaceid,
                 openid: app.globalData.openid,
                 operation: "public",
               },
@@ -103,7 +89,7 @@ Page({
               "content-type": "application/json", //
             },
             data: {
-              PetSpaceID: app.globalData.petspaceid,
+              PetSpaceID: that.data.petspaceid,
               openid: app.globalData.openid,
             },
             success: function (res) {
@@ -132,7 +118,6 @@ Page({
     let that = this;
     wx.showActionSheet({
       itemList: ['从相册中选择', '拍照'],
-      itemColor: "coral",
       success: function(res) {
           if (res.tapIndex == 0) {
             that.chooseWxImage('album');
@@ -148,7 +133,7 @@ Page({
       filePath: files[i],
       name: 'image',
       formData: {
-        PetSpaceID:app.globalData.petspaceid,
+        PetSpaceID:that.data.petspaceid,
         openid:app.globalData.openid
       },
       success (res){
@@ -192,7 +177,7 @@ Page({
               "content-type": "application/json", //
             },
             data: {
-              PetSpaceID: app.globalData.petspaceid,
+              PetSpaceID: that.data.petspaceid,
               openid: app.globalData.openid,
               index: index,
             },
@@ -215,7 +200,7 @@ Page({
     wx.navigateTo({
       url:
         "/pages/correctInfo/correctInfo?petspaceid=" +
-        app.globalData.petspaceid,
+        this.data.petspaceid,
     });
   },
   showall: function (e) {
@@ -245,7 +230,7 @@ Page({
         "content-type": "application/json", //
       },
       data: {
-        PetSpaceID: app.globalData.petspaceid,
+        PetSpaceID: that.data.petspaceid,
         openid: app.globalData.openid,
         page: that.data.pageImage,
       },
@@ -305,7 +290,7 @@ Page({
           "content-type": "application/json", //
         },
         data: {
-          PetSpaceID: app.globalData.petspaceid,
+          PetSpaceID: that.data.petspaceid,
           openid: app.globalData.openid,
           page: that.data.pageImage,
         },
