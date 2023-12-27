@@ -4,46 +4,55 @@
   title="个人主页" title-color="#ffac63"
   home-page='/pages/forum/forum'>
 <view class="container" style="width:100%; padding:0;">
-  <view>
+  <view style="display: flex; flex-direction: column;">
     <view class="userinfo">
       <view class="avatar">
-        <image wx:if="{{defaultUrl.length>0}}" class="avatarimg" mode="aspectFit" src ="{{logging?defaultUrl:avatarUrl}}"></image>
-        <button bindchooseavatar="getUserAvatar" mode="widthFix" open-type="chooseAvatar" class="avatartext">设置头像</button>  
+        <button bindchooseavatar="getUserAvatar" open-type="chooseAvatar" class="avatartext">
+          <image wx:if="{{defaultUrl.length>0}}" class="avatarimg" mode="aspectFill" src ="{{logging?defaultUrl:avatarUrl}}"></image>
+        </button>  
       </view> 
       <view class="nameandnum">  
         <view class="message">
           <view>
-            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" style="width:300rpx; height:80rpx; font-size:50rpx"/>
+            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" minlength="1" maxlength="10" style="width:300rpx; height:80rpx; font-size:50rpx"/>
           </view>
           <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="width:50rpx;">
           </image>   
         </view>
-        <view style="margin-top:20rpx; margin-left:10rpx; ">
-          <text type="userid" style="font-weight:300; font-size:26rpx;">UserID:  #{{userid}}</text>
-        </view>
-        <view style="display: flex;flex-direction:row" > 
-            <view>
-                <text decode style="font-size: 30rpx;" bind:tap="viewfollowee">
-                    关注：{{follow}}  &ensp; 
-                </text>
-            </view>
-            <view>
-                <text decode style="font-size: 30rpx;" bind:tap="viewfollower">
-                    粉丝：{{fans}}  &ensp; 
-                </text>
-            </view>
-            <view>
-                <text decode style="font-size: 30rpx;" bind:tap="viewUserInfo">
-                    发帖：{{atcnum}}
-                </text> 
-            </view>
+        <view style="margin-top:30rpx;">
+          <text style="font-weight:300; font-size:smaller;padding:2px;border:1px black solid">UserID</text>
+          <text decode style="font-weight:300; font-size:smaller;">&ensp;#{{userid}}</text>
         </view>
        
+      </view>
+      
+    </view>
+    <view style="display: flex;flex-direction:row;justify-content: space-around;margin-left:30rpx;margin-right: 30rpx;" > 
+      <view>
+          <text decode style="font-size: 30rpx;" bind:tap="viewfollowee">
+              关注：{{follow}}  &ensp; 
+          </text>
+      </view>
+      <view>
+          <text decode style="font-size: 30rpx;" bind:tap="viewfollower">
+              粉丝：{{fans}}  &ensp; 
+          </text>
+      </view>
+      <view>
+          <text decode style="font-size: 30rpx;" bind:tap="viewUserInfo">
+              发帖：{{atcnum}}
+          </text> 
       </view>
     </view>
     <view style="display:flex;margin-top:100rpx; justify-content:center;">
       <l-button shape="semicircle" bg-color="#ffac60" bindtap="contactus" width="300">联系我们</l-button>
     </view>
+    <van-popup show="{{ showmask }}" closeable round position="center" bind:close="onClose">
+      <view style="width:600rpx;height:500rpx;align-items: center;display: flex;flex-direction: column; justify-content: center; word-break: break-all;">
+        <view><text style="color:#ffac60" user-select>github项目地址：</text></view>
+        <view style="margin-top:10rpx;margin-bottom:10rpx;margin-left:50rpx;margin-right: 50rpx;"><text user-select>https://github.com/orgs/GitOrganization214A/repositories</text></view>
+      </view>
+    </van-popup>
     <view style="display:flex;margin-top:50rpx; justify-content:center;">
       <l-button shape="semicircle" bg-color="#ffac60" bindtap="quitUser" width="300">退出登录</l-button>
     </view>

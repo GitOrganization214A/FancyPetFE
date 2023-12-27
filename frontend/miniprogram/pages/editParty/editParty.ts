@@ -20,7 +20,7 @@ Page({
     atccontent:[],
     responseData:[],
     date:'',
-    beip:"192.168.187.1",
+    
     IsEditingText: true, // 如需尝试获取用户信息可改为false
     navigationUrl:"../../resource/navigationbar.png",
     giveupUrl:"../../resource/giveup.png",

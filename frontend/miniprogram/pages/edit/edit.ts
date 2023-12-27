@@ -154,7 +154,7 @@ Page({
     breedcontent:"",
     titlecontent:[],
     atccontent:[],
-    beip:"192.168.187.1",
+    
     navigationUrl:"../../resource/navigationbar.png",
     chooseImageUrl:"../../resource/chooseImage.png",
     giveupUrl:"../../resource/giveup.png",

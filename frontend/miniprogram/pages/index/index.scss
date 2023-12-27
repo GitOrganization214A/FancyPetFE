@@ -8,23 +8,26 @@
   margin-top: 100rpx;
 }
 
+.popup {
+  width:300rpx;
+  height:600rpx;
+}
+
 .avatar {
   display: flex;
   flex-direction:column;
+  margin-top:30rpx;
 }
 
 .avatarimg{
-  margin-bottom: 30rpx;
   height:160rpx;
   width:160rpx;
 }
 
 .avatartext {
+  padding:0;
   width: 160rpx; 
-  height: 60rpx; 
-  font-size: 26rpx; 
-  line-height:60rpx; 
-  text-align:center;
+  height: 160rpx; 
 }
 
 .message {
@@ -32,6 +35,7 @@
   flex-direction:row;
   align-items: center;
   justify-content: space-between;
+  margin-top: 30rpx;
 }
 
 .nameandnum {

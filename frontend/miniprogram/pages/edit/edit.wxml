@@ -13,7 +13,7 @@
       </view>
       <view class="line"></view>
       <view class='inputBreed'>
-        <textarea style="font-size: smaller; margin-left:20rpx; line-height:40rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
+        <textarea style="margin-left:20rpx; line-height:40rpx; font-weight: 700;" placeholder='请输入宠物分区(可选)' minlength="1" maxlength="20" auto-height="true" value="{{breedcontent}}" bindinput='inputBreed' bindfocus="breedFocus" bindblur="breedBlur"></textarea>
       </view>
       <view class="line"></view>
       <view class='inputTitle'>

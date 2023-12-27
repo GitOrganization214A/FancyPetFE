@@ -20,7 +20,8 @@ Page({
         newMessage : "0",
         userid : "",
     },
-    beip:"192.168.187.1",
+    showmask:false,
+    
     canIUseOpenData: false, // 如需尝试获取用户信息可改为false
     haveAvatar: false,
     haveNickname: false,
@@ -34,6 +35,16 @@ Page({
     logging:true
   },
   // 事件处理函数
+  contactus() {
+    this.setData({
+      showmask:true,
+    })
+  },
+  onClose(){
+    this.setData({
+      showmask:false,
+    })
+  },
   bindViewTap() {
     wx.navigateTo({
       url: '../logs/logs',
