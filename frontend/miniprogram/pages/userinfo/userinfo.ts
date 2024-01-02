@@ -235,7 +235,7 @@ Page({
     const articleid = event.currentTarget.dataset.articleid
     const index = event.currentTarget.dataset.index
     wx.navigateTo({
-      url:'/pages/detail/detail?articleid='+articleid+'&index='+index,
+      url:'/pages/detail/detail?articleid='+articleid+'&index='+index+'&currentTab='+'',
     })
   },
   changeTabs() {

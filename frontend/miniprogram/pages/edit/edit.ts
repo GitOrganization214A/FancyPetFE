@@ -315,6 +315,29 @@ Page({
   handleclicksc(e) {
     this.showvideoplay = true;
   },
+  uploadimage:function(files,i){
+    var that = this
+    wx.uploadFile({
+      url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
+      filePath: files[i].url,
+      name: 'image',
+      formData: {
+        ArticleID:that.data.atcid,
+      },
+      success (res){
+      },
+      complete: () => {
+        i++;
+        if (i == files.length) {
+          wx.switchTab({
+            url:"/pages/forum/forum"
+          })
+        } else {
+          that.uploadimage(files,i);
+        }
+      },
+    })
+  },
   sendAtc: function(e) {
     var breedtag = '';
     var pbreed = this.data.breedcontent
@@ -422,23 +445,11 @@ Page({
                     url:"/pages/forum/forum"
                 })
             }
-            var atcid = res.data.ArticleID
-            for (let path of that.data.images)
-            {
-                wx.uploadFile({
-                    url: 'http://43.143.139.4:8000/api/v1/postArticle/', 
-                    filePath: path.url,
-                    name: 'image',
-                    formData: {
-                    ArticleID:atcid,
-                    },
-                    success (res){
-                        wx.switchTab({
-                            url:"/pages/forum/forum"
-                        })
-                    }
-                })
-            }
+            that.setData({
+              atcid:res.data.ArticleID
+            }, function (){
+              that.uploadimage(that.data.images,0)
+            })
         },
         fail:function(res){
         }

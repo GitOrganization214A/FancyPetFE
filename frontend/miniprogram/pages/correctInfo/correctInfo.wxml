@@ -3,9 +3,6 @@
   capsule-color="white" bg-color="#60656C" title="修改宠物信息" title-color="#ffac63"
   home-page='/pages/petspace/petspace'>
     <view style="width:100%;">
-        <button  style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" bindtap='chosePetImage' bindlongtap='dimage' >
-                <image wx:if="{{avatarUrl.length>0}}" src="{{avatarUrl}}" mode="aspectFill"  style="display: inline-block; box-sizing: border-box; height:150rpx; width:150rpx; top:0rpx;left: -25rpx;position: relative;"></image> 
-        </button>
         <view style="width:100%;top: 0rpx;position: fixed" class="editText" >
           <view class='by'>
             <button bindchooseavatar="chooseAvatar" open-type="chooseAvatar" style="display: inline-block; box-sizing: border-box; position: fixed; height:150rpx; width:150rpx; left:300rpx; top:200rpx" >

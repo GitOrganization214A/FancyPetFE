@@ -13,7 +13,6 @@
         "pages/logs/logs",
         "pages/edit/edit",
         "pages/detail/detail",
-        "pages/list/list",
         "pages/addpet/addpet",
         "pages/petdetail/petdetail",
         "pages/record/record",

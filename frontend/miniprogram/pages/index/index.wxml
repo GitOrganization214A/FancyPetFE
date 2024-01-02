@@ -3,7 +3,7 @@
   capsule-color="white" bg-color="#60656C"
   title="个人主页" title-color="#ffac63"
   home-page='/pages/forum/forum'>
-<view class="container" style="width:100%; padding:0;">
+<view style="width:100%; padding:0;">
   <view style="display: flex; flex-direction: column;">
     <view class="userinfo">
       <view class="avatar">
@@ -44,7 +44,7 @@
           </text> 
       </view>
     </view>
-    <view style="display:flex;margin-top:100rpx; justify-content:center;">
+    <view style="display:flex;margin-top:150rpx; justify-content:center;">
       <l-button shape="semicircle" bg-color="#ffac60" bindtap="contactus" width="300">联系我们</l-button>
     </view>
     <van-popup show="{{ showmask }}" closeable round position="center" bind:close="onClose">
@@ -53,7 +53,7 @@
         <view style="margin-top:10rpx;margin-bottom:10rpx;margin-left:50rpx;margin-right: 50rpx;"><text user-select>https://github.com/orgs/GitOrganization214A/repositories</text></view>
       </view>
     </van-popup>
-    <view style="display:flex;margin-top:50rpx; justify-content:center;">
+    <view style="display:flex;margin-top:80rpx; justify-content:center;">
       <l-button shape="semicircle" bg-color="#ffac60" bindtap="quitUser" width="300">退出登录</l-button>
     </view>
   </view>

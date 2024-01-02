@@ -11,29 +11,33 @@
         class="van-card__img thumb-class"
       />
       <slot wx:else name="thumb" />
-      <van-tag
-        wx:if="{{ tag }}"
-        size = "medium"
-        plain
-        type="primary"
-        color="coral"
-        custom-class="van-card__tag"
-        style="position:absolute;left:400rpx;top:30rpx;width: 250rpx;"
-      >
-        {{ tag }}
-      </van-tag>
-      <slot wx:else name="tag" />
     </view>
 
     <view class="van-card__content {{ utils.bem('card__content', { center: centered }) }}">
       <view>
-        <view wx:if="{{ title }}" class="van-card__title title-class" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; font-size: 30rpx;top:30rpx;width:200rpx;position: absolute;">{{ title }}</view>
-        <slot wx:else name="title" />
+        <view style="top:5rpx;width:600rpx;position: absolute;">
+          <view wx:if="{{ title }}" class="van-card__title title-class" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; font-size: 32rpx; width:400rpx">{{ title }}</view>
+          <slot wx:else name="title" />
+          <view style="align-items: center; position: relative;width:600rpx;top:20rpx;">
+            <van-tag
+              wx:if="{{ tag }}"
+              size = "medium"
+              plain
+              type="primary"
+              color="coral"
+              custom-class="van-card__tag"
+            >
+            {{ tag }}
+            </van-tag>
+            <slot wx:else name="tag" />
+          </view>
+        </view>
+        
 
-        <view wx:if="{{ info }}" class="van-card__info info-class" style="font-size: 20rpx;top: 60rpx;width:500rpx;position: absolute;">{{ info }}</view>
+        <view wx:if="{{ info }}" class="van-card__info info-class" style="font-size: 24rpx;top: 55rpx;width:500rpx;position: absolute;">{{ info }}</view>
         <slot wx:else name="info" />
 
-        <view wx:if="{{ desc }}" class="van-card__desc desc-class" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 20rpx;top: 90rpx;width:500rpx;position: absolute;">{{ desc }}</view>
+        <view wx:if="{{ desc }}" class="van-card__desc desc-class" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size: 24rpx;top: 110rpx;width:500rpx;position: absolute;">{{ desc }}</view>
         <slot wx:else name="desc" />
 
         <slot name="tags" />

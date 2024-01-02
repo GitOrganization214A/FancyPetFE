@@ -53,6 +53,9 @@
       </view>
     </block>
   </view>
+  <view wx:if="{{messageList.length==0}}" style="display:flex;justify-content: center; margin-top: 60rpx;margin-bottom: 60rpx;">
+    消息列表为空
+  </view>
   <view class="line2"></view>
 
     

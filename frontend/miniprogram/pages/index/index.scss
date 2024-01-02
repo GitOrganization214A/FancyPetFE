@@ -3,8 +3,8 @@
 .userinfo {
   display: flex;
   flex-direction:row;
-  margin-left: 40rpx;
-  margin-right: 40rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
   margin-top: 100rpx;
 }
 
@@ -22,6 +22,7 @@
 .avatarimg{
   height:160rpx;
   width:160rpx;
+  z-index: 20;
 }
 
 .avatartext {
