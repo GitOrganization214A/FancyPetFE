@@ -31,7 +31,7 @@ Page({
   },
   addNewRecord(){
     wx.navigateTo({
-      url:'/pages/addrecord/addrecord',
+      url:'/pages/addrecord/addrecord?petspaceid='+this.data.petspaceid,
     })
   },
   goback(){

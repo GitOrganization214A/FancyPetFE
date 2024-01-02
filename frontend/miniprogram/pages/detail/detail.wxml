@@ -98,7 +98,7 @@
           </view>
         </view>
         <view class="commentcontent">
-          <text>{{item.content}}</text>
+          <text user-select>{{item.content}}</text>
         </view>
       </block>
       <view class="line"></view>

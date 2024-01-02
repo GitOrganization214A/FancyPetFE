@@ -372,7 +372,7 @@ Page({
         success:function(res) {
           that.setData({
             followPosts: res.data,
-            pageFollow: that.data.pageFollow
+            pageFollow: that.data.pageFollow+1
           })
           setTimeout(() => {
             // 停止下拉刷新

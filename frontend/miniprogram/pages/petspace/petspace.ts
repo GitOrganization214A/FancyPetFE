@@ -34,11 +34,6 @@ Page({
       url:'/pages/cost/cost'
     })
   },
-  attentionlist:function(){
-    wx.navigateTo({
-      url:'/pages/list/list'
-    })
-  },
   addpet:function(){
     wx.navigateTo({
       url:'/pages/addpet/addpet'

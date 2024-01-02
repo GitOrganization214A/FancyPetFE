@@ -301,24 +301,11 @@ Page({
     })
     } 
   },
-  chosePetImage: function(e) {
-    var that = this;
-    wx.chooseImage({//选择图片.
-        count:1,//一张图片
-        sizeType: ['original', 'compressed'],
-        success: function (res) {
-          console.log(res)
-          that.setData({
-            avatarUrl: res.tempFilePaths[0],
-          })          
-        }
+  chooseAvatar: function(e) {
+    const petavatarUrl = e.detail.avatarUrl
+    this.setData({
+      ['avatarUrl']:petavatarUrl,
     })
-  },
-  guEdit: function(e) {
-;
-      wx.navigateBack({
-        delta: 1
-      })
   },
   onLoad(e){
     var that = this
@@ -344,8 +331,7 @@ Page({
             images:res.data.avatar,
             titlecontent:res.data.name,
             currentTitleNumber:res.data.name.length,
-            year:res.data.year,
-            month:res.data.month,
+            date:res.data.birthday,
             gender:res.data.gender,
             breed:res.data.breed
           })

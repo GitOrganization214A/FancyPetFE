@@ -130,6 +130,7 @@ Page({
     })
   },
   uploadimage:function(files,i){
+    var that = this
     wx.uploadFile({
       url: 'http://43.143.139.4:8000/api/v1/newPhoto/', 
       filePath: files[i],
@@ -165,7 +166,6 @@ Page({
   deletePhoto: function (e) {
     var that = this;
     var index = this.data.number;
-
     var petspaceid = this.data.petspaceid;
     wx.showModal({
       title: "提示",
@@ -181,7 +181,7 @@ Page({
             data: {
               PetSpaceID: that.data.petspaceid,
               openid: app.globalData.openid,
-              index: index,
+              index: that.data.current,
             },
             success: function (res) {
               that.onShow();
