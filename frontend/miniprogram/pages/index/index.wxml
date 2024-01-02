@@ -14,7 +14,7 @@
       <view class="nameandnum">  
         <view class="message">
           <view>
-            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" minlength="1" maxlength="10" style="width:300rpx; height:80rpx; font-size:50rpx"/>
+            <input type="nickname" value="{{nickName}}" name="nickname" bindchange="getUserNickname" placeholder="微信用户" minlength="1" maxlength="10" style="width:300rpx; height:80rpx; font-size:50rpx;"/>
           </view>
           <image wx:if="{{messageUrl.length>0}}" src="{{messageUrl}}" mode="widthFix" bindtap="showMessage" style="width:50rpx;">
           </image>   

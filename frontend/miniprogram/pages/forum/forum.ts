@@ -268,6 +268,7 @@ Page({
         page:that.data.pageHot
       },
       success:function(res) {
+          console.log(res)
         that.setData({
           hotPosts:that.data.hotPosts.concat(res.data),
           pageHot: that.data.pageHot + 1

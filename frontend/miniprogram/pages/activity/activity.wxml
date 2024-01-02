@@ -136,21 +136,23 @@
                                         </view>
                                         <view class ="userinfotext">
                                         <view class="nickname" data-userid="{{item.UserID}}" bindtap="viewUserInfo" style="left: 100rpx;top: -100rpx;position: relative;"><text class="nicknametext">{{item.nickname}}</text></view>
-                                        <view style="left: 100rpx;top: -60rpx;position: relative;font-size:small;"><text class="posttime">{{item.time}}</text></view>
+                                        <view style="left: 100rpx;position: relative;top:-140rpx;font-size:20rpx;">
+                                            <text class="posttime">
+                                                {{item.time}}
+                                            </text>
+                                        </view>
+                                        <view class="commentcontent" style="left: 100rpx;top:-140rpx;position: relative;font-size: 28rpx;">
+                                            <text>{{item.content}}</text>
                                         </view>
                                     </view>
-                                    <view >
-                                        <view wx:if="{{item.self}}" style="position: relative;left: 540rpx;top: -140rpx;">
+                                    <view style="display: flex;">
+                                        <view wx:if="{{item.self}}" style="position: relative;left: 540rpx;top: -240rpx;">
                                             <l-icon name="delete" type="delete" size="30" color="red" bindtap="deletecomment" data-commentid="{{item.CommentID}}" ></l-icon>
                                         </view>
-                                        <view class="goodjob">
-                                        <view style="position: relative;left: 600rpx;top: -185rpx;"><van-icon color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likeComment" size="18" name="good-job-o" data-liked="{{item.liked}}" data-like="{{item.like}}" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}" ></van-icon></view>
-                                        <view class="commentlike" style="position: relative;left: 640rpx;top: -230rpx;"><text style="color:{{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text></view>
-                                        </view>
+                                        <view style="position: relative;left: 580rpx;top: -240rpx;"><van-icon color="{{item.liked ? '#ffac63' : '#515151'}}" bindtap="likeComment" size="18" name="good-job-o" data-liked="{{item.liked}}" data-like="{{item.like}}" data-commentid="{{item.CommentID}}" data-index="{{commentindex}}" ></van-icon></view>
+                                        <view class="commentlike" style="position: relative;left: 590rpx;top: -240rpx;"><text style="color:{{item.liked ? '#ffac63' : '#515151'}}">{{item.like}}</text></view>
                                     </view>
                                 </view>
-                                <view class="commentcontent" style="left: 140rpx;top: -200rpx;position: relative;">
-                                    <text>{{item.content}}</text>
                                 </view>
                             </view>
                         </block>
